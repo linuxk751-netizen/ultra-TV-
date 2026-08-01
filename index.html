@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra TV - الموقع الرسمي لتطبيقات البث</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- مكتبة الأيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- الشريط العلوي (Navbar) -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#" onclick="showPage('home')">
+                <img src="https://i.ibb.co/v6jtYQPX/eac87487-513c-4d5c-ad3a-4e40ed4f68bc.png" alt="Ultra TV Logo" style="height: 85px; vertical-align: middle;">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">الصفحة الرئيسية</a></li>
+                <li><a href="#" onclick="showPage('packages')" id="nav-packages">الباقات</a></li>
+                <li><a href="#" onclick="showPage('contact')" id="nav-contact">اتصل بنا</a></li>
+            </ul>
+        </nav>
+        
+        <!-- أيقونة الحساب / معلومات المستخدم -->
+        <div class="navbar-icons" id="auth-nav-container">
+            <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
+        </div>
+    </header>
+
+
+    <!-- ================= القسم الأول: الصفحة الرئيسية ================= -->
+    <div id="page-home" class="page-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>تطبيقات مجانية وبث مباشر</h1>
+                <p>Home | تطبيقات مجانية</p>
+            </div>
+        </section>
+
+        <section class="download-section">
+            <div class="download-card">
+                <span class="badge">مجاني</span>
+                <p class="card-desc">برنامج لمشاهدة القنوات المجانية عبر الإنترنت</p>
+                <h2>نسخة مخففة خاصة بشهر رمضان</h2>
+                <div class="device-icons">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <i class="fa-solid fa-tv"></i>
+                </div>
+                <a href="#" class="download-btn">
+                    <i class="fa-solid fa-download"></i> تحميل 
+                </a>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <div class="categories-grid">
+                <!-- قسم مسلسلات رمضان -->
+                <div class="category-box" onclick="alert('سيتم فتح قسم مسلسلات رمضان قريباً')" style="cursor: pointer; transition: 0.3s;">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <h3>مسلسلات رمضان</h3>
+                    <p>أحدث المسلسلات والبرامج بجودة عالية</p>
+                    <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-left"></i></span>
+                </div>
+                
+                <!-- قسم الأفلام الكلاسيكية -->
+                <div class="category-box" onclick="alert('سيتم فتح قسم الأفلام الكلاسيكية قريباً')" style="cursor: pointer; transition: 0.3s;">
+                    <i class="fa-solid fa-film"></i>
+                    <h3>أفلام كلاسيكية</h3>
+                    <p>أفلام عربية وكلاسيكية على مدار الساعة</p>
+                    <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-left"></i></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ================= القسم الثاني: صفحة الباقات ================= -->
+    <div id="page-packages" class="page-content" style="display: none;">
+        <section class="contact-hero-clean" style="text-align: center;">
+            <div class="contact-hero-content">
+                <h1>باقة الاشتراك السنوي</h1>
+                <p style="color: #b0bec5; font-size: 14px; margin-top: 5px;">اشترك لمدة سنة كاملة واستمتع بأفضل مشاهدة بدون انقطاع</p>
+            </div>
+        </section>
+
+        <section class="packages-section">
+            <div class="packages-grid">
+                <!-- الباقة السنوية الموحدة -->
+                <div class="package-card featured">
+                    <span class="popular-badge">العرض المميز</span>
+                    <i class="fa-solid fa-crown package-icon"></i>
+                    <h3>الباقة السنوية الشاملة</h3>
+                    <div class="price">$30 <span>/ سنوياً</span></div>
+                    <ul class="package-features">
+                        <li><i class="fa-solid fa-check"></i> مشاهدة جميع المسلسلات والأفلام بدون إعلانات</li>
+                        <li><i class="fa-solid fa-check"></i> جودة فائقة 4K Ultra HD</li>
+                        <li><i class="fa-solid fa-check"></i> سيرفرات سريعة ومستقرة بدون تقطيع</li>
+                        <li><i class="fa-solid fa-check"></i> مكتبة أفلام ومسلسلات حديثة تُحدّث يومياً</li>
+                    </ul>
+                    <a href="#" class="download-btn" style="width: 100%; display: block;">اشترك الآن</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ================= القسم الثالث: صفحة اتصل معنا ================= -->
+    <div id="page-contact" class="page-content" style="display: none;">
+        <section class="contact-hero-clean" style="text-align: center;">
+            <div class="contact-hero-content">
+                <h1>تواصل معنا</h1>
+            </div>
+        </section>
+
+        <section class="contact-info-section">
+            <div class="contact-grid" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px;">
+                    <i class="fa-solid fa-clock"></i>
+                    <h3>ساعات العمل</h3>
+                    <p>طوال أيام الأسبوع</p>
+                    <p class="sub-text">AM - 10:00 PM 8:00</p>
+                </div>
+                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px;">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>البريد الإلكتروني</h3>
+                    <p>ultratv.media2026@gmail.com</p>
+                </div>
+                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px;">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <h3>أرقام الهاتف</h3>
+                    <p class="phone-highlight">0555 040 62 71</p>
+                </div>
+                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px;">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>الموقع</h3>
+                    <p>تركيا</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ================= القسم الرابع: صفحة تسجيل الدخول الحقيقي ================= -->
+    <div id="page-login" class="page-content" style="display: none;">
+        <section class="contact-hero-clean" style="text-align: center; height: 300px;">
+            <div class="contact-hero-content">
+                <h1>تسجيل الدخول</h1>
+                <p style="color: #b0bec5; font-size: 14px; margin-top: 5px;">مرحباً بك مجدداً في Ultra TV</p>
+            </div>
+        </section>
+
+        <section class="download-section">
+            <div class="download-card" style="max-width: 450px; padding: 40px 30px;">
+                <!-- نموذج تسجيل الدخول الحقيقي -->
+                <form id="login-form" style="display: flex; flex-direction: column; gap: 20px; text-align: right;">
+                    
+                    <div id="error-message" style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 6px; font-size: 13px; display: none;"></div>
+
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="font-size: 14px; font-weight: bold; color: #263238;">البريد الإلكتروني</label>
+                        <div style="position: relative;">
+                            <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني" required style="width: 100%; padding: 12px 15px; padding-left: 40px; border: 1px solid #cfd8dc; border-radius: 8px; font-size: 14px; outline: none; transition: 0.3s; background-color: #fafafa;">
+                            <i class="fa-solid fa-envelope" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #78909c;"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="font-size: 14px; font-weight: bold; color: #263238;">كلمة المرور</label>
+                        <div style="position: relative;">
+                            <input type="password" id="login-password" placeholder="أدخل كلمة المرور" required style="width: 100%; padding: 12px 15px; padding-left: 40px; border: 1px solid #cfd8dc; border-radius: 8px; font-size: 14px; outline: none; transition: 0.3s; background-color: #fafafa;">
+                            <i class="fa-solid fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #78909c;"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #78909c;">
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                            <input type="checkbox" style="accent-color: #00bcd4;"> تذكرني
+                        </label>
+                        <a href="#" onclick="resetPassword()" style="color: #00bcd4; text-decoration: none;">نسيت كلمة المرور؟</a>
+                    </div>
+
+                    <button type="submit" id="login-btn" class="download-btn" style="border: none; cursor: pointer; width: 100%; margin-top: 10px; border-radius: 8px;">
+                        تسجيل الدخول
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- تذييل الموقع (Footer) -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; Ultra TV 2026</p>
+    </footer>
+
+
+    <!-- استدعاء Firebase SDKs (Modules) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDummyKeyForUltraTv2026Example",
+            authDomain: "ultratv-2026.firebaseapp.com",
+            projectId: "ultratv-2026",
+            storageBucket: "ultratv-2026.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcdef"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginForm = document.getElementById('login-form');
+        const errorDiv = document.getElementById('error-message');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const submitBtn = document.getElementById('login-btn');
+
+            submitBtn.innerText = "جاري التحقق...";
+            errorDiv.style.display = 'none';
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                alert('تم تسجيل الدخول بنجاح!');
+                showPage('home');
+            } catch (error) {
+                errorDiv.style.display = 'block';
+                if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                    errorDiv.innerText = 'خطأ في البريد الإلكتروني أو كلمة المرور.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorDiv.innerText = 'صيغة البريد الإلكتروني غير صحيحة.';
+                } else {
+                    errorDiv.innerText = 'حدث خطأ: ' + error.message;
+                }
+            } finally {
+                submitBtn.innerText = "تسجيل الدخول";
+            }
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            const authContainer = document.getElementById('auth-nav-container');
+            if (user) {
+                authContainer.innerHTML = `
+                    <span style="font-size: 13px; color: #00bcd4; font-weight: bold; cursor: pointer;" title="تسجيل الخروج" onclick="logoutUser()">
+                        <i class="fa-solid fa-right-from-bracket"></i> خروج (${user.email.split('@')[0]})
+                    </span>
+                `;
+            } else {
+                authContainer.innerHTML = `
+                    <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
+                `;
+            }
+        });
+
+        window.logoutUser = async function() {
+            try {
+                await signOut(auth);
+                alert('تم تسجيل الخروج بنجاح.');
+                showPage('home');
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        window.resetPassword = async function() {
+            const email = document.getElementById('login-email').value;
+            if (!email) {
+                alert('الرجاء إدخال البريد الإلكتروني أولاً في حقل البريد ثم اضغط على نسيت كلمة المرور.');
+                return;
+            }
+            try {
+                await sendPasswordResetEmail(auth, email);
+                alert('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.');
+            } catch (error) {
+                alert('خطأ: ' + error.message);
+            }
+        };
+    </script>
+
+    <!-- جافاسكريبت للتحكم بعرض و إخفاء الصفحات -->
+    <script>
+        function showPage(pageName) {
+            const homePage = document.getElementById('page-home');
+            const packagesPage = document.getElementById('page-packages');
+            const contactPage = document.getElementById('page-contact');
+            const loginPage = document.getElementById('page-login');
+            
+            const navHome = document.getElementById('nav-home');
+            const navPackages = document.getElementById('nav-packages');
+            const navContact = document.getElementById('nav-contact');
+
+            homePage.style.display = 'none';
+            packagesPage.style.display = 'none';
+            contactPage.style.display = 'none';
+            loginPage.style.display = 'none';
+
+            navHome.classList.remove('active');
+            if (navPackages) navPackages.classList.remove('active');
+            navContact.classList.remove('active');
+
+            if (pageName === 'home') {
+                homePage.style.display = 'block';
+                navHome.classList.add('active');
+            } else if (pageName === 'packages') {
+                packagesPage.style.display = 'block';
+                if (navPackages) navPackages.classList.add('active');
+            } else if (pageName === 'contact') {
+                contactPage.style.display = 'block';
+                navContact.classList.add('active');
+            } else if (pageName === 'login') {
+                loginPage.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
