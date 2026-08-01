@@ -58,7 +58,7 @@
 
         <section class="categories-section">
             <div class="categories-grid">
-                <!-- قسم المسلسلات (تم ربطه بالصفحة الجديدة) -->
+                <!-- قسم المسلسلات -->
                 <div class="category-box" onclick="showPage('series')" style="cursor: pointer; transition: 0.3s;">
                     <i class="fa-solid fa-clapperboard"></i>
                     <h3>المسلسلات</h3>
@@ -78,7 +78,7 @@
     </div>
 
 
-    <!-- ================= قسم المسلسلات الجديد (يحوي جميع بوسترات المسلسلات المطلوبة) ================= -->
+    <!-- ================= قسم المسلسلات الجديد ================= -->
     <div id="page-series" class="page-content" style="display: none;">
         <section class="contact-hero-clean" style="text-align: center;">
             <div class="contact-hero-content">
@@ -90,7 +90,6 @@
         <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
             <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع المسلسلات المتاحة</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
-                <!-- مجموعة بوسترات المسلسلات المطلوبة بدقة -->
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/Rk4CCNNp/images-21.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
@@ -181,106 +180,89 @@
             </div>
         </section>
 
-        <!-- أزرار تصنيفات الأفلام الفرعية -->
+        <!-- زر الجميع فقط -->
         <section style="max-width: 900px; margin: 25px auto 10px auto; padding: 0 20px; text-align: center;">
             <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
-                <button onclick="filterMovies('action')" id="btn-action" class="movie-cat-btn" style="background: #00bcd4; color: #fff; border: none; padding: 10px 22px; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,188,212,0.3);">أفلام أكشن</button>
-                <button onclick="filterMovies('horror')" id="btn-horror" class="movie-cat-btn" style="background: #263238; color: #fff; border: none; padding: 10px 22px; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">أفلام رعب</button>
-                <button onclick="filterMovies('war')" id="btn-war" class="movie-cat-btn" style="background: #263238; color: #fff; border: none; padding: 10px 22px; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">أفلام حرب</button>
-                <button onclick="filterMovies('anime')" id="btn-anime" class="movie-cat-btn" style="background: #263238; color: #fff; border: none; padding: 10px 22px; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">أفلام أنمي</button>
+                <button class="movie-cat-btn" style="background: #00bcd4; color: #fff; border: none; padding: 10px 22px; border-radius: 25px; font-size: 14px; cursor: default; font-weight: bold; box-shadow: 0 4px 10px rgba(0,188,212,0.3);">الجميع</button>
             </div>
         </section>
 
-        <!-- 1. قسم أفلام أكشن -->
-        <div id="category-action" class="movie-category-section" style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
-            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">أفلام أكشن</h3>
+        <!-- قسم عرض جميع الأفلام معاً -->
+        <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
+            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع الأفلام المتاحة</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
+                <!-- أفلام أكشن -->
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/p6brJSXc/bright-movie-poster.webp" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/p6brJSXc/bright-movie-poster.webp" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/bR5vqSYh/images-5.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/bR5vqSYh/images-5.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/r2fFMXyc/images-12.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/r2fFMXyc/images-12.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/d0yyjW4g/images-8.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/d0yyjW4g/images-8.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/5hjcWQWv/images-7.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/5hjcWQWv/images-7.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/fzXBL81T/images-3.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/fzXBL81T/images-3.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/3YvHqJFz/59fcc703-e51a-408a-9271-9d3869766b45.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/3YvHqJFz/59fcc703-e51a-408a-9271-9d3869766b45.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/mrWcXygs/61-ch-Iyt-VXL-AC-UF894-1000-QL80.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/mrWcXygs/61-ch-Iyt-VXL-AC-UF894-1000-QL80.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/jvfTHstp/11366898923-c07dceda52-z.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/jvfTHstp/11366898923-c07dceda52-z.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/1GXcqMh5/a69377a1-00b2-42f0-9374-b13932457173-big-300x440.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/1GXcqMh5/a69377a1-00b2-42f0-9374-b13932457173-big-300x440.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/B5zx1vJV/616a6bb3127cab3f21e2ddbd865ac3f7bf47a6f69666c50548508f10557059b9a.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/B5zx1vJV/616a6bb3127cab3f21e2ddbd865ac3f7bf47a6f69666c50548508f10557059b9a.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/v4jS2DP5/images.jpg" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/v4jS2DP5/images.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/QvxXkxPq/e0b9722cca2c21363a49b425c5d6e8e7.webp" alt="Action Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/QvxXkxPq/e0b9722cca2c21363a49b425c5d6e8e7.webp" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
-            </div>
-        </div>
 
-        <!-- 2. قسم أفلام رعب -->
-        <div id="category-horror" class="movie-category-section" style="max-width: 1200px; margin: 30px auto; padding: 0 20px; display: none;">
-            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">أفلام رعب</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
+                <!-- أفلام رعب -->
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/4wt5mZt0/Backrooms-2026-horror-movie.jpg" alt="Horror Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/4wt5mZt0/Backrooms-2026-horror-movie.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/n8bKy2Rw/Final-Chapter-Pic-2.jpg" alt="Horror Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/n8bKy2Rw/Final-Chapter-Pic-2.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/vCPzWk7M/9339dfb5-cfed-4df4-8920-a314b499522d-sized-1000x1000.jpg" alt="Horror Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/vCPzWk7M/9339dfb5-cfed-4df4-8920-a314b499522d-sized-1000x1000.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/dsMDKryv/annabelle-2014-movie.jpg" alt="Horror Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/dsMDKryv/annabelle-2014-movie.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/TDdhcQx0/e9684150a1bb31579b70649f964378b107b2a3cd88dd2959deaabe1eb4ab91dd.jpg" alt="Horror Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/TDdhcQx0/e9684150a1bb31579b70649f964378b107b2a3cd88dd2959deaabe1eb4ab91dd.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
-            </div>
-        </div>
 
-        <!-- 3. قسم أفلام حرب -->
-        <div id="category-war" class="movie-category-section" style="max-width: 1200px; margin: 30px auto; padding: 0 20px; display: none;">
-            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">أفلام حرب</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
+                <!-- أفلام حرب -->
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/Rk4VZg8X/315x420-95c8d1d6abe7772119444900bded1f59927a4df489139465d7df48daf35cbfb9.jpg" alt="War Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/Rk4VZg8X/315x420-95c8d1d6abe7772119444900bded1f59927a4df489139465d7df48daf35cbfb9.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/2YWzcp0q/23000-Lives-Movie-True-Story.png" alt="War Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/2YWzcp0q/23000-Lives-Movie-True-Story.png" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
-            </div>
-        </div>
 
-        <!-- 4. قسم أفلام أنمي -->
-        <div id="category-anime" class="movie-category-section" style="max-width: 1200px; margin: 30px auto; padding: 0 20px; display: none;">
-            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">أفلام أنمي</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
+                <!-- أفلام أنمي -->
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/twvVSvkH/81xh-WLr-Lej-L-AC-UF350-350-QL80.jpg" alt="Anime Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/twvVSvkH/81xh-WLr-Lej-L-AC-UF350-350-QL80.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
                 <div style="background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/rf64GqrH/14250848f01c418e18925d9d6123dfdf263558d5c0c015cd7c944f326236ff9f.png" alt="Anime Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                    <img src="https://i.ibb.co/rf64GqrH/14250848f01c418e18925d9d6123dfdf263558d5c0c015cd7c944f326236ff9f.png" alt="Movie" style="width: 100%; height: 260px; object-fit: cover; display: block;">
                 </div>
             </div>
         </div>
@@ -495,7 +477,7 @@
         };
     </script>
 
-    <!-- جافاسكريبت للتحكم بعرض و إخفاء الصفحات والتصنيفات -->
+    <!-- جافاسكريبت للتحكم بعرض و إخفاء الصفحات -->
     <script>
         function showPage(pageName) {
             const homePage = document.getElementById('page-home');
@@ -535,28 +517,6 @@
                 navContact.classList.add('active');
             } else if (pageName === 'login') {
                 loginPage.style.display = 'block';
-            }
-        }
-
-        function filterMovies(category) {
-            const sections = document.querySelectorAll('.movie-category-section');
-            sections.forEach(sec => sec.style.display = 'none');
-
-            const targetSection = document.getElementById('category-' + category);
-            if (targetSection) {
-                targetSection.style.display = 'block';
-            }
-
-            const buttons = document.querySelectorAll('.movie-cat-btn');
-            buttons.forEach(btn => {
-                btn.style.background = '#263238';
-                btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-            });
-
-            const activeBtn = document.getElementById('btn-' + category);
-            if (activeBtn) {
-                activeBtn.style.background = '#00bcd4';
-                activeBtn.style.boxShadow = '0 4px 10px rgba(0,188,212,0.3)';
             }
         }
     </script>
