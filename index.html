@@ -76,30 +76,6 @@
                 </div>
             </div>
         </section>
-
-
-        <!-- قسم الأسئلة الشائعة (FAQ) -->
-        <section style="max-width: 800px; margin: 50px auto; padding: 0 20px;" dir="rtl">
-            <h3 style="color: #fff; text-align: center; margin-bottom: 25px; font-size: 22px;">الأسئلة الشائعة</h3>
-            
-            <div style="background: #0e6666; border-radius: 12px; margin-bottom: 12px; overflow: hidden; border: 1px solid #116366;">
-                <button onclick="toggleFaq(this)" style="width: 100%; background: none; border: none; color: #fff; padding: 15px 20px; text-align: right; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                    <span>كيف يمكنني تفعيل الاشتراك بعد الدفع؟</span>
-                    <i class="fa-solid fa-chevron-down" style="color: #00bcd4; transition: 0.3s;"></i>
-                </button>
-                <div style="padding: 0 20px 15px 20px; color: #b0bec5; font-size: 13px; line-height: 1.6; display: none;">
-                    بعد إتمام عملية الدفع، يمكنك التواصل معنا مباشرة عبر الواتساب مع إرسال إيصال الدفع وسيتم تفعيل حسابك فوراً.
-                </div>
-            </div>
-
-            <div style="background: #0e6666; border-radius: 12px; margin-bottom: 12px; overflow: hidden; border: 1px solid #116366;">
-                <button onclick="toggleFaq(this)" style="width: 100%; background: none; border: none; color: #fff; padding: 15px 20px; text-align: right; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                    <span>ما هي الأجهزة المدعومة في التطبيق؟</span>
-                    <i class="fa-solid fa-chevron-down" style="color: #00bcd4; transition: 0.3s;"></i>
-                </button>
-                <div style="padding: 0 20px 15px 20px; color: #b0bec5; font-size: 13px; line-height: 1.6; display: none;">
-                    يعمل التطبيق حالياً على أجهزة الهواتف الذكية والأجهزة اللوحية التي تعمل بنظام أندرويد، وقريباً على الشاشات الذكية.
-                </div>
             </div>
         </section>
     </div>
@@ -447,7 +423,7 @@
                             <span class="star" data-value="5">★</span>
                         </div>
                     </div>
-                    <button id="submitReview" class="download-btn" style="max-width: 200px; margin-top: 12px;">أضف التعليق</button>
+                    <button id="submitReview" class="download-btn" style="max-width: 200px; margin-top: 10px;">أضف التعليق</button>
                 </div>
 
                 <div class="reviews-list" id="contactReviewsList"></div>
@@ -581,14 +557,26 @@
             const items = grid.getElementsByClassName('media-item');
 
             for (let i = 0; i < items.length; i++) {
-                items[i].style.display = ""; 
+                const item = items[i];
+                const img = item.querySelector('img');
+                const text = (img?.alt || '').toLowerCase();
+                item.style.display = text.includes(input) ? '' : 'none';
             }
         }
 
         // إظهار/إخفاء زر العودة للأعلى عند التمرير
         window.onscroll = function() {
             const scrollTopBtn = document.getElementById('scrollTopBtn');
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            const navbar = document.querySelector('.navbar');
+            const scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+
+            if (scrollY > 20) {
+                navbar.classList.add('navbar--scrolled');
+            } else {
+                navbar.classList.remove('navbar--scrolled');
+            }
+
+            if (scrollY > 300) {
                 scrollTopBtn.style.display = 'flex';
             } else {
                 scrollTopBtn.style.display = 'none';
@@ -601,116 +589,146 @@
     </script>
 
     <script>
-        // Reviews logic - localStorage based prototype
-        (function(){
-            const modal = document.getElementById('reviewsModal');
-            const closeBtn = document.getElementById('closeReviews');
-            const reviewTitleInput = document.getElementById('reviewTitleInput');
-            const reviewAuthor = document.getElementById('reviewAuthor');
+        document.addEventListener('DOMContentLoaded', () => {
+            const CONTACT_REVIEW_KEY = 'contact-reviews';
+            const reviewName = document.getElementById('reviewName');
             const reviewText = document.getElementById('reviewText');
-            const starContainer = document.getElementById('starContainer');
-            const submitBtn = document.getElementById('submitReview');
-            const reviewsList = document.getElementById('reviewsList');
-            const avgRating = document.getElementById('avgRating');
-            let currentTitle = '';
+            const ratingStars = Array.from(document.querySelectorAll('#ratingStars .star'));
+            const submitReview = document.getElementById('submitReview');
+            const contactReviewsList = document.getElementById('contactReviewsList');
+            const reviewAverage = document.getElementById('reviewAverage');
+            const reviewAverageStars = document.getElementById('reviewAverageStars');
+            const reviewCount = document.getElementById('reviewCount');
             let currentRating = 0;
 
-            function openModal(title){
-                currentTitle = title || '';
-                reviewTitleInput.value = currentTitle;
-                reviewAuthor.value = '';
-                reviewText.value = '';
-                currentRating = 0;
-                updateStars();
-                renderReviewsFor(title);
-                modal.style.display = 'flex';
-                modal.setAttribute('aria-hidden','false');
+            if (!reviewName || !reviewText || !ratingStars.length || !submitReview || !contactReviewsList || !reviewAverage || !reviewAverageStars || !reviewCount) {
+                return;
             }
 
-            function closeModal(){
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden','true');
+            function loadContactReviews() {
+                try {
+                    return JSON.parse(localStorage.getItem(CONTACT_REVIEW_KEY) || '[]');
+                } catch (e) {
+                    return [];
+                }
             }
 
-            function slug(t){ return encodeURIComponent((t||'').trim().toLowerCase()); }
-
-            function getKey(t){ return 'reviews:' + slug(t); }
-
-            function loadReviews(t){
-                try{ return JSON.parse(localStorage.getItem(getKey(t)) || '[]'); }catch(e){return []}
+            function saveContactReviews(reviews) {
+                localStorage.setItem(CONTACT_REVIEW_KEY, JSON.stringify(reviews));
             }
 
-            function saveReviews(t, arr){ localStorage.setItem(getKey(t), JSON.stringify(arr)); }
+            function escapeHtml(text) {
+                return String(text || '').replace(/[&"'<>]/g, c => ({
+                    '&': '&amp;',
+                    '"': '&quot;',
+                    "'": '&#39;',
+                    '<': '&lt;',
+                    '>': '&gt;'
+                }[c]));
+            }
 
-            function renderReviewsFor(title){
-                const arr = loadReviews(title);
-                reviewsList.innerHTML = '';
-                if(arr.length===0){ reviewsList.innerHTML = '<div style="color:#90a4ae">لا توجد مراجعات بعد.</div>'; avgRating.textContent = '-'; return; }
-                let sum = 0;
+            function renderStarIcons(count) {
+                let result = '';
+                for (let i = 1; i <= 5; i++) {
+                    result += `<span class="star ${i <= count ? 'filled' : ''}" aria-hidden="true">★</span>`;
+                }
+                return result;
+            }
 
-                function renderStarIcons(n){
-                    let s = '';
-                    for(let i=1;i<=5;i++){
-                        s += `<span class="star ${i<=n? 'filled':''}" aria-hidden="true">★</span>`;
-                    }
-                    return s;
+            function updateRatingStars() {
+                ratingStars.forEach(star => {
+                    const value = Number(star.dataset.value);
+                    star.classList.toggle('filled', currentRating >= value);
+                });
+            }
+
+            function deleteReview(index) {
+                const reviews = loadContactReviews();
+                reviews.splice(index, 1);
+                saveContactReviews(reviews);
+                renderReviews();
+            }
+
+            function renderReviews() {
+                const reviews = loadContactReviews();
+                if (reviews.length === 0) {
+                    reviewAverage.textContent = '0.0';
+                    reviewAverageStars.innerHTML = renderStarIcons(0);
+                    reviewCount.textContent = '0 تعليق';
+                    contactReviewsList.innerHTML = '<div class="empty-review">لا توجد تعليقات بعد. كن أول من يشارك رأيه.</div>';
+                    return;
                 }
 
-                arr.slice().reverse().forEach(r=>{
-                    sum += Number(r.rating||0);
-                    const div = document.createElement('div'); div.className='review-item';
-                    const meta = `<div class=\"review-meta\">${renderStarIcons(Number(r.rating||0))} <span style=\"margin-left:8px; color:#90a4ae;\">${escapeHtml(r.author||'مجهول')} — ${new Date(r.date).toLocaleString()}</span></div>`;
-                    div.innerHTML = meta + `<div style=\"margin-top:6px\">${escapeHtml(r.text||'')}</div>`;
-                    reviewsList.appendChild(div);
+                const sum = reviews.reduce((total, review) => total + Number(review.rating || 0), 0);
+                const avg = sum / reviews.length;
+                const roundedAvg = Math.round(avg);
+
+                reviewAverage.textContent = avg.toFixed(1);
+                reviewAverageStars.innerHTML = renderStarIcons(roundedAvg);
+                reviewCount.textContent = `${reviews.length} تعليق${reviews.length === 1 ? '' : 'ات'}`;
+
+                contactReviewsList.innerHTML = reviews.slice().reverse().map((review, reversedIndex) => {
+                    const actualIndex = reviews.length - 1 - reversedIndex;
+                    return `
+                        <div class="review-item">
+                            <div class="review-meta">
+                                <div class="review-stars">${renderStarIcons(Number(review.rating || 0))}</div>
+                                <div class="review-author">${escapeHtml(review.author || 'مجهول')} — ${new Date(review.date).toLocaleString()}</div>
+                            </div>
+                            <div class="review-text">${escapeHtml(review.text)}</div>
+                            <button type="button" class="review-delete-btn" data-index="${actualIndex}">حذف</button>
+                        </div>
+                    `;
+                }).join('');
+
+                contactReviewsList.querySelectorAll('.review-delete-btn').forEach(button => {
+                    button.addEventListener('click', () => deleteReview(Number(button.dataset.index)));
                 });
-                const avg = (sum/arr.length);
-                avgRating.textContent = avg.toFixed(1);
-                // show average as stars beside number (rounded)
-                const avgStars = Math.round(avg);
-                avgRating.insertAdjacentHTML('afterend', ' <span style="color:#ffca28;">' + renderStarIcons(avgStars) + '</span>');
             }
 
-            function escapeHtml(s){ return String(s).replace(/[&"'<>]/g, c => ({'&':'&amp;','"':'&quot;',"'":"&#39;","<":"&lt;",">":"&gt;"}[c])); }
-
-            function updateStars(){
-                Array.from(starContainer.children).forEach(el=>{
-                    const v = Number(el.dataset.value);
-                    if(currentRating>=v) el.classList.add('filled'); else el.classList.remove('filled');
+            ratingStars.forEach(star => {
+                star.addEventListener('click', () => {
+                    currentRating = Number(star.dataset.value);
+                    updateRatingStars();
                 });
-            }
-
-            starContainer.addEventListener('click', (e)=>{
-                const s = e.target.closest('.star'); if(!s) return;
-                currentRating = Number(s.dataset.value);
-                updateStars();
-            });
-
-            submitBtn.addEventListener('click', ()=>{
-                const title = (reviewTitleInput.value||currentTitle||'').trim();
-                if(!title){ alert('أدخل عنوان العمل أولاً'); return; }
-                if(currentRating<=0){ alert('اختر تقييمًا من 1 إلى 5'); return; }
-                const author = (reviewAuthor.value||'مجهول').trim();
-                const text = (reviewText.value||'').trim();
-                const arr = loadReviews(title);
-                arr.push({ author, text, rating: currentRating, date: new Date().toISOString() });
-                saveReviews(title, arr);
-                renderReviewsFor(title);
-                reviewAuthor.value=''; reviewText.value=''; currentRating=0; updateStars();
-            });
-
-            closeBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
-
-            // Attach click handlers to media items
-            document.querySelectorAll('.media-item').forEach(mi=>{
-                mi.style.cursor='pointer';
-                mi.addEventListener('click', ()=>{
-                    const img = mi.querySelector('img');
-                    const title = (img && img.alt) ? img.alt : prompt('اكتب عنوان العمل:');
-                    openModal(title);
+                star.addEventListener('mouseenter', () => {
+                    const hoverValue = Number(star.dataset.value);
+                    ratingStars.forEach(s => s.classList.toggle('filled', Number(s.dataset.value) <= hoverValue));
                 });
+                star.addEventListener('mouseleave', updateRatingStars);
             });
-        })();
+
+            submitReview.addEventListener('click', event => {
+                event.preventDefault();
+                const author = reviewName.value.trim() || 'مجهول';
+                const text = reviewText.value.trim();
+
+                if (currentRating <= 0) {
+                    alert('اختر تقييمًا من 1 إلى 5');
+                    return;
+                }
+                if (!text) {
+                    alert('أضف تعليقًا قبل الإرسال');
+                    return;
+                }
+
+                const reviews = loadContactReviews();
+                reviews.push({
+                    author,
+                    text,
+                    rating: currentRating,
+                    date: new Date().toISOString()
+                });
+                saveContactReviews(reviews);
+                reviewName.value = '';
+                reviewText.value = '';
+                currentRating = 0;
+                updateRatingStars();
+                renderReviews();
+            });
+
+            renderReviews();
+        });
     </script>
 
 </body>
