@@ -24,6 +24,7 @@
                 <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">الصفحة الرئيسية</a></li>
                 <li><a href="#" onclick="showPage('packages')" id="nav-packages">الباقات</a></li>
                 <li><a href="#" onclick="showPage('contact')" id="nav-contact">اتصل بنا</a></li>
+                <li><a href="#" onclick="showPage('feedback')" id="nav-feedback">تقييم التطبيق</a></li>
             </ul>
         </nav>
         
@@ -39,7 +40,7 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>تطبيقات مجانية وبث مباشر</h1>
-                <p>Home | تطبيقات مجانية</p>
+                <p>تطبيقات مجانية</p>
             </div>
         </section>
 
@@ -64,7 +65,7 @@
                     <i class="fa-solid fa-clapperboard"></i>
                     <h3>المسلسلات</h3>
                     <p>أحدث المسلسلات العربية والتركية والعالمية بجودة عالية</p>
-                    <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-left"></i></span>
+                    <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
                 
                 <!-- قسم الأفلام العامة -->
@@ -72,9 +73,82 @@
                     <i class="fa-solid fa-film"></i>
                     <h3>الأفلام</h3>
                     <p>أحدث وأروع الأفلام العربية والعالمية على مدار الساعة</p>
-                    <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-left"></i></span>
+                    <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </div>
+        </section>
+
+
+        <!-- قسم الأسئلة الشائعة (FAQ) -->
+        <section style="max-width: 800px; margin: 50px auto; padding: 0 20px;" dir="rtl">
+            <h3 style="color: #fff; text-align: center; margin-bottom: 25px; font-size: 22px;">الأسئلة الشائعة</h3>
+            
+            <div style="background: #0e6666; border-radius: 12px; margin-bottom: 12px; overflow: hidden; border: 1px solid #116366;">
+                <button onclick="toggleFaq(this)" style="width: 100%; background: none; border: none; color: #fff; padding: 15px 20px; text-align: right; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <span>كيف يمكنني تفعيل الاشتراك بعد الدفع؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color: #00bcd4; transition: 0.3s;"></i>
+                </button>
+                <div style="padding: 0 20px 15px 20px; color: #b0bec5; font-size: 13px; line-height: 1.6; display: none;">
+                    بعد إتمام عملية الدفع، يمكنك التواصل معنا مباشرة عبر الواتساب مع إرسال إيصال الدفع وسيتم تفعيل حسابك فوراً.
+                </div>
+            </div>
+
+            <div style="background: #0e6666; border-radius: 12px; margin-bottom: 12px; overflow: hidden; border: 1px solid #116366;">
+                <button onclick="toggleFaq(this)" style="width: 100%; background: none; border: none; color: #fff; padding: 15px 20px; text-align: right; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                    <span>ما هي الأجهزة المدعومة في التطبيق؟</span>
+                    <i class="fa-solid fa-chevron-down" style="color: #00bcd4; transition: 0.3s;"></i>
+                </button>
+                <div style="padding: 0 20px 15px 20px; color: #b0bec5; font-size: 13px; line-height: 1.6; display: none;">
+                    يعمل التطبيق حالياً على أجهزة الهواتف الذكية والأجهزة اللوحية التي تعمل بنظام أندرويد، وقريباً على الشاشات الذكية.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= App Feedback: تقييم ورأي عن البرنامج ================= -->
+    <div id="page-feedback" class="page-content" style="display: none;">
+        <section class="contact-hero-clean" style="text-align: center;">
+            <div class="contact-hero-content">
+                <h1>تقييم التطبيق</h1>
+                <p style="color: #b0bec5; font-size: 14px; margin-top: 5px;">شارك رأيك عن التطبيق وقيّم تجربتك</p>
+            </div>
+        </section>
+
+        <section class="app-feedback" aria-labelledby="feedbackTitle">
+            <h3 id="feedbackTitle">اكتب رأيك وتقييمك</h3>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:220px">
+                    <label>الاسم (اختياري)
+                        <input id="appAuthor" placeholder="اسمك" />
+                    </label>
+                </div>
+                <div style="width:220px">
+                    <div>تقييمك للتطبيق</div>
+                    <div id="appStarContainer" class="stars" role="radiogroup" aria-label="app-rating" style="margin-top:6px">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+            </div>
+
+            <label style="display:block; margin-top:12px">تعليقك
+                <textarea id="appReviewText" rows="4" placeholder="اكتب ملاحظتك عن التطبيق هنا..."></textarea>
+            </label>
+
+            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px">
+                <button id="submitAppReview" class="btn">أرسل التقييم</button>
+                <button id="clearAppReviews" class="btn ghost">مسح الكل</button>
+            </div>
+
+            <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center">
+                <div>متوسط التقييم: <span id="appAvg">-</span></div>
+                <div>إجمالي المراجعات: <span id="appCount">0</span></div>
+            </div>
+
+            <div class="feedback-list" id="appFeedbackList"></div>
         </section>
     </div>
 
@@ -88,79 +162,87 @@
             </div>
         </section>
 
-        <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
+        <!-- حقل البحث المضاف -->
+        <div style="max-width: 600px; margin: 20px auto; padding: 0 20px;">
+            <div style="position: relative;">
+                <input type="text" id="series-search" placeholder="ابحث عن مسلسل..." onkeyup="filterItems('series-search', 'series-grid')" style="width: 100%; padding: 12px 20px; padding-right: 45px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 25px; outline: none; font-size: 14px;">
+                <i class="fa-solid fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #00bcd4;"></i>
+            </div>
+        </div>
+
+            <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
             <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع المسلسلات المتاحة</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/Rk4CCNNp/images-21.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
+            <div id="series-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="rtl">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                    <img src="https://i.ibb.co/Rk4CCNNp/images-21.jpg" alt="ملصق المسلسل" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/bgF8JWSQ/images-20.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                    <img src="https://i.ibb.co/bgF8JWSQ/images-20.jpg" alt="ملصق المسلسل" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/4wYTyYHN/images-19.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/wNZBnfsZ/images-18.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/0pdVtQG0/images-17.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/NgzMPBPN/images-16.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/mrRK6JTg/images-15.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/4RZxYZTh/images-14.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/fbBM2Z5/images-13.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/1GXvRCcQ/images-12.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/xSbKZ70f/images-11.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/DffPGJL5/sddefault.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/7N46F9G4/images-10.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/yBXX7R27/images-9.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/Lztrtwc8/images-8.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/xtCfFVXR/images-7.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/hF34wgw7/images-6.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/fzMKL69x/images-5.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/Jwh65KCm/images-4.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/TDVBK50P/images-3.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/S4ZTYp18/dab44aa0-a9ee-4392-ba79-876523e3fe75.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/m55n2W5T/images-2.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/KpLd44fj/images-1.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/kg7HvQ06/images.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
             </div>
@@ -188,81 +270,89 @@
             </div>
         </section>
 
+        <!-- حقل البحث المضاف للأفلام -->
+        <div style="max-width: 600px; margin: 20px auto; padding: 0 20px;">
+            <div style="position: relative;">
+                <input type="text" id="movies-search" placeholder="ابحث عن فيلم..." onkeyup="filterItems('movies-search', 'movies-grid')" style="width: 100%; padding: 12px 20px; padding-right: 45px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 25px; outline: none; font-size: 14px;">
+                <i class="fa-solid fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #00bcd4;"></i>
+            </div>
+        </div>
+
         <!-- قسم عرض جميع الأفلام معاً -->
         <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
             <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع الأفلام المتاحة</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="ltr">
+            <div id="movies-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="rtl">
                 <!-- أفلام أكشن -->
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/p6brJSXc/bright-movie-poster.webp" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
+                    <img src="https://i.ibb.co/p6brJSXc/bright-movie-poster.webp" alt="ملصق الفيلم" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/bR5vqSYh/images-5.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/r2fFMXyc/images-12.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/d0yyjW4g/images-8.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/5hjcWQWv/images-7.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/fzXBL81T/images-3.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/3YvHqJFz/59fcc703-e51a-408a-9271-9d3869766b45.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/mrWcXygs/61-ch-Iyt-VXL-AC-UF894-1000-QL80.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/jvfTHstp/11366898923-c07dceda52-z.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/1GXcqMh5/a69377a1-00b2-42f0-9374-b13932457173-big-300x440.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/B5zx1vJV/616a6bb3127cab3f21e2ddbd865ac3f7bf47a6f69666c50548508f10557059b9a.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/v4jS2DP5/images.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/QvxXkxPq/e0b9722cca2c21363a49b425c5d6e8e7.webp" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
 
                 <!-- أفلام رعب -->
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/4wt5mZt0/Backrooms-2026-horror-movie.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/n8bKy2Rw/Final-Chapter-Pic-2.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/vCPzWk7M/9339dfb5-cfed-4df4-8920-a314b499522d-sized-1000x1000.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/dsMDKryv/annabelle-2014-movie.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/TDdhcQx0/e9684150a1bb31579b70649f964378b107b2a3cd88dd2959deaabe1eb4ab91dd.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
 
                 <!-- أفلام حرب -->
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/Rk4VZg8X/315x420-95c8d1d6abe7772119444900bded1f59927a4df489139465d7df48daf35cbfb9.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/2YWzcp0q/23000-Lives-Movie-True-Story.png" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
 
                 <!-- أفلام أنمي -->
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/twvVSvkH/81xh-WLr-Lej-L-AC-UF350-350-QL80.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
-                <div style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <img src="https://i.ibb.co/rf64GqrH/14250848f01c418e18925d9d6123dfdf263558d5c0c015cd7c944f326236ff9f.png" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
             </div>
@@ -286,27 +376,27 @@
         <section class="packages-section">
             <div class="packages-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1100px; margin: 0 auto; padding: 0 20px;">
                 
-                <!-- باقة شهر (10$) -->
+                <!-- باقة شهر (7$) -->
                 <div class="package-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; border: 1px solid #e0e0e0;">
                     <div style="background: #4fc3f7; color: #fff; padding: 15px; font-size: 18px; font-weight: bold; border-top-left-radius: 16px; border-top-right-radius: 16px;">اشتراك شهر</div>
                     <div style="padding: 25px;">
                         <div style="font-size: 42px; font-weight: bold; color: #4fc3f7; margin-bottom: 20px;">
-                            <span style="font-size: 24px; vertical-align: super;">$</span>10
+                            <span style="font-size: 24px; vertical-align: super;">$</span>7
                         </div>
                         <ul style="list-style: none; padding: 0; margin-bottom: 25px; text-align: right; font-size: 14px; color: #333; line-height: 2;">
                             <li style="border-bottom: 1px solid #f0f0f0; padding: 8px 0; text-align: center; font-weight: bold;">الباقة الكاملة</li>
                             <li style="border-bottom: 1px solid #f0f0f0; padding: 8px 0; text-align: center;">31 يوم</li>
                         </ul>
-                        <a href="#" class="download-btn" style="background: #e91e63; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold;"><i class="fa-solid fa-cart-shopping"></i> اشترك الآن</a>
+                        <a href="https://wa.me/905550406271?text=مرحباً، أرغب بالاشتراك في باقة الشهر" target="_blank" class="download-btn" style="background: #e91e63; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold;"><i class="fa-solid fa-cart-shopping"></i> اشترك الآن</a>
                     </div>
                 </div>
 
-                <!-- الباقة السنوية الشاملة ($30) -->
+                <!-- الباقة السنوية الشاملة ($25) -->
                 <div class="package-card featured" style="background: #fff; border-radius: 16px; overflow: visible; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; border: 2px solid #00bcd4; position: relative; margin-top: 15px;">
                     <span class="popular-badge" style="position: absolute; top: -14px; right: 20px; background: #ff9800; color: #fff; font-size: 12px; font-weight: bold; padding: 5px 15px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 5;">العرض المميز</span>
                     <div style="background: #4fc3f7; color: #fff; padding: 15px; font-size: 18px; font-weight: bold; border-top-left-radius: 14px; border-top-right-radius: 14px;">الباقة السنوية الشاملة</div>
                     <div style="padding: 20px;">
-                        <div style="font-size: 38px; font-weight: bold; color: #4fc3f7; margin-bottom: 15px;">$30 <span style="font-size: 13px; color: #666;">/ سنوياً</span></div>
+                        <div style="font-size: 38px; font-weight: bold; color: #4fc3f7; margin-bottom: 15px;">$25 <span style="font-size: 13px; color: #666;">/ سنوياً</span></div>
                         <ul class="package-features" style="list-style: none; padding: 0; margin-bottom: 20px; text-align: right; font-size: 12px; color: #333; line-height: 1.8;">
                             <li style="padding: 4px 0; border-bottom: 1px solid #f9f9f9;"><i class="fa-solid fa-check" style="color: #0e3f47;"></i> 1400+ أكثر من قناة</li>
                             <li style="padding: 4px 0; border-bottom: 1px solid #f9f9f9;"><i class="fa-solid fa-check" style="color: #0d494b;"></i> تشمل قنوات تركية وكردية</li>
@@ -317,22 +407,22 @@
                             <li style="padding: 4px 0; border-bottom: 1px solid #f9f9f9;"><i class="fa-solid fa-check" style="color: #0f434d;"></i> طلب اضافة الافلام والمسلسلات</li>
                             <li style="padding: 4px 0;"><i class="fa-solid fa-check" style="color: #0f434d;"></i> يتوفر محتوى بجودة HD</li>
                         </ul>
-                        <a href="#" class="download-btn" style="background: #00bcd4; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: block; font-weight: bold;">اشترك الآن</a>
+                        <a href="https://wa.me/905550406271?text=مرحباً، أرغب بالاشتراك في الباقة السنوية الشاملة" target="_blank" class="download-btn" style="background: #00bcd4; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: block; font-weight: bold;">اشترك الآن</a>
                     </div>
                 </div>
 
-                <!-- باقة 3 أشهر (14$) -->
+                <!-- باقة 3 أشهر (10$) -->
                 <div class="package-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; border: 1px solid #e0e0e0;">
                     <div style="background: #4fc3f7; color: #fff; padding: 15px; font-size: 18px; font-weight: bold; border-top-left-radius: 16px; border-top-right-radius: 16px;">اشتراك 3 أشهر</div>
                     <div style="padding: 25px;">
                         <div style="font-size: 42px; font-weight: bold; color: #4fc3f7; margin-bottom: 20px;">
-                            <span style="font-size: 24px; vertical-align: super;">$</span>14
+                            <span style="font-size: 24px; vertical-align: super;">$</span>10
                         </div>
                         <ul style="list-style: none; padding: 0; margin-bottom: 25px; text-align: right; font-size: 14px; color: #333; line-height: 2;">
                             <li style="border-bottom: 1px solid #f0f0f0; padding: 8px 0; text-align: center; font-weight: bold;">الباقة الكاملة</li>
                             <li style="border-bottom: 1px solid #f0f0f0; padding: 8px 0; text-align: center;">92 يوم</li>
                         </ul>
-                        <a href="#" class="download-btn" style="background: #e91e63; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold;"><i class="fa-solid fa-cart-shopping"></i> اشترك الآن</a>
+                        <a href="https://wa.me/905550406271?text=مرحباً، أرغب بالاشتراك في باقة 3 أشهر" target="_blank" class="download-btn" style="background: #e91e63; color: #fff; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold;"><i class="fa-solid fa-cart-shopping"></i> اشترك الآن</a>
                     </div>
                 </div>
 
@@ -355,7 +445,7 @@
                     <i class="fa-solid fa-clock"></i>
                     <h3>ساعات العمل</h3>
                     <p>طوال أيام الأسبوع</p>
-                    <p class="sub-text">AM - 10:00 PM 8:00</p>
+                    <p class="sub-text">08:00 ص - 10:00 م</p>
                 </div>
                 <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
                     <i class="fa-solid fa-envelope"></i>
@@ -394,16 +484,16 @@
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label style="font-size: 14px; font-weight: bold; color: #263238;">البريد الإلكتروني</label>
                         <div style="position: relative;">
-                            <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني" required style="width: 100%; padding: 12px 15px; padding-left: 40px; border: 1px solid #cfd8dc; border-radius: 10px; font-size: 14px; outline: none; transition: 0.3s; background-color: #fafafa;">
-                            <i class="fa-solid fa-envelope" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #78909c;"></i>
-                        </div>
+                                <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني" required style="width: 100%; padding: 12px 15px; padding-right: 40px; border: 1px solid #cfd8dc; border-radius: 10px; font-size: 14px; outline: none; transition: 0.3s; background-color: #fafafa;">
+                                <i class="fa-solid fa-envelope" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #78909c;"></i>
+                            </div>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label style="font-size: 14px; font-weight: bold; color: #263238;">كلمة المرور</label>
                         <div style="position: relative;">
-                            <input type="password" id="login-password" placeholder="أدخل كلمة المرور" required style="width: 100%; padding: 12px 15px; padding-left: 40px; border: 1px solid #cfd8dc; border-radius: 10px; font-size: 14px; outline: none; transition: 0.3s; background-color: #fafafa;">
-                            <i class="fa-solid fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #78909c;"></i>
+                            <input type="password" id="login-password" placeholder="أدخل كلمة المرور" required style="width: 100%; padding: 12px 15px; padding-right: 40px; border: 1px solid #cfd8dc; border-radius: 10px; font-size: 14px; outline: none; transition: 0.3s; background-color: #fafafa;">
+                            <i class="fa-solid fa-lock" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #78909c;"></i>
                         </div>
                     </div>
 
@@ -411,7 +501,7 @@
                         <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
                             <input type="checkbox" style="accent-color: #00bcd4; border-radius: 4px;"> تذكرني
                         </label>
-                        <a href="#" onclick="resetPassword()" style="color: #00bcd4; text-decoration: none;">نسيت كلمة المرور؟</a>
+                        <a href="#" id="reset-password-link" style="color: #00bcd4; text-decoration: none;">نسيت كلمة المرور؟</a>
                     </div>
 
                     <button type="submit" id="login-btn" class="download-btn" style="border: none; cursor: pointer; width: 100%; margin-top: 10px; border-radius: 10px;">
@@ -422,124 +512,149 @@
         </section>
     </div>
 
+    <!-- زر العودة للأعلى (مضاف حديثاً) -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" style="position: fixed; bottom: 95px; right: 28px; background: #00bcd4; color: #fff; width: 45px; height: 45px; border-radius: 50%; border: none; display: none; justify-content: center; align-items: center; font-size: 20px; box-shadow: 0 4px 15px rgba(0,188,212,0.4); z-index: 999; cursor: pointer; transition: 0.3s;" title="العودة للأعلى">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
 
     <!-- تذييل الموقع (Footer) -->
     <footer>
         <p>جميع الحقوق محفوظة &copy; Ultra TV 2026</p>
     </footer>
 
+    <!-- Reviews & Ratings Modal -->
+    <div id="reviewsModal" class="reviews-modal" aria-hidden="true">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h4 id="modalTitle">تقييم ومراجعات</h4>
+                <button id="closeReviews" class="btn ghost">إغلاق</button>
+            </div>
 
-    <!-- استدعاء Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <label style="flex:1; min-width:180px">العنوان
+                    <input id="reviewTitleInput" type="text" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #333; background:#0b0b0b; color:#fff">
+                </label>
+                <div style="min-width:180px">
+                    <div>تقييم متوسط: <span id="avgRating">-</span> / 5</div>
+                </div>
+            </div>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDummyKeyForUltraTv2026Example",
-            authDomain: "ultratv-2026.firebaseapp.com",
-            projectId: "ultratv-2026",
-            storageBucket: "ultratv-2026.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abcdef"
-        };
+            <div style="margin-top:12px; display:flex; gap:12px; align-items:flex-start;">
+                <div style="flex:1">
+                    <label>اسم المستخدم
+                        <input id="reviewAuthor" type="text" placeholder="اسمك" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #333; background:#0b0b0b; color:#fff">
+                    </label>
+                    <label style="display:block; margin-top:8px">التعليق
+                        <textarea id="reviewText" rows="4" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #333; background:#0b0b0b; color:#fff"></textarea>
+                    </label>
+                </div>
+                <div style="width:160px; text-align:center;">
+                    <div style="margin-bottom:8px">اختر تقييمك</div>
+                    <div id="starContainer" class="stars" role="radiogroup" aria-label="rating">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <div style="margin-top:12px"><button id="submitReview" class="btn">أضف المراجعة</button></div>
+                </div>
+            </div>
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+            <div class="reviews-list" id="reviewsList"></div>
+        </div>
+    </div>
 
-        const loginForm = document.getElementById('login-form');
-        const errorDiv = document.getElementById('error-message');
 
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const submitBtn = document.getElementById('login-btn');
+    <!-- Firebase removed: removed SDK imports and auth logic per user request -->
 
-            submitBtn.innerText = "جاري التحقق...";
-            errorDiv.style.display = 'none';
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                alert('تم تسجيل الدخول بنجاح!');
-                showPage('home');
-            } catch (error) {
-                errorDiv.style.display = 'block';
-                if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                    errorDiv.innerText = 'خطأ في البريد الإلكتروني أو كلمة المرور.';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorDiv.innerText = 'صيغة البريد الإلكتروني غير صحيحة.';
-                } else {
-                    errorDiv.innerText = 'حدث خطأ: ' + error.message;
-                }
-            } finally {
-                submitBtn.innerText = "تسجيل الدخول";
-            }
-        });
-
-        onAuthStateChanged(auth, (user) => {
-            const authContainer = document.getElementById('auth-nav-container');
-            if (user) {
-                authContainer.innerHTML = `
-                    <span style="font-size: 13px; color: #00bcd4; font-weight: bold; cursor: pointer;" title="تسجيل الخروج" onclick="logoutUser()">
-                        <i class="fa-solid fa-right-from-bracket"></i> خروج (${user.email.split('@')[0]})
-                    </span>
-                `;
-            } else {
-                authContainer.innerHTML = `
-                    <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
-                `;
-            }
-        });
-
-        window.logoutUser = async function() {
-            try {
-                await signOut(auth);
-                alert('تم تسجيل الخروج بنجاح.');
-                showPage('home');
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        window.resetPassword = async function() {
-            const email = document.getElementById('login-email').value;
-            if (!email) {
-                alert('الرجاء إدخال البريد الإلكتروني أولاً في حقل البريد ثم اضغط على نسيت كلمة المرور.');
-                return;
-            }
-            try {
-                await sendPasswordResetEmail(auth, email);
-                alert('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.');
-            } catch (error) {
-                alert('خطأ: ' + error.message);
-            }
-        };
-    </script>
-
-    <!-- جافاسكريبت للتحكم بعرض و إخفاء الصفحات -->
+    <!-- جافاسكريبت للتحكم بالصفحات وإظهار/إخفاء الأسئلة الشائعة -->
     <script>
+    // ================= App feedback (localStorage) =================
+    (function(){
+        const KEY = 'app_feedback_v1';
+        const authorEl = document.getElementById('appAuthor');
+        const textEl = document.getElementById('appReviewText');
+        const submitBtn = document.getElementById('submitAppReview');
+        const clearBtn = document.getElementById('clearAppReviews');
+        const listEl = document.getElementById('appFeedbackList');
+        const avgEl = document.getElementById('appAvg');
+        const countEl = document.getElementById('appCount');
+        const starContainer = document.getElementById('appStarContainer');
+        let selected = 0;
+
+        function load(){
+            const raw = localStorage.getItem(KEY);
+            return raw ? JSON.parse(raw) : [];
+        }
+        function save(items){ localStorage.setItem(KEY, JSON.stringify(items)); }
+        function render(){
+            const items = load();
+            listEl.innerHTML = '';
+            if(items.length===0){ listEl.innerHTML = '<div style="color:#9aa7ab">لا توجد مراجعات بعد.</div>'; avgEl.textContent='-'; countEl.textContent='0'; return; }
+            let sum=0;
+            items.slice().reverse().forEach(it=>{
+                sum += (it.rating||0);
+                const d = document.createElement('div'); d.className='feedback-item';
+                const stars = renderStars(it.rating);
+                d.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><strong>${escapeHtml(it.author||'مجهول')}</strong><div style=\"font-size:14px;color:#ffd54f\">${stars}</div></div><div style=\"margin-top:6px;color:#cfe8ea\">${escapeHtml(it.text)}</div><div style=\"font-size:11px;color:#8fa7a9;margin-top:6px\">${new Date(it.t).toLocaleString()}</div>`;
+                listEl.appendChild(d);
+            });
+            const avg = Math.round((sum/items.length)*10)/10;
+            avgEl.textContent = avg;
+            countEl.textContent = items.length;
+        }
+        function renderStars(n){ if(!n) return '—'; let out=''; for(let i=1;i<=5;i++){ out += (i<=n)?'<span style="color:#ffd54f">★</span>':'<span style="color:#37474f">★</span>'; } return out; }
+        function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;" })[c]); }
+
+        // star selection
+        starContainer.querySelectorAll('.star').forEach(el=>{
+            el.addEventListener('click', ()=>{ selected = parseInt(el.dataset.value||'0',10); updateStarUI(); });
+        });
+        function updateStarUI(){ starContainer.querySelectorAll('.star').forEach(s=>{ s.style.color = (parseInt(s.dataset.value,10)<=selected)?'#ffd54f':'#37474f'; }); }
+
+        submitBtn.addEventListener('click', ()=>{
+            const text = textEl.value && textEl.value.trim();
+            if(!text){ alert('الرجاء كتابة تعليق قبل الإرسال'); return; }
+            const items = load();
+            items.push({ author: (authorEl.value||'').trim(), text, rating:selected, t: Date.now() });
+            save(items); render();
+            textEl.value=''; authorEl.value=''; selected=0; updateStarUI();
+        });
+
+        clearBtn.addEventListener('click', ()=>{
+            if(!confirm('مسح كل المراجعات؟')) return; localStorage.removeItem(KEY); render();
+        });
+
+        render();
+    })();
         function showPage(pageName) {
             const homePage = document.getElementById('page-home');
             const seriesPage = document.getElementById('page-series');
             const moviesPage = document.getElementById('page-movies');
             const packagesPage = document.getElementById('page-packages');
             const contactPage = document.getElementById('page-contact');
+            const feedbackPage = document.getElementById('page-feedback');
             const loginPage = document.getElementById('page-login');
             
             const navHome = document.getElementById('nav-home');
             const navPackages = document.getElementById('nav-packages');
             const navContact = document.getElementById('nav-contact');
+            const navFeedback = document.getElementById('nav-feedback');
 
             homePage.style.display = 'none';
             seriesPage.style.display = 'none';
             moviesPage.style.display = 'none';
             packagesPage.style.display = 'none';
             contactPage.style.display = 'none';
+            if (feedbackPage) feedbackPage.style.display = 'none';
             loginPage.style.display = 'none';
 
             navHome.classList.remove('active');
             if (navPackages) navPackages.classList.remove('active');
             navContact.classList.remove('active');
+            if (navFeedback) navFeedback.classList.remove('active');
 
             if (pageName === 'home') {
                 homePage.style.display = 'block';
@@ -554,10 +669,166 @@
             } else if (pageName === 'contact') {
                 contactPage.style.display = 'block';
                 navContact.classList.add('active');
+            } else if (pageName === 'feedback') {
+                if(feedbackPage) feedbackPage.style.display = 'block';
+                if(navFeedback) navFeedback.classList.add('active');
             } else if (pageName === 'login') {
                 loginPage.style.display = 'block';
             }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // دالة تفعيل الأكورديون للأسئلة الشائعة
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // دالة البحث المباشر في عناصر المسلسلات والأفلام
+        function filterItems(inputId, gridId) {
+            const input = document.getElementById(inputId).value.toLowerCase();
+            const grid = document.getElementById(gridId);
+            const items = grid.getElementsByClassName('media-item');
+
+            for (let i = 0; i < items.length; i++) {
+                items[i].style.display = ""; 
+            }
+        }
+
+        // إظهار/إخفاء زر العودة للأعلى عند التمرير
+        window.onscroll = function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+    <script>
+        // Reviews logic - localStorage based prototype
+        (function(){
+            const modal = document.getElementById('reviewsModal');
+            const closeBtn = document.getElementById('closeReviews');
+            const reviewTitleInput = document.getElementById('reviewTitleInput');
+            const reviewAuthor = document.getElementById('reviewAuthor');
+            const reviewText = document.getElementById('reviewText');
+            const starContainer = document.getElementById('starContainer');
+            const submitBtn = document.getElementById('submitReview');
+            const reviewsList = document.getElementById('reviewsList');
+            const avgRating = document.getElementById('avgRating');
+            let currentTitle = '';
+            let currentRating = 0;
+
+            function openModal(title){
+                currentTitle = title || '';
+                reviewTitleInput.value = currentTitle;
+                reviewAuthor.value = '';
+                reviewText.value = '';
+                currentRating = 0;
+                updateStars();
+                renderReviewsFor(title);
+                modal.style.display = 'flex';
+                modal.setAttribute('aria-hidden','false');
+            }
+
+            function closeModal(){
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden','true');
+            }
+
+            function slug(t){ return encodeURIComponent((t||'').trim().toLowerCase()); }
+
+            function getKey(t){ return 'reviews:' + slug(t); }
+
+            function loadReviews(t){
+                try{ return JSON.parse(localStorage.getItem(getKey(t)) || '[]'); }catch(e){return []}
+            }
+
+            function saveReviews(t, arr){ localStorage.setItem(getKey(t), JSON.stringify(arr)); }
+
+            function renderReviewsFor(title){
+                const arr = loadReviews(title);
+                reviewsList.innerHTML = '';
+                if(arr.length===0){ reviewsList.innerHTML = '<div style="color:#90a4ae">لا توجد مراجعات بعد.</div>'; avgRating.textContent = '-'; return; }
+                let sum = 0;
+
+                function renderStarIcons(n){
+                    let s = '';
+                    for(let i=1;i<=5;i++){
+                        s += `<span class="star ${i<=n? 'filled':''}" aria-hidden="true">★</span>`;
+                    }
+                    return s;
+                }
+
+                arr.slice().reverse().forEach(r=>{
+                    sum += Number(r.rating||0);
+                    const div = document.createElement('div'); div.className='review-item';
+                    const meta = `<div class=\"review-meta\">${renderStarIcons(Number(r.rating||0))} <span style=\"margin-left:8px; color:#90a4ae;\">${escapeHtml(r.author||'مجهول')} — ${new Date(r.date).toLocaleString()}</span></div>`;
+                    div.innerHTML = meta + `<div style=\"margin-top:6px\">${escapeHtml(r.text||'')}</div>`;
+                    reviewsList.appendChild(div);
+                });
+                const avg = (sum/arr.length);
+                avgRating.textContent = avg.toFixed(1);
+                // show average as stars beside number (rounded)
+                const avgStars = Math.round(avg);
+                avgRating.insertAdjacentHTML('afterend', ' <span style="color:#ffca28;">' + renderStarIcons(avgStars) + '</span>');
+            }
+
+            function escapeHtml(s){ return String(s).replace(/[&"'<>]/g, c => ({'&':'&amp;','"':'&quot;',"'":"&#39;","<":"&lt;",">":"&gt;"}[c])); }
+
+            function updateStars(){
+                Array.from(starContainer.children).forEach(el=>{
+                    const v = Number(el.dataset.value);
+                    if(currentRating>=v) el.classList.add('filled'); else el.classList.remove('filled');
+                });
+            }
+
+            starContainer.addEventListener('click', (e)=>{
+                const s = e.target.closest('.star'); if(!s) return;
+                currentRating = Number(s.dataset.value);
+                updateStars();
+            });
+
+            submitBtn.addEventListener('click', ()=>{
+                const title = (reviewTitleInput.value||currentTitle||'').trim();
+                if(!title){ alert('أدخل عنوان العمل أولاً'); return; }
+                if(currentRating<=0){ alert('اختر تقييمًا من 1 إلى 5'); return; }
+                const author = (reviewAuthor.value||'مجهول').trim();
+                const text = (reviewText.value||'').trim();
+                const arr = loadReviews(title);
+                arr.push({ author, text, rating: currentRating, date: new Date().toISOString() });
+                saveReviews(title, arr);
+                renderReviewsFor(title);
+                reviewAuthor.value=''; reviewText.value=''; currentRating=0; updateStars();
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+
+            // Attach click handlers to media items
+            document.querySelectorAll('.media-item').forEach(mi=>{
+                mi.style.cursor='pointer';
+                mi.addEventListener('click', ()=>{
+                    const img = mi.querySelector('img');
+                    const title = (img && img.alt) ? img.alt : prompt('اكتب عنوان العمل:');
+                    openModal(title);
+                });
+            });
+        })();
     </script>
 
 </body>

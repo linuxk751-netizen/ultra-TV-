@@ -19,6 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    direction: rtl;
 }
 
 /* تخصيص خطوط العناوين */
@@ -406,7 +407,13 @@ h1, h2, h3,
     font-size: 36px;
     color: #00bcd4;
     margin-bottom: 20px;
-    transition: color 0.4s ease;
+    /* تمت إضافة الانتقال السلس للحركة هنا */
+    transition: color 0.4s ease, transform 0.3s ease;
+}
+
+/* تأثير حركة سلسة خاصة بأيقونة الهاتف عند المرور فوق صندوق الاتصال */
+.contact-box:hover i.fa-phone-volume {
+    transform: translateY(-5px) scale(1.1);
 }
 
 .contact-box h3 {
@@ -543,3 +550,49 @@ footer {
     margin-top: auto;
     font-size: 13px;
 }
+
+/* Reviews modal */
+.reviews-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+}
+.reviews-modal .modal-card {
+    background: #0e1214;
+    color: #fff;
+    width: 95%;
+    max-width: 720px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+.reviews-modal h4 { margin: 0 0 10px 0; }
+.stars { display: inline-block; direction: ltr; }
+.star { font-size: 22px; color: #666; cursor: pointer; margin-right: 6px; }
+.star.filled { color: #ffca28; }
+.reviews-list { max-height: 260px; overflow: auto; margin-top: 12px; }
+.review-item { background: #111; padding: 10px; border-radius: 8px; margin-bottom: 8px; }
+.review-meta { font-size: 13px; color: #90a4ae; margin-bottom: 6px; }
+.btn-row { display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
+.btn { background:#00bcd4; color:#fff; padding:8px 14px; border-radius:8px; text-decoration:none; cursor:pointer; border:none }
+.btn.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.06); }
+
+/* App feedback section */
+.app-feedback {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 18px;
+    background: linear-gradient(180deg, #071013, #0b1113);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    color: #e0f7fa;
+}
+.app-feedback h3 { margin-top:0; }
+.app-feedback .input-row { display:flex; gap:12px; align-items:center; }
+.app-feedback input, .app-feedback textarea { width:100%; padding:10px; border-radius:8px; border:1px solid #213033; background: #071214; color:#e0f7fa }
+.app-feedback .feedback-list { margin-top:12px; max-height:240px; overflow:auto }
+.app-feedback .feedback-item { padding:10px; background:#071518; border-radius:8px; margin-bottom:8px }
