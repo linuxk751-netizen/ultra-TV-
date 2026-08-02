@@ -24,7 +24,6 @@
                 <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">الصفحة الرئيسية</a></li>
                 <li><a href="#" onclick="showPage('packages')" id="nav-packages">الباقات</a></li>
                 <li><a href="#" onclick="showPage('contact')" id="nav-contact">اتصل بنا</a></li>
-                <li><a href="#" onclick="showPage('feedback')" id="nav-feedback">تقييم التطبيق</a></li>
             </ul>
         </nav>
         
@@ -104,54 +103,6 @@
             </div>
         </section>
     </div>
-
-    <!-- ================= App Feedback: تقييم ورأي عن البرنامج ================= -->
-    <div id="page-feedback" class="page-content" style="display: none;">
-        <section class="contact-hero-clean" style="text-align: center;">
-            <div class="contact-hero-content">
-                <h1>تقييم التطبيق</h1>
-                <p style="color: #b0bec5; font-size: 14px; margin-top: 5px;">شارك رأيك عن التطبيق وقيّم تجربتك</p>
-            </div>
-        </section>
-
-        <section class="app-feedback" aria-labelledby="feedbackTitle">
-            <h3 id="feedbackTitle">اكتب رأيك وتقييمك</h3>
-            <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                <div style="flex:1; min-width:220px">
-                    <label>الاسم (اختياري)
-                        <input id="appAuthor" placeholder="اسمك" />
-                    </label>
-                </div>
-                <div style="width:220px">
-                    <div>تقييمك للتطبيق</div>
-                    <div id="appStarContainer" class="stars" role="radiogroup" aria-label="app-rating" style="margin-top:6px">
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
-                    </div>
-                </div>
-            </div>
-
-            <label style="display:block; margin-top:12px">تعليقك
-                <textarea id="appReviewText" rows="4" placeholder="اكتب ملاحظتك عن التطبيق هنا..."></textarea>
-            </label>
-
-            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px">
-                <button id="submitAppReview" class="btn">أرسل التقييم</button>
-                <button id="clearAppReviews" class="btn ghost">مسح الكل</button>
-            </div>
-
-            <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center">
-                <div>متوسط التقييم: <span id="appAvg">-</span></div>
-                <div>إجمالي المراجعات: <span id="appCount">0</span></div>
-            </div>
-
-            <div class="feedback-list" id="appFeedbackList"></div>
-        </section>
-    </div>
-
 
     <!-- ================= القسم الثاني: صفحة المسلسلات ================= -->
     <div id="page-series" class="page-content" style="display: none;">
@@ -464,6 +415,44 @@
                 </div>
             </div>
         </section>
+
+        <section class="review-section">
+            <div class="review-card">
+                <div class="review-header">
+                    <div>
+                        <h2>أخبرنا برأيك</h2>
+                        <p>شارك تقييمك وتجربتك معنا داخل صفحة الاتصال.</p>
+                    </div>
+                    <div class="rating-summary">
+                        <div class="rating-number"><span id="reviewAverage">0.0</span><span class="rating-text">/ 5</span></div>
+                        <div id="reviewAverageStars" class="stars" aria-hidden="true"></div>
+                        <div id="reviewCount" class="review-count">0 تعليق</div>
+                    </div>
+                </div>
+
+                <div class="review-form">
+                    <label>الاسم
+                        <input id="reviewName" type="text" placeholder="اسمك" />
+                    </label>
+                    <label>التعليق
+                        <textarea id="reviewText" rows="4" placeholder="اكتب تعليقك هنا"></textarea>
+                    </label>
+                    <div class="star-selector" dir="ltr">
+                        <div class="star-label">اختر التقييم</div>
+                        <div id="ratingStars" class="stars" role="radiogroup" aria-label="rating">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                    </div>
+                    <button id="submitReview" class="download-btn" style="max-width: 200px; margin-top: 12px;">أضف التعليق</button>
+                </div>
+
+                <div class="reviews-list" id="contactReviewsList"></div>
+            </div>
+        </section>
     </div>
 
 
@@ -523,138 +512,34 @@
         <p>جميع الحقوق محفوظة &copy; Ultra TV 2026</p>
     </footer>
 
-    <!-- Reviews & Ratings Modal -->
-    <div id="reviewsModal" class="reviews-modal" aria-hidden="true">
-        <div class="modal-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <h4 id="modalTitle">تقييم ومراجعات</h4>
-                <button id="closeReviews" class="btn ghost">إغلاق</button>
-            </div>
-
-            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-                <label style="flex:1; min-width:180px">العنوان
-                    <input id="reviewTitleInput" type="text" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #333; background:#0b0b0b; color:#fff">
-                </label>
-                <div style="min-width:180px">
-                    <div>تقييم متوسط: <span id="avgRating">-</span> / 5</div>
-                </div>
-            </div>
-
-            <div style="margin-top:12px; display:flex; gap:12px; align-items:flex-start;">
-                <div style="flex:1">
-                    <label>اسم المستخدم
-                        <input id="reviewAuthor" type="text" placeholder="اسمك" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #333; background:#0b0b0b; color:#fff">
-                    </label>
-                    <label style="display:block; margin-top:8px">التعليق
-                        <textarea id="reviewText" rows="4" style="width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #333; background:#0b0b0b; color:#fff"></textarea>
-                    </label>
-                </div>
-                <div style="width:160px; text-align:center;">
-                    <div style="margin-bottom:8px">اختر تقييمك</div>
-                    <div id="starContainer" class="stars" role="radiogroup" aria-label="rating">
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
-                    </div>
-                    <div style="margin-top:12px"><button id="submitReview" class="btn">أضف المراجعة</button></div>
-                </div>
-            </div>
-
-            <div class="reviews-list" id="reviewsList"></div>
-        </div>
-    </div>
 
 
     <!-- Firebase removed: removed SDK imports and auth logic per user request -->
 
     <!-- جافاسكريبت للتحكم بالصفحات وإظهار/إخفاء الأسئلة الشائعة -->
     <script>
-    // ================= App feedback (localStorage) =================
-    (function(){
-        const KEY = 'app_feedback_v1';
-        const authorEl = document.getElementById('appAuthor');
-        const textEl = document.getElementById('appReviewText');
-        const submitBtn = document.getElementById('submitAppReview');
-        const clearBtn = document.getElementById('clearAppReviews');
-        const listEl = document.getElementById('appFeedbackList');
-        const avgEl = document.getElementById('appAvg');
-        const countEl = document.getElementById('appCount');
-        const starContainer = document.getElementById('appStarContainer');
-        let selected = 0;
-
-        function load(){
-            const raw = localStorage.getItem(KEY);
-            return raw ? JSON.parse(raw) : [];
-        }
-        function save(items){ localStorage.setItem(KEY, JSON.stringify(items)); }
-        function render(){
-            const items = load();
-            listEl.innerHTML = '';
-            if(items.length===0){ listEl.innerHTML = '<div style="color:#9aa7ab">لا توجد مراجعات بعد.</div>'; avgEl.textContent='-'; countEl.textContent='0'; return; }
-            let sum=0;
-            items.slice().reverse().forEach(it=>{
-                sum += (it.rating||0);
-                const d = document.createElement('div'); d.className='feedback-item';
-                const stars = renderStars(it.rating);
-                d.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><strong>${escapeHtml(it.author||'مجهول')}</strong><div style=\"font-size:14px;color:#ffd54f\">${stars}</div></div><div style=\"margin-top:6px;color:#cfe8ea\">${escapeHtml(it.text)}</div><div style=\"font-size:11px;color:#8fa7a9;margin-top:6px\">${new Date(it.t).toLocaleString()}</div>`;
-                listEl.appendChild(d);
-            });
-            const avg = Math.round((sum/items.length)*10)/10;
-            avgEl.textContent = avg;
-            countEl.textContent = items.length;
-        }
-        function renderStars(n){ if(!n) return '—'; let out=''; for(let i=1;i<=5;i++){ out += (i<=n)?'<span style="color:#ffd54f">★</span>':'<span style="color:#37474f">★</span>'; } return out; }
-        function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;" })[c]); }
-
-        // star selection
-        starContainer.querySelectorAll('.star').forEach(el=>{
-            el.addEventListener('click', ()=>{ selected = parseInt(el.dataset.value||'0',10); updateStarUI(); });
-        });
-        function updateStarUI(){ starContainer.querySelectorAll('.star').forEach(s=>{ s.style.color = (parseInt(s.dataset.value,10)<=selected)?'#ffd54f':'#37474f'; }); }
-
-        submitBtn.addEventListener('click', ()=>{
-            const text = textEl.value && textEl.value.trim();
-            if(!text){ alert('الرجاء كتابة تعليق قبل الإرسال'); return; }
-            const items = load();
-            items.push({ author: (authorEl.value||'').trim(), text, rating:selected, t: Date.now() });
-            save(items); render();
-            textEl.value=''; authorEl.value=''; selected=0; updateStarUI();
-        });
-
-        clearBtn.addEventListener('click', ()=>{
-            if(!confirm('مسح كل المراجعات؟')) return; localStorage.removeItem(KEY); render();
-        });
-
-        render();
-    })();
-        function showPage(pageName) {
+        function showPage(pageName, sectionName) {
             const homePage = document.getElementById('page-home');
             const seriesPage = document.getElementById('page-series');
             const moviesPage = document.getElementById('page-movies');
             const packagesPage = document.getElementById('page-packages');
             const contactPage = document.getElementById('page-contact');
-            const feedbackPage = document.getElementById('page-feedback');
             const loginPage = document.getElementById('page-login');
             
             const navHome = document.getElementById('nav-home');
             const navPackages = document.getElementById('nav-packages');
             const navContact = document.getElementById('nav-contact');
-            const navFeedback = document.getElementById('nav-feedback');
 
             homePage.style.display = 'none';
             seriesPage.style.display = 'none';
             moviesPage.style.display = 'none';
             packagesPage.style.display = 'none';
             contactPage.style.display = 'none';
-            if (feedbackPage) feedbackPage.style.display = 'none';
             loginPage.style.display = 'none';
 
             navHome.classList.remove('active');
             if (navPackages) navPackages.classList.remove('active');
             navContact.classList.remove('active');
-            if (navFeedback) navFeedback.classList.remove('active');
 
             if (pageName === 'home') {
                 homePage.style.display = 'block';
@@ -669,9 +554,6 @@
             } else if (pageName === 'contact') {
                 contactPage.style.display = 'block';
                 navContact.classList.add('active');
-            } else if (pageName === 'feedback') {
-                if(feedbackPage) feedbackPage.style.display = 'block';
-                if(navFeedback) navFeedback.classList.add('active');
             } else if (pageName === 'login') {
                 loginPage.style.display = 'block';
             }
