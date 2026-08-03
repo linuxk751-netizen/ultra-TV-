@@ -500,39 +500,8 @@
         <p>جميع الحقوق محفوظة &copy; Ultra TV 2026</p>
     </footer>
 
-    <!-- سكربت Firebase وتسجيل الدخول الحقيقي -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js";
-
-        // استبدل القيم أدناه بمعلومات مشروعك الفعلية من Firebase Console
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-
-        // تفعيل زر تسجيل الدخول بواسطة جوجل الحقيقي
-        document.getElementById('google-login-btn').addEventListener('click', () => {
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    const user = result.user;
-                    alert("مرحباً بك، " + user.displayName);
-                    showPage('home'); // العودة للرئيسية بعد النجاح أو التوجيه للملف الشخصي
-                })
-                .catch((error) => {
-                    console.error(error.message);
-                    alert("فشل تسجيل الدخول: " + error.message);
-                });
-        });
-    </script>
+    <!-- استدعاء ملف الـ JS المنفصل لتسجيل الدخول -->
+    <script type="module" src="auth.js"></script>
 
     <!-- جافاسكريبت للتحكم بالصفحات وتطبيق الموقع -->
     <script>
