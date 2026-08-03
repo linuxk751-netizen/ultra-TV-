@@ -1,8 +1,15 @@
 {
   "build": {
-    "builder": "NIXPACKS"
+    "builder": "NIXPACKS",
+    "nixpacksPlan": {
+      "phases": {
+        "setup": {
+          "nixPkgs": ["nodejs_20"]
+        }
+      }
+    }
   },
   "deploy": {
-    "startCommand": "npm run build && npx serve -s dist"
+    "startCommand": "npx serve -s ."
   }
 }
