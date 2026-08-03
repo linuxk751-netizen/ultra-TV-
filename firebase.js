@@ -1,10 +1,9 @@
-// استيراد Firebase من شبكة CDN الرسمية
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
-// إعدادات مشروعك
 const firebaseConfig = {
-  apiKey: "AIzaSyAGddfICIUS1NXSrX-p9HbkD4tYmMhbEM",
+  apiKey: "AIzaSyAGdDdficiUSlNXSrX-p9HbkD4tYmMhbwM",
   authDomain: "ultra-tv-wep-2a10b.firebaseapp.com",
   projectId: "ultra-tv-wep-2a10b",
   storageBucket: "ultra-tv-wep-2a10b.firebasestorage.app",
@@ -13,8 +12,6 @@ const firebaseConfig = {
   measurementId: "G-40DNTV1DJ6"
 };
 
-// تهيئة Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-export { app, analytics };
+export const auth = getAuth(app);
