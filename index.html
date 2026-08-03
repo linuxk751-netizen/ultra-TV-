@@ -500,8 +500,89 @@
         <p>جميع الحقوق محفوظة &copy; Ultra TV 2026</p>
     </footer>
 
-    <!-- استدعاء ملف الـ JS المنفصل لتسجيل الدخول -->
-    <script type="module" src="auth.js"></script>
+    <!-- تهيئة وتفعيل Firebase وجوجل بشكل مباشر داخل الـ HTML لضمان عدم وجود أخطاء في الـ API Key -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAGdDficiUSlNXSrX-p9HbkD4tYmMhbEM",
+            authDomain: "ultra-tv-wep-2a10b.firebaseapp.com",
+            projectId: "ultra-tv-wep-2a10b",
+            storageBucket: "ultra-tv-wep-2a10b.appspot.com",
+            messagingSenderId: "888790728972",
+            appId: "1:888790728972:web:daad8a471a47cfeae30929",
+            measurementId: "G-40DNTV1DJ6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // زر تسجيل الدخول بواسطة جوجل
+        const googleLoginBtn = document.getElementById('google-login-btn');
+        if (googleLoginBtn) {
+            googleLoginBtn.addEventListener('click', () => {
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        alert("مرحباً بك يا " + result.user.displayName + " في Ultra TV!");
+                        showPage('home');
+                    })
+                    .catch((error) => {
+                        showError(error.message);
+                    });
+            });
+        }
+
+        // نموذج تسجيل الدخول العادي بالبريد وكلمة المرور
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((result) => {
+                        alert("تم تسجيل الدخول بنجاح!");
+                        showPage('home');
+                    })
+                    .catch((error) => {
+                        showError("خطأ في البيانات المدخلة: " + error.message);
+                    });
+            });
+        }
+
+        // رابط نسيت كلمة المرور
+        const resetLink = document.getElementById('reset-password-link');
+        if (resetLink) {
+            resetLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                if (!email) {
+                    alert("الرجاء إدخال البريد الإلكتروني أولاً ثم الضغط على نسيت كلمة المرور.");
+                    return;
+                }
+                sendPasswordResetEmail(auth, email)
+                    .then(() => {
+                        alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.");
+                    })
+                    .catch((error) => {
+                        showError(error.message);
+                    });
+            });
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            } else {
+                alert(message);
+            }
+        }
+    </script>
 
     <!-- جافاسكريبت للتحكم بالصفحات وتطبيق الموقع -->
     <script>
