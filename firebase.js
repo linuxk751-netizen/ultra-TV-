@@ -1,13 +1,10 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// استيراد Firebase من شبكة CDN الرسمية
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// إعدادات مشروعك
 const firebaseConfig = {
-  apiKey: "AIzaSyAGdDdficIUSlNXSrX-p9HbkD4tYmMhbeM",
+  apiKey: "AIzaSyAGddfICIUS1NXSrX-p9HbkD4tYmMhbEM",
   authDomain: "ultra-tv-wep-2a10b.firebaseapp.com",
   projectId: "ultra-tv-wep-2a10b",
   storageBucket: "ultra-tv-wep-2a10b.firebasestorage.app",
@@ -16,7 +13,8 @@ const firebaseConfig = {
   measurementId: "G-40DNTV1DJ6"
 };
 
-// Initialize Firebase
+// تهيئة Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
 export { app, analytics };
