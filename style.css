@@ -74,7 +74,7 @@ h1, h2, h3,
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 188, 212, 0.15);
     border-radius: 30px;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.2س);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .navbar nav ul li a {
@@ -225,11 +225,11 @@ h1, h2, h3,
     font-weight: bold;
     font-family: 'Cairo', sans-serif;
     border-radius: 30px;
-    border: 2px solid #dee6e7; /* إضافة حافة سوداء واضحة */
+    border: 2px solid #dee6e7;
     overflow: hidden;
     z-index: 1;
-    transition: color 0.4s ease, transform 0.2s ease;
-    box-shadow: 0 4px 15px rgb(245, 245, 245); /* تغيير لون ظل الزر ليناسب الحواف السوداء */
+    transition: color 0.4s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 4px 15px rgb(245, 245, 245);
 }
 
 .download-btn::before {
@@ -255,6 +255,11 @@ h1, h2, h3,
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+}
+
+.download-btn:active {
+    transform: scale(0.96);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
 .categories-section {
@@ -408,11 +413,9 @@ h1, h2, h3,
     font-size: 36px;
     color: #00bcd4;
     margin-bottom: 20px;
-    /* تمت إضافة الانتقال السلس للحركة هنا */
     transition: color 0.4s ease, transform 0.3s ease;
 }
 
-/* تأثير حركة سلسة خاصة بأيقونة الهاتف عند المرور فوق صندوق الاتصال */
 .contact-box:hover i.fa-phone-volume {
     transform: translateY(-5px) scale(1.1);
 }
@@ -468,7 +471,7 @@ h1, h2, h3,
     box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     text-align: center;
     position: relative;
-    transition: 0.3s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.3s ease;
     border: 1px solid rgba(0, 188, 212, 0.1);
 }
 
@@ -541,6 +544,54 @@ h1, h2, h3,
     font-size: 14px;
 }
 
+/* ========================================================
+   تعديل الأزرار بناءً على الستايل المطلوب (Neo-Brutalism)
+=========================================================== */
+.pkg-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px;
+  
+  /* الحواف والشكل مستطيل حاد تماماً كالصورة */
+  border-radius: 0px; 
+  border: 3px solid #111111;
+  
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 15.5px;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  
+  /* اللون الأصفر والخط الداكن المأخوذ من الصورة */
+  background: #21f6da; 
+  color: #111111;
+  
+  /* ظل أسود مصمت وثابت يبرز لأسفل واليمين قليلاً */
+  box-shadow: 6px 6px 0px #111111;
+  
+  /* حركة سريعة للتحكم بالنقر */
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+/* إزالة تضارب الألوان السابقة لتطبيق التصميم الموحد */
+.cta-pink, .cta-teal {
+  background: #F6A621;
+  color: #111111;
+}
+.cta-pink:hover, .cta-teal:hover {
+  background: #FAB43A; /* تفتيح خفيف جداً عند الوقوف بالماوس */
+}
+
+/* تأثير الإيفكت السحري والميكانيكي تماماً كالصورة: 
+   عند الضغط يتحرك الزر بمقدار مسافة الظل ويختفي الظل ليعطي انطباع النزول للأرض */
+.pkg-cta:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px #111111;
+}
+
 /* تذييل الموقع */
 footer {
     background: #11161a;
@@ -586,4 +637,3 @@ footer {
     .review-form { grid-template-columns: 1.4fr 0.8fr; }
     .review-form label { margin-bottom: 0; }
 }
-
