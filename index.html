@@ -193,7 +193,10 @@
 </head>
 <body>
 
-    <!-- الشريط العلوي (Navbar) - أصبح شفافاً فوق الخلفية -->
+    <!-- حاوية الإشعارات المنبثقة التفاعلية (Toast Container) -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- الشريط العلوي (Navbar) -->
     <header class="navbar">
         <div class="logo">
             <a href="#" onclick="showPage('home')">
@@ -202,14 +205,25 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">الصفحة الرئيسية</a></li>
-                <li><a href="#" onclick="showPage('packages')" id="nav-packages">الباقات</a></li>
-                <li><a href="#" onclick="showPage('contact')" id="nav-contact">اتصل بنا</a></li>
+                <li><a href="#" onclick="showPage('home')" class="active" id="nav-home" data-i18n="nav_home">الصفحة الرئيسية</a></li>
+                <li><a href="#" onclick="showPage('packages')" id="nav-packages" data-i18n="nav_packages">الباقات</a></li>
+                <li><a href="#" onclick="showPage('contact')" id="nav-contact" data-i18n="nav_contact">اتصل بنا</a></li>
             </ul>
         </nav>
         
-        <!-- أيقونة الحساب / معلومات المستخدم -->
         <div class="navbar-icons" id="auth-nav-container">
+            <!-- مبدّل اللغة (عربي / تركي / إنجليزي) -->
+            <div class="lang-switcher" id="langSwitcher">
+                <button type="button" class="lang-current" onclick="toggleLangMenu(event)" title="اختر اللغة">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="langCurrentLabel">AR</span>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button type="button" onclick="setLanguage('ar')" data-lang-option="ar">🇸🇦 العربية</button>
+                    <button type="button" onclick="setLanguage('tr')" data-lang-option="tr">🇹🇷 Türkçe</button>
+                    <button type="button" onclick="setLanguage('en')" data-lang-option="en">🇬🇧 English</button>
+                </div>
+            </div>
             <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
         </div>
     </header>
@@ -240,7 +254,6 @@
 
         <section class="categories-section">
             <div class="categories-grid">
-                <!-- قسم المسلسلات -->
                 <div class="category-box" onclick="showPage('series')" style="cursor: pointer; transition: 0.3s; border-radius: 16px; overflow: hidden;">
                     <i class="fa-solid fa-clapperboard"></i>
                     <h3>المسلسلات</h3>
@@ -248,7 +261,6 @@
                     <span style="display: inline-block; margin-top: 10px; font-size: 13px; color: #00bcd4; font-weight: bold;">تصفح القسم <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
                 
-                <!-- قسم الأفلام العامة -->
                 <div class="category-box" onclick="showPage('movies')" style="cursor: pointer; transition: 0.3s; border-radius: 16px; overflow: hidden;">
                     <i class="fa-solid fa-film"></i>
                     <h3>الأفلام</h3>
@@ -384,7 +396,6 @@
         <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
             <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع الأفلام المتاحة</h3>
             <div id="movies-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="rtl">
-                <!-- أفلام أكشن -->
                 <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
                     <img src="https://i.ibb.co/p6brJSXc/bright-movie-poster.webp" alt="ملصق الفيلم" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
                 </div>
@@ -466,7 +477,7 @@
     </div>
 
 
-    <!-- ================= القسم الرابع: صفحة الباقات (التصميم الجديد المدمج) ================= -->
+    <!-- ================= القسم الرابع: صفحة الباقات ================= -->
     <div id="page-packages" class="page-content" style="display: none;">
         <section class="contact-hero-clean" style="text-align: center;">
             <div class="contact-hero-content">
@@ -478,8 +489,7 @@
 
         <section class="packages-section" style="padding: 0 20px;">
             <div class="packages-wrap">
-
-                <!-- الباقة الأولى: اشتراك شهر -->
+                <!-- الباقة الأولى -->
                 <div class="pkg-card">
                     <div class="pkg-tag">اشتراك شهر</div>
                     <div class="price-row">
@@ -504,7 +514,7 @@
                     <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة الشهر" target="_blank" class="pkg-cta cta-pink">اشترك الآن</a>
                 </div>
 
-                <!-- الباقة الثانية: الباقة السنوية الشاملة (المميزة) -->
+                <!-- الباقة المميزة -->
                 <div class="pkg-card featured">
                     <div class="ribbon-banner">العرض المميز</div>
                     <div class="pkg-tag">الباقة السنوية الشاملة</div>
@@ -547,7 +557,7 @@
                     <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في الباقة السنوية الشاملة" target="_blank" class="pkg-cta cta-teal">اشترك الآن</a>
                 </div>
 
-                <!-- الباقة الثالثة: اشتراك 3 أشهر -->
+                <!-- الباقة الثالثة -->
                 <div class="pkg-card">
                     <div class="pkg-tag">اشتراك 3 أشهر</div>
                     <div class="price-row">
@@ -571,18 +581,13 @@
                     </ul>
                     <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة 3 أشهر" target="_blank" class="pkg-cta cta-pink">اشترك الآن</a>
                 </div>
-
             </div>
-
             <p class="pkg-note" style="margin-bottom: 30px;">يمكن الإلغاء في أي وقت — بدون رسوم خفية</p>
         </section>
 
-        <!-- القسم المضاف حديثاً: ميزات المنصة الثلاث بتصميم هادئ -->
         <section class="features-section-new">
             <h2 class="features-title-new">لماذا تختار Ultra TV؟</h2>
             <div class="features-grid-new">
-                
-                <!-- الميزة الأولى -->
                 <div class="feature-card-item">
                     <div class="feature-icon-wrapper">
                         <i class="fa-solid fa-bolt"></i>
@@ -590,8 +595,6 @@
                     <h3>خوادم سريعة وبث بدون تقطيع</h3>
                     <p>استمتع بتجربة بث فائقة السرعة ومستقرة تماماً ومخصصة للمشاهدة بدون انقطاع.</p>
                 </div>
-
-                <!-- الميزة الثانية -->
                 <div class="feature-card-item">
                     <div class="feature-icon-wrapper">
                         <i class="fa-solid fa-tv"></i>
@@ -599,8 +602,6 @@
                     <h3>متوافق مع جميع الشاشات</h3>
                     <p>دعم كامل وسلس لكل أجهزتك الذكية، الشاشات، والهواتف المحمولة في أي وقت.</p>
                 </div>
-
-                <!-- الميزة الثالثة -->
                 <div class="feature-card-item">
                     <div class="feature-icon-wrapper">
                         <i class="fa-solid fa-rotate"></i>
@@ -608,7 +609,6 @@
                     <h3>تحديث يومي ومستمر للمكتبة</h3>
                     <p>إضافات يومية وتحديثات فورية لأحدث الأفلام والمسلسلات لتواكب كل جديد.</p>
                 </div>
-
             </div>
         </section>
     </div>
@@ -618,7 +618,7 @@
     <div id="page-contact" class="page-content" style="display: none;">
         <section class="contact-hero-clean" style="text-align: center;">
             <div class="contact-hero-content">
-                <h1>تواصل معنا</h1>
+                <h1 data-i18n="contact_title">تواصل معنا</h1>
             </div>
         </section>
 
@@ -626,24 +626,43 @@
             <div class="contact-grid" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
                     <i class="fa-solid fa-clock"></i>
-                    <h3>ساعات العمل</h3>
-                    <p>طوال أيام الأسبوع</p>
-                    <p class="sub-text">08:00 ص - 10:00 م</p>
+                    <h3 data-i18n="hours_title">ساعات العمل</h3>
+                    <p data-i18n="hours_days">طوال أيام الأسبوع</p>
+                    <p class="sub-text" data-i18n="hours_time">08:00 ص - 10:00 م</p>
                 </div>
                 <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
                     <i class="fa-solid fa-envelope"></i>
-                    <h3>البريد الإلكتروني</h3>
-                    <p>ultratv.media2026@gmail.com</p>
+                    <h3 data-i18n="email_title">البريد الإلكتروني</h3>
+                    <p style="display:flex; align-items:center; justify-content:center; gap:16px; word-break:break-all;">
+                        <span id="emailValue">ultratv.media2026@gmail.com</span>
+                        <button type="button" class="copy-icon-btn" onclick="copyValue('emailValue','copied_email')" data-i18n-title="copy_email_tooltip" title="نسخ البريد الإلكتروني">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </p>
                 </div>
                 <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
                     <i class="fa-solid fa-phone-volume"></i>
-                    <h3>أرقام الهاتف</h3>
-                    <p class="phone-highlight">+ 963 933 940 387</p>
+                    <h3 data-i18n="phone_title">أرقام الهاتف</h3>
+                    <p class="phone-highlight" style="display:flex; align-items:center; justify-content:center; gap:16px;">
+                        <span id="phoneValue">+ 963 933 940 387</span>
+                        <button type="button" class="copy-icon-btn" onclick="copyValue('phoneValue','copied_phone')" data-i18n-title="copy_phone_tooltip" title="نسخ رقم الهاتف">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </p>
                 </div>
                 <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
                     <i class="fa-solid fa-location-dot"></i>
-                    <h3>الموقع</h3>
-                    <p>تركيا</p>
+                    <h3 data-i18n="location_title">الموقع</h3>
+                    <p data-i18n="location_value">تركيا</p>
+                </div>
+                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3 data-i18n="response_title">سرعة الرد</h3>
+                    <p id="responseStatusText" data-i18n="response_online">نرد عادة خلال ساعة واحدة ⏱️</p>
+                    <p class="sub-text" style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:8px;">
+                        <span class="live-dot" id="liveDot"></span>
+                        <span id="liveDotLabel" data-i18n="status_online">متصل الآن</span>
+                    </p>
                 </div>
             </div>
         </section>
@@ -699,7 +718,6 @@
 
         <section class="download-section">
             <div class="download-card" style="max-width: 450px; padding: 40px 30px; border-radius: 20px; overflow: hidden;">
-                
                 <button type="button" id="google-login-btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; background: #ffffff; color: #3c4043; border: 1px solid #dadce0; border-radius: 10px; padding: 12px 15px; font-size: 14px; font-weight: 500; cursor: pointer; transition: 0.3s; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 20px;" onmouseover="this.style.background='#f8f9fa';" onmouseout="this.style.background='#ffffff';">
                     <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
                     <span>Continue with Google</span>
@@ -713,7 +731,6 @@
 
                 <form id="login-form" style="display: flex; flex-direction: column; gap: 20px; text-align: right;">
                     <div id="error-message" style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 8px; font-size: 13px; display: none;"></div>
-
                     <div style="display: flex; flex-direction: column; gap: 8px;">
                         <label style="font-size: 14px; font-weight: bold; color: #263238;">البريد الإلكتروني</label>
                         <div style="position: relative;">
@@ -745,11 +762,17 @@
         </section>
     </div>
 
+    <!-- زر واتساب العائم للتواصل السريع -->
+    <a href="https://wa.me/963933940387?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20Ultra%20TV"
+       target="_blank" rel="noopener" id="whatsappFloat" class="whatsapp-float"
+       title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <!-- زر العودة للأعلى -->
     <button onclick="scrollToTop()" id="scrollTopBtn" style="position: fixed; bottom: 95px; right: 28px; background: #00bcd4; color: #fff; width: 45px; height: 45px; border-radius: 50%; border: none; display: none; justify-content: center; align-items: center; font-size: 20px; box-shadow: 0 4px 15px rgba(0,188,212,0.4); z-index: 999; cursor: pointer; transition: 0.3s;" title="العودة للأعلى">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
-
 
     <!-- تذييل الموقع (Footer) -->
     <footer>
@@ -918,6 +941,190 @@
         }
     </script>
 
+    <!-- ميزات جديدة: مبدّل اللغة + نسخ سريع + مؤشر سرعة الرد -->
+    <script>
+        // ------------- قاموس الترجمة (عربي / تركي / إنجليزي) -------------
+        const i18nDict = {
+            ar: {
+                nav_home: "الصفحة الرئيسية",
+                nav_packages: "الباقات",
+                nav_contact: "اتصل بنا",
+                contact_title: "تواصل معنا",
+                hours_title: "ساعات العمل",
+                hours_days: "طوال أيام الأسبوع",
+                hours_time: "08:00 ص - 10:00 م",
+                email_title: "البريد الإلكتروني",
+                phone_title: "أرقام الهاتف",
+                location_title: "الموقع",
+                location_value: "تركيا",
+                response_title: "سرعة الرد",
+                response_online: "نرد عادة خلال ساعة واحدة ⏱️",
+                response_offline: "خارج أوقات العمل، سنرد بأقرب وقت ⏱️",
+                status_online: "متصل الآن",
+                status_offline: "غير متصل حالياً",
+                whatsapp_tooltip: "تواصل معنا عبر واتساب",
+                copy_email_tooltip: "نسخ البريد الإلكتروني",
+                copy_phone_tooltip: "نسخ رقم الهاتف",
+                copied_email: "تم نسخ البريد الإلكتروني ✅",
+                copied_phone: "تم نسخ رقم الهاتف ✅"
+            },
+            tr: {
+                nav_home: "Ana Sayfa",
+                nav_packages: "Paketler",
+                nav_contact: "Bize Ulaşın",
+                contact_title: "Bize Ulaşın",
+                hours_title: "Çalışma Saatleri",
+                hours_days: "Haftanın her günü",
+                hours_time: "08:00 - 22:00",
+                email_title: "E-posta",
+                phone_title: "Telefon Numaraları",
+                location_title: "Konum",
+                location_value: "Türkiye",
+                response_title: "Yanıt Süresi",
+                response_online: "Genellikle 1 saat içinde yanıt veriyoruz ⏱️",
+                response_offline: "Mesai saatleri dışında, en kısa sürede döneceğiz ⏱️",
+                status_online: "Şu anda çevrimiçi",
+                status_offline: "Şu anda çevrimdışı",
+                whatsapp_tooltip: "WhatsApp üzerinden bize ulaşın",
+                copy_email_tooltip: "E-postayı kopyala",
+                copy_phone_tooltip: "Telefon numarasını kopyala",
+                copied_email: "E-posta kopyalandı ✅",
+                copied_phone: "Telefon numarası kopyalandı ✅"
+            },
+            en: {
+                nav_home: "Home",
+                nav_packages: "Packages",
+                nav_contact: "Contact Us",
+                contact_title: "Contact Us",
+                hours_title: "Working Hours",
+                hours_days: "Every day of the week",
+                hours_time: "08:00 AM - 10:00 PM",
+                email_title: "Email",
+                phone_title: "Phone Numbers",
+                location_title: "Location",
+                location_value: "Turkey",
+                response_title: "Response Time",
+                response_online: "We usually reply within 1 hour ⏱️",
+                response_offline: "Outside working hours, we'll reply soon ⏱️",
+                status_online: "Online now",
+                status_offline: "Offline now",
+                whatsapp_tooltip: "Chat with us on WhatsApp",
+                copy_email_tooltip: "Copy email",
+                copy_phone_tooltip: "Copy phone number",
+                copied_email: "Email copied ✅",
+                copied_phone: "Phone number copied ✅"
+            }
+        };
+
+        let currentLang = localStorage.getItem('site-lang') || 'ar';
+
+        function applyTranslations(lang) {
+            const dict = i18nDict[lang] || i18nDict.ar;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+
+            document.querySelectorAll('[data-i18n-title]').forEach(el => {
+                const key = el.getAttribute('data-i18n-title');
+                if (dict[key]) el.title = dict[key];
+            });
+
+            const label = document.getElementById('langCurrentLabel');
+            if (label) label.textContent = lang.toUpperCase();
+
+            document.querySelectorAll('[data-lang-option]').forEach(btn => {
+                btn.classList.toggle('active-lang', btn.getAttribute('data-lang-option') === lang);
+            });
+
+            updateResponseStatus();
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('site-lang', lang);
+            applyTranslations(lang);
+            const menu = document.getElementById('langMenu');
+            if (menu) menu.classList.remove('open');
+        }
+
+        function toggleLangMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('langMenu');
+            if (menu) menu.classList.toggle('open');
+        }
+
+        document.addEventListener('click', () => {
+            const menu = document.getElementById('langMenu');
+            if (menu) menu.classList.remove('open');
+        });
+
+        // ------------- مؤشر سرعة الرد المباشر (حسب ساعات العمل 08:00 - 22:00) -------------
+        function updateResponseStatus() {
+            const dict = i18nDict[currentLang] || i18nDict.ar;
+            const hour = new Date().getHours();
+            const isOnline = hour >= 8 && hour < 22;
+
+            const statusText = document.getElementById('responseStatusText');
+            const dot = document.getElementById('liveDot');
+            const dotLabel = document.getElementById('liveDotLabel');
+
+            if (statusText) statusText.textContent = isOnline ? dict.response_online : dict.response_offline;
+            if (dotLabel) dotLabel.textContent = isOnline ? dict.status_online : dict.status_offline;
+            if (dot) dot.classList.toggle('offline', !isOnline);
+        }
+
+        // ------------- إشعار عام (Toast) قابل للاستخدام من أي مكان في الصفحة -------------
+        function showGlobalToast(message) {
+            const toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) return;
+
+            const toast = document.createElement('div');
+            toast.className = 'toast-message';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 50);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        // ------------- نسخ سريع للبريد الإلكتروني / رقم الهاتف -------------
+        function copyValue(elementId, toastKey) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.textContent.trim();
+            const dict = i18nDict[currentLang] || i18nDict.ar;
+            const message = dict[toastKey] || 'تم النسخ ✅';
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => showGlobalToast(message));
+            } else {
+                // طريقة بديلة للمتصفحات القديمة أو الاتصال غير الآمن (http)
+                const temp = document.createElement('textarea');
+                temp.value = text;
+                temp.style.position = 'fixed';
+                temp.style.opacity = '0';
+                document.body.appendChild(temp);
+                temp.focus();
+                temp.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(temp);
+                showGlobalToast(message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTranslations(currentLang);
+            updateResponseStatus();
+            setInterval(updateResponseStatus, 60000); // تحديث الحالة كل دقيقة
+        });
+    </script>
+
+    <!-- نظام إدارة التعليقات المحدث بالكامل مع الـ Smart Success Toast -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const CONTACT_REVIEW_KEY = 'contact-reviews';
@@ -929,10 +1136,33 @@
             const reviewAverage = document.getElementById('reviewAverage');
             const reviewAverageStars = document.getElementById('reviewAverageStars');
             const reviewCount = document.getElementById('reviewCount');
+            const toastContainer = document.getElementById('toastContainer');
             let currentRating = 0;
 
-            if (!reviewName || !reviewText || !ratingStars.length || !submitReview || !contactReviewsList || !reviewAverage || !reviewAverageStars || !reviewCount) {
+            if (!reviewName || !reviewText || !ratingStars.length || !submitReview || !contactReviewsList || !reviewAverage || !reviewAverageStars || !reviewCount || !toastContainer) {
                 return;
+            }
+
+            // دالة إظهار الـ Smart Success Toast المخصصة
+            function showSuccessToast(message) {
+                const toast = document.createElement('div');
+                toast.className = 'toast-message';
+                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+                
+                toastContainer.appendChild(toast);
+                
+                // تشغيل الأنيميشن بعد الإضافة ليدخل بنعومة
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 50);
+
+                // إخفاء وحذف التنبيه تلقائياً بعد 4 ثوانٍ
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 400);
+                }, 4000);
             }
 
             function loadContactReviews() {
@@ -1050,16 +1280,20 @@
                     date: new Date().toISOString()
                 });
                 saveContactReviews(reviews);
+                
+                // تنظيف الحقول تلقائياً وتصفير التقييم والنجوم
                 reviewName.value = '';
                 reviewText.value = '';
                 currentRating = 0;
                 updateRatingStars();
                 renderReviews();
+
+                // إطلاق الإشعار المنبثق التفاعلي الذكي بنجاح بدون تحديث الصفحة
+                showSuccessToast("شكراً لك! تم استقبال رأيك بنجاح");
             });
 
             renderReviews();
         });
     </script>
-
 </body>
 </html>
