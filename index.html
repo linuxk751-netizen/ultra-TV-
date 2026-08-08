@@ -156,6 +156,23 @@
       }
       .cta-teal:hover { background: #129e99; }
 
+      .pkg-cta + .pkg-cta,
+      .pkg-cta + .cta-outline {
+        margin-top: 10px;
+      }
+
+      .cta-outline {
+        background: transparent;
+        color: var(--ink-dim);
+        border: 1.5px solid var(--card-line);
+      }
+      .cta-outline:hover {
+        background: #F5F8FA;
+        border-color: #25D366;
+        color: #25D366;
+      }
+      .cta-outline i { color: #25D366; }
+
       /* Featured plan styling */
       .pkg-card.featured {
         background: linear-gradient(180deg, #FFFFFF 0%, #FBFFFE 100%);
@@ -224,6 +241,19 @@
                     <button type="button" onclick="setLanguage('en')" data-lang-option="en">🇬🇧 English</button>
                 </div>
             </div>
+            <!-- زر المشاركة -->
+            <div class="share-switcher" id="shareSwitcher">
+                <button type="button" class="share-current" onclick="toggleShareMenu(event)" title="مشاركة الموقع" id="nav-share-btn">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+                <div class="share-menu" id="shareMenu">
+                    <button type="button" onclick="shareVia('whatsapp')"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> واتساب</button>
+                    <button type="button" onclick="shareVia('telegram')"><i class="fa-brands fa-telegram" style="color:#29A9EA;"></i> تيليجرام</button>
+                    <button type="button" onclick="shareVia('twitter')"><i class="fa-brands fa-x-twitter" style="color:#fff;"></i> إكس (تويتر)</button>
+                    <button type="button" onclick="shareVia('copy')"><i class="fa-solid fa-link" style="color:#00e5ff;"></i> نسخ رابط الموقع</button>
+                </div>
+            </div>
+
             <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
         </div>
     </header>
@@ -488,6 +518,17 @@
         </section>
 
         <section class="packages-section" style="padding: 0 20px;">
+            <!--
+                ============================================================
+                إعدادات روابط الدفع (Stripe Payment Links)
+                ------------------------------------------------------------
+                1. افتح حساب Stripe → Payment Links → أنشئ رابط لكل باقة.
+                2. الصق كل رابط بدل القيمة المقابلة له بالأسفل في STRIPE_LINKS
+                   (بحث سريع بالصفحة عن STRIPE_LINKS).
+                3. زر "ادفع بالبطاقة" رح يفتح تلقائياً رابط الدفع الصحيح
+                   لكل باقة، وزر واتساب بيضل موجود كخيار بديل يدوي.
+                ============================================================
+            -->
             <div class="packages-wrap">
                 <!-- الباقة الأولى -->
                 <div class="pkg-card">
@@ -511,7 +552,12 @@
                             تشغيل على جهاز واحد
                         </li>
                     </ul>
-                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة الشهر" target="_blank" class="pkg-cta cta-pink">اشترك الآن</a>
+                    <button type="button" class="pkg-cta cta-pink" onclick="payWithStripe('monthly')">
+                        <i class="fa-solid fa-credit-card"></i> ادفع بالبطاقة
+                    </button>
+                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة الشهر" target="_blank" class="pkg-cta cta-outline">
+                        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    </a>
                 </div>
 
                 <!-- الباقة المميزة -->
@@ -554,7 +600,12 @@
                             جودة HD على كل الأجهزة
                         </li>
                     </ul>
-                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في الباقة السنوية الشاملة" target="_blank" class="pkg-cta cta-teal">اشترك الآن</a>
+                    <button type="button" class="pkg-cta cta-teal" onclick="payWithStripe('yearly')">
+                        <i class="fa-solid fa-credit-card"></i> ادفع بالبطاقة
+                    </button>
+                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في الباقة السنوية الشاملة" target="_blank" class="pkg-cta cta-outline">
+                        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    </a>
                 </div>
 
                 <!-- الباقة الثالثة -->
@@ -579,9 +630,18 @@
                             تشغيل على جهاز واحد
                         </li>
                     </ul>
-                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة 3 أشهر" target="_blank" class="pkg-cta cta-pink">اشترك الآن</a>
+                    <button type="button" class="pkg-cta cta-pink" onclick="payWithStripe('quarterly')">
+                        <i class="fa-solid fa-credit-card"></i> ادفع بالبطاقة
+                    </button>
+                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة 3 أشهر" target="_blank" class="pkg-cta cta-outline">
+                        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    </a>
                 </div>
             </div>
+            <p class="pkg-note" style="margin-bottom: 10px;">
+                <i class="fa-solid fa-lock" style="color:#17B6B0;"></i>
+                الدفع بالبطاقة آمن ومشفّر بالكامل عبر Stripe
+            </p>
             <p class="pkg-note" style="margin-bottom: 30px;">يمكن الإلغاء في أي وقت — بدون رسوم خفية</p>
         </section>
 
@@ -966,7 +1026,11 @@
                 copy_email_tooltip: "نسخ البريد الإلكتروني",
                 copy_phone_tooltip: "نسخ رقم الهاتف",
                 copied_email: "تم نسخ البريد الإلكتروني ✅",
-                copied_phone: "تم نسخ رقم الهاتف ✅"
+                copied_phone: "تم نسخ رقم الهاتف ✅",
+                copied_link: "تم نسخ رابط الموقع ✅",
+                stripe_not_configured: "الدفع بالبطاقة غير مُفعّل بعد، تواصل معنا عبر واتساب 🙏",
+                payment_success: "تم الدفع بنجاح! سيتم تفعيل اشتراكك خلال دقائق ✅",
+                payment_cancel: "تم إلغاء عملية الدفع"
             },
             tr: {
                 nav_home: "Ana Sayfa",
@@ -989,7 +1053,11 @@
                 copy_email_tooltip: "E-postayı kopyala",
                 copy_phone_tooltip: "Telefon numarasını kopyala",
                 copied_email: "E-posta kopyalandı ✅",
-                copied_phone: "Telefon numarası kopyalandı ✅"
+                copied_phone: "Telefon numarası kopyalandı ✅",
+                copied_link: "Site bağlantısı kopyalandı ✅",
+                stripe_not_configured: "Kart ile ödeme henüz aktif değil, lütfen WhatsApp üzerinden bize ulaşın 🙏",
+                payment_success: "Ödeme başarılı! Aboneliğiniz birkaç dakika içinde aktif edilecek ✅",
+                payment_cancel: "Ödeme işlemi iptal edildi"
             },
             en: {
                 nav_home: "Home",
@@ -1012,7 +1080,11 @@
                 copy_email_tooltip: "Copy email",
                 copy_phone_tooltip: "Copy phone number",
                 copied_email: "Email copied ✅",
-                copied_phone: "Phone number copied ✅"
+                copied_phone: "Phone number copied ✅",
+                copied_link: "Site link copied ✅",
+                stripe_not_configured: "Card payment isn't set up yet, please contact us on WhatsApp 🙏",
+                payment_success: "Payment successful! Your subscription will be activated within minutes ✅",
+                payment_cancel: "Payment was cancelled"
             }
         };
 
@@ -1059,6 +1131,101 @@
             const menu = document.getElementById('langMenu');
             if (menu) menu.classList.remove('open');
         });
+
+        // ------------- زر المشاركة -------------
+        function toggleShareMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('shareMenu');
+            if (menu) menu.classList.toggle('open');
+        }
+
+        document.addEventListener('click', () => {
+            const menu = document.getElementById('shareMenu');
+            if (menu) menu.classList.remove('open');
+        });
+
+        // ============================================================
+        // إعدادات الدفع عبر Stripe Payment Links
+        // بدّل كل رابط بالأسفل برابط الدفع الحقيقي من لوحة تحكم Stripe
+        // (Stripe Dashboard → Payment Links → Create Link)
+        // مهم: أضف بنهاية كل رابط Stripe الباراميتر التالي حرفياً
+        //      ?success_url=... و client_reference_id إذا حبيت تربطه بالمستخدم
+        // ============================================================
+        const STRIPE_LINKS = {
+            monthly:   'https://buy.stripe.com/REPLACE_WITH_MONTHLY_LINK',
+            quarterly: 'https://buy.stripe.com/REPLACE_WITH_QUARTERLY_LINK',
+            yearly:    'https://buy.stripe.com/REPLACE_WITH_YEARLY_LINK'
+        };
+
+        function payWithStripe(planKey) {
+            const link = STRIPE_LINKS[planKey];
+            const dict = i18nDict[currentLang] || i18nDict.ar;
+
+            if (!link || link.includes('REPLACE_WITH')) {
+                showGlobalToast(dict.stripe_not_configured || 'الدفع بالبطاقة غير مُفعّل بعد، تواصل معنا عبر واتساب 🙏');
+                return;
+            }
+
+            // تخزين اسم الباقة اللي اختارها الزبون عشان نعرضه بصفحة الشكر بعد رجوعه من Stripe
+            try { localStorage.setItem('pending-plan', planKey); } catch (e) {}
+
+            window.location.href = link;
+        }
+
+        // إذا رجع المستخدم من Stripe بعد دفع ناجح (لما تضيف success_url=yoursite.com/?payment=success)
+        function checkPaymentReturn() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('payment') === 'success') {
+                const dict = i18nDict[currentLang] || i18nDict.ar;
+                showGlobalToast(dict.payment_success || 'تم الدفع بنجاح! سيتم تفعيل اشتراكك خلال دقائق ✅');
+                try { localStorage.removeItem('pending-plan'); } catch (e) {}
+                // تنظيف الرابط من البارامترات
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get('payment') === 'cancel') {
+                const dict = i18nDict[currentLang] || i18nDict.ar;
+                showGlobalToast(dict.payment_cancel || 'تم إلغاء عملية الدفع');
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        function shareVia(platform) {
+            const shareUrl = window.location.href;
+            const shareTitle = document.title || 'Ultra TV';
+            const dict = i18nDict[currentLang] || i18nDict.ar;
+
+            if (platform === 'copy') {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(shareUrl).then(() => showGlobalToast(dict.copied_link || 'تم نسخ الرابط ✅'));
+                } else {
+                    const temp = document.createElement('textarea');
+                    temp.value = shareUrl;
+                    temp.style.position = 'fixed';
+                    temp.style.opacity = '0';
+                    document.body.appendChild(temp);
+                    temp.focus();
+                    temp.select();
+                    try { document.execCommand('copy'); } catch (e) {}
+                    document.body.removeChild(temp);
+                    showGlobalToast(dict.copied_link || 'تم نسخ الرابط ✅');
+                }
+                const menu = document.getElementById('shareMenu');
+                if (menu) menu.classList.remove('open');
+                return;
+            }
+
+            let target = '';
+            if (platform === 'whatsapp') {
+                target = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' - ' + shareUrl)}`;
+            } else if (platform === 'telegram') {
+                target = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`;
+            } else if (platform === 'twitter') {
+                target = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`;
+            }
+            if (target) window.open(target, '_blank', 'noopener,noreferrer');
+
+            const menu = document.getElementById('shareMenu');
+            if (menu) menu.classList.remove('open');
+        }
 
         // ------------- مؤشر سرعة الرد المباشر (حسب ساعات العمل 08:00 - 22:00) -------------
         function updateResponseStatus() {
@@ -1120,6 +1287,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(currentLang);
             updateResponseStatus();
+            checkPaymentReturn();
             setInterval(updateResponseStatus, 60000); // تحديث الحالة كل دقيقة
         });
     </script>
