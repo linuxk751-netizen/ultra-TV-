@@ -2,12 +2,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.x.x/firebas
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAGdDdficiUSlNXSrX-p9HbkD4tYmMhbwM",
-  authDomain: "ultra-tv-wep-2a10b.firebaseapp.com",
-  projectId: "ultra-tv-wep-2a10b",
-  storageBucket: "ultra-tv-wep-2a10b.firebasestorage.app",
-  messagingSenderId: "888790728972",
-  appId: "1:888790728972:web:daad8a471a47cfeae30929"
+  apiKey: "AIzaSyCHvmQ0Q3yM9rhkt2eERLbRqX_sBfXJ2xg",
+  authDomain: "ultra-tv-160b7.firebaseapp.com",
+  projectId: "ultra-tv-160b7",
+  storageBucket: "ultra-tv-160b7.firebasestorage.app",
+  messagingSenderId: "75204425234",
+  appId: "1:75204425234:web:705acff8a4fbebba058acb"
 };
 
 const app = initializeApp(firebaseConfig);
