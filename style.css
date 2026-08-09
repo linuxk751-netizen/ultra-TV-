@@ -1033,3 +1033,105 @@ footer {
     70%  { box-shadow: 0 0 0 8px rgba(76,175,80,0); }
     100% { box-shadow: 0 0 0 0 rgba(76,175,80,0); }
 }
+
+/* ===================================================
+   زر ومنيو حساب المستخدم (بعد تسجيل الدخول + تسجيل الخروج)
+====================================================== */
+.user-switcher{
+    position: relative;
+    display: none; /* تظهر فقط بعد تسجيل الدخول عبر الجافاسكريبت */
+}
+.user-current{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,188,212,0.3);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    transition: 0.3s;
+}
+.user-current:hover{ border-color:#00bcd4; transform: scale(1.05); }
+.user-current img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.user-menu{
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.2);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: 0.25s ease;
+    z-index: 2000;
+}
+.user-menu.open{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.user-menu-info{
+    padding: 10px 12px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 4px;
+}
+.user-menu-name{
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #263238;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-menu-email{
+    font-size: 12px;
+    color: #78909c;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
+    text-align: right;
+    margin-top: 3px;
+}
+.user-menu button{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    text-align: right;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    color: #263238;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 600;
+    transition: 0.2s;
+    width: 100%;
+}
+.user-menu button:hover{ background: #ffebee; color:#c62828; }
+.user-menu button i{ color:#c62828; width: 18px; text-align:center; }
+@media (max-width: 600px){
+    .user-menu{ left: auto; right: 0; }
+}

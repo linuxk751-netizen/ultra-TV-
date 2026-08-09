@@ -265,6 +265,23 @@
             </div>
 
             <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
+
+            <!-- زر ومنيو حساب المستخدم (يظهر فقط بعد تسجيل الدخول) -->
+            <div class="user-switcher" id="userSwitcher">
+                <button type="button" class="user-current" onclick="toggleUserMenu(event)" id="userCurrentBtn" title="حسابي">
+                    <img id="userAvatarImg" src="" alt="" style="display:none;">
+                    <span id="userAvatarInitial" style="display:none;">A</span>
+                </button>
+                <div class="user-menu" id="userMenu">
+                    <div class="user-menu-info">
+                        <div class="user-menu-name" id="userMenuName"></div>
+                        <div class="user-menu-email" id="userMenuEmail"></div>
+                    </div>
+                    <button type="button" onclick="logoutUser()">
+                        <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -852,7 +869,7 @@
     <!-- تهيئة وتفعيل Firebase وجوجل -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCHvmQ0Q3yM9rhkt2eERLbRqX_sBfXJ2xg",
@@ -927,6 +944,76 @@
                 alert(message);
             }
         }
+
+        // ------------- إظهار/إخفاء أيقونة الحساب حسب حالة تسجيل الدخول -------------
+        function updateAuthUI(user) {
+            const loginIcon = document.getElementById('nav-login-icon');
+            const userSwitcher = document.getElementById('userSwitcher');
+            const userCurrentBtn = document.getElementById('userCurrentBtn');
+            const userAvatarImg = document.getElementById('userAvatarImg');
+            const userAvatarInitial = document.getElementById('userAvatarInitial');
+            const userMenuName = document.getElementById('userMenuName');
+            const userMenuEmail = document.getElementById('userMenuEmail');
+
+            if (user) {
+                const displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'مستخدم');
+
+                if (loginIcon) loginIcon.style.display = 'none';
+                if (userSwitcher) userSwitcher.style.display = 'block';
+                if (userCurrentBtn) userCurrentBtn.style.display = 'flex';
+                if (userMenuName) userMenuName.textContent = displayName;
+                if (userMenuEmail) userMenuEmail.textContent = user.email || '';
+
+                if (user.photoURL) {
+                    if (userAvatarImg) {
+                        userAvatarImg.src = user.photoURL;
+                        userAvatarImg.style.display = 'block';
+                    }
+                    if (userAvatarInitial) userAvatarInitial.style.display = 'none';
+                } else {
+                    if (userAvatarImg) userAvatarImg.style.display = 'none';
+                    if (userAvatarInitial) {
+                        userAvatarInitial.textContent = displayName.charAt(0).toUpperCase();
+                        userAvatarInitial.style.display = 'block';
+                    }
+                }
+            } else {
+                if (loginIcon) loginIcon.style.display = 'inline-block';
+                if (userSwitcher) userSwitcher.style.display = 'none';
+                const userMenu = document.getElementById('userMenu');
+                if (userMenu) userMenu.classList.remove('open');
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            updateAuthUI(user);
+        });
+
+        // فتح/إغلاق منيو الحساب
+        window.toggleUserMenu = function(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('userMenu');
+            if (menu) menu.classList.toggle('open');
+        };
+
+        document.addEventListener('click', () => {
+            const menu = document.getElementById('userMenu');
+            if (menu) menu.classList.remove('open');
+        });
+
+        // تسجيل الخروج
+        window.logoutUser = function() {
+            signOut(auth)
+                .then(() => {
+                    const menu = document.getElementById('userMenu');
+                    if (menu) menu.classList.remove('open');
+                    showGlobalToast((i18nDict[currentLang] || i18nDict.ar).logged_out || 'تم تسجيل الخروج بنجاح ✅');
+                    showPage('home');
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        };
     </script>
 
     <!-- جافاسكريبت للتحكم بالصفحات وتطبيق الموقع -->
@@ -1039,7 +1126,8 @@
                 copied_link: "تم نسخ رابط الموقع ✅",
                 stripe_not_configured: "الدفع بالبطاقة غير مُفعّل بعد، تواصل معنا عبر واتساب 🙏",
                 payment_success: "تم الدفع بنجاح! سيتم تفعيل اشتراكك خلال دقائق ✅",
-                payment_cancel: "تم إلغاء عملية الدفع"
+                payment_cancel: "تم إلغاء عملية الدفع",
+                logged_out: "تم تسجيل الخروج بنجاح ✅"
             },
             tr: {
                 nav_home: "Ana Sayfa",
@@ -1066,7 +1154,8 @@
                 copied_link: "Site bağlantısı kopyalandı ✅",
                 stripe_not_configured: "Kart ile ödeme henüz aktif değil, lütfen WhatsApp üzerinden bize ulaşın 🙏",
                 payment_success: "Ödeme başarılı! Aboneliğiniz birkaç dakika içinde aktif edilecek ✅",
-                payment_cancel: "Ödeme işlemi iptal edildi"
+                payment_cancel: "Ödeme işlemi iptal edildi",
+                logged_out: "Başarıyla çıkış yaptınız ✅"
             },
             en: {
                 nav_home: "Home",
@@ -1093,7 +1182,8 @@
                 copied_link: "Site link copied ✅",
                 stripe_not_configured: "Card payment isn't set up yet, please contact us on WhatsApp 🙏",
                 payment_success: "Payment successful! Your subscription will be activated within minutes ✅",
-                payment_cancel: "Payment was cancelled"
+                payment_cancel: "Payment was cancelled",
+                logged_out: "You have been logged out ✅"
             }
         };
 
