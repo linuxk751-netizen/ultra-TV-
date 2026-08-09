@@ -29,7 +29,141 @@
         --ink-color: #1E2B3A;
         --ink-dim: #7C8A9A;
         --ink-faint: #ABB6C2;
+        --violet-color: #7C6FE0;
+        --violet-tint: #EFEDFC;
+        --pink-tint: #FDEAF2;
+        --green-color: #29A768;
+        --green-tint: #E7F7EF;
       }
+
+      /* ===================================================
+         قسم بطاقات التواصل الجديد (الموقع / الهاتف / البريد ...)
+      ====================================================== */
+      .info-section{
+        max-width: 1080px;
+        margin: 60px auto 20px;
+        padding: 0 20px;
+      }
+      .info-section-head{
+        text-align: center;
+        margin-bottom: 34px;
+      }
+      .info-eyebrow{
+        display: inline-block;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: var(--teal-deep);
+        background: var(--teal-tint);
+        border: 1px solid #C9F2EE;
+        padding: 6px 18px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+      }
+      .info-heading{
+        font-family: 'Cairo', sans-serif;
+        font-weight: 900;
+        font-size: 25px;
+        color: var(--ink-color);
+      }
+      .info-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 20px;
+      }
+      .info-card{
+        position: relative;
+        background: var(--card-bg);
+        border: 1px solid var(--card-line);
+        border-radius: 20px;
+        padding: 32px 22px 28px;
+        text-align: center;
+        overflow: hidden;
+        transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+      }
+      .info-card::before{
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        background: var(--card-accent);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .35s ease;
+      }
+      .info-card:hover::before{ transform: scaleX(1); }
+      .info-card:hover{
+        transform: translateY(-6px);
+        border-color: var(--card-accent);
+        box-shadow: 0 18px 38px -14px var(--card-glow, rgba(23,182,176,.35));
+      }
+      .info-card-icon{
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 18px;
+        background: var(--card-tint);
+        color: var(--card-accent);
+        font-size: 20px;
+        transition: background .35s ease, color .35s ease, transform .35s ease;
+      }
+      .info-card:hover .info-card-icon{
+        background: var(--card-accent);
+        color: #fff;
+        transform: scale(1.08) rotate(-6deg);
+      }
+      .info-card-label{
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        font-size: 15.5px;
+        color: var(--ink-color);
+        margin-bottom: 9px;
+      }
+      .info-card-value{
+        font-size: 14px;
+        color: #546e7a;
+        line-height: 1.6;
+        word-break: break-word;
+      }
+      .info-card-value--row{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        direction: ltr;
+      }
+      .info-card-sub{
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        margin-top: 6px;
+      }
+      .info-card-sub--live{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .info-copy-btn{
+        background: var(--card-tint);
+        border: 1px solid transparent;
+        color: var(--card-accent);
+        width: 24px;
+        height: 24px;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 10px;
+        flex-shrink: 0;
+        transition: .2s;
+      }
+      .info-copy-btn:hover{ background: var(--card-accent); color: #fff; }
+      .info-copy-btn:active{ transform: scale(.9); }
 
       .packages-wrap {
         max-width: 1040px;
@@ -709,47 +843,55 @@
             </div>
         </section>
 
-        <section class="contact-info-section">
-            <div class="contact-grid" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
-                    <i class="fa-solid fa-clock"></i>
-                    <h3 data-i18n="hours_title">ساعات العمل</h3>
-                    <p data-i18n="hours_days">طوال أيام الأسبوع</p>
-                    <p class="sub-text" data-i18n="hours_time">08:00 ص - 10:00 م</p>
+        <section class="info-section">
+            <div class="info-section-head">
+                <span class="info-eyebrow">طرق التواصل</span>
+                <h2 class="info-heading">اختر الطريقة التي تناسبك</h2>
+            </div>
+            <div class="info-grid">
+                <div class="info-card" style="--card-accent:#1F8FB3; --card-tint:#EAF8FC; --card-glow:rgba(31,143,179,.35);">
+                    <div class="info-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-card-label" data-i18n="location_title">الموقع</div>
+                    <div class="info-card-value" data-i18n="location_value">تركيا</div>
                 </div>
-                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
-                    <i class="fa-solid fa-envelope"></i>
-                    <h3 data-i18n="email_title">البريد الإلكتروني</h3>
-                    <p style="display:flex; align-items:center; justify-content:center; gap:16px; word-break:break-all;">
-                        <span id="emailValue">ultratv.media2026@gmail.com</span>
-                        <button type="button" class="copy-icon-btn" onclick="copyValue('emailValue','copied_email')" data-i18n-title="copy_email_tooltip" title="نسخ البريد الإلكتروني">
-                            <i class="fa-regular fa-copy"></i>
-                        </button>
-                    </p>
-                </div>
-                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
-                    <i class="fa-solid fa-phone-volume"></i>
-                    <h3 data-i18n="phone_title">أرقام الهاتف</h3>
-                    <p class="phone-highlight" style="display:flex; align-items:center; justify-content:center; gap:16px;">
+
+                <div class="info-card" style="--card-accent:#17B6B0; --card-tint:#E7FBF9; --card-glow:rgba(23,182,176,.35);">
+                    <div class="info-card-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <div class="info-card-label" data-i18n="phone_title">أرقام الهاتف</div>
+                    <div class="info-card-value info-card-value--row">
                         <span id="phoneValue">+ 963 933 940 387</span>
-                        <button type="button" class="copy-icon-btn" onclick="copyValue('phoneValue','copied_phone')" data-i18n-title="copy_phone_tooltip" title="نسخ رقم الهاتف">
+                        <button type="button" class="info-copy-btn" onclick="copyValue('phoneValue','copied_phone')" data-i18n-title="copy_phone_tooltip" title="نسخ رقم الهاتف">
                             <i class="fa-regular fa-copy"></i>
                         </button>
-                    </p>
+                    </div>
                 </div>
-                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <h3 data-i18n="location_title">الموقع</h3>
-                    <p data-i18n="location_value">تركيا</p>
+
+                <div class="info-card" style="--card-accent:#EC1E6D; --card-tint:#FDEAF2; --card-glow:rgba(236,30,109,.32);">
+                    <div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-card-label" data-i18n="email_title">البريد الإلكتروني</div>
+                    <div class="info-card-value info-card-value--row">
+                        <span id="emailValue">ultratv.media2026@gmail.com</span>
+                        <button type="button" class="info-copy-btn" onclick="copyValue('emailValue','copied_email')" data-i18n-title="copy_email_tooltip" title="نسخ البريد الإلكتروني">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="contact-box" style="flex: 1; min-width: 240px; max-width: 260px; border-radius: 16px;">
-                    <i class="fa-solid fa-bolt"></i>
-                    <h3 data-i18n="response_title">سرعة الرد</h3>
-                    <p id="responseStatusText" data-i18n="response_online">نرد عادة خلال ساعة واحدة ⏱️</p>
-                    <p class="sub-text" style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:8px;">
+
+                <div class="info-card" style="--card-accent:#7C6FE0; --card-tint:#EFEDFC; --card-glow:rgba(124,111,224,.32);">
+                    <div class="info-card-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="info-card-label" data-i18n="hours_title">ساعات العمل</div>
+                    <div class="info-card-value" data-i18n="hours_days">طوال أيام الأسبوع</div>
+                    <div class="info-card-sub" data-i18n="hours_time">08:00 ص - 10:00 م</div>
+                </div>
+
+                <div class="info-card" style="--card-accent:#29A768; --card-tint:#E7F7EF; --card-glow:rgba(41,167,104,.32);">
+                    <div class="info-card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="info-card-label" data-i18n="response_title">سرعة الرد</div>
+                    <div class="info-card-value" id="responseStatusText" data-i18n="response_online">نرد عادة خلال ساعة واحدة ⏱️</div>
+                    <div class="info-card-sub info-card-sub--live">
                         <span class="live-dot" id="liveDot"></span>
                         <span id="liveDotLabel" data-i18n="status_online">متصل الآن</span>
-                    </p>
+                    </div>
                 </div>
             </div>
         </section>
