@@ -863,7 +863,7 @@ footer {
     visibility: visible;
     transform: translateY(0);
 }
-.lang-menu button{
+.lang-menu button {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -878,9 +878,20 @@ footer {
     font-family: 'Tajawal', sans-serif;
     transition: 0.2s;
 }
-.lang-menu button:hover{ background: #e0f7fa; color:#00838f; }
-.lang-menu button.active-lang{ background:#00bcd4; color:#fff; }
+.lang-menu button:hover { 
+    background: #e0f7fa; 
+    color: #00838f; 
+}
 
+.lang-menu button.active-lang { 
+    background: #00bcd4; 
+    color: #fff; 
+}
+
+.lang-menu button span {
+    font-size: 18px;
+    flex-shrink: 0;
+}
 /* زر ومنيو المشاركة */
 .share-switcher{
     position: relative;
