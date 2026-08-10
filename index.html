@@ -1642,14 +1642,21 @@
                     const initial = getInitial(review.author);
                     const color = avatarColor(review.author);
                     return `
-                        <div class="review-item">
+                        <div class="review-item" data-id="${review.id}">
                             <div class="review-item-top">
-                                <div class="review-avatar" style="background:${color};">${initial}</div>
-                                <div class="review-item-meta">
-                                    <div class="review-author">${escapeHtml(review.author || 'مجهول')}</div>
-                                    <div class="review-date">${formatDate(review.date)}</div>
+                                <div class="review-item-left">
+                                    <div class="review-avatar" style="background:${color};">${initial}</div>
+                                    <div class="review-item-meta">
+                                        <div class="review-author">${escapeHtml(review.author || 'مجهول')}</div>
+                                        <div class="review-date">${formatDate(review.date)}</div>
+                                    </div>
                                 </div>
-                                <div class="review-stars">${renderStarIcons(Number(review.rating || 0))}</div>
+                                <div class="review-actions">
+                                    <div class="review-stars">${renderStarIcons(Number(review.rating || 0))}</div>
+                                    <button type="button" class="review-delete-btn" data-delete-id="${review.id}" title="حذف التعليق">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="review-text">${escapeHtml(review.text)}</div>
                         </div>
@@ -1675,13 +1682,34 @@
                     setTimeout(initFirestoreReviews, 150);
                     return;
                 }
-                const { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } = window.__firestore;
+                const { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp } = window.__firestore;
                 const reviewsRef = collection(window.__db, 'reviews');
                 const reviewsQuery = query(reviewsRef, orderBy('date', 'desc'));
 
+                // حذف تعليق عند الضغط على زر الحذف الخاص به
+                contactReviewsList.addEventListener('click', async event => {
+                    const deleteBtn = event.target.closest('.review-delete-btn');
+                    if (!deleteBtn) return;
+
+                    const reviewId = deleteBtn.dataset.deleteId;
+                    if (!reviewId) return;
+
+                    if (!confirm('هل أنت متأكد من حذف هذا التعليق؟')) return;
+
+                    deleteBtn.disabled = true;
+                    try {
+                        await deleteDoc(doc(window.__db, 'reviews', reviewId));
+                        showSuccessToast('تم حذف التعليق بنجاح');
+                    } catch (error) {
+                        console.error('Failed to delete review:', error);
+                        alert('حدث خطأ أثناء حذف التعليق، حاول مرة أخرى.');
+                        deleteBtn.disabled = false;
+                    }
+                });
+
                 // استماع لحظي: أي تعليق يضيفه أي زائر يظهر مباشرة لكل زوار الموقع بدون تحديث الصفحة
                 onSnapshot(reviewsQuery, (snapshot) => {
-                    latestReviews = snapshot.docs.map(d => d.data());
+                    latestReviews = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
                     renderReviews(latestReviews);
                 }, (error) => {
                     console.error('Firestore reviews error:', error);

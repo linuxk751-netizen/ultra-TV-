@@ -713,32 +713,63 @@ footer {
     font-family: 'Cairo', sans-serif;
 }
 
-.reviews-list { margin-top: 30px; display: grid; gap: 14px; }
+.reviews-list { margin-top: 35px; display: grid; gap: 16px; }
 
 .review-item {
-    background: #FBFDFD;
-    padding: 18px 20px;
-    border-radius: 18px;
-    border: 1px solid #EEF2F5;
+    background: linear-gradient(135deg, #FBFDFD 0%, #FFFFFF 100%);
+    padding: 24px 26px;
+    border-radius: 22px;
+    border: 1.5px solid #E3E9F0;
     position: relative;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease;
+    overflow: visible;
 }
+
+.review-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #17B6B0, #0D8E89);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.35s ease;
+    border-radius: 22px 0 0 22px;
+}
+
 .review-item:hover {
-    border-color: #C9F2EE;
-    box-shadow: 0 10px 26px -12px rgba(23,182,176,0.28);
-    transform: translateY(-2px);
+    border-color: #17B6B0;
+    box-shadow: 0 14px 40px -10px rgba(23,182,176,0.38);
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #F0FFFE 0%, #FFFFFF 100%);
+}
+
+.review-item:hover::before {
+    transform: scaleY(1);
 }
 
 .review-item-top {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
+    gap: 14px;
+    margin-bottom: 14px;
+    justify-content: space-between;
 }
+
+.review-item-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
 .review-avatar {
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -746,35 +777,96 @@ footer {
     color: #fff;
     font-family: 'Cairo', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(23,182,176,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.review-item-meta { flex: 1; min-width: 0; }
-.review-author { color: #1E2B3A; font-weight: 700; font-size: 14.5px; }
-.review-date { color: #ABB6C2; font-size: 12px; margin-top: 2px; }
-.review-stars { display: flex; gap: 3px; flex-shrink: 0; }
-.review-stars .star { font-size: 14px; cursor: default; margin-right: 0; }
 
-.review-text { color: #43505F; line-height: 1.8; font-size: 14.5px; padding-inline-start: 52px; }
+.review-item:hover .review-avatar {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(23,182,176,0.35);
+}
+
+.review-item-meta { flex: 1; min-width: 0; text-align: right; }
+.review-author { color: #1E2B3A; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.review-date { color: #ABB6C2; font-size: 12px; }
+.review-stars { display: flex; gap: 2px; flex-shrink: 0; }
+.review-stars .star { font-size: 16px; cursor: default; margin-right: 0; }
+
+.review-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.review-delete-btn {
+    background: transparent;
+    border: 1.5px solid #FFE0E6;
+    color: #EC1E6D;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.review-delete-btn:hover {
+    background: #FDEAF2;
+    border-color: #EC1E6D;
+    transform: scale(1.1);
+}
+
+.review-delete-btn:active {
+    transform: scale(0.95);
+}
+
+.review-text { 
+    color: #43505F; 
+    line-height: 1.7; 
+    font-size: 14.5px; 
+    padding: 0 0 0 62px;
+    word-break: break-word;
+}
 
 .empty-review {
     color: #7C8A9A;
-    padding: 24px;
-    border-radius: 16px;
-    background: #F8FAFB;
-    border: 1px dashed #E3E9F0;
+    padding: 32px 24px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #F8FAFB 0%, #F0F5F7 100%);
+    border: 1.5px dashed #E3E9F0;
     text-align: center;
-    font-size: 14px;
+    font-size: 14.5px;
+    transition: all 0.3s ease;
 }
-.empty-review i { color: #17B6B0; margin-inline-end: 6px; }
+
+.empty-review:hover {
+    border-color: #17B6B0;
+    background: linear-gradient(135deg, #F0FFFE 0%, #F8FAFB 100%);
+}
+
+.empty-review i { 
+    color: #17B6B0; 
+    margin-left: 8px; 
+    font-size: 18px;
+}
 
 @media (min-width: 760px) {
     .review-form { grid-template-columns: 1.4fr 0.8fr; }
     .review-form label { margin-bottom: 0; }
 }
+
 @media (max-width: 600px) {
     .review-card { padding: 22px; border-radius: 18px; }
-    .review-text { padding-inline-start: 0; margin-top: 4px; }
+    .review-text { padding: 0; margin-top: 10px; }
     .review-item-top { flex-wrap: wrap; }
+    .review-avatar { width: 40px; height: 40px; font-size: 15px; }
+    .review-author { font-size: 14px; }
+    .review-item-left { gap: 10px; }
 }
 
 .poster-container {
@@ -895,9 +987,6 @@ footer {
   margin: 0;
 }
 
-/* ===================================================
-   إضافة ميزات الـ Success Toast الجديدة والناعمة
-====================================================== */
 .toast-container {
     position: fixed;
     bottom: 30px;
@@ -934,10 +1023,6 @@ footer {
     color: #17B6B0;
     font-size: 18px;
 }
-
-/* ===================================================
-   ميزات جديدة: مبدّل اللغة + واتساب + نسخ سريع + سرعة الرد
-====================================================== */
 
 .lang-switcher{
     position: relative;
@@ -1011,7 +1096,6 @@ footer {
     font-size: 18px;
     flex-shrink: 0;
 }
-/* زر ومنيو المشاركة */
 .share-switcher{
     position: relative;
 }
@@ -1153,12 +1237,9 @@ footer {
     100% { box-shadow: 0 0 0 0 rgba(76,175,80,0); }
 }
 
-/* ===================================================
-   زر ومنيو حساب المستخدم (بعد تسجيل الدخول + تسجيل الخروج)
-====================================================== */
 .user-switcher{
     position: relative;
-    display: none; /* تظهر فقط بعد تسجيل الدخول عبر الجافاسكريبت */
+    display: none;
 }
 .user-current{
     display: flex;
