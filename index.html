@@ -72,6 +72,11 @@
         grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
         gap: 20px;
       }
+      .info-grid .info-card:last-child{
+        grid-column: 1 / -1;
+        max-width: 340px;
+        margin: 0 auto;
+      }
       .info-card{
         position: relative;
         background: var(--card-bg);
@@ -1011,7 +1016,7 @@
     <!-- تهيئة وتفعيل Firebase وجوجل -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signInAnonymously, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -1027,6 +1032,9 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
+
+        // معرّف حساب المشرف (يقدر يحذف أي تعليق)
+        const ADMIN_UID = 'l1ddJgNN4uSAk7PAltsJEOUduwC3';
 
         // نجعل db وأدوات Firestore متاحة عالمياً حتى يستخدمها سكربت التعليقات بالأسفل
         window.__db = db;
@@ -1126,7 +1134,7 @@
                     }
                 }
 
-                window.__currentUser = { name: displayName, photoURL: user.photoURL || '' };
+                window.__currentUser = { name: displayName, photoURL: user.photoURL || '', uid: user.uid, isAdmin: user.uid === ADMIN_UID, isAnonymous: false };
             } else {
                 if (loginIcon) loginIcon.style.display = 'inline-block';
                 if (userSwitcher) userSwitcher.style.display = 'none';
@@ -1137,7 +1145,21 @@
         }
 
         onAuthStateChanged(auth, (user) => {
-            updateAuthUI(user);
+            if (user && !user.isAnonymous) {
+                // مستخدم مسجل دخول فعلياً (Google أو إيميل/باسورد)
+                updateAuthUI(user);
+            } else if (user && user.isAnonymous) {
+                // زائر غير مسجل، لكن عنده جلسة مجهولة تسمح له بحذف تعليقاته هو فقط
+                window.__currentUser = { name: null, photoURL: '', uid: user.uid, isAdmin: false, isAnonymous: true };
+                updateAuthUI(null);
+            } else {
+                // ما في أي جلسة بعد، ننشئ جلسة مجهولة تلقائياً
+                window.__currentUser = null;
+                signInAnonymously(auth).catch((error) => {
+                    console.error('Anonymous sign-in failed:', error);
+                });
+            }
+            if (window.__onAuthChanged) window.__onAuthChanged();
         });
 
         // فتح/إغلاق منيو الحساب
@@ -1641,6 +1663,12 @@
                 contactReviewsList.innerHTML = reviews.map(review => {
                     const initial = getInitial(review.author);
                     const color = avatarColor(review.author);
+                    const currentUid = window.__currentUser ? window.__currentUser.uid : null;
+                    const isAdmin = !!(window.__currentUser && window.__currentUser.isAdmin);
+                    const canDelete = isAdmin || (currentUid && review.authorUid && currentUid === review.authorUid);
+                    const deleteBtnHtml = canDelete
+                        ? `<button type="button" class="review-delete-btn" data-delete-id="${review.id}" title="حذف التعليق"><i class="fa-solid fa-trash-can"></i></button>`
+                        : '';
                     return `
                         <div class="review-item" data-id="${review.id}">
                             <div class="review-item-top">
@@ -1653,9 +1681,7 @@
                                 </div>
                                 <div class="review-actions">
                                     <div class="review-stars">${renderStarIcons(Number(review.rating || 0))}</div>
-                                    <button type="button" class="review-delete-btn" data-delete-id="${review.id}" title="حذف التعليق">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
+                                    ${deleteBtnHtml}
                                 </div>
                             </div>
                             <div class="review-text">${escapeHtml(review.text)}</div>
@@ -1663,6 +1689,11 @@
                     `;
                 }).join('');
             }
+
+            // إعادة رسم التعليقات عند تغيّر حالة تسجيل الدخول (مثلاً بعد ما تجهز الجلسة المجهولة أو دخول المشرف)
+            window.__onAuthChanged = function() {
+                renderReviews(latestReviews);
+            };
 
             ratingStars.forEach(star => {
                 star.addEventListener('click', () => {
@@ -1729,6 +1760,10 @@
                         alert('أضف تعليقًا قبل الإرسال');
                         return;
                     }
+                    if (!window.__currentUser || !window.__currentUser.uid) {
+                        alert('يرجى الانتظار لحظة حتى تجهز الجلسة ثم المحاولة مرة أخرى.');
+                        return;
+                    }
 
                     submitReview.disabled = true;
                     try {
@@ -1736,6 +1771,7 @@
                             author,
                             text,
                             rating: currentRating,
+                            authorUid: window.__currentUser.uid,
                             date: serverTimestamp()
                         });
 
