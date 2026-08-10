@@ -399,23 +399,21 @@ h1, h2, h3,
 }
 
 .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    text-align: center;
+    display: grid !important;
+    /* يضمن توزيع الأعمدة بالتساوي وتوسيطها */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; 
+    justify-content: center !important; 
+    justify-items: center !important; /* يتأكد أن المربع نفسه في منتصف الخلية */
+    gap: 25px !important;
+    max-width: 1000px;
+    margin: 0 auto !important;
+    width: 100%;
 }
 
 .contact-box {
-    position: relative;
-    background: #fff;
-    padding: 40px 25px;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-    overflow: hidden;
-    z-index: 1;
-    transition: color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100% !important;
+    max-width: 320px !important; /* منع المربع من التمدد بشكل تشوهي */
 }
-
 .contact-box::before {
     content: '';
     position: absolute;
