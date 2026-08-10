@@ -1012,6 +1012,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCHvmQ0Q3yM9rhkt2eERLbRqX_sBfXJ2xg",
@@ -1024,7 +1025,12 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
+
+        // نجعل db وأدوات Firestore متاحة عالمياً حتى يستخدمها سكربت التعليقات بالأسفل
+        window.__db = db;
+        window.__firestore = { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp };
 
         const googleLoginBtn = document.getElementById('google-login-btn');
         if (googleLoginBtn) {
@@ -1119,11 +1125,14 @@
                         userAvatarInitial.style.display = 'block';
                     }
                 }
+
+                window.__currentUser = { name: displayName, photoURL: user.photoURL || '' };
             } else {
                 if (loginIcon) loginIcon.style.display = 'inline-block';
                 if (userSwitcher) userSwitcher.style.display = 'none';
                 const userMenu = document.getElementById('userMenu');
                 if (userMenu) userMenu.classList.remove('open');
+                window.__currentUser = null;
             }
         }
 
@@ -1534,10 +1543,9 @@
         });
     </script>
 
-    <!-- نظام إدارة التعليقات المحدث بالكامل مع الـ Smart Success Toast -->
+    <!-- نظام إدارة التعليقات المشترك عبر Firebase Firestore (يظهر لكل الزوار) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const CONTACT_REVIEW_KEY = 'contact-reviews';
             const reviewName = document.getElementById('reviewName');
             const reviewText = document.getElementById('reviewText');
             const ratingStars = Array.from(document.querySelectorAll('#ratingStars .star'));
@@ -1548,43 +1556,22 @@
             const reviewCount = document.getElementById('reviewCount');
             const toastContainer = document.getElementById('toastContainer');
             let currentRating = 0;
+            let latestReviews = [];
 
             if (!reviewName || !reviewText || !ratingStars.length || !submitReview || !contactReviewsList || !reviewAverage || !reviewAverageStars || !reviewCount || !toastContainer) {
                 return;
             }
 
-            // دالة إظهار الـ Smart Success Toast المخصصة
             function showSuccessToast(message) {
                 const toast = document.createElement('div');
                 toast.className = 'toast-message';
                 toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
-                
                 toastContainer.appendChild(toast);
-                
-                // تشغيل الأنيميشن بعد الإضافة ليدخل بنعومة
-                setTimeout(() => {
-                    toast.classList.add('show');
-                }, 50);
-
-                // إخفاء وحذف التنبيه تلقائياً بعد 4 ثوانٍ
+                setTimeout(() => toast.classList.add('show'), 50);
                 setTimeout(() => {
                     toast.classList.remove('show');
-                    setTimeout(() => {
-                        toast.remove();
-                    }, 400);
+                    setTimeout(() => toast.remove(), 400);
                 }, 4000);
-            }
-
-            function loadContactReviews() {
-                try {
-                    return JSON.parse(localStorage.getItem(CONTACT_REVIEW_KEY) || '[]');
-                } catch (e) {
-                    return [];
-                }
-            }
-
-            function saveContactReviews(reviews) {
-                localStorage.setItem(CONTACT_REVIEW_KEY, JSON.stringify(reviews));
             }
 
             function escapeHtml(text) {
@@ -1597,12 +1584,34 @@
                 }[c]));
             }
 
+            function getInitial(name) {
+                const trimmed = String(name || '').trim();
+                return trimmed ? trimmed.charAt(0).toUpperCase() : '؟';
+            }
+
+            function avatarColor(name) {
+                const palette = ['#17B6B0', '#1F8FB3', '#EC1E6D', '#7C6FE0', '#29A768', '#63bfc5'];
+                const str = String(name || '؟');
+                let hash = 0;
+                for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+                return palette[Math.abs(hash) % palette.length];
+            }
+
             function renderStarIcons(count) {
                 let result = '';
                 for (let i = 1; i <= 5; i++) {
                     result += `<span class="star ${i <= count ? 'filled' : ''}" aria-hidden="true">★</span>`;
                 }
                 return result;
+            }
+
+            function formatDate(dateValue) {
+                try {
+                    const d = dateValue && dateValue.toDate ? dateValue.toDate() : new Date(dateValue);
+                    return d.toLocaleString('ar', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                } catch (e) {
+                    return '';
+                }
             }
 
             function updateRatingStars() {
@@ -1612,24 +1621,16 @@
                 });
             }
 
-            function deleteReview(index) {
-                const reviews = loadContactReviews();
-                reviews.splice(index, 1);
-                saveContactReviews(reviews);
-                renderReviews();
-            }
-
-            function renderReviews() {
-                const reviews = loadContactReviews();
-                if (reviews.length === 0) {
+            function renderReviews(reviews) {
+                if (!reviews.length) {
                     reviewAverage.textContent = '0.0';
                     reviewAverageStars.innerHTML = renderStarIcons(0);
                     reviewCount.textContent = '0 تعليق';
-                    contactReviewsList.innerHTML = '<div class="empty-review">لا توجد تعليقات بعد. كن أول من يشارك رأيه.</div>';
+                    contactReviewsList.innerHTML = '<div class="empty-review"><i class="fa-regular fa-comment-dots"></i> لا توجد تعليقات بعد. كن أول من يشارك رأيه.</div>';
                     return;
                 }
 
-                const sum = reviews.reduce((total, review) => total + Number(review.rating || 0), 0);
+                const sum = reviews.reduce((total, r) => total + Number(r.rating || 0), 0);
                 const avg = sum / reviews.length;
                 const roundedAvg = Math.round(avg);
 
@@ -1637,23 +1638,23 @@
                 reviewAverageStars.innerHTML = renderStarIcons(roundedAvg);
                 reviewCount.textContent = `${reviews.length} تعليق${reviews.length === 1 ? '' : 'ات'}`;
 
-                contactReviewsList.innerHTML = reviews.slice().reverse().map((review, reversedIndex) => {
-                    const actualIndex = reviews.length - 1 - reversedIndex;
+                contactReviewsList.innerHTML = reviews.map(review => {
+                    const initial = getInitial(review.author);
+                    const color = avatarColor(review.author);
                     return `
                         <div class="review-item">
-                            <div class="review-meta">
+                            <div class="review-item-top">
+                                <div class="review-avatar" style="background:${color};">${initial}</div>
+                                <div class="review-item-meta">
+                                    <div class="review-author">${escapeHtml(review.author || 'مجهول')}</div>
+                                    <div class="review-date">${formatDate(review.date)}</div>
+                                </div>
                                 <div class="review-stars">${renderStarIcons(Number(review.rating || 0))}</div>
-                                <div class="review-author">${escapeHtml(review.author || 'مجهول')} — ${new Date(review.date).toLocaleString()}</div>
                             </div>
                             <div class="review-text">${escapeHtml(review.text)}</div>
-                            <button type="button" class="review-delete-btn" data-index="${actualIndex}">حذف</button>
                         </div>
                     `;
                 }).join('');
-
-                contactReviewsList.querySelectorAll('.review-delete-btn').forEach(button => {
-                    button.addEventListener('click', () => deleteReview(Number(button.dataset.index)));
-                });
             }
 
             ratingStars.forEach(star => {
@@ -1668,41 +1669,63 @@
                 star.addEventListener('mouseleave', updateRatingStars);
             });
 
-            submitReview.addEventListener('click', event => {
-                event.preventDefault();
-                const author = reviewName.value.trim() || 'مجهول';
-                const text = reviewText.value.trim();
-
-                if (currentRating <= 0) {
-                    alert('اختر تقييمًا من 1 إلى 5');
+            // ننتظر جاهزية Firebase (تم تهيئتها بالوحدة (module) بالأعلى) قبل ربط الاستماع اللحظي
+            function initFirestoreReviews() {
+                if (!window.__db || !window.__firestore) {
+                    setTimeout(initFirestoreReviews, 150);
                     return;
                 }
-                if (!text) {
-                    alert('أضف تعليقًا قبل الإرسال');
-                    return;
-                }
+                const { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } = window.__firestore;
+                const reviewsRef = collection(window.__db, 'reviews');
+                const reviewsQuery = query(reviewsRef, orderBy('date', 'desc'));
 
-                const reviews = loadContactReviews();
-                reviews.push({
-                    author,
-                    text,
-                    rating: currentRating,
-                    date: new Date().toISOString()
+                // استماع لحظي: أي تعليق يضيفه أي زائر يظهر مباشرة لكل زوار الموقع بدون تحديث الصفحة
+                onSnapshot(reviewsQuery, (snapshot) => {
+                    latestReviews = snapshot.docs.map(d => d.data());
+                    renderReviews(latestReviews);
+                }, (error) => {
+                    console.error('Firestore reviews error:', error);
+                    contactReviewsList.innerHTML = '<div class="empty-review">تعذّر تحميل التعليقات حالياً، حاول لاحقاً.</div>';
                 });
-                saveContactReviews(reviews);
-                
-                // تنظيف الحقول تلقائياً وتصفير التقييم والنجوم
-                reviewName.value = '';
-                reviewText.value = '';
-                currentRating = 0;
-                updateRatingStars();
-                renderReviews();
 
-                // إطلاق الإشعار المنبثق التفاعلي الذكي بنجاح بدون تحديث الصفحة
-                showSuccessToast("شكراً لك! تم استقبال رأيك بنجاح");
-            });
+                submitReview.addEventListener('click', async event => {
+                    event.preventDefault();
+                    const author = reviewName.value.trim() || 'مجهول';
+                    const text = reviewText.value.trim();
 
-            renderReviews();
+                    if (currentRating <= 0) {
+                        alert('اختر تقييمًا من 1 إلى 5');
+                        return;
+                    }
+                    if (!text) {
+                        alert('أضف تعليقًا قبل الإرسال');
+                        return;
+                    }
+
+                    submitReview.disabled = true;
+                    try {
+                        await addDoc(reviewsRef, {
+                            author,
+                            text,
+                            rating: currentRating,
+                            date: serverTimestamp()
+                        });
+
+                        reviewName.value = '';
+                        reviewText.value = '';
+                        currentRating = 0;
+                        updateRatingStars();
+                        showSuccessToast('شكراً لك! تم نشر تعليقك ويظهر الآن لجميع الزوار');
+                    } catch (error) {
+                        console.error('Failed to submit review:', error);
+                        alert('حدث خطأ أثناء إرسال التعليق، حاول مرة أخرى.');
+                    } finally {
+                        submitReview.disabled = false;
+                    }
+                });
+            }
+
+            initFirestoreReviews();
         });
     </script>
 </body>
