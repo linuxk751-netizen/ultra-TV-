@@ -1088,3 +1088,234 @@ footer {
 @media (max-width: 600px){
     .user-menu{ left: auto; right: 0; }
 }
+
+/* =========================================================
+   ULTRA TV — MODERN DARK GOLD PALETTE v2
+   Color-only layer: keeps layout, animations and functionality intact.
+   ========================================================= */
+:root{
+  --page-bg:#171A20;
+  --bg:#171A20;
+  --surface:#20242C;
+  --surface-2:#171A20;
+  --surface-3:#1D2027;
+  --card-bg:#20242C;
+  --card-line:rgba(214,180,90,.16);
+  --border:rgba(214,180,90,.16);
+  --gold:#D6B45A;
+  --gold-light:#F2D47A;
+  --gold-dark:#9B7730;
+  --gold-soft:rgba(214,180,90,.10);
+  --ink-color:#F5F5F2;
+  --ink-dim:#A7A9B0;
+  --ink-faint:#6F737C;
+  --text:#F5F5F2;
+  --text-muted:#9CA0AA;
+  --teal-color:#D6B45A;
+  --teal-deep:#B58F3B;
+  --teal-tint:rgba(214,180,90,.10);
+  --sky-deep:#D6B45A;
+  --sky-tint:rgba(214,180,90,.10);
+  --orange-color:#D6B45A;
+}
+
+html,body{
+  background:#171A20 !important;
+  color:#F5F5F2 !important;
+}
+body{
+  background:
+    radial-gradient(circle at 12% 12%,rgba(214,180,90,.075),transparent 28%),
+    radial-gradient(circle at 88% 78%,rgba(214,180,90,.055),transparent 30%),
+    linear-gradient(135deg,#171A20 0%,#0D0F13 52%,#07080A 100%) !important;
+  background-attachment:fixed !important;
+}
+
+::-webkit-scrollbar-track{background:#0B0D10 !important}
+::-webkit-scrollbar-thumb{background:rgba(214,180,90,.42) !important}
+::-webkit-scrollbar-thumb:hover{background:rgba(242,212,122,.72) !important}
+
+/* Navbar */
+.navbar .logo{color:var(--gold) !important}
+.navbar nav ul{
+  background:rgba(13,15,19,.78) !important;
+  border-color:rgba(214,180,90,.20) !important;
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.035),0 8px 24px rgba(0,0,0,.28) !important;
+}
+.navbar nav ul li a{color:#C8C9CC !important}
+.navbar nav ul li a:hover{
+  color:var(--gold-light) !important;
+  background:rgba(214,180,90,.085) !important;
+  text-shadow:0 0 10px rgba(214,180,90,.35) !important;
+}
+.navbar nav ul li a.active{
+  color:#FFFDF7 !important;
+  background:linear-gradient(135deg,rgba(242,212,122,.16),rgba(155,119,48,.22)) !important;
+  border-color:rgba(242,212,122,.34) !important;
+  box-shadow:0 4px 18px rgba(214,180,90,.15),inset 0 1px 1px rgba(255,255,255,.12) !important;
+}
+.navbar nav ul li a.active::after{
+  background:var(--gold-light) !important;
+  box-shadow:0 0 10px var(--gold),0 0 20px rgba(214,180,90,.52) !important;
+}
+.navbar-icons i{color:#E9E7DF !important}
+.navbar-icons i:hover{color:var(--gold-light) !important}
+
+.lang-current,.share-current{
+  background:rgba(255,255,255,.035) !important;
+  border-color:rgba(214,180,90,.28) !important;
+  color:#F5F5F2 !important;
+}
+.lang-current i,.share-current i{color:var(--gold-light) !important}
+.lang-current:hover,.share-current:hover{
+  background:rgba(214,180,90,.12) !important;
+  border-color:var(--gold) !important;
+}
+.lang-menu,.share-menu,.user-menu{
+  background:#14161B !important;
+  border:1px solid rgba(214,180,90,.16) !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.48) !important;
+}
+.lang-menu button,.share-menu button,.user-menu button{color:#E8E7E1 !important}
+.lang-menu button:hover,.share-menu button:hover{background:rgba(214,180,90,.10) !important;color:var(--gold-light) !important}
+.lang-menu button.active-lang{background:var(--gold) !important;color:#101114 !important}
+.user-menu button:hover{background:rgba(214,180,90,.10) !important;color:var(--gold-light) !important}
+.user-menu button i{color:var(--gold) !important}
+
+/* Hero */
+.hero,.contact-hero-clean{
+  background-color:#171A20 !important;
+}
+.hero-content h1,.contact-hero-content h1{color:#FFFDF7 !important}
+.hero-content p,.contact-hero-content p{color:#B1B3B9 !important}
+
+/* Main cards */
+.download-card,.category-box,.contact-box,.package-card,.pkg-card,.feature-card-item,.info-card{
+  background:linear-gradient(180deg,#171A20 0%,#20242C 100%) !important;
+  color:#F5F5F2 !important;
+  border-color:rgba(214,180,90,.15) !important;
+  box-shadow:0 12px 32px rgba(0,0,0,.38),0 0 0 1px rgba(214,180,90,.025) !important;
+}
+.download-card:hover,.feature-card-item:hover,.info-card:hover{
+  border-color:rgba(214,180,90,.34) !important;
+  box-shadow:0 18px 42px rgba(0,0,0,.44),0 0 28px rgba(214,180,90,.08) !important;
+}
+.download-card h2,.category-box h3,.contact-box h3,.package-card h3,
+.pkg-card h3,.price-num,.info-heading,.info-card-label,.feature-card-item h3{
+  color:#F5F5F2 !important;
+}
+.card-desc,.category-box p,.contact-box p,.pkg-period,.pkg-note,
+.feature-card-item p,.info-card-value,.package-features li,.pkg-features li{
+  color:#A7A9B0 !important;
+}
+
+/* Accent elements */
+.download-card .badge,.ribbon-banner,.popular-badge{
+  background:linear-gradient(135deg,#F2D47A,#D6B45A) !important;
+  color:#17130A !important;
+  box-shadow:0 5px 18px rgba(214,180,90,.18) !important;
+}
+.device-icons i,.category-box i,.contact-box i,.package-icon,
+.package-card .price,.phone-highlight,.feature-icon-wrapper,
+.info-card-icon,.info-copy-btn{color:var(--gold) !important}
+.category-box span,.category-box span i{color:var(--gold-light) !important}
+.features-title-new{color:#F5F5F2 !important}
+.features-title-new::after{background:var(--gold) !important}
+.feature-icon-wrapper{
+  background:rgba(214,180,90,.085) !important;
+}
+.feature-card-item:nth-child(1) .feature-icon-wrapper{
+  color:var(--gold-light) !important;
+  background:rgba(214,180,90,.09) !important;
+}
+
+/* Animated category/contact hover remains unchanged, only recolored */
+.category-box::before,.contact-box::before{
+  background:linear-gradient(135deg,#F2D47A,#D6B45A,#8B691F) !important;
+}
+.category-box:hover,.contact-box:hover,.package-card:hover{
+  box-shadow:0 14px 40px rgba(214,180,90,.17) !important;
+}
+
+/* Packages */
+.package-card.featured,.pkg-card.featured{
+  border-color:var(--gold) !important;
+  background:linear-gradient(180deg,#1C1A15 0%,#20242C 100%) !important;
+  box-shadow:0 14px 38px rgba(214,180,90,.18) !important;
+}
+.popular-badge,.pkg-tag{
+  background:rgba(214,180,90,.10) !important;
+  color:var(--gold-light) !important;
+  border-color:rgba(214,180,90,.30) !important;
+}
+.days-badge,.perforation-line{border-color:rgba(214,180,90,.16) !important}
+
+/* Buttons — same hover/active animations, modern gold palette */
+.download-btn,.cta-teal,.cta-pink,.pkg-cta{
+  background:linear-gradient(135deg,#D6B45A,#9B7730) !important;
+  color:#20242C !important;
+  border-color:rgba(242,212,122,.46) !important;
+  box-shadow:0 7px 22px rgba(214,180,90,.18) !important;
+}
+.download-btn::before{
+  background:linear-gradient(135deg,#F2D47A,#D6B45A,#8B691F) !important;
+}
+.download-btn:hover,.cta-teal:hover,.cta-pink:hover,.pkg-cta:hover{
+  background:linear-gradient(135deg,#F2D47A,#D6B45A) !important;
+  color:#101114 !important;
+  box-shadow:0 9px 28px rgba(214,180,90,.30) !important;
+}
+.cta-outline{
+  background:transparent !important;
+  color:#A7A9B0 !important;
+  border-color:rgba(214,180,90,.22) !important;
+}
+.cta-outline:hover{
+  background:rgba(214,180,90,.07) !important;
+  border-color:var(--gold) !important;
+  color:var(--gold-light) !important;
+}
+.cta-outline i{color:var(--gold) !important}
+
+/* Forms / search */
+input,textarea,select{
+  background:#20242C !important;
+  color:#F5F5F2 !important;
+  border-color:rgba(214,180,90,.20) !important;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:rgba(214,180,90,.55) !important;
+  box-shadow:0 0 0 3px rgba(214,180,90,.08) !important;
+}
+input::placeholder,textarea::placeholder{color:#6F737C !important}
+
+/* Media posters */
+.media-item{
+  background:#0F1115 !important;
+  box-shadow:0 9px 22px rgba(0,0,0,.36) !important;
+}
+
+/* Toast */
+.toast-message{
+  background:#171A20 !important;
+  color:#F5F5F2 !important;
+  border-right-color:var(--gold) !important;
+  box-shadow:0 12px 34px rgba(0,0,0,.46) !important;
+}
+.toast-message i{color:var(--gold) !important}
+
+/* Footer */
+footer{background:#07080A !important;color:#8E9199 !important}
+
+/* Recolor remaining legacy inline-color hooks without touching structure/functionality */
+[style*="#00bcd4"],[style*="#00e5ff"],[style*="#00acc1"],[style*="#00838f"],
+[style*="#17B6B0"],[style*="#0D8E89"],[style*="#63bfc5"]{
+  color:var(--gold) !important;
+}
+[style*="background: #00bcd4"],[style*="background:#00bcd4"],
+[style*="background: #00e5ff"],[style*="background:#00e5ff"],
+[style*="background: #1a1a1a"],[style*="background:#1a1a1a"]{
+  background:#20242C !important;
+}
+
+/* Preserve poster images and all existing transitions/animations. */
