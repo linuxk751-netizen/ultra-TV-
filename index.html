@@ -1,991 +1,1807 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra TV - الموقع الرسمي لتطبيقات</title>
-    <!-- أيقونة الموقع (Favicon) -->
-    <link rel="icon" type="image/png" href="https://i.ibb.co/KpCMDjsr/Chat-GPT-Image-Aug-12-2026-04-33-08-PM.png">    
-    <link rel="stylesheet" href="style.css">
-    <!-- خطوط جوجل وباقة الأيقونات -->
+    <title id="page-title">Ultra TV - أفضل تطبيق بث مباشر</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/KpCMDjsr/Chat-GPT-Image-Aug-12-2026-04-33-08-PM.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- أنماط CSS الخاصة بتصميم الباقات الجديد -->
     <style>
-      :root{
-        --page-bg: #111111;
-        --card-bg: #FFFFFF;
-        --card-line: #E3E9F0;
-        --sky-deep: #1F8FB3;
-        --sky-tint: #EAF8FC;
-        --pink-color: #EC1E6D;
-        --teal-color: #17B6B0;
-        --teal-deep: #0D8E89;
-        --teal-tint: #E7FBF9;
-        --orange-color: #63bfc5;
-        --ink-color: #1E2B3A;
-        --ink-dim: #7C8A9A;
-        --ink-faint: #ABB6C2;
-        --violet-color: #7C6FE0;
-        --violet-tint: #EFEDFC;
-        --pink-tint: #FDEAF2;
-        --green-color: #29A768;
-        --green-tint: #E7F7EF;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
 
-      /* ===================================================
-         قسم بطاقات التواصل الجديد (الموقع / الهاتف / البريد ...)
-      ====================================================== */
-      .info-section{
-        max-width: 1080px;
-        margin: 60px auto 20px;
-        padding: 0 20px;
-      }
-      .info-section-head{
-        text-align: center;
-        margin-bottom: 34px;
-      }
-      .info-eyebrow{
-        display: inline-block;
-        font-family: 'Cairo', sans-serif;
-        font-weight: 700;
-        font-size: 12px;
-        letter-spacing: 2px;
-        color: var(--teal-deep);
-        background: var(--teal-tint);
-        border: 1px solid #C9F2EE;
-        padding: 6px 18px;
-        border-radius: 20px;
-        margin-bottom: 14px;
-      }
-      .info-heading{
-        font-family: 'Cairo', sans-serif;
-        font-weight: 900;
-        font-size: 25px;
-        color: var(--ink-color);
-      }
-      .info-grid{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 20px;
-      }
-      .info-grid .info-card:last-child{
-        grid-column: 1 / -1;
-        max-width: 340px;
-        margin: 0 auto;
-      }
-      .info-card{
-        position: relative;
-        background: var(--card-bg);
-        border: 1px solid var(--card-line);
-        border-radius: 20px;
-        padding: 32px 22px 28px;
-        text-align: center;
-        overflow: hidden;
-        transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-      }
-      .info-card::before{
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 4px;
-        background: var(--card-accent);
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform .35s ease;
-      }
-      .info-card:hover::before{ transform: scaleX(1); }
-      .info-card:hover{
-        transform: translateY(-6px);
-        border-color: var(--card-accent);
-        box-shadow: 0 18px 38px -14px var(--card-glow, rgba(23,182,176,.35));
-      }
-      .info-card-icon{
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 18px;
-        background: var(--card-tint);
-        color: var(--card-accent);
-        font-size: 20px;
-        transition: background .35s ease, color .35s ease, transform .35s ease;
-      }
-      .info-card:hover .info-card-icon{
-        background: var(--card-accent);
-        color: #fff;
-        transform: scale(1.08) rotate(-6deg);
-      }
-      .info-card-label{
-        font-family: 'Cairo', sans-serif;
-        font-weight: 700;
-        font-size: 15.5px;
-        color: var(--ink-color);
-        margin-bottom: 9px;
-      }
-      .info-card-value{
-        font-size: 14px;
-        color: #546e7a;
-        line-height: 1.6;
-        word-break: break-word;
-      }
-      .info-card-value--row{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        direction: ltr;
-      }
-      .info-card-sub{
-        font-size: 12.5px;
-        color: var(--ink-faint);
-        margin-top: 6px;
-      }
-      .info-card-sub--live{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-      }
-      .info-copy-btn{
-        background: var(--card-tint);
-        border: 1px solid transparent;
-        color: var(--card-accent);
-        width: 24px;
-        height: 24px;
-        border-radius: 7px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 10px;
-        flex-shrink: 0;
-        transition: .2s;
-      }
-      .info-copy-btn:hover{ background: var(--card-accent); color: #fff; }
-      .info-copy-btn:active{ transform: scale(.9); }
+        html, body {
+            height: 100%;
+            background: #171A20;
+            color: #F5F5F2;
+        }
 
-      .packages-wrap {
-        max-width: 1040px;
-        margin: 40px auto 0;
-        display: grid;
-        grid-template-columns: 1fr 1.15fr 1fr;
-        gap: 22px;
-        align-items: start;
-        text-align: right;
-      }
-      @media (max-width: 860px){
-        .packages-wrap { grid-template-columns: 1fr; max-width: 380px; }
-      }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-      .pkg-card {
-        background: var(--card-bg);
-        border: 1px solid var(--card-line);
-        border-radius: 20px;
-        padding: 28px 24px 30px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      }
+        /* ============================================================
+           النافيجيشن
+           ============================================================ */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(20, 23, 30, 0.95);
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 50px;
+            border-bottom: 1px solid rgba(214, 180, 90, 0.15);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
 
-      .pkg-tag {
-        display: inline-block;
-        font-family: 'Cairo', sans-serif;
-        font-weight: 700;
-        font-size: 14px;
-        color: var(--sky-deep);
-        background: var(--sky-tint);
-        border: 1px solid #CFEFF7;
-        padding: 8px 16px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        align-self: start;
-      }
+        .navbar .logo {
+            font-size: 26px;
+            font-weight: 900;
+            color: #D6B45A;
+            letter-spacing: 1px;
+            flex: 1;
+        }
 
-      .pkg-card.featured .pkg-tag {
-        color: var(--teal-deep);
-        background: var(--teal-tint);
-        border-color: #C9F2EE;
-      }
+        .navbar .logo img {
+            height: 50px;
+            vertical-align: middle;
+        }
 
-      .price-row {
-        display: flex;
-        align-items: baseline;
-        gap: 6px;
-        margin-bottom: 4px;
-      }
-      .price-num {
-        font-family: 'Cairo', sans-serif;
-        font-weight: 900;
-        font-size: 42px;
-        color: var(--ink-color);
-      }
-      .currency-symbol {
-        font-family: 'Cairo', sans-serif;
-        font-weight: 700;
-        font-size: 17px;
-        color: var(--ink-dim);
-      }
-      .pkg-period {
-        color: var(--ink-dim);
-        font-size: 13px;
-        margin-bottom: 22px;
-      }
+        .navbar nav {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+        }
 
-      .days-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--ink-dim);
-        font-size: 12.5px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--card-line);
-        margin-bottom: 20px;
-        width: 100%;
-      }
+        .navbar nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+        }
 
-      ul.pkg-features {
-        list-style: none;
-        margin-bottom: 26px;
-        flex-grow: 1;
-        padding: 0;
-      }
-      ul.pkg-features li {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        font-size: 13.5px;
-        color: #43505F;
-        padding: 8px 0;
-        line-height: 1.6;
-      }
-      ul.pkg-features li svg { flex-shrink: 0; margin-top: 2px; }
+        .navbar nav ul li {
+            position: static;
+            margin: 0;
+            padding: 0;
+        }
 
-      .pkg-cta {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 15px;
-        border-radius: 100px;
-        font-family: 'Cairo', sans-serif;
-        font-weight: 700;
-        font-size: 14.5px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        text-decoration: none;
-        transition: 0.3s ease;
-      }
-      .cta-pink {
-        background: var(--pink-color);
-        color: #FFF;
-      }
-      .cta-pink:hover { background: #d0175b; }
-      
-      .cta-teal {
-        background: var(--teal-color);
-        color: #FFF;
-      }
-      .cta-teal:hover { background: #129e99; }
+        .navbar nav ul li a {
+            text-decoration: none;
+            color: #C7CBD1;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px 28px;
+            position: relative;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
 
-      .pkg-cta + .pkg-cta,
-      .pkg-cta + .cta-outline {
-        margin-top: 10px;
-      }
+        .navbar nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #D6B45A, #F2D47A, #D6B45A);
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 12px rgba(214, 180, 90, 0.5);
+        }
 
-      .cta-outline {
-        background: transparent;
-        color: var(--ink-dim);
-        border: 1.5px solid var(--card-line);
-      }
-      .cta-outline:hover {
-        background: #F5F8FA;
-        border-color: #25D366;
-        color: #25D366;
-      }
-      .cta-outline i { color: #25D366; }
+        .navbar nav ul li a:hover {
+            color: #F2D47A;
+        }
 
-      /* Featured plan styling */
-      .pkg-card.featured {
-        background: linear-gradient(180deg, #FFFFFF 0%, #FBFFFE 100%);
-        border: 1.5px solid var(--teal-color);
-        padding-top: 0;
-        transform: translateY(-10px);
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(23,182,176,0.2);
-      }
-      .ribbon-banner {
-        background: var(--orange-color);
-        color: #4A2E04;
-        font-family: 'Cairo', sans-serif;
-        font-weight: 700;
-        font-size: 12.5px;
-        text-align: center;
-        padding: 10px;
-        margin: 0 -24px 24px;
-        letter-spacing: 0.3px;
-      }
-      .perforation-line {
-        position: relative;
-        height: 1px;
-        border-top: 2px dashed var(--card-line);
-        margin: 4px 0 22px;
-      }
+        .navbar nav ul li a:hover::after {
+            width: 70%;
+        }
 
-      .pkg-note {
-        text-align: center;
-        color: #888;
-        font-size: 13px;
-        margin-top: 40px;
-      }
-    
-/* DARK GOLD OVERRIDES FOR INLINE COMPONENTS */
-:root{--gold:#D4AF37;--gold-light:#F5D76E;--gold-dark:#A67C00;}
-body{background:#09090b !important;color:#F4F1E8 !important;}
-[style*="color: #00bcd4"],[style*="color:#00bcd4"],
-[style*="color: #00e5ff"],[style*="color:#00e5ff"]{color:#D4AF37 !important;}
-[style*="background: #111"],[style*="background:#111"],
-[style*="background: #1a1a1a"],[style*="background:#1a1a1a"]{background:#111113 !important;}
+        .navbar nav ul li a.active {
+            color: #F2D47A;
+            font-weight: 700;
+        }
 
-</style>
+        .navbar nav ul li a.active::after {
+            width: 75%;
+        }
+
+        .navbar-icons {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar-icons i {
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .navbar-icons i:hover {
+            color: #D6B45A;
+            background: rgba(214, 180, 90, 0.1);
+        }
+
+        /* تنسيق حاوية زر وقائمة المشاركة الجديدة */
+        .share-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .share-menu {
+            display: none;
+            position: absolute;
+            top: 120%;
+            left: 0;
+            background: #111;
+            border: 1px solid #D6B45A;
+            border-radius: 8px;
+            width: 190px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            z-index: 1000;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .share-menu-header {
+            color: #D6B45A;
+            font-size: 13px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 4px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .share-options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .share-item {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 7px 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, color 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: right;
+        }
+
+        .share-item:hover {
+            background: #D6B45A;
+            color: #000;
+        }
+
+        /* ============================================================
+           نافذة تسجيل الدخول المنبثقة (Modal) الجديدة
+           ============================================================ */
+        .auth-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .auth-modal-container {
+            background: #FFFFFF;
+            color: #171A20;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 32px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            position: relative;
+            text-align: center;
+            animation: modalScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalScaleUp {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .auth-close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #F0F3F6;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            transition: background 0.2s;
+        }
+
+        .auth-close-btn:hover {
+            background: #E2E8F0;
+        }
+
+        .auth-icon-header {
+            width: 56px;
+            height: 56px;
+            background: #F4F6F9;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #171A20;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .auth-modal-container h2 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #171A20;
+            margin-bottom: 8px;
+        }
+
+        .auth-modal-container p.auth-subtitle {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 24px;
+        }
+
+        .auth-input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .auth-input-group input {
+            width: 100%;
+            padding: 14px 45px 14px 45px;
+            background: #F4F6F9;
+            border: 1px solid #E2E8F0;
+            border-radius: 14px;
+            font-size: 14px;
+            color: #171A20;
+            outline: none;
+            transition: all 0.2s;
+            text-align: right;
+        }
+
+        .auth-input-group input:focus {
+            border-color: #D6B45A;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(214, 180, 90, 0.15);
+        }
+
+        .auth-input-group i.input-icon-right {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #A0AEC0;
+            font-size: 15px;
+        }
+
+        .auth-input-group i.input-icon-left {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #A0AEC0;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .auth-forgot-row {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .auth-forgot-row a {
+            font-size: 13px;
+            color: #4A5568;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .auth-forgot-row a:hover {
+            color: #D6B45A;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            background: #1A1D24;
+            color: #FFFFFF;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .auth-submit-btn:hover {
+            background: #2D3748;
+        }
+
+        .auth-divider {
+            margin: 24px 0 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #E2E8F0;
+        }
+
+        .auth-divider span {
+            position: relative;
+            background: #FFFFFF;
+            padding: 0 12px;
+            font-size: 12px;
+            color: #A0AEC0;
+        }
+
+        .auth-google-btn {
+            width: 100%;
+            background: #FFFFFF;
+            color: #2D3748;
+            border: 1px solid #E2E8F0;
+            padding: 13px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .auth-google-btn:hover {
+            background: #F8FAFC;
+            border-color: #CBD5E1;
+        }
+
+        /* ============================================================
+           القسم الرئيسي
+           ============================================================ */
+        .page-content {
+            flex: 1;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 25, 35, 0.5), rgba(20, 30, 45, 0.5)), 
+                        url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1200&h=600&fit=crop') 
+                        no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(23, 26, 32, 0.8) 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9);
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #d0d0d0;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+        }
+
+        /* ============================================================
+           قسم الميزات
+           ============================================================ */
+        .features-section {
+            background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
+            padding: 80px 50px;
+        }
+
+        .section-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #FAF8F2;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #D6B45A, transparent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.8), rgba(25, 30, 38, 0.8));
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(214, 180, 90, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(214, 180, 90, 0.4);
+            background: linear-gradient(135deg, rgba(32, 37, 45, 1), rgba(25, 30, 38, 1));
+            box-shadow: 0 20px 40px rgba(214, 180, 90, 0.15);
+        }
+
+        .feature-card i {
+            font-size: 40px;
+            color: #F2D47A;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #FAF8F2;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #A7A9B0;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           قسم التحميل
+           ============================================================ */
+        .download-section {
+            display: flex;
+            justify-content: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #151A21 0%, #1D232B 48%, #171C23 100%);
+        }
+
+        .download-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .download-card {
+            background: linear-gradient(180deg, #20252D 0%, #191E25 100%);
+            padding: 40px 34px 36px;
+            text-align: center;
+            border-radius: 26px;
+            border: 1px solid rgba(214, 180, 90, 0.18);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #F2D47A 20%, #D6B45A 50%, #F2D47A 80%, transparent);
+        }
+
+        .download-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(214, 180, 90, 0.32);
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 40px rgba(214, 180, 90, 0.08);
+        }
+
+        .download-card .badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: rgba(214, 180, 90, 0.15);
+            border: 1px solid rgba(214, 180, 90, 0.4);
+            color: #F2D47A;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .download-card .badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #F2D47A;
+            box-shadow: 0 0 10px rgba(242, 212, 122, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #8B909A;
+            margin-top: 8px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .download-card h2 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 30px;
+            font-weight: 900;
+            color: #FAF8F2;
+            margin: 8px 0 20px;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .download-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #D6B45A, #F2D47A);
+        }
+
+        .version-info {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            padding: 15px 0;
+            border-top: 1px solid rgba(214, 180, 90, 0.1);
+            border-bottom: 1px solid rgba(214, 180, 90, 0.1);
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item .label {
+            font-size: 11px;
+            color: #8B909A;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-item .value {
+            font-size: 14px;
+            color: #F2D47A;
+            font-weight: 700;
+        }
+
+        .device-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .device-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(242, 212, 122, 0.15), rgba(214, 180, 90, 0.05));
+            border: 1px solid rgba(214, 180, 90, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .device-icon:hover {
+            background: linear-gradient(135deg, rgba(242, 212, 122, 0.25), rgba(214, 180, 90, 0.1));
+            border-color: rgba(214, 180, 90, 0.5);
+            transform: scale(1.1);
+        }
+
+        .device-icon i {
+            font-size: 22px;
+            color: #F0D177;
+        }
+
+        .download-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #F2D47A 0%, #D6B45A 50%, #B58F3B 100%);
+            color: #161710;
+            text-decoration: none;
+            padding: 15px 28px;
+            font-size: 16px;
+            font-weight: 900;
+            font-family: 'Cairo', sans-serif;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 235, 170, 0.6);
+            width: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.22s ease;
+            box-shadow: 0 14px 30px rgba(214, 180, 90, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.3px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.08);
+            box-shadow: 0 18px 40px rgba(214, 180, 90, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .download-btn i {
+            font-size: 15px;
+        }
+
+        /* تنسيق زر ادفع بالبطاقة الإضافي */
+        .card-pay-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #2A313C 0%, #1F242D 100%);
+            color: #F2D47A;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 800;
+            font-family: 'Cairo', sans-serif;
+            border-radius: 15px;
+            border: 1px solid rgba(214, 180, 90, 0.35);
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: all 0.22s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-pay-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #323A47, #242A35);
+            border-color: rgba(214, 180, 90, 0.7);
+            color: #FAF8F2;
+            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.15);
+        }
+
+        .card-pay-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .card-pay-btn i {
+            font-size: 15px;
+            color: #F2D47A;
+        }
+
+        /* ============================================================
+           الباقات
+           ============================================================ */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .package-card {
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.8), rgba(25, 30, 38, 0.8));
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(214, 180, 90, 0.15);
+            position: relative;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .package-card.featured {
+            border-color: rgba(214, 180, 90, 0.5);
+            background: linear-gradient(135deg, rgba(32, 37, 45, 1), rgba(25, 30, 38, 1));
+            transform: scale(1.05);
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.15);
+        }
+
+        .package-card .ribbon {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #F2D47A, #D6B45A);
+            color: #161710;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 12px;
+            display: none;
+        }
+
+        .package-card.featured .ribbon {
+            display: block;
+        }
+
+        .package-card h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #FAF8F2;
+        }
+
+        .package-price {
+            font-size: 36px;
+            color: #F2D47A;
+            font-weight: 900;
+            margin: 15px 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .package-price span {
+            font-size: 14px;
+            color: #A7A9B0;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 25px 0;
+            padding: 25px 0;
+            border-top: 1px solid rgba(214, 180, 90, 0.1);
+            border-bottom: 1px solid rgba(214, 180, 90, 0.1);
+            text-align: right;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: #A7A9B0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .package-features li i {
+            color: #F2D47A;
+            width: 20px;
+        }
+
+        /* ============================================================
+           صفحة الاتصال
+           ============================================================ */
+        .contact-section {
+            padding: 60px 50px;
+            background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.8), rgba(25, 30, 38, 0.8));
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(214, 180, 90, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(214, 180, 90, 0.4);
+            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.15);
+        }
+
+        .contact-card i {
+            font-size: 40px;
+            color: #F2D47A;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #FAF8F2;
+        }
+
+        .contact-card p {
+            color: #A7A9B0;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card a {
+            display: inline-block;
+            color: #D6B45A;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: #F2D47A;
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           الفوتر
+           ============================================================ */
+        footer {
+            background: #0F1318;
+            color: #9298A1;
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 1px solid rgba(214, 180, 90, 0.15);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: right;
+            margin-bottom: 40px;
+        }
+
+        .footer-content h4 {
+            color: #FAF8F2;
+            font-family: 'Cairo', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .footer-content ul {
+            list-style: none;
+        }
+
+        .footer-content li {
+            margin: 8px 0;
+            font-size: 13px;
+        }
+
+        .footer-content a {
+            color: #9298A1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-content a:hover {
+            color: #D6B45A;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(214, 180, 90, 0.1);
+            font-size: 12px;
+        }
+
+        /* نافذة منبثقة بسيطة للتنبيهات */
+        #toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #D6B45A;
+            color: #171A20;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 9999;
+            font-size: 14px;
+        }
+        #toast-notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ============================================================
+           الجوال
+           ============================================================ */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .navbar nav ul li a {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+
+            .navbar nav ul li a::after {
+                bottom: -6px;
+                height: 2px;
+            }
+
+            .hero {
+                height: 350px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .features-section,
+            .contact-section {
+                padding: 50px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .download-section {
+                padding: 50px 20px;
+            }
+
+            .download-container {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px 15px;
+            }
+
+            .navbar nav {
+                order: 3;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .navbar nav ul {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .navbar nav ul li a {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .navbar-icons {
+                gap: 10px;
+            }
+
+            .navbar-icons i {
+                font-size: 14px;
+            }
+
+            .hero-content h1 {
+                font-size: 24px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .download-btn, .card-pay-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- حاوية الإشعارات المنبثقة التفاعلية (Toast Container) -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- الشريط العلوي (Navbar) -->
+    <!-- النافيجيشن -->
     <header class="navbar">
         <div class="logo">
-            <a href="#" onclick="showPage('home')">
-                <img src="https://i.ibb.co/KpCMDjsr/Chat-GPT-Image-Aug-12-2026-04-33-08-PM.png" alt="Ultra TV Logo" style="height: 85px; vertical-align: middle;">
+            <a href="#" onclick="showPage('home'); return false;" style="color: #D6B45A; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                <img src="https://i.ibb.co/KpCMDjsr/Chat-GPT-Image-Aug-12-2026-04-33-08-PM.png" alt="Ultra TV">
             </a>
         </div>
         <nav>
             <ul>
-                <li><a href="#" onclick="showPage('home')" class="active" id="nav-home" data-i18n="nav_home">الصفحة الرئيسية</a></li>
-                <li><a href="#" onclick="showPage('packages')" id="nav-packages" data-i18n="nav_packages">الباقات</a></li>
-                <li><a href="#" onclick="showPage('contact')" id="nav-contact" data-i18n="nav_contact">اتصل بنا</a></li>
+                <li><a href="#" onclick="showPage('home'); return false;" class="active" id="nav-home" data-translate="nav-home">الصفحة الرئيسية</a></li>
+                <li><a href="#" onclick="showPage('packages'); return false;" id="nav-packages" data-translate="nav-packages">الباقات</a></li>
+                <li><a href="#" onclick="showPage('contact'); return false;" id="nav-contact" data-translate="nav-contact">اتصل بنا</a></li>
             </ul>
         </nav>
-        
-        <div class="navbar-icons" id="auth-nav-container">
-            <!-- مبدّل اللغة (عربي / تركي / إنجليزي) -->
-            <div class="lang-switcher" id="langSwitcher">
-                <button type="button" class="lang-current" onclick="toggleLangMenu(event)" title="اختر اللغة">
-                    <i class="fa-solid fa-globe"></i>
-                    <span id="langCurrentLabel">AR</span>
-                </button>
-                <div class="lang-menu" id="langMenu">
-    <button type="button" onclick="setLanguage('ar')" data-lang-option="ar">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect fill='%23206c3d' width='900' height='600'/%3E%3Crect fill='%23f5f5f5' y='200' width='900' height='200'/%3E%3Crect fill='%23ce1126' y='400' width='900' height='200'/%3E%3C/svg%3E" style="width: 16px; height: 11px; margin-left: 6px;">
-        العربية
-    </button>
-    <button type="button" onclick="setLanguage('tr')" data-lang-option="tr">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%23e30613' width='1200' height='800'/%3E%3Ccircle cx='400' cy='400' r='150' fill='%23fff'/%3E%3Ccircle cx='440' cy='400' r='120' fill='%23e30613'/%3E%3Cpolygon points='520,400 540,380 545,400 565,400 550,410 555,430 540,420 525,430 530,410' fill='%23fff'/%3E%3C/svg%3E" style="width: 16px; height: 11px; margin-left: 6px;">
-        Türkçe
-    </button>
-    <button type="button" onclick="setLanguage('en')" data-lang-option="en">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect fill='%23012169' width='900' height='600'/%3E%3Cpath d='M0,0 L900,600 M900,0 L0,600' stroke='%23fff' stroke-width='60'/%3E%3Cpath d='M0,0 L900,600 M900,0 L0,600' stroke='%23c8102e' stroke-width='30'/%3E%3Cline x1='450' y1='0' x2='450' y2='600' stroke='%23fff' stroke-width='40'/%3E%3Cline x1='0' y1='300' x2='900' y2='300' stroke='%23fff' stroke-width='40'/%3E%3C/svg%3E" style="width: 16px; height: 11px; margin-left: 6px;">
-        English
-    </button>
-</div>
-            </div>
-            <!-- زر المشاركة -->
-            <div class="share-switcher" id="shareSwitcher">
-                <button type="button" class="share-current" onclick="toggleShareMenu(event)" title="مشاركة الموقع" id="nav-share-btn">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <div class="share-menu" id="shareMenu">
-    <button type="button" onclick="shareVia('whatsapp')"><i class="fa-brands fa-whatsapp" style="color:#22944c;"></i> واتساب</button>
-    <button type="button" onclick="shareVia('telegram')"><i class="fa-brands fa-telegram" style="color:#246383;"></i> تيليجرام</button>
-    <button type="button" onclick="shareVia('twitter')"><i class="fa-brands fa-twitter" style="color:#1DA1F2;"></i> تويتر</button>
-    <button type="button" onclick="shareVia('facebook')"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> فيس بوك</button>
-    <button type="button" onclick="shareVia('copy')"><i class="fa-solid fa-link" style="color:#00e5ff;"></i> نسخ رابط الموقع</button>
-</div>
-            </div>
-
-            <i class="fa-solid fa-user" onclick="showPage('login')" style="cursor: pointer;" title="تسجيل الدخول" id="nav-login-icon"></i>
-
-            <!-- زر ومنيو حساب المستخدم (يظهر فقط بعد تسجيل الدخول) -->
-            <div class="user-switcher" id="userSwitcher">
-                <button type="button" class="user-current" onclick="toggleUserMenu(event)" id="userCurrentBtn" title="حسابي">
-                    <img id="userAvatarImg" src="" alt="" style="display:none;">
-                    <span id="userAvatarInitial" style="display:none;">A</span>
-                </button>
-                <div class="user-menu" id="userMenu">
-                    <div class="user-menu-info">
-                        <div class="user-menu-name" id="userMenuName"></div>
-                        <div class="user-menu-email" id="userMenuEmail"></div>
+        <div class="navbar-icons">
+            <i class="fa-solid fa-globe" title="تغيير اللغة" onclick="toggleLanguage()"></i>
+            
+            <!-- زر وقائمة المشاركة المحدثة -->
+            <div class="share-container">
+                <i class="fa-solid fa-share-nodes" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
+                <div id="shareMenu" class="share-menu">
+                    <div class="share-menu-header">مشاركة عبر</div>
+                    <div class="share-options-list">
+                        <a href="#" id="shareWhatsapp" target="_blank" class="share-item">
+                            <i class="fab fa-whatsapp" style="color: #25D366;"></i> واتساب
+                        </a>
+                        <a href="#" id="shareFacebook" target="_blank" class="share-item">
+                            <i class="fab fa-facebook-f" style="color: #1877F2;"></i> فيسبوك
+                        </a>
+                        <a href="#" id="shareTwitter" target="_blank" class="share-item">
+                            <i class="fab fa-twitter" style="color: #1DA1F2;"></i> تويتر
+                        </a>
+                        <button onclick="copyWebsiteLink()" class="share-item">
+                            <i class="fas fa-link" style="color: #D6B45A;"></i> نسخ الرابط
+                        </button>
                     </div>
-                    <button type="button" onclick="logoutUser()">
-                        <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
-                    </button>
                 </div>
             </div>
+
+            <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="openAuthModal()"></i>
         </div>
     </header>
 
+    <!-- نافذة تسجيل الدخول المنبثقة الجديدة -->
+    <div id="authModal" class="auth-modal-overlay">
+        <div class="auth-modal-container">
+            <button class="auth-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="auth-icon-header">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </div>
 
-    <!-- ================= القسم الأول: الصفحة الرئيسية ================= -->
+            <h2 data-translate="login-modal-title">تسجيل الدخول بالبريد الإلكتروني</h2>
+            <p class="auth-subtitle" data-translate="login-modal-sub">سجّل دخولك للمتابعة والوصول إلى حسابك في Ultra TV.</p>
+
+            <form onsubmit="handleEmailLogin(event)">
+                <div class="auth-input-group">
+                    <i class="fa-solid fa-envelope input-icon-right"></i>
+                    <input type="email" id="loginEmailInput" placeholder="البريد الإلكتروني" data-translate="login-email-placeholder" required>
+                </div>
+
+                <div class="auth-input-group">
+                    <i class="fa-solid fa-lock input-icon-right"></i>
+                    <input type="password" id="loginPassInput" placeholder="كلمة المرور" data-translate="login-pass-placeholder" required>
+                    <i class="fa-solid fa-eye-slash input-icon-left" id="togglePasswordBtn" onclick="togglePasswordVisibility()"></i>
+                </div>
+
+                <div class="auth-forgot-row">
+                    <a href="#" onclick="forgotPasswordAction(); return false;" data-translate="login-forgot">نسيت كلمة المرور؟</a>
+                </div>
+
+                <button type="submit" class="auth-submit-btn" data-translate="login-btn-action">ابدأ الآن</button>
+            </form>
+
+            <div class="auth-divider">
+                <span data-translate="login-or">أو تسجيل الدخول عبر</span>
+            </div>
+
+            <button type="button" class="auth-google-btn" onclick="loginWithGoogle()">
+                <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+                <span data-translate="login-google-btn">المتابعة باستخدام Google</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- الصفحة الرئيسية -->
     <div id="page-home" class="page-content">
         <section class="hero">
             <div class="hero-content">
-                <h1>تطبيقات مجانية وبث مباشر</h1>
-                <p>تطبيقات مجانية</p>
+                <h1 data-translate="hero-title">أفضل تطبيق بث مباشر</h1>
+                <p data-translate="hero-subtitle">شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية</p>
             </div>
         </section>
 
-        <section class="download-section">
-            <div class="download-card" style="border-radius: 20px; overflow: hidden;">
-                <span class="badge">مجاني</span>
-                <p class="card-desc">برنامج لمشاهدة القنوات المجانية عبر الإنترنت</p>
-                <h2>نسخة مخففة</h2>
-                <div class="device-icons">
+        <!-- الميزات -->
+        <section class="features-section">
+            <h2 class="section-title" data-translate="features-heading">لماذا تختار Ultra TV؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-tv"></i>
+                    <h3 data-translate="feat1-title">جودة عالية</h3>
+                    <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-globe"></i>
+                    <h3 data-translate="feat2-title">قنوات عالمية</h3>
+                    <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة</p>
+                </div>
+                <!-- بطاقة محتوى حصري في المنتصف -->
+                <div class="feature-card">
+                    <i class="fa-solid fa-circle-play"></i>
+                    <h3 data-translate="feat6-title">محتوى حصري</h3>
+                    <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية وأول من يشاهد</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-lock"></i>
+                    <h3 data-translate="feat3-title">أمان عالي</h3>
+                    <p data-translate="feat3-desc">تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة</p>
+                </div>
+                <div class="feature-card">
                     <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
+                    <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر</p>
                 </div>
-                <a href="#" class="download-btn" style="border-radius: 25px;">
-                    <i class="fa-solid fa-download"></i> تحميل 
-                </a>
-            </div>
-        </section>
-</div>
-
-    <!-- ================= القسم الثاني: صفحة المسلسلات ================= -->
-    <div id="page-series" class="page-content" style="display: none;">
-        <section class="contact-hero-clean" style="text-align: center;">
-            <div class="contact-hero-content">
-                <h1>مكتبة المسلسلات الشاملة</h1>
-                <p style="color: #b0bec5; font-size: 14px; margin-top: 5px;">استعرض أضخم باقة من المسلسلات الحصرية والجديدة</p>
+                <div class="feature-card">
+                    <i class="fa-solid fa-headphones"></i>
+                    <h3 data-translate="feat5-title">دعم فني 24/7</h3>
+                    <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت</p>
+                </div>
             </div>
         </section>
 
-        <div style="max-width: 600px; margin: 20px auto; padding: 0 20px;">
-            <div style="position: relative;">
-                <input type="text" id="series-search" placeholder="ابحث عن مسلسل..." onkeyup="filterItems('series-search', 'series-grid')" style="width: 100%; padding: 12px 20px; padding-right: 45px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 25px; outline: none; font-size: 14px;">
-                <i class="fa-solid fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #00bcd4;"></i>
-            </div>
-        </div>
-
-        <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
-            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع المسلسلات المتاحة</h3>
-            <div id="series-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="rtl">
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                    <img src="https://i.ibb.co/Rk4CCNNp/images-21.jpg" alt="ملصق المسلسل" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                    <img src="https://i.ibb.co/bgF8JWSQ/images-20.jpg" alt="ملصق المسلسل" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/4wYTyYHN/images-19.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/wNZBnfsZ/images-18.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/0pdVtQG0/images-17.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/NgzMPBPN/images-16.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/mrRK6JTg/images-15.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/4RZxYZTh/images-14.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/fbBM2Z5/images-13.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/1GXvRCcQ/images-12.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/xSbKZ70f/images-11.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/DffPGJL5/sddefault.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/7N46F9G4/images-10.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/yBXX7R27/images-9.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/Lztrtwc8/images-8.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/xtCfFVXR/images-7.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/hF34wgw7/images-6.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/fzMKL69x/images-5.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/Jwh65KCm/images-4.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/TDVBK50P/images-3.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/S4ZTYp18/dab44aa0-a9ee-4392-ba79-876523e3fe75.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/m55n2W5T/images-2.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/KpLd44fj/images-1.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/kg7HvQ06/images.jpg" alt="Series Poster" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
+        <!-- التحميل -->
+        <section class="download-section">
+            <div class="download-container">
+                <div class="download-card">
+                    <span class="badge" data-translate="badge-free">مجاني</span>
+                    <p class="card-desc" data-translate="free-desc">جميع القنوات المجانية والأساسية</p>
+                    <h2 data-translate="free-title">النسخة المجانية</h2>
+                    <div class="version-info">
+                        <div class="info-item">
+                            <div class="label" data-translate="res-label">الدقة</div>
+                            <div class="value">720p</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label" data-translate="ads-label">الإعلانات</div>
+                            <div class="value" data-translate="ads-yes">نعم</div>
+                        </div>
+                    </div>
+                    <div class="device-icons">
+                        <div class="device-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        <div class="device-icon"><i class="fa-solid fa-tablet"></i></div>
+                    </div>
+                    <a href="https://www.example.com/download" class="download-btn">
+                        <i class="fa-solid fa-download"></i> <span data-translate="download-now">تحميل الآن</span>
+                    </a>
                 </div>
             </div>
-        </div>
-
-        <div style="text-align: center; margin: 40px 0;">
-            <button onclick="showPage('home')" class="download-btn" style="border: none; cursor: pointer; padding: 12px 30px; border-radius: 25px;">العودة للرئيسية</button>
-        </div>
+        </section>
     </div>
 
-
-    <!-- ================= القسم الثالث: صفحة الأفلام ================= -->
-    <div id="page-movies" class="page-content" style="display: none;">
-        <section class="contact-hero-clean" style="text-align: center;">
-            <div class="contact-hero-content">
-                <h1>مكتبة الأفلام المميزة</h1>
-                <p style="color: #b0bec5; font-size: 14px; margin-top: 5px;">تصفح أحدث وأبرز العناوين المتوفرة للمشاهدة الفورية بجودة عالية</p>
-            </div>
-        </section>
-
-        <section style="max-width: 900px; margin: 25px auto 10px auto; padding: 0 20px; text-align: center;">
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px;">
-                <button class="movie-cat-btn" style="background: #00bcd4; color: #fff; border: none; padding: 10px 22px; border-radius: 25px; font-size: 14px; cursor: default; font-weight: bold; box-shadow: 0 4px 10px rgba(0,188,212,0.3);">الجميع</button>
-            </div>
-        </section>
-
-        <div style="max-width: 600px; margin: 20px auto; padding: 0 20px;">
-            <div style="position: relative;">
-                <input type="text" id="movies-search" placeholder="ابحث عن فيلم..." onkeyup="filterItems('movies-search', 'movies-grid')" style="width: 100%; padding: 12px 20px; padding-right: 45px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 25px; outline: none; font-size: 14px;">
-                <i class="fa-solid fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #00bcd4;"></i>
-            </div>
-        </div>
-
-        <div style="max-width: 1200px; margin: 30px auto; padding: 0 20px;">
-            <h3 style="color: #fff; margin-bottom: 20px; border-right: 4px solid #00bcd4; padding-right: 10px;">جميع الأفلام المتاحة</h3>
-            <div id="movies-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;" dir="rtl">
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)';" onmouseout="this.style.transform='translateY(0)';">
-                    <img src="https://i.ibb.co/p6brJSXc/bright-movie-poster.webp" alt="ملصق الفيلم" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/bR5vqSYh/images-5.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/r2fFMXyc/images-12.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/d0yyjW4g/images-8.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/5hjcWQWv/images-7.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/fzXBL81T/images-3.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/3YvHqJFz/59fcc703-e51a-408a-9271-9d3869766b45.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/mrWcXygs/61-ch-Iyt-VXL-AC-UF894-1000-QL80.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/jvfTHstp/11366898923-c07dceda52-z.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/1GXcqMh5/a69377a1-00b2-42f0-9374-b13932457173-big-300x440.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/B5zx1vJV/616a6bb3127cab3f21e2ddbd865ac3f7bf47a6f69666c50548508f10557059b9a.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/v4jS2DP5/images.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/QvxXkxPq/e0b9722cca2c21363a49b425c5d6e8e7.webp" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-
-                <!-- أفلام رعب -->
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/4wt5mZt0/Backrooms-2026-horror-movie.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/n8bKy2Rw/Final-Chapter-Pic-2.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/vCPzWk7M/9339dfb5-cfed-4df4-8920-a314b499522d-sized-1000x1000.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/dsMDKryv/annabelle-2014-movie.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/TDdhcQx0/e9684150a1bb31579b70649f964378b107b2a3cd88dd2959deaabe1eb4ab91dd.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-
-                <!-- أفلام حرب -->
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/Rk4VZg8X/315x420-95c8d1d6abe7772119444900bded1f59927a4df489139465d7df48daf35cbfb9.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/2YWzcp0q/23000-Lives-Movie-True-Story.png" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-
-                <!-- أفلام أنمي -->
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/twvVSvkH/81xh-WLr-Lej-L-AC-UF350-350-QL80.jpg" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-                <div class="media-item" style="background: #111; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="https://i.ibb.co/rf64GqrH/14250848f01c418e18925d9d6123dfdf263558d5c0c015cd7c944f326236ff9f.png" alt="Movie" style="width: 100%; height: 260px; object-fit: contain; display: block; background: #111;">
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin: 40px 0;">
-            <button onclick="showPage('home')" class="download-btn" style="border: none; cursor: pointer; padding: 12px 30px; border-radius: 25px;">العودة للرئيسية</button>
-        </div>
-    </div>
-
-
-    <!-- ================= القسم الرابع: صفحة الباقات ================= -->
+    <!-- صفحة الباقات -->
     <div id="page-packages" class="page-content" style="display: none;">
-        <section class="contact-hero-clean" style="text-align: center;">
-            <div class="contact-hero-content">
-                <div style="color: #ffff; font-family:'Cairo', sans-serif; font-weight:700; font-size:13px; letter-spacing:2px; margin-bottom:10px;">اختر باقتك</div>
-                <h1 style="font-family:'Cairo', sans-serif; font-weight:900;">باقات المشاهدة</h1>
-                <p style="color: #b0bec5; font-size: 15px; margin-top: 8px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.8;">محتوى غير محدود، بلا إعلانات، بجودة عالية — اختر المدة التي تناسبك وابدأ المشاهدة الآن.</p>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-translate="pkg-hero-title">اختر الباقة المناسبة لك</h1>
+                <p data-translate="pkg-hero-sub">خطط مختلفة لتناسب احتياجات الجميع</p>
             </div>
         </section>
 
-        <section class="packages-section" style="padding: 0 20px;">
-            <!--
-                ============================================================
-                إعدادات روابط الدفع (Stripe Payment Links)
-                ------------------------------------------------------------
-                1. افتح حساب Stripe → Payment Links → أنشئ رابط لكل باقة.
-                2. الصق كل رابط بدل القيمة المقابلة له بالأسفل في STRIPE_LINKS
-                   (بحث سريع بالصفحة عن STRIPE_LINKS).
-                3. زر "ادفع بالبطاقة" رح يفتح تلقائياً رابط الدفع الصحيح
-                   لكل باقة، وزر واتساب بيضل موجود كخيار بديل يدوي.
-                ============================================================
-            -->
-            <div class="packages-wrap">
-                <!-- الباقة الأولى -->
-                <div class="pkg-card">
-                    <div class="pkg-tag">اشتراك شهر</div>
-                    <div class="price-row">
-                        <span class="price-num">7</span>
-                        <span class="currency-symbol">$</span>
-                    </div>
-                    <div class="pkg-period">شهرياً</div>
-                    <div class="days-badge">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        الباقة الكاملة — صالحة 31 يوم
-                    </div>
-                    <ul class="pkg-features">
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8FB3" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            كل المحتوى بلا استثناء
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8FB3" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            تشغيل على جهاز واحد
-                        </li>
+        <section class="features-section">
+            <h2 class="section-title" data-translate="pkg-heading">باقاتنا المتاحة</h2>
+            <div class="packages-grid">
+                <!-- الباقة المميزة الأولى -->
+                <div class="package-card">
+                    <div class="ribbon" data-translate="pkg1-ribbon">الأساسية</div>
+                    <h3 data-translate="pkg1-title">الباقة المميزة</h3>
+                    <div class="package-price">7$<span data-translate="per-month"> / شهريا</span></div>
+                    <ul class="package-features">
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f1">أكثر من 500 قناة</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f2">جودة 720p</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f3">إعلانات محدودة</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f4">2 جهاز متزامن</span></li>
                     </ul>
-                    <button type="button" class="pkg-cta cta-pink" onclick="payWithStripe('monthly')">
-                        <i class="fa-solid fa-credit-card"></i> ادفع بالبطاقة
+                    <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                        <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
                     </button>
-                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة الشهر" target="_blank" class="pkg-cta cta-outline">
-                        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    <!-- زر اشترك الآن موجّه إلى واتساب -->
+                    <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة المميزة (الشهرية)" target="_blank" class="download-btn">
+                        <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
                     </a>
                 </div>
 
-                <!-- الباقة المميزة -->
-                <div class="pkg-card featured">
-                    <div class="ribbon-banner">العرض المميز</div>
-                    <div class="pkg-tag">الباقة السنوية الشاملة</div>
-                    <div class="price-row">
-                        <span class="price-num">25</span>
-                        <span class="currency-symbol">$</span>
-                    </div>
-                    <div class="pkg-period">سنوياً — أقل من 2$ شهرياً</div>
-                    <div class="perforation-line"></div>
-                    <ul class="pkg-features">
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            أكثر من 1400 قناة عربية وعالمية
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            قنوات تركية وكردية مشمولة
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            مكتبة أفلام ومسلسلات كاملة
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            باقة قنوات مخصصة للأطفال
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            بث رياضي بجودة عالية
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            إمكانية طلب إضافة أعمال جديدة
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D8E89" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            جودة HD على كل الأجهزة
-                        </li>
+                <!-- الباقة البريميوم -->
+                <div class="package-card featured">
+                    <div class="ribbon" data-translate="pkg2-ribbon">الأكثر شهرة</div>
+                    <h3 data-translate="pkg2-title">الباقة البريميوم</h3>
+                    <div class="package-price">25$ <span data-translate="per-month">/ سنويا </span></div>
+                    <ul class="package-features">
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f1">آلاف القنوات</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f2">جودة 4K</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f3">بدون إعلانات</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f4">5 أجهزة متزامنة</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f5">محتوى حصري</span></li>
                     </ul>
-                    <button type="button" class="pkg-cta cta-teal" onclick="payWithStripe('yearly')">
-                        <i class="fa-solid fa-credit-card"></i> ادفع بالبطاقة
+                    <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                        <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
                     </button>
-                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في الباقة السنوية الشاملة" target="_blank" class="pkg-cta cta-outline">
-                        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    <!-- زر اشترك الآن موجّه إلى واتساب -->
+                    <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة البريميوم (السنوية)" target="_blank" class="download-btn">
+                        <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
                     </a>
                 </div>
 
-                <!-- الباقة الثالثة -->
-                <div class="pkg-card">
-                    <div class="pkg-tag">اشتراك 3 أشهر</div>
-                    <div class="price-row">
-                        <span class="price-num">10</span>
-                        <span class="currency-symbol">$</span>
-                    </div>
-                    <div class="pkg-period">كل 3 أشهر</div>
-                    <div class="days-badge">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        الباقة الكاملة — صالحة 92 يوم
-                    </div>
-                    <ul class="pkg-features">
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8FB3" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            كل المحتوى بلا استثناء
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F8FB3" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            تشغيل على جهاز واحد
-                        </li>
+                <!-- الباقة العائلية -->
+                <div class="package-card">
+                    <div class="ribbon" data-translate="pkg3-ribbon">للعائلة</div>
+                    <h3 data-translate="pkg3-title">الباقة العائلية</h3>
+                    <div class="package-price">10$ <span data-translate="per-month">/ 3 اشهر</span></div>
+                    <ul class="package-features">
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f1">جميع قنوات بريميوم</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f2">جودة 4K</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f3">بدون إعلانات</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f4">10 أجهزة متزامنة</span></li>
+                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f5">محتوى عائلي آمن</span></li>
                     </ul>
-                    <button type="button" class="pkg-cta cta-pink" onclick="payWithStripe('quarterly')">
-                        <i class="fa-solid fa-credit-card"></i> ادفع بالبطاقة
+                    <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                        <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
                     </button>
-                    <a href="https://wa.me/+963933940387?text=مرحباً، أرغب بالاشتراك في باقة 3 أشهر" target="_blank" class="pkg-cta cta-outline">
-                        <i class="fa-brands fa-whatsapp"></i> تواصل عبر واتساب
+                    <!-- زر اشترك الآن موجّه إلى واتساب -->
+                    <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة العائلية (3 أشهر)" target="_blank" class="download-btn">
+                        <i class="fa-solid fa-users"></i> <span data-translate="subscribe-now">اشترك الآن</span>
                     </a>
-                </div>
-            </div>
-            <p class="pkg-note" style="margin-bottom: 10px;">
-                <i class="fa-solid fa-lock" style="color:#17B6B0;"></i>
-                الدفع بالبطاقة آمن ومشفّر بالكامل عبر Stripe
-            </p>
-            <p class="pkg-note" style="margin-bottom: 30px;">يمكن الإلغاء في أي وقت — بدون رسوم خفية</p>
-        </section>
-
-        <section class="features-section-new">
-            <h2 class="features-title-new">لماذا تختار Ultra TV؟</h2>
-            <div class="features-grid-new">
-                <div class="feature-card-item">
-                    <div class="feature-icon-wrapper">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <h3>خوادم سريعة وبث بدون تقطيع</h3>
-                    <p>استمتع بتجربة بث فائقة السرعة ومستقرة تماماً ومخصصة للمشاهدة بدون انقطاع.</p>
-                </div>
-                <div class="feature-card-item">
-                    <div class="feature-icon-wrapper">
-                        <i class="fa-solid fa-tv"></i>
-                    </div>
-                    <h3>متوافق مع جميع الشاشات</h3>
-                    <p>دعم كامل وسلس لكل أجهزتك الذكية، الشاشات، والهواتف المحمولة في أي وقت.</p>
-                </div>
-                <div class="feature-card-item">
-                    <div class="feature-icon-wrapper">
-                        <i class="fa-solid fa-rotate"></i>
-                    </div>
-                    <h3>تحديث يومي ومستمر للمكتبة</h3>
-                    <p>إضافات يومية وتحديثات فورية لأحدث الأفلام والمسلسلات لتواكب كل جديد.</p>
                 </div>
             </div>
         </section>
     </div>
 
-
-    <!-- ================= القسم الخامس: صفحة اتصل معنا ================= -->
+    <!-- صفحة الاتصال -->
     <div id="page-contact" class="page-content" style="display: none;">
-        <section class="contact-hero-clean" style="text-align: center;">
-            <div class="contact-hero-content">
-                <h1 data-i18n="contact_title">تواصل معنا</h1>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-translate="contact-hero-title">تواصل معنا</h1>
+                <p data-translate="contact-hero-sub">نحن هنا لمساعدتك وسماع آرائك</p>
             </div>
         </section>
 
-        <section class="info-section">
-            <div class="info-section-head">
-                <span class="info-eyebrow">طرق التواصل</span>
-                <h2 class="info-heading">اختر الطريقة التي تناسبك</h2>
-            </div>
-            <div class="info-grid">
-                <div class="info-card" style="--card-accent:#17B6B0; --card-tint:#E7FBF9; --card-glow:rgba(23,182,176,.35);">
-                    <div class="info-card-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                    <div class="info-card-label" data-i18n="phone_title">أرقام الهاتف</div>
-                    <div class="info-card-value info-card-value--row">
-                        <span id="phoneValue">+ 963 933 940 387</span>
-                        <button type="button" class="info-copy-btn" onclick="copyValue('phoneValue','copied_phone')" data-i18n-title="copy_phone_tooltip" title="نسخ رقم الهاتف">
-                            <i class="fa-regular fa-copy"></i>
-                        </button>
-                    </div>
+        <section class="contact-section">
+            <h2 class="section-title" data-translate="contact-heading">طرق التواصل</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3 data-translate="c-phone">الهاتف</h3>
+                    <p data-translate="c-phone-sub">اتصل بنا مباشرة</p>
+                    <a href="tel:+963933940387">+963 933 940 387</a>
                 </div>
-
-                <div class="info-card" style="--card-accent:#EC1E6D; --card-tint:#FDEAF2; --card-glow:rgba(236,30,109,.32);">
-                    <div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="info-card-label" data-i18n="email_title">البريد الإلكتروني</div>
-                    <div class="info-card-value info-card-value--row">
-                        <span id="emailValue">ultratv.media2026@gmail.com</span>
-                        <button type="button" class="info-copy-btn" onclick="copyValue('emailValue','copied_email')" data-i18n-title="copy_email_tooltip" title="نسخ البريد الإلكتروني">
-                            <i class="fa-regular fa-copy"></i>
-                        </button>
-                    </div>
+                <div class="contact-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3 data-translate="c-email">البريد الإلكتروني</h3>
+                    <p data-translate="c-email-sub">أرسل لنا بريدك</p>
+                    <a href="mailto:ultratv.media2026@gmail.com">ultratv.media2026@gmail.com</a>
                 </div>
-
-                <div class="info-card" style="--card-accent:#7C6FE0; --card-tint:#EFEDFC; --card-glow:rgba(124,111,224,.32);">
-                    <div class="info-card-icon"><i class="fa-solid fa-clock"></i></div>
-                    <div class="info-card-label" data-i18n="hours_title">ساعات العمل</div>
-                    <div class="info-card-value" data-i18n="hours_days">طوال أيام الأسبوع</div>
-                    <div class="info-card-sub" data-i18n="hours_time">08:00 ص - 10:00 م</div>
+                <div class="contact-card">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h3 data-translate="c-wa">واتساب</h3>
+                    <p data-translate="c-wa-sub">تواصل عبر واتساب</p>
+                    <a href="https://wa.me/963933940387" target="_blank" data-translate="c-click">اضغط هنا</a>
                 </div>
-
-                <div class="info-card" style="--card-accent:#29A768; --card-tint:#E7F7EF; --card-glow:rgba(41,167,104,.32);">
-                    <div class="info-card-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="info-card-label" data-i18n="response_title">سرعة الرد</div>
-                    <div class="info-card-value" id="responseStatusText" data-i18n="response_online">نرد عادة خلال ساعة واحدة ⏱️</div>
-                    <div class="info-card-sub info-card-sub--live">
-                        <span class="live-dot" id="liveDot"></span>
-                        <span id="liveDotLabel" data-i18n="status_online">متصل الآن</span>
-                    </div>
+                <div class="contact-card">
+                    <i class="fa-solid fa-clock"></i>
+                    <h3 data-translate="c-time">أوقات العمل</h3>
+                    <p data-translate="c-time-sub">طيلة أيام الأسبوع</p>
+                    <span style="color: #D6B45A; font-weight: 700;">08:00 AM - 10:00 PM</span>
                 </div>
-            </div>
-        </section>
-
-    </div>
-
-
-    <!-- ================= القسم السادس: صفحة تسجيل الدخول ================= -->
-    <div id="page-login" class="page-content login-page-modern" style="display: none;">
-        <section class="login-modern-shell">
-            <div class="login-modern-card">
-
-                <div class="login-top-icon" aria-hidden="true">
-                    <i class="fa-solid fa-right-to-bracket"></i>
+                <div class="contact-card">
+                    <i class="fa-brands fa-facebook"></i>
+                    <h3 data-translate="c-fb">فيسبوك</h3>
+                    <p data-translate="c-fb-sub">تابعنا على مواقع التواصل</p>
+                    <a href="https://facebook.com" target="_blank" data-translate="c-page">صفحتنا</a>
                 </div>
-
-                <div class="login-modern-heading">
-                    <h1>تسجيل الدخول بالبريد الإلكتروني</h1>
-                    <p>سجّل دخولك للمتابعة والوصول إلى حسابك في Ultra TV.</p>
+                <div class="contact-card">
+                    <i class="fa-brands fa-instagram"></i>
+                    <h3 data-translate="c-ig">إنستجرام</h3>
+                    <p data-translate="c-ig-sub">شاهد آخر الأخبار</p>
+                    <a href="https://instagram.com" target="_blank" data-translate="c-follow">متابعة</a>
                 </div>
-
-                <form id="login-form" class="login-modern-form">
-                    <div id="error-message" class="login-error" style="display:none;"></div>
-
-                    <div class="login-field">
-                        <div class="login-input-wrap">
-                            <i class="fa-solid fa-envelope login-field-icon"></i>
-                            <input
-                                type="email"
-                                id="login-email"
-                                placeholder="البريد الإلكتروني"
-                                autocomplete="email"
-                                required>
-                        </div>
-                    </div>
-
-                    <div class="login-field">
-                        <div class="login-input-wrap">
-                            <i class="fa-solid fa-lock login-field-icon"></i>
-                            <input
-                                type="password"
-                                id="login-password"
-                                placeholder="كلمة المرور"
-                                autocomplete="current-password"
-                                required>
-                            <button type="button" class="login-password-toggle" id="login-password-toggle"
-                                aria-label="إظهار كلمة المرور" title="إظهار كلمة المرور">
-                                <i class="fa-solid fa-eye-slash"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="login-options-row">
-                        <a href="#" id="reset-password-link">نسيت كلمة المرور؟</a>
-                    </div>
-
-                    <button type="submit" id="login-btn" class="login-modern-submit">
-                        <span>ابدأ الآن</span>
-                    </button>
-                </form>
-
-                <div class="login-divider">
-                    <span></span>
-                    <em>أو تسجيل الدخول عبر</em>
-                    <span></span>
-                </div>
-
-                <button type="button" id="google-login-btn" class="login-google-btn">
-                    <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
-                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        <path fill="none" d="M0 0h48v48H0z"/>
-                    </svg>
-                    <span>المتابعة باستخدام Google</span>
-                </button>
-
             </div>
         </section>
     </div>
 
-    <!-- زر واتساب العائم للتواصل السريع -->
-    <a href="https://wa.me/963933940387?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20Ultra%20TV"
-       target="_blank" rel="noopener" id="whatsappFloat" class="whatsapp-float"
-       title="تواصل معنا عبر واتساب" data-i18n-title="whatsapp_tooltip">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- زر العودة للأعلى -->
-    <button onclick="scrollToTop()" id="scrollTopBtn" style="position: fixed; bottom: 95px; right: 28px; background: #00bcd4; color: #fff; width: 45px; height: 45px; border-radius: 50%; border: none; display: none; justify-content: center; align-items: center; font-size: 20px; box-shadow: 0 4px 15px rgba(0,188,212,0.4); z-index: 999; cursor: pointer; transition: 0.3s;" title="العودة للأعلى">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
-
-    <!-- تذييل الموقع (Footer) -->
+    <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة &copy; Ultra TV 2026</p>
+        <div class="footer-content">
+            <div>
+                <h4 data-translate="f-about-title">عن Ultra TV</h4>
+                <ul>
+                    <li><a href="#" data-translate="f-about-1">من نحن</a></li>
+                    <li><a href="#" data-translate="f-about-2">مميزاتنا</a></li>
+                    <li><a href="#" data-translate="f-about-3">الأسعار</a></li>
+                    <li><a href="#" data-translate="f-about-4">المدونة</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 data-translate="f-help-title">المساعدة</h4>
+                <ul>
+                    <li><a href="#" data-translate="f-help-1">الأسئلة الشائعة</a></li>
+                    <li><a href="#" data-translate="f-help-2">الدعم الفني</a></li>
+                    <li><a href="#" data-translate="f-help-3">التحديثات</a></li>
+                    <li><a href="#" data-translate="f-help-4">المساعدة</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 data-translate="f-legal-title">القانوني</h4>
+                <ul>
+                    <li><a href="#" data-translate="f-legal-1">شروط الخدمة</a></li>
+                    <li><a href="#" data-translate="f-legal-2">سياسة الخصوصية</a></li>
+                    <li><a href="#" data-translate="f-legal-3">ملفات تعريف الارتباط</a></li>
+                    <li><a href="#" data-translate="f-legal-4">الترخيص</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-translate="f-rights">&copy; 2026 Ultra TV. جميع الحقوق محفوظة. تم التطوير بعناية لك.</p>
+        </div>
     </footer>
 
-    <!-- تهيئة وتفعيل Firebase وجوجل -->
+    <!-- عنصر التنبيهات -->
+    <div id="toast-notification"></div>
+
+    <script>
+        function showPage(pageName) {
+            document.getElementById('page-home').style.display = 'none';
+            document.getElementById('page-packages').style.display = 'none';
+            document.getElementById('page-contact').style.display = 'none';
+
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-packages').classList.remove('active');
+            document.getElementById('nav-contact').classList.remove('active');
+
+            if (pageName === 'home') {
+                document.getElementById('page-home').style.display = 'block';
+                document.getElementById('nav-home').classList.add('active');
+            } else if (pageName === 'packages') {
+                document.getElementById('page-packages').style.display = 'block';
+                document.getElementById('nav-packages').classList.add('active');
+            } else if (pageName === 'contact') {
+                document.getElementById('page-contact').style.display = 'block';
+                document.getElementById('nav-contact').classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // دالة إظهار الرسائل المنبثقة (Toast)
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // التحكم بنافذة تسجيل الدخول المنبثقة
+        function openAuthModal() {
+            document.getElementById('authModal').style.display = 'flex';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('loginPassInput');
+            const icon = document.getElementById('togglePasswordBtn');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                passInput.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
+
+        function handleEmailLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmailInput').value;
+            closeAuthModal();
+            showToast((currentLang === 'en' ? 'Welcome back, ' : 'مرحباً بك مجدداً، ') + email);
+        }
+
+        function forgotPasswordAction() {
+            const email = document.getElementById('loginEmailInput').value;
+            if (!email) {
+                showToast(currentLang === 'en' ? 'Please enter your email first' : 'الرجاء إدخال البريد الإلكتروني أولاً');
+                return;
+            }
+            closeAuthModal();
+            showToast(currentLang === 'en' ? 'Password reset link sent to ' + email : 'تم إرسال رابط استعادة كلمة المرور إلى ' + email);
+        }
+
+        // إغلاق النافذة المنبثقة عند النقر خارجها
+        window.addEventListener('click', function(e) {
+            const authModal = document.getElementById('authModal');
+            if (e.target === authModal) {
+                closeAuthModal();
+            }
+            const container = document.querySelector('.share-container');
+            if (container && !container.contains(e.target)) {
+                document.getElementById('shareMenu').style.display = 'none';
+            }
+        });
+
+        // وظائف قائمة المشاركة الجديدة
+        function toggleShareMenu() {
+            const menu = document.getElementById('shareMenu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+                updateShareLinks();
+            }
+        }
+
+        function updateShareLinks() {
+            const currentUrl = encodeURIComponent(window.location.href);
+            const currentTitle = encodeURIComponent(document.title);
+
+            document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${currentTitle}%20${currentUrl}`;
+            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${currentTitle}&url=${currentUrl}`;
+        }
+
+        function copyWebsiteLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const msg = currentLang === 'ar' ? 'تم نسخ رابط الموقع بنجاح!' : 'Website link copied successfully!';
+                showToast(msg);
+                document.getElementById('shareMenu').style.display = 'none';
+            }).catch(err => {
+                showToast('فشل نسخ الرابط');
+            });
+        }
+
+        // قاموس الترجمة للغتين العربية والإنجليزية
+        let currentLang = 'ar';
+        const translations = {
+            ar: {
+                "page-title": "Ultra TV - أفضل تطبيق بث مباشر",
+                "nav-home": "الصفحة الرئيسية",
+                "nav-packages": "الباقات",
+                "nav-contact": "اتصل بنا",
+                "hero-title": "أفضل تطبيق بث مباشر",
+                "hero-subtitle": "شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية",
+                "features-heading": "لماذا تختار Ultra TV؟",
+                "feat1-title": "جودة عالية",
+                "feat1-desc": "بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة",
+                "feat2-title": "قنوات عالمية",
+                "feat2-desc": "آلاف القنوات من جميع أنحاء العالم بلغات متعددة",
+                "feat3-title": "أمان عالي",
+                "feat3-desc": "تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة",
+                "feat4-title": "متعدد الأجهزة",
+                "feat4-desc": "شاهد على الهاتف والتابلت والتلفاز والكمبيوتر",
+                "feat5-title": "دعم فني 24/7",
+                "feat5-desc": "فريق دعم متخصص جاهز للمساعدة في أي وقت",
+                "feat6-title": "محتوى حصري",
+                "feat6-desc": "افتح الوصول إلى أفلام وحلقات حصرية وأول من يشاهد",
+                "badge-free": "مجاني",
+                "free-desc": "جميع القنوات المجانية والأساسية",
+                "free-title": "النسخة المجانية",
+                "res-label": "الدقة",
+                "ads-label": "الإعلانات",
+                "ads-yes": "نعم",
+                "download-now": "تحميل الآن",
+                "subscribe-now": "اشترك الآن",
+                "pay-by-card": "ادفع بالبطاقة",
+                "pkg-hero-title": "اختر الباقة المناسبة لك",
+                "pkg-hero-sub": "خطط مختلفة لتناسب احتياجات الجميع",
+                "pkg-heading": "باقاتنا المتاحة",
+                "pkg1-ribbon": "الأساسية",
+                "pkg1-title": "الباقة المميزة",
+                "per-month": " / شهريا",
+                "p1-f1": "أكثر من 500 قناة",
+                "p1-f2": "جودة 720p",
+                "p1-f3": "إعلانات محدودة",
+                "p1-f4": "2 جهاز متزامن",
+                "pkg2-ribbon": "الأكثر شهرة",
+                "pkg2-title": "الباقة البريميوم",
+                "p2-f1": "آلاف القنوات",
+                "p2-f2": "جودة 4K",
+                "p2-f3": "بدون إعلانات",
+                "p2-f4": "5 أجهزة متزامنة",
+                "p2-f5": "محتوى حصري",
+                "pkg3-ribbon": "للعائلة",
+                "pkg3-title": "الباقة العائلية",
+                "p3-f1": "جميع قنوات بريميوم",
+                "p3-f2": "جودة 4K",
+                "p3-f3": "بدون إعلانات",
+                "p3-f4": "10 أجهزة متزامنة",
+                "p3-f5": "محتوى عائلي آمن",
+                "contact-hero-title": "تواصل معنا",
+                "contact-hero-sub": "نحن هنا لمساعدتك وسماع آرائك",
+                "contact-heading": "طرق التواصل",
+                "c-phone": "الهاتف",
+                "c-phone-sub": "اتصل بنا مباشرة",
+                "c-email": "البريد الإلكتروني",
+                "c-email-sub": "أرسل لنا بريدك",
+                "c-wa": "واتساب",
+                "c-wa-sub": "تواصل عبر واتساب",
+                "c-click": "اضغط هنا",
+                "c-time": "أوقات العمل",
+                "c-time-sub": "طيلة أيام الأسبوع",
+                "c-fb": "فيسبوك",
+                "c-fb-sub": "تابعنا على مواقع التواصل",
+                "c-page": "صفحتنا",
+                "c-ig": "إنستجرام",
+                "c-ig-sub": "شاهد آخر الأخبار",
+                "c-follow": "متابعة",
+                "f-about-title": "عن Ultra TV",
+                "f-about-1": "من نحن",
+                "f-about-2": "مميزاتنا",
+                "f-about-3": "الأسعار",
+                "f-about-4": "المدونة",
+                "f-help-title": "المساعدة",
+                "f-help-1": "الأسئلة الشائعة",
+                "f-help-2": "الدعم الفني",
+                "f-help-3": "التحديثات",
+                "f-help-4": "المساعدة",
+                "f-legal-title": "القانوني",
+                "f-legal-1": "شروط الخدمة",
+                "f-legal-2": "سياسة الخصوصية",
+                "f-legal-3": "ملفات تعريف الارتباط",
+                "f-legal-4": "الترخيص",
+                "f-rights": "&copy; 2026 Ultra TV. جميع الحقوق محفوظة. تم التطوير بعناية لك.",
+                "login-modal-title": "تسجيل الدخول بالبريد الإلكتروني",
+                "login-modal-sub": "سجّل دخولك للمتابعة والوصول إلى حسابك في Ultra TV.",
+                "login-email-placeholder": "البريد الإلكتروني",
+                "login-pass-placeholder": "كلمة المرور",
+                "login-forgot": "نسيت كلمة المرور؟",
+                "login-btn-action": "ابدأ الآن",
+                "login-or": "أو تسجيل الدخول عبر",
+                "login-google-btn": "المتابعة باستخدام Google"
+            },
+            en: {
+                "page-title": "Ultra TV - Best Live Streaming App",
+                "nav-home": "Home",
+                "nav-packages": "Packages",
+                "nav-contact": "Contact Us",
+                "hero-title": "Best Live Streaming App",
+                "hero-subtitle": "Watch thousands of channels, movies, and series in high quality",
+                "features-heading": "Why Choose Ultra TV?",
+                "feat1-title": "High Quality",
+                "feat1-desc": "4K streaming with modern encoding tech for the best viewing experience",
+                "feat2-title": "Global Channels",
+                "feat2-desc": "Thousands of channels from all over the world in multiple languages",
+                "feat3-title": "High Security",
+                "feat3-desc": "Top-tier encryption and guaranteed privacy protection",
+                "feat4-title": "Multi-Device",
+                "feat4-desc": "Watch on phone, tablet, TV, and computer",
+                "feat5-title": "24/7 Support",
+                "feat5-desc": "Dedicated support team ready to help anytime",
+                "feat6-title": "Exclusive Content",
+                "feat6-desc": "Unlock access to exclusive movies and episodes first",
+                "badge-free": "Free",
+                "free-desc": "All free and essential channels",
+                "free-title": "Free Version",
+                "res-label": "Resolution",
+                "ads-label": "Ads",
+                "ads-yes": "Yes",
+                "download-now": "Download Now",
+                "subscribe-now": "Subscribe Now",
+                "pay-by-card": "Pay by Card",
+                "pkg-hero-title": "Choose Your Plan",
+                "pkg-hero-sub": "Different plans to suit everyone's needs",
+                "pkg-heading": "Available Packages",
+                "pkg1-ribbon": "Basic",
+                "pkg1-title": "Featured Package",
+                "per-month": " / month",
+                "p1-f1": "Over 500 channels",
+                "p1-f2": "720p Quality",
+                "p1-f3": "Limited ads",
+                "p1-f4": "2 simultaneous devices",
+                "pkg2-ribbon": "Most Popular",
+                "pkg2-title": "Premium Package",
+                "p2-f1": "Thousands of channels",
+                "p2-f2": "4K Quality",
+                "p2-f3": "No ads",
+                "p2-f4": "5 simultaneous devices",
+                "p2-f5": "Exclusive content",
+                "pkg3-ribbon": "For Family",
+                "pkg3-title": "Family Package",
+                "p3-f1": "All Premium channels",
+                "p3-f2": "4K Quality",
+                "p3-f3": "No ads",
+                "p3-f4": "10 simultaneous devices",
+                "p3-f5": "Safe family content",
+                "contact-hero-title": "Contact Us",
+                "contact-hero-sub": "We are here to help and hear your feedback",
+                "contact-heading": "Contact Methods",
+                "c-phone": "Phone",
+                "c-phone-sub": "Call us directly",
+                "c-email": "Email",
+                "c-email-sub": "Send us your email",
+                "c-wa": "WhatsApp",
+                "c-wa-sub": "Contact via WhatsApp",
+                "c-click": "Click Here",
+                "c-time": "Working Hours",
+                "c-time-sub": "All days of the week",
+                "c-fb": "Facebook",
+                "c-fb-sub": "Follow us on social media",
+                "c-page": "Our Page",
+                "c-ig": "Instagram",
+                "c-ig-sub": "See latest news",
+                "c-follow": "Follow",
+                "f-about-title": "About Ultra TV",
+                "f-about-1": "About Us",
+                "f-about-2": "Features",
+                "f-about-3": "Pricing",
+                "f-about-4": "Blog",
+                "f-help-title": "Help",
+                "f-help-1": "FAQ",
+                "f-help-2": "Technical Support",
+                "f-help-3": "Updates",
+                "f-help-4": "Help Center",
+                "f-legal-title": "Legal",
+                "f-legal-1": "Terms of Service",
+                "f-legal-2": "Privacy Policy",
+                "f-legal-3": "Cookies",
+                "f-legal-4": "License",
+                "f-rights": "&copy; 2026 Ultra TV. All rights reserved. Developed carefully for you.",
+                "login-modal-title": "Sign in with Email",
+                "login-modal-sub": "Sign in to continue and access your Ultra TV account.",
+                "login-email-placeholder": "Email",
+                "login-pass-placeholder": "Password",
+                "login-forgot": "Forgot password?",
+                "login-btn-action": "Get Started",
+                "login-or": "Or sign in with",
+                "login-google-btn": "Continue with Google"
+            }
+        };
+
+        // وظيفة تبديل اللغات (العربية / الإإنجليزية)
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const root = document.getElementById('html-root');
+            
+            if (currentLang === 'en') {
+                root.setAttribute('lang', 'en');
+                root.setAttribute('dir', 'ltr');
+            } else {
+                root.setAttribute('lang', 'ar');
+                root.setAttribute('dir', 'rtl');
+            }
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    if (key === 'f-rights') {
+                        el.innerHTML = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+
+            document.querySelectorAll('input[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    el.setAttribute('placeholder', translations[currentLang][key]);
+                }
+            });
+
+            showToast(currentLang === 'en' ? 'Switched to English' : 'تم التحويل إلى العربية');
+        }
+    </script>
+
+    <!-- تهيئة وتفعيل Firebase وتسجيل الدخول عبر جوجل -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signInAnonymously, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCHvmQ0Q3yM9rhkt2eERLbRqX_sBfXJ2xg",
@@ -998,545 +1814,44 @@ body{background:#09090b !important;color:#F4F1E8 !important;}
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const db = getFirestore(app);
+
         const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
 
-        // معرّف حساب المشرف (يقدر يحذف أي تعليق)
-        const ADMIN_UID = 'l1ddJgNN4uSAk7PAltsJEOUduwC3';
-
-        // نجعل db وأدوات Firestore متاحة عالمياً حتى يستخدمها سكربت التعليقات بالأسفل
-        window.__db = db;
-        window.__firestore = { collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp };
-
-        const googleLoginBtn = document.getElementById('google-login-btn');
-        if (googleLoginBtn) {
-            googleLoginBtn.addEventListener('click', () => {
-                signInWithPopup(auth, provider)
-                    .then((result) => {
-                        alert("مرحباً بك يا " + result.user.displayName + " في Ultra TV!");
-                        showPage('home');
-                    })
-                    .catch((error) => {
-                        showError(error.message);
-                    });
-            });
-        }
-
-        const passwordToggle = document.getElementById('login-password-toggle');
-        const passwordInput = document.getElementById('login-password');
-        if (passwordToggle && passwordInput) {
-            passwordToggle.addEventListener('click', () => {
-                const isPassword = passwordInput.type === 'password';
-                passwordInput.type = isPassword ? 'text' : 'password';
-                passwordToggle.innerHTML = `<i class="fa-solid ${isPassword ? 'fa-eye' : 'fa-eye-slash'}"></i>`;
-                passwordToggle.setAttribute('aria-label', isPassword ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور');
-            });
-        }
-
-        const loginForm = document.getElementById('login-form');
-        if (loginForm) {
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-
-                signInWithEmailAndPassword(auth, email, password)
-                    .then((result) => {
-                        alert("تم تسجيل الدخول بنجاح!");
-                        showPage('home');
-                    })
-                    .catch((error) => {
-                        showError("خطأ في البيانات المدخلة: " + error.message);
-                    });
-            });
-        }
-
-        const resetLink = document.getElementById('reset-password-link');
-        if (resetLink) {
-            resetLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                if (!email) {
-                    alert("الرجاء إدخل البريد الإلكتروني أولاً ثم الضغط على نسيت كلمة المرور.");
-                    return;
-                }
-                sendPasswordResetEmail(auth, email)
-                    .then(() => {
-                        alert("تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.");
-                    })
-                    .catch((error) => {
-                        showError(error.message);
-                    });
-            });
-        }
-
-        function showError(message) {
-            const errorDiv = document.getElementById('error-message');
-            if (errorDiv) {
-                errorDiv.textContent = message;
-                errorDiv.style.display = 'block';
-            } else {
-                alert(message);
-            }
-        }
-
-        // ------------- إظهار/إخفاء أيقونة الحساب حسب حالة تسجيل الدخول -------------
-        function updateAuthUI(user) {
-            const loginIcon = document.getElementById('nav-login-icon');
-            const userSwitcher = document.getElementById('userSwitcher');
-            const userCurrentBtn = document.getElementById('userCurrentBtn');
-            const userAvatarImg = document.getElementById('userAvatarImg');
-            const userAvatarInitial = document.getElementById('userAvatarInitial');
-            const userMenuName = document.getElementById('userMenuName');
-            const userMenuEmail = document.getElementById('userMenuEmail');
-
+        window.loginWithGoogle = function () {
+            const user = auth.currentUser;
             if (user) {
-                const displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'مستخدم');
-
-                if (loginIcon) loginIcon.style.display = 'none';
-                if (userSwitcher) userSwitcher.style.display = 'block';
-                if (userCurrentBtn) userCurrentBtn.style.display = 'flex';
-                if (userMenuName) userMenuName.textContent = displayName;
-                if (userMenuEmail) userMenuEmail.textContent = user.email || '';
-
-                if (user.photoURL) {
-                    if (userAvatarImg) {
-                        userAvatarImg.src = user.photoURL;
-                        userAvatarImg.style.display = 'block';
-                    }
-                    if (userAvatarInitial) userAvatarInitial.style.display = 'none';
-                } else {
-                    if (userAvatarImg) userAvatarImg.style.display = 'none';
-                    if (userAvatarInitial) {
-                        userAvatarInitial.textContent = displayName.charAt(0).toUpperCase();
-                        userAvatarInitial.style.display = 'block';
-                    }
+                if (confirm((currentLang === 'en' ? 'Logged in as ' : 'أنت مسجل الدخول بحساب ') + (user.displayName || user.email) + (currentLang === 'en' ? '. Sign out?' : '. هل تريد تسجيل الخروج؟'))) {
+                    signOut(auth);
                 }
-
-                window.__currentUser = { name: displayName, photoURL: user.photoURL || '', uid: user.uid, isAdmin: user.uid === ADMIN_UID, isAnonymous: false };
-            } else {
-                if (loginIcon) loginIcon.style.display = 'inline-block';
-                if (userSwitcher) userSwitcher.style.display = 'none';
-                const userMenu = document.getElementById('userMenu');
-                if (userMenu) userMenu.classList.remove('open');
-                window.__currentUser = null;
+                return;
             }
-        }
-
-        onAuthStateChanged(auth, (user) => {
-            if (user && !user.isAnonymous) {
-                // مستخدم مسجل دخول فعلياً (Google أو إيميل/باسورد)
-                updateAuthUI(user);
-            } else if (user && user.isAnonymous) {
-                // زائر غير مسجل، لكن عنده جلسة مجهولة تسمح له بحذف تعليقاته هو فقط
-                window.__currentUser = { name: null, photoURL: '', uid: user.uid, isAdmin: false, isAnonymous: true };
-                updateAuthUI(null);
-            } else {
-                // ما في أي جلسة بعد، ننشئ جلسة مجهولة تلقائياً
-                window.__currentUser = null;
-                signInAnonymously(auth).catch((error) => {
-                    console.error('Anonymous sign-in failed:', error);
-                });
-            }
-            if (window.__onAuthChanged) window.__onAuthChanged();
-        });
-
-        // فتح/إغلاق منيو الحساب
-        window.toggleUserMenu = function(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('userMenu');
-            if (menu) menu.classList.toggle('open');
-        };
-
-        document.addEventListener('click', () => {
-            const menu = document.getElementById('userMenu');
-            if (menu) menu.classList.remove('open');
-        });
-
-        // تسجيل الخروج
-        window.logoutUser = function() {
-            signOut(auth)
-                .then(() => {
-                    const menu = document.getElementById('userMenu');
-                    if (menu) menu.classList.remove('open');
-                    showGlobalToast((i18nDict[currentLang] || i18nDict.ar).logged_out || 'تم تسجيل الخروج بنجاح ✅');
-                    showPage('home');
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    closeAuthModal();
+                    const name = result.user.displayName || result.user.email || '';
+                    const msg = (currentLang === 'en') ? ('Welcome, ' + name + '!') : ('مرحباً بك يا ' + name + '!');
+                    showToast(msg);
                 })
                 .catch((error) => {
-                    alert(error.message);
+                    if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+                        showToast(error.message);
+                    }
                 });
         };
-    </script>
 
-    <!-- جافاسكريبت للتحكم بالصفحات وتطبيق الموقع -->
-    <script>
-        function showPage(pageName, sectionName) {
-            const homePage = document.getElementById('page-home');
-            const seriesPage = document.getElementById('page-series');
-            const moviesPage = document.getElementById('page-movies');
-            const packagesPage = document.getElementById('page-packages');
-            const contactPage = document.getElementById('page-contact');
-            const loginPage = document.getElementById('page-login');
-            
-            const navHome = document.getElementById('nav-home');
-            const navPackages = document.getElementById('nav-packages');
-            const navContact = document.getElementById('nav-contact');
-
-            homePage.style.display = 'none';
-            seriesPage.style.display = 'none';
-            moviesPage.style.display = 'none';
-            packagesPage.style.display = 'none';
-            contactPage.style.display = 'none';
-            loginPage.style.display = 'none';
-
-            navHome.classList.remove('active');
-            if (navPackages) navPackages.classList.remove('active');
-            navContact.classList.remove('active');
-
-            if (pageName === 'home') {
-                homePage.style.display = 'block';
-                navHome.classList.add('active');
-            } else if (pageName === 'series') {
-                seriesPage.style.display = 'block';
-            } else if (pageName === 'movies') {
-                moviesPage.style.display = 'block';
-            } else if (pageName === 'packages') {
-                packagesPage.style.display = 'block';
-                if (navPackages) navPackages.classList.add('active');
-            } else if (pageName === 'contact') {
-                contactPage.style.display = 'block';
-                navContact.classList.add('active');
-            } else if (pageName === 'login') {
-                loginPage.style.display = 'block';
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filterItems(inputId, gridId) {
-            const input = document.getElementById(inputId).value.toLowerCase();
-            const grid = document.getElementById(gridId);
-            const items = grid.getElementsByClassName('media-item');
-
-            for (let i = 0; i < items.length; i++) {
-                const item = items[i];
-                const img = item.querySelector('img');
-                const text = (img?.alt || '').toLowerCase();
-                item.style.display = text.includes(input) ? '' : 'none';
-            }
-        }
-
-        window.onscroll = function() {
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            const navbar = document.querySelector('.navbar');
-            const scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-
-            if (scrollY > 20) {
-                navbar.classList.add('navbar--scrolled');
-            } else {
-                navbar.classList.remove('navbar--scrolled');
-            }
-
-            if (scrollY > 300) {
-                scrollTopBtn.style.display = 'flex';
-            } else {
-                scrollTopBtn.style.display = 'none';
-            }
-        };
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
-
-    <!-- ميزات جديدة: مبدّل اللغة + نسخ سريع + مؤشر سرعة الرد -->
-    <script>
-        // ------------- قاموس الترجمة (عربي / تركي / إنجليزي) -------------
-        const i18nDict = {
-            ar: {
-                nav_home: "الصفحة الرئيسية",
-                nav_packages: "الباقات",
-                nav_contact: "اتصل بنا",
-                contact_title: "تواصل معنا",
-                hours_title: "ساعات العمل",
-                hours_days: "طوال أيام الأسبوع",
-                hours_time: "08:00 ص - 10:00 م",
-                email_title: "البريد الإلكتروني",
-                phone_title: "أرقام الهاتف",
-                response_title: "سرعة الرد",
-                response_online: "نرد عادة خلال ساعة واحدة ⏱️",
-                response_offline: "خارج أوقات العمل، سنرد بأقرب وقت ⏱️",
-                status_online: "متصل الآن",
-                status_offline: "غير متصل حالياً",
-                whatsapp_tooltip: "تواصل معنا عبر واتساب",
-                copy_email_tooltip: "نسخ البريد الإلكتروني",
-                copy_phone_tooltip: "نسخ رقم الهاتف",
-                copied_email: "تم نسخ البريد الإلكتروني ✅",
-                copied_phone: "تم نسخ رقم الهاتف ✅",
-                copied_link: "تم نسخ رابط الموقع ✅",
-                stripe_not_configured: "الدفع بالبطاقة غير مُفعّل بعد، تواصل معنا عبر واتساب 🙏",
-                payment_success: "تم الدفع بنجاح! سيتم تفعيل اشتراكك خلال دقائق ✅",
-                payment_cancel: "تم إلغاء عملية الدفع",
-                logged_out: "تم تسجيل الخروج بنجاح ✅"
-            },
-            tr: {
-                nav_home: "Ana Sayfa",
-                nav_packages: "Paketler",
-                nav_contact: "Bize Ulaşın",
-                contact_title: "Bize Ulaşın",
-                hours_title: "Çalışma Saatleri",
-                hours_days: "Haftanın her günü",
-                hours_time: "08:00 - 22:00",
-                email_title: "E-posta",
-                phone_title: "Telefon Numaraları",
-                response_title: "Yanıt Süresi",
-                response_online: "Genellikle 1 saat içinde yanıt veriyoruz ⏱️",
-                response_offline: "Mesai saatleri dışında, en kısa sürede döneceğiz ⏱️",
-                status_online: "Şu anda çevrimiçi",
-                status_offline: "Şu anda çevrimdışı",
-                whatsapp_tooltip: "WhatsApp üzerinden bize ulaşın",
-                copy_email_tooltip: "E-postayı kopyala",
-                copy_phone_tooltip: "Telefon numarasını kopyala",
-                copied_email: "E-posta kopyalandı ✅",
-                copied_phone: "Telefon numarası kopyalandı ✅",
-                copied_link: "Site bağlantısı kopyalandı ✅",
-                stripe_not_configured: "Kart ile ödeme henüz aktif değil, lütfen WhatsApp üzerinden bize ulaşın 🙏",
-                payment_success: "Ödeme başarılı! Aboneliğiniz birkaç dakika içinde aktif edilecek ✅",
-                payment_cancel: "Ödeme işlemi iptal edildi",
-                logged_out: "Başarıyla çıkış yaptınız ✅"
-            },
-            en: {
-                nav_home: "Home",
-                nav_packages: "Packages",
-                nav_contact: "Contact Us",
-                contact_title: "Contact Us",
-                hours_title: "Working Hours",
-                hours_days: "Every day of the week",
-                hours_time: "08:00 AM - 10:00 PM",
-                email_title: "Email",
-                phone_title: "Phone Numbers",
-                response_title: "Response Time",
-                response_online: "We usually reply within 1 hour ⏱️",
-                response_offline: "Outside working hours, we'll reply soon ⏱️",
-                status_online: "Online now",
-                status_offline: "Offline now",
-                whatsapp_tooltip: "Chat with us on WhatsApp",
-                copy_email_tooltip: "Copy email",
-                copy_phone_tooltip: "Copy phone number",
-                copied_email: "Email copied ✅",
-                copied_phone: "Phone number copied ✅",
-                copied_link: "Site link copied ✅",
-                stripe_not_configured: "Card payment isn't set up yet, please contact us on WhatsApp 🙏",
-                payment_success: "Payment successful! Your subscription will be activated within minutes ✅",
-                payment_cancel: "Payment was cancelled",
-                logged_out: "You have been logged out ✅"
-            }
-        };
-
-        let currentLang = localStorage.getItem('site-lang') || 'ar';
-
-        function applyTranslations(lang) {
-            const dict = i18nDict[lang] || i18nDict.ar;
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) el.textContent = dict[key];
-            });
-
-            document.querySelectorAll('[data-i18n-title]').forEach(el => {
-                const key = el.getAttribute('data-i18n-title');
-                if (dict[key]) el.title = dict[key];
-            });
-
-            const label = document.getElementById('langCurrentLabel');
-            if (label) label.textContent = lang.toUpperCase();
-
-            document.querySelectorAll('[data-lang-option]').forEach(btn => {
-                btn.classList.toggle('active-lang', btn.getAttribute('data-lang-option') === lang);
-            });
-
-            updateResponseStatus();
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('site-lang', lang);
-            applyTranslations(lang);
-            const menu = document.getElementById('langMenu');
-            if (menu) menu.classList.remove('open');
-        }
-
-        function toggleLangMenu(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('langMenu');
-            if (menu) menu.classList.toggle('open');
-        }
-
-        document.addEventListener('click', () => {
-            const menu = document.getElementById('langMenu');
-            if (menu) menu.classList.remove('open');
-        });
-
-        // ------------- زر المشاركة -------------
-        function toggleShareMenu(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('shareMenu');
-            if (menu) menu.classList.toggle('open');
-        }
-
-        document.addEventListener('click', () => {
-            const menu = document.getElementById('shareMenu');
-            if (menu) menu.classList.remove('open');
-        });
-
-        // ============================================================
-        // إعدادات الدفع عبر Stripe Payment Links
-        // بدّل كل رابط بالأسفل برابط الدفع الحقيقي من لوحة تحكم Stripe
-        // (Stripe Dashboard → Payment Links → Create Link)
-        // مهم: أضف بنهاية كل رابط Stripe الباراميتر التالي حرفياً
-        //      ?success_url=... و client_reference_id إذا حبيت تربطه بالمستخدم
-        // ============================================================
-        const STRIPE_LINKS = {
-            monthly:   'https://buy.stripe.com/REPLACE_WITH_MONTHLY_LINK',
-            quarterly: 'https://buy.stripe.com/REPLACE_WITH_QUARTERLY_LINK',
-            yearly:    'https://buy.stripe.com/REPLACE_WITH_YEARLY_LINK',
-        };
-
-        function payWithStripe(planKey) {
-            const link = STRIPE_LINKS[planKey];
-            const dict = i18nDict[currentLang] || i18nDict.ar;
-
-            if (!link || link.includes('REPLACE_WITH')) {
-                showGlobalToast(dict.stripe_not_configured || 'الدفع بالبطاقة غير مُفعّل بعد، تواصل معنا عبر واتساب 🙏');
-                return;
-            }
-
-            // تخزين اسم الباقة اللي اختارها الزبون عشان نعرضه بصفحة الشكر بعد رجوعه من Stripe
-            try { localStorage.setItem('pending-plan', planKey); } catch (e) {}
-
-            window.location.href = link;
-        }
-
-
-        // إذا رجع المستخدم من Stripe بعد دفع ناجح (لما تضيف success_url=yoursite.com/?payment=success)
-        function checkPaymentReturn() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('payment') === 'success') {
-                const dict = i18nDict[currentLang] || i18nDict.ar;
-                showGlobalToast(dict.payment_success || 'تم الدفع بنجاح! سيتم تفعيل اشتراكك خلال دقائق ✅');
-                try { localStorage.removeItem('pending-plan'); } catch (e) {}
-                // تنظيف الرابط من البارامترات
-                window.history.replaceState({}, document.title, window.location.pathname);
-            } else if (params.get('payment') === 'cancel') {
-                const dict = i18nDict[currentLang] || i18nDict.ar;
-                showGlobalToast(dict.payment_cancel || 'تم إلغاء عملية الدفع');
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        }
-
-        function shareVia(platform) {
-            const shareUrl = window.location.href;
-            const shareTitle = document.title || 'Ultra TV';
-            const dict = i18nDict[currentLang] || i18nDict.ar;
-
-            if (platform === 'copy') {
-                if (navigator.clipboard && window.isSecureContext) {
-                    navigator.clipboard.writeText(shareUrl).then(() => showGlobalToast(dict.copied_link || 'تم نسخ الرابط ✅'));
-                } else {
-                    const temp = document.createElement('textarea');
-                    temp.value = shareUrl;
-                    temp.style.position = 'fixed';
-                    temp.style.opacity = '0';
-                    document.body.appendChild(temp);
-                    temp.focus();
-                    temp.select();
-                    try { document.execCommand('copy'); } catch (e) {}
-                    document.body.removeChild(temp);
-                    showGlobalToast(dict.copied_link || 'تم نسخ الرابط ✅');
+        onAuthStateChanged(auth, (user) => {
+            const icon = document.getElementById('nav-login-icon');
+            if (!icon) return;
+            if (user) {
+                icon.title = user.displayName || user.email || (currentLang === 'en' ? 'Account' : 'الحساب');
+                if (user.photoURL) {
+                    icon.outerHTML = `<img id="nav-login-icon" src="${user.photoURL}" onclick="loginWithGoogle()" title="${icon.title}" style="width:28px;height:28px;border-radius:50%;cursor:pointer;object-fit:cover;">`;
                 }
-                const menu = document.getElementById('shareMenu');
-                if (menu) menu.classList.remove('open');
-                return;
-            }
-
-            let target = '';
-            if (platform === 'whatsapp') {
-                target = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' - ' + shareUrl)}`;
-            } else if (platform === 'telegram') {
-                target = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`;
-            } else if (platform === 'twitter') {
-                target = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`;
-            }
-            if (target) window.open(target, '_blank', 'noopener,noreferrer');
-
-            const menu = document.getElementById('shareMenu');
-            if (menu) menu.classList.remove('open');
-        }
-
-        // ------------- مؤشر سرعة الرد المباشر (حسب ساعات العمل 08:00 - 22:00) -------------
-        function updateResponseStatus() {
-            const dict = i18nDict[currentLang] || i18nDict.ar;
-            const hour = new Date().getHours();
-            const isOnline = hour >= 8 && hour < 22;
-
-            const statusText = document.getElementById('responseStatusText');
-            const dot = document.getElementById('liveDot');
-            const dotLabel = document.getElementById('liveDotLabel');
-
-            if (statusText) statusText.textContent = isOnline ? dict.response_online : dict.response_offline;
-            if (dotLabel) dotLabel.textContent = isOnline ? dict.status_online : dict.status_offline;
-            if (dot) dot.classList.toggle('offline', !isOnline);
-        }
-
-        // ------------- إشعار عام (Toast) قابل للاستخدام من أي مكان في الصفحة -------------
-        function showGlobalToast(message) {
-            const toastContainer = document.getElementById('toastContainer');
-            if (!toastContainer) return;
-
-            const toast = document.createElement('div');
-            toast.className = 'toast-message';
-            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
-            toastContainer.appendChild(toast);
-
-            setTimeout(() => toast.classList.add('show'), 50);
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 4000);
-        }
-
-        // ------------- نسخ سريع للبريد الإلكتروني / رقم الهاتف -------------
-        function copyValue(elementId, toastKey) {
-            const el = document.getElementById(elementId);
-            if (!el) return;
-            const text = el.textContent.trim();
-            const dict = i18nDict[currentLang] || i18nDict.ar;
-            const message = dict[toastKey] || 'تم النسخ ✅';
-
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => showGlobalToast(message));
             } else {
-                // طريقة بديلة للمتصفحات القديمة أو الاتصال غير الآمن (http)
-                const temp = document.createElement('textarea');
-                temp.value = text;
-                temp.style.position = 'fixed';
-                temp.style.opacity = '0';
-                document.body.appendChild(temp);
-                temp.focus();
-                temp.select();
-                try { document.execCommand('copy'); } catch (e) {}
-                document.body.removeChild(temp);
-                showGlobalToast(message);
+                icon.title = 'تسجيل الدخول / الحساب';
             }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            applyTranslations(currentLang);
-            updateResponseStatus();
-            checkPaymentReturn();
-            setInterval(updateResponseStatus, 60000); // تحديث الحالة كل دقيقة
         });
     </script>
-
 </body>
 </html>

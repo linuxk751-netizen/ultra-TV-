@@ -27,7 +27,6 @@ body {
     direction: rtl;
 }
 
-/* شريط التمرير المخصص */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -400,10 +399,9 @@ h1, h2, h3,
 
 .contact-grid {
     display: grid !important;
-    /* يضمن توزيع الأعمدة بالتساوي وتوسيطها */
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; 
     justify-content: center !important; 
-    justify-items: center !important; /* يتأكد أن المربع نفسه في منتصف الخلية */
+    justify-items: center !important;
     gap: 25px !important;
     max-width: 1000px;
     margin: 0 auto !important;
@@ -412,7 +410,7 @@ h1, h2, h3,
 
 .contact-box {
     width: 100% !important;
-    max-width: 320px !important; /* منع المربع من التمدد بشكل تشوهي */
+    max-width: 320px !important;
 }
 .contact-box::before {
     content: '';
@@ -1137,27 +1135,6 @@ body{
 
 /* Navbar */
 .navbar .logo{color:var(--gold) !important}
-.navbar nav ul{
-  background:rgba(13,15,19,.78) !important;
-  border-color:rgba(214,180,90,.20) !important;
-  box-shadow:inset 0 1px 2px rgba(255,255,255,.035),0 8px 24px rgba(0,0,0,.28) !important;
-}
-.navbar nav ul li a{color:#C8C9CC !important}
-.navbar nav ul li a:hover{
-  color:var(--gold-light) !important;
-  background:rgba(214,180,90,.085) !important;
-  text-shadow:0 0 10px rgba(214,180,90,.35) !important;
-}
-.navbar nav ul li a.active{
-  color:#FFFDF7 !important;
-  background:linear-gradient(135deg,rgba(242,212,122,.16),rgba(155,119,48,.22)) !important;
-  border-color:rgba(242,212,122,.34) !important;
-  box-shadow:0 4px 18px rgba(214,180,90,.15),inset 0 1px 1px rgba(255,255,255,.12) !important;
-}
-.navbar nav ul li a.active::after{
-  background:var(--gold-light) !important;
-  box-shadow:0 0 10px var(--gold),0 0 20px rgba(214,180,90,.52) !important;
-}
 .navbar-icons i{color:#E9E7DF !important}
 .navbar-icons i:hover{color:var(--gold-light) !important}
 
@@ -1317,9 +1294,6 @@ footer{background:#07080A !important;color:#8E9199 !important}
 [style*="background: #1a1a1a"],[style*="background:#1a1a1a"]{
   background:#20242C !important;
 }
-
-/* Preserve poster images and all existing transitions/animations. */
-
 
 /* =========================================================
    Navbar Controls — تصميم جديد فقط
@@ -2069,147 +2043,7 @@ footer{
 
 
 /* =========================================================
-   ULTRA TV — NAVBAR PREMIUM MENU
-   تصميم أجمل وأنعم للقائمة العلوية
-   بدون تغيير مكانها أو حجمها العام
-   ========================================================= */
-
-.navbar nav ul{
-    position:relative !important;
-
-    display:flex !important;
-    align-items:center !important;
-    gap:3px !important;
-
-    padding:4px !important;
-
-    background:rgba(10,12,16,.72) !important;
-    border:1px solid rgba(255,255,255,.11) !important;
-    border-radius:16px !important;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.25),
-        inset 0 1px 0 rgba(255,255,255,.045) !important;
-
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-}
-
-/* الروابط */
-.navbar nav ul li a{
-    position:relative !important;
-
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-
-    padding:8px 19px !important;
-    border-radius:12px !important;
-
-    background:transparent !important;
-    border:1px solid transparent !important;
-
-    color:#C7CBD1 !important;
-    font-size:14px !important;
-    font-weight:600 !important;
-
-    text-shadow:none !important;
-
-    transition:
-        color .22s ease,
-        background .22s ease,
-        border-color .22s ease,
-        transform .22s ease !important;
-}
-
-/* خط ذهبي صغير تحت العنصر النشط */
-.navbar nav ul li a::after{
-    content:"" !important;
-
-    position:absolute !important;
-    left:50% !important;
-    bottom:4px !important;
-
-    width:22px !important;
-    height:2px !important;
-
-    transform:translateX(-50%) scaleX(0) !important;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #F2D47A,
-        transparent
-    ) !important;
-
-    border-radius:999px !important;
-    box-shadow:0 0 8px rgba(242,212,122,.35) !important;
-
-    transition:transform .22s ease !important;
-}
-
-/* Hover */
-.navbar nav ul li a:hover{
-    color:#F4D77C !important;
-    background:rgba(214,180,90,.075) !important;
-    border-color:rgba(214,180,90,.13) !important;
-    text-shadow:none !important;
-    transform:translateY(-1px) !important;
-}
-
-.navbar nav ul li a:hover::after{
-    transform:translateX(-50%) scaleX(1) !important;
-}
-
-/* Active */
-.navbar nav ul li a.active{
-    color:#FFF9E8 !important;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(214,180,90,.17),
-            rgba(214,180,90,.07)
-        ) !important;
-
-    border-color:rgba(214,180,90,.24) !important;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.06),
-        0 5px 16px rgba(0,0,0,.16) !important;
-}
-
-.navbar nav ul li a.active::after{
-    transform:translateX(-50%) scaleX(1) !important;
-}
-
-/* لمسة مختلفة للعنصر النشط عند المرور */
-.navbar nav ul li a.active:hover{
-    background:
-        linear-gradient(
-            180deg,
-            rgba(242,212,122,.21),
-            rgba(214,180,90,.09)
-        ) !important;
-}
-
-/* موبايل */
-@media (max-width:720px){
-    .navbar nav ul{
-        gap:2px !important;
-        padding:3px !important;
-        border-radius:13px !important;
-    }
-
-    .navbar nav ul li a{
-        padding:7px 11px !important;
-        font-size:12px !important;
-        border-radius:10px !important;
-    }
-}
-/* ==========================================================
-   PACKAGES - MODERN PRICING CARDS (مطابق لستايل الصورة)
-   يحافظ على وظائف الدفع وواتساب الموجودة حالياً
+   ULTRA TV — PACKAGES (تصميم مطابق للصورة)
    ========================================================== */
 #page-packages {
     background: #f7f7f8 !important;
@@ -2225,11 +2059,11 @@ footer{
 
 #page-packages .packages-wrap {
     width: 100% !important;
-    max-width: 1040px !important;
+    max-width: 1120px !important;
     margin: 0 auto !important;
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 12px !important;
+    gap: 22px !important;
     align-items: stretch !important;
     direction: rtl;
 }
@@ -2239,13 +2073,13 @@ footer{
     min-width: 0 !important;
     max-width: none !important;
     width: 100% !important;
-    min-height: 430px !important;
-    padding: 18px 18px 16px !important;
+    min-height: 480px !important;
+    padding: 30px 26px 24px !important;
     border: 1px solid #eeeeef !important;
-    border-radius: 20px !important;
+    border-radius: 22px !important;
     background: #fbfbfc !important;
     color: #111 !important;
-    box-shadow: 0 5px 18px rgba(0,0,0,.035) !important;
+    box-shadow: 0 14px 30px rgba(0,0,0,.10) !important;
     transform: none !important;
     overflow: hidden !important;
     transition: transform .25s ease, box-shadow .25s ease !important;
@@ -2255,26 +2089,26 @@ footer{
 #page-packages .pkg-card.featured {
     background: #fff0ea !important;
     border-color: #f4e0d8 !important;
-    box-shadow: 0 8px 24px rgba(210,130,95,.08) !important;
+    box-shadow: 0 18px 40px rgba(0,0,0,.14) !important;
 }
 
 #page-packages .pkg-card:hover,
 #page-packages .pkg-card.featured:hover {
     transform: translateY(-4px) !important;
-    box-shadow: 0 12px 28px rgba(0,0,0,.08) !important;
+    box-shadow: 0 18px 38px rgba(0,0,0,.14) !important;
 }
 
 #page-packages .pkg-tag {
     display: inline-block !important;
     align-self: flex-start !important;
-    margin: 0 0 12px !important;
+    margin: 0 0 16px !important;
     padding: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
     color: #151515 !important;
     font-family: 'Tajawal', sans-serif !important;
-    font-size: 13px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
 }
 
@@ -2282,6 +2116,7 @@ footer{
     color: #151515 !important;
     background: transparent !important;
     border: 0 !important;
+    padding-left: 62px !important;
 }
 
 #page-packages .price-row {
@@ -2295,33 +2130,34 @@ footer{
 
 #page-packages .price-num {
     font-family: 'Cairo', sans-serif !important;
-    font-size: 38px !important;
+    font-size: 46px !important;
     line-height: 1 !important;
     font-weight: 900 !important;
     color: #090909 !important;
 }
 
 #page-packages .currency-symbol {
-    font-size: 13px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     color: #777 !important;
 }
 
 #page-packages .pkg-period {
-    margin: 0 0 12px !important;
-    font-size: 10px !important;
+    margin: 0 0 16px !important;
+    font-size: 12px !important;
     color: #777 !important;
 }
 
 #page-packages .days-badge {
     width: 100% !important;
-    min-height: 43px !important;
+    min-height: auto !important;
     display: block !important;
-    margin: 0 0 12px !important;
-    padding: 0 !important;
+    margin: 0 0 16px !important;
+    padding: 0 0 14px !important;
     border: 0 !important;
+    border-bottom: 1px solid rgba(0,0,0,.08) !important;
     color: #999 !important;
-    font-size: 10px !important;
+    font-size: 12px !important;
     line-height: 1.7 !important;
 }
 
@@ -2332,38 +2168,38 @@ footer{
 #page-packages ul.pkg-features {
     list-style: none !important;
     padding: 0 !important;
-    margin: 0 0 16px !important;
+    margin: 0 0 22px !important;
     flex: 1 !important;
 }
 
 #page-packages ul.pkg-features li {
     display: flex !important;
     align-items: flex-start !important;
-    gap: 7px !important;
-    padding: 3px 0 !important;
+    gap: 9px !important;
+    padding: 6px 0 !important;
     margin: 0 !important;
     color: #59625f !important;
     font-family: 'Tajawal', sans-serif !important;
-    font-size: 10.5px !important;
+    font-size: 13px !important;
     line-height: 1.65 !important;
 }
 
 #page-packages ul.pkg-features li svg {
-    width: 11px !important;
-    height: 11px !important;
+    width: 14px !important;
+    height: 14px !important;
     margin-top: 3px !important;
     stroke: #55a88d !important;
     flex: 0 0 auto !important;
 }
 
 #page-packages .pkg-cta {
-    min-height: 34px !important;
-    padding: 8px 12px !important;
+    min-height: 44px !important;
+    padding: 12px 16px !important;
     border-radius: 999px !important;
     border: 0 !important;
     box-shadow: none !important;
     font-family: 'Tajawal', sans-serif !important;
-    font-size: 11px !important;
+    font-size: 13.5px !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
     transition: transform .2s ease, background .2s ease, box-shadow .2s ease !important;
@@ -2384,12 +2220,12 @@ footer{
 
 #page-packages .pkg-cta.cta-outline {
     margin-top: 7px !important;
-    min-height: 29px !important;
-    padding: 6px 10px !important;
+    min-height: 38px !important;
+    padding: 9px 14px !important;
     background: rgba(255,255,255,.55) !important;
     color: #777 !important;
     border: 1px solid rgba(0,0,0,.08) !important;
-    font-size: 10px !important;
+    font-size: 12px !important;
 }
 
 #page-packages .pkg-cta.cta-outline:hover {
@@ -2399,23 +2235,23 @@ footer{
 }
 
 #page-packages .pkg-cta i {
-    font-size: 10px !important;
+    font-size: 11px !important;
 }
 
 /* شارة الأكثر شعبية — صغيرة مثل التصميم المطلوب */
 #page-packages .ribbon-banner {
     position: absolute !important;
-    top: 12px !important;
-    left: 12px !important;
+    top: 16px !important;
+    left: 16px !important;
     z-index: 2 !important;
     width: auto !important;
     margin: 0 !important;
-    padding: 4px 8px !important;
+    padding: 6px 12px !important;
     border-radius: 999px !important;
     background: #111 !important;
     color: #fff !important;
     font-family: 'Tajawal', sans-serif !important;
-    font-size: 7px !important;
+    font-size: 9px !important;
     line-height: 1 !important;
     font-weight: 800 !important;
     letter-spacing: .3px !important;
@@ -2426,10 +2262,6 @@ footer{
     display: none !important;
 }
 
-#page-packages .pkg-card.featured .pkg-tag {
-    padding-left: 62px !important;
-}
-
 #page-packages .contact-hero-clean {
     margin-bottom: 0 !important;
 }
@@ -2437,13 +2269,14 @@ footer{
 @media (max-width: 900px) {
     #page-packages .packages-wrap {
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 9px !important;
+        gap: 12px !important;
     }
 
     #page-packages .pkg-card,
     #page-packages .pkg-card.featured {
-        padding-left: 13px !important;
-        padding-right: 13px !important;
+        min-height: 460px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
     }
 }
 
@@ -2457,13 +2290,13 @@ footer{
     #page-packages .pkg-card,
     #page-packages .pkg-card.featured {
         min-height: auto !important;
+        padding: 26px 22px 22px !important;
     }
 }
 
 /* =========================================================
-   ULTRA TV - CONTACT SECTION PREMIUM REDESIGN
-   الموقع removed - 4 equal cards / Dark Glass + Gold
-   هذا القسم يتجاوز أي تنسيقات قديمة لنفس العناصر.
+   ULTRA TV - CONTACT SECTION
+   4 equal cards / أبيض وأسود بسيط، ظل خفيف بدون توهج
 ========================================================= */
 
 .info-section {
@@ -2471,20 +2304,6 @@ footer{
     margin: 55px auto 70px !important;
     padding: 0 22px !important;
     position: relative;
-}
-
-.info-section::before {
-    content: "";
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(212, 175, 55, 0.055);
-    filter: blur(100px);
-    border-radius: 50%;
-    pointer-events: none;
 }
 
 .info-section-head {
@@ -2498,9 +2317,9 @@ footer{
     display: inline-flex !important;
     align-items: center;
     gap: 8px;
-    background: rgba(212, 175, 55, 0.08) !important;
-    border: 1px solid rgba(212, 175, 55, 0.28) !important;
-    color: #D4AF37 !important;
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+    color: #e8e8e8 !important;
     padding: 7px 18px !important;
     border-radius: 50px !important;
     font-size: 11px !important;
@@ -2509,14 +2328,8 @@ footer{
     margin-bottom: 13px !important;
 }
 
-.info-eyebrow::before {
-    content: "✦";
-    color: #F5D76E;
-    font-size: 12px;
-}
-
 .info-heading {
-    color: #F8F5EA !important;
+    color: #ffffff !important;
     font-size: 28px !important;
     font-weight: 900 !important;
     margin: 0 !important;
@@ -2545,13 +2358,13 @@ footer{
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    background: linear-gradient(145deg, rgba(31, 33, 39, .97), rgba(17, 18, 22, .99)) !important;
+    background: #141414 !important;
     border: 1px solid rgba(255,255,255,.08) !important;
     border-radius: 22px !important;
     padding: 28px 18px !important;
     overflow: hidden !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04) !important;
-    transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,.35) !important;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
 }
 
 .info-card::before {
@@ -2561,38 +2374,21 @@ footer{
     left: 18%;
     right: 18%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-    opacity: .5;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+    opacity: .4;
     transition: left .35s ease, right .35s ease, opacity .35s ease;
 }
 
-.info-card::after {
-    content: "";
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    top: -65px;
-    left: -65px;
-    border-radius: 50%;
-    background: rgba(212,175,55,.045);
-    transition: .4s ease;
-    pointer-events: none;
-}
-
 .info-card:hover {
-    transform: translateY(-9px) !important;
-    border-color: rgba(212,175,55,.42) !important;
-    box-shadow: 0 22px 45px rgba(0,0,0,.38), 0 0 30px rgba(212,175,55,.08), inset 0 1px 0 rgba(255,255,255,.06) !important;
+    transform: translateY(-5px) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    box-shadow: 0 12px 28px rgba(0,0,0,.42) !important;
 }
 
 .info-card:hover::before {
     left: 8%;
     right: 8%;
-    opacity: 1;
-}
-
-.info-card:hover::after {
-    transform: scale(1.5);
+    opacity: .7;
 }
 
 .info-card-icon {
@@ -2605,23 +2401,21 @@ footer{
     justify-content: center !important;
     margin: 0 auto 18px !important;
     border-radius: 18px !important;
-    background: linear-gradient(145deg, rgba(212,175,55,.16), rgba(212,175,55,.05)) !important;
-    border: 1px solid rgba(212,175,55,.20) !important;
-    color: #D4AF37 !important;
+    background: #1f1f1f !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    color: #ffffff !important;
     font-size: 23px !important;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 8px 20px rgba(0,0,0,.18) !important;
-    transition: transform .35s ease, background .35s ease, color .35s ease, box-shadow .35s ease !important;
+    box-shadow: none !important;
+    transition: background .3s ease, color .3s ease !important;
 }
 
 .info-card:hover .info-card-icon {
-    transform: translateY(-4px) scale(1.08) rotate(-4deg);
-    background: linear-gradient(145deg, #D4AF37, #A67C00) !important;
-    color: #111 !important;
-    box-shadow: 0 10px 25px rgba(212,175,55,.20) !important;
+    background: #ffffff !important;
+    color: #111111 !important;
 }
 
 .info-card-label {
-    color: #F5F1E6 !important;
+    color: #ffffff !important;
     font-family: 'Cairo', sans-serif !important;
     font-size: 16px !important;
     font-weight: 800 !important;
@@ -2629,15 +2423,11 @@ footer{
 }
 
 .info-card-value {
-    color: #9CA3AF !important;
+    color: #b5b5b5 !important;
     font-size: 13px !important;
     line-height: 1.7 !important;
     max-width: 100%;
     transition: color .3s ease;
-}
-
-.info-card:hover .info-card-value {
-    color: #D5D0C5 !important;
 }
 
 .info-card-value--row {
@@ -2655,20 +2445,19 @@ footer{
     height: 30px !important;
     min-width: 30px !important;
     border-radius: 9px !important;
-    background: rgba(212,175,55,.08) !important;
-    border: 1px solid rgba(212,175,55,.18) !important;
-    color: #D4AF37 !important;
+    background: #1f1f1f !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    color: #ffffff !important;
     transition: .25s ease !important;
 }
 
 .info-copy-btn:hover {
-    background: #D4AF37 !important;
-    color: #111 !important;
-    transform: translateY(-2px);
+    background: #ffffff !important;
+    color: #111111 !important;
 }
 
 .info-card-sub {
-    color: #737985 !important;
+    color: #8a8a8a !important;
     font-size: 12px !important;
     margin-top: 7px !important;
 }
@@ -2685,53 +2474,13 @@ footer{
     height: 7px !important;
     min-width: 7px !important;
     border-radius: 50% !important;
-    background: #35D07F !important;
-    box-shadow: 0 0 0 4px rgba(53,208,127,.08), 0 0 12px rgba(53,208,127,.45) !important;
-    animation: ultraLivePulse 1.8s infinite;
+    background: #c9c9c9 !important;
+    box-shadow: none !important;
+    animation: none !important;
 }
 
-@keyframes ultraLivePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: .55; transform: scale(.78); }
-}
-
-.info-card:nth-child(1) .info-card-icon {
-    color: #7DD3FC !important;
-    background: rgba(125,211,252,.08) !important;
-}
-
-.info-card:nth-child(2) .info-card-icon {
-    color: #F59AB9 !important;
-    background: rgba(245,154,185,.08) !important;
-}
-
-.info-card:nth-child(3) .info-card-icon {
-    color: #D4AF37 !important;
-}
-
-.info-card:nth-child(4) .info-card-icon {
-    color: #61D69B !important;
-    background: rgba(97,214,155,.08) !important;
-}
-
-.info-card:nth-child(1):hover .info-card-icon {
-    background: #38BDF8 !important;
-    color: #111 !important;
-}
-
-.info-card:nth-child(2):hover .info-card-icon {
-    background: #EC1E6D !important;
-    color: #fff !important;
-}
-
-.info-card:nth-child(3):hover .info-card-icon {
-    background: #D4AF37 !important;
-    color: #111 !important;
-}
-
-.info-card:nth-child(4):hover .info-card-icon {
-    background: #29A768 !important;
-    color: #fff !important;
+.live-dot.offline{
+    background:#555 !important;
 }
 
 .info-grid .info-card:last-child {
@@ -2768,5 +2517,435 @@ footer{
 
     .info-card-value--row {
         font-size: 12px !important;
+    }
+}
+
+/* =========================================================
+   ULTRA TV — DOWNLOAD CARD (تصميم أرقى)
+   ========================================================= */
+
+#page-home .download-section{
+    position:relative !important;
+    padding:70px 20px 85px !important;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(214,180,90,.10) 0%, transparent 45%),
+        linear-gradient(180deg,#0a0c10 0%,#12151b 100%) !important;
+    overflow:hidden;
+}
+
+#page-home .download-section::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 15% 85%, rgba(214,180,90,.05), transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.02), transparent 35%);
+    pointer-events:none;
+}
+
+#page-home .download-card{
+    position:relative !important;
+    max-width:420px !important;
+    min-height:0 !important;
+    padding:38px 34px 32px !important;
+    margin:0 auto !important;
+    text-align:center;
+
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.025), transparent 40%),
+        linear-gradient(180deg,#191d24 0%,#111318 100%) !important;
+
+    border:1px solid rgba(214,180,90,.18) !important;
+    border-radius:26px !important;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.5),
+        0 0 0 1px rgba(255,255,255,.02) inset,
+        0 1px 0 rgba(255,255,255,.05) inset !important;
+
+    overflow:hidden !important;
+    isolation:isolate;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease !important;
+}
+
+#page-home .download-card:hover{
+    transform:translateY(-4px) !important;
+    border-color:rgba(214,180,90,.32) !important;
+    box-shadow:
+        0 36px 80px rgba(0,0,0,.55),
+        0 0 40px rgba(214,180,90,.06),
+        0 1px 0 rgba(255,255,255,.06) inset !important;
+}
+
+#page-home .download-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:3px;
+    background:linear-gradient(90deg,
+        transparent, #F2D47A 20%, #D6B45A 50%, #F2D47A 80%, transparent);
+    z-index:2;
+}
+
+#page-home .download-card::after{
+    display:none !important;
+}
+
+#page-home .download-card > *{
+    position:relative;
+    z-index:1;
+}
+
+/* الشارة "مجاني" — كبسولة أنيقة أعلى اليمين */
+#page-home .download-card .badge{
+    position:absolute !important;
+    top:20px !important;
+    left:20px !important;
+    right:auto !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:6px !important;
+
+    padding:7px 16px !important;
+    border-radius:999px !important;
+
+    background:rgba(214,180,90,.10) !important;
+    border:1px solid rgba(214,180,90,.35) !important;
+
+    color:#F2D47A !important;
+    font-size:11px !important;
+    font-weight:800 !important;
+    letter-spacing:.4px;
+    box-shadow:none !important;
+}
+
+#page-home .download-card .badge::before{
+    content:"";
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#F2D47A;
+    box-shadow:0 0 8px rgba(242,212,122,.7);
+}
+
+#page-home .download-card .card-desc{
+    margin:6px 0 4px !important;
+    color:#8B909A !important;
+    font-size:12.5px !important;
+    font-weight:500;
+    line-height:1.7 !important;
+}
+
+#page-home .download-card h2{
+    margin:6px 0 26px !important;
+    color:#FAF8F2 !important;
+    font-size:28px !important;
+    font-weight:900 !important;
+    letter-spacing:-.4px;
+    position:relative;
+    display:inline-block;
+}
+
+#page-home .download-card h2::after{
+    content:"";
+    position:absolute;
+    bottom:-11px;
+    left:50%;
+    transform:translateX(-50%);
+    width:34px;
+    height:3px;
+    border-radius:3px;
+    background:linear-gradient(90deg,#D6B45A,#F2D47A);
+}
+
+#page-home .download-card .device-icons{
+    width:64px;
+    height:64px;
+    margin:30px auto 30px !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    border-radius:20px !important;
+    background:linear-gradient(160deg, rgba(242,212,122,.14), rgba(214,180,90,.03)) !important;
+    border:1px solid rgba(214,180,90,.24) !important;
+    box-shadow:
+        0 14px 28px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.06) !important;
+    transition:transform .3s ease;
+}
+
+#page-home .download-card:hover .device-icons{
+    transform:scale(1.05) rotate(-3deg);
+}
+
+#page-home .download-card .device-icons i{
+    margin:0 !important;
+    font-size:25px !important;
+    color:#F0D177 !important;
+}
+
+#page-home .download-card .download-btn{
+    position:relative;
+    width:100% !important;
+    max-width:280px !important;
+    min-height:52px;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:10px !important;
+
+    margin:6px auto 0 !important;
+    padding:14px 24px !important;
+
+    background:linear-gradient(135deg,#F2D47A 0%, #D6B45A 50%, #B58F3B 100%) !important;
+
+    border:1px solid rgba(255,235,170,.5) !important;
+    border-radius:15px !important;
+
+    color:#161710 !important;
+    font-size:15px !important;
+    font-weight:900 !important;
+    letter-spacing:.2px;
+
+    box-shadow:
+        0 14px 30px rgba(214,180,90,.22),
+        inset 0 1px 0 rgba(255,255,255,.35) !important;
+
+    transition:transform .22s ease, box-shadow .22s ease, filter .22s ease !important;
+}
+
+#page-home .download-card .download-btn::before{
+    display:none !important;
+}
+
+#page-home .download-card .download-btn:hover{
+    transform:translateY(-3px) !important;
+    filter:brightness(1.06);
+    box-shadow:
+        0 18px 36px rgba(214,180,90,.32),
+        inset 0 1px 0 rgba(255,255,255,.4) !important;
+}
+
+#page-home .download-card .download-btn:active{
+    transform:translateY(-1px) scale(.98) !important;
+}
+
+#page-home .download-card .download-btn i{
+    font-size:14px !important;
+}
+
+#page-home .download-card{
+    padding-bottom:38px !important;
+}
+
+@media (max-width:600px){
+    #page-home .download-section{
+        padding:50px 14px 60px !important;
+    }
+    #page-home .download-card{
+        max-width:360px !important;
+        padding:32px 22px 28px !important;
+        border-radius:22px !important;
+    }
+    #page-home .download-card h2{
+        font-size:24px !important;
+    }
+    #page-home .download-card .badge{
+        top:16px !important;
+        left:16px !important;
+        padding:6px 13px !important;
+        font-size:10px !important;
+    }
+}
+
+/* =========================================================
+   ULTRA TV — شيل المربعات من زر اللغة وزر المشاركة، بدون بوكس
+   لون الأيقونات أبيض بالكامل (عادي وعند الوقوف)
+   ========================================================= */
+
+.lang-current{
+    width:auto !important;
+    min-width:auto !important;
+    height:34px !important;
+    padding:0 6px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:6px !important;
+
+    background:transparent !important;
+    border:none !important;
+    border-radius:0 !important;
+    color:#ffffff !important;
+
+    box-shadow:none !important;
+
+    transition:
+        color .2s ease,
+        opacity .2s ease !important;
+}
+
+.lang-current i{
+    color:#ffffff !important;
+    font-size:16px !important;
+}
+
+.lang-current span{
+    color:#ffffff !important;
+    font-size:11px !important;
+    font-weight:700 !important;
+    letter-spacing:.2px !important;
+}
+
+.lang-current:hover{
+    background:transparent !important;
+    border-color:transparent !important;
+    color:#ffffff !important;
+    opacity:.75;
+    transform:none !important;
+}
+
+.lang-current:hover i{
+    color:#ffffff !important;
+}
+
+.share-current{
+    width:38px !important;
+    height:38px !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    background:transparent !important;
+    border:none !important;
+    border-radius:0 !important;
+    color:#ffffff !important;
+
+    box-shadow:none !important;
+
+    transition:
+        color .2s ease,
+        opacity .2s ease !important;
+}
+
+.share-current i{
+    color:#ffffff !important;
+    font-size:17px !important;
+}
+
+.share-current:hover{
+    background:transparent !important;
+    border-color:transparent !important;
+    color:#ffffff !important;
+    opacity:.75;
+    transform:none !important;
+}
+
+.share-current:hover i{
+    color:#ffffff !important;
+}
+
+#nav-login-icon{
+    font-size:17px !important;
+}
+
+/* =========================================================
+   ULTRA TV — NAVBAR (تصميم نهائي بسيط وهادئ)
+   بدون أقواس ذهبية متحركة، شريط واحد بسيط + تبرز الصفحة النشطة
+   بخلفية ذهبية خفيفة. هذا هو التعريف الوحيد والأخير للنافبار.
+   ========================================================= */
+
+.navbar nav ul{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:4px !important;
+    list-style:none !important;
+
+    padding:5px !important;
+    margin:0 !important;
+
+    background:rgba(20,22,27,.75) !important;
+    border:1px solid rgba(214,180,90,.18) !important;
+    border-radius:14px !important;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.25) !important;
+    backdrop-filter:blur(8px) !important;
+    -webkit-backdrop-filter:blur(8px) !important;
+}
+
+.navbar nav ul li{
+    position:static !important;
+    margin:0 !important;
+    padding:0 !important;
+}
+
+.navbar nav ul li::before,
+.navbar nav ul li::after{
+    content:none !important;
+    display:none !important;
+}
+
+.navbar nav ul li a{
+    position:relative !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    min-width:0 !important;
+    height:auto !important;
+    padding:9px 20px !important;
+    margin:0 !important;
+    border:0 !important;
+    border-radius:10px !important;
+
+    background:transparent !important;
+    color:#C7CBD1 !important;
+    box-shadow:none !important;
+    text-shadow:none !important;
+
+    font-size:14px !important;
+    font-weight:600 !important;
+    text-decoration:none !important;
+
+    transition:color .2s ease, background .2s ease !important;
+}
+
+.navbar nav ul li a::before,
+.navbar nav ul li a::after{
+    content:none !important;
+    display:none !important;
+}
+
+.navbar nav ul li a:hover{
+    color:#F2D47A !important;
+    background:rgba(214,180,90,.08) !important;
+    transform:none !important;
+}
+
+.navbar nav ul li a.active{
+    color:#171A20 !important;
+    background:linear-gradient(135deg,#F2D47A,#D6B45A) !important;
+    font-weight:700 !important;
+}
+
+.navbar nav ul li a.active:hover{
+    color:#171A20 !important;
+    background:linear-gradient(135deg,#F2D47A,#D6B45A) !important;
+}
+
+@media (max-width:720px){
+    .navbar nav ul{
+        gap:2px !important;
+        padding:4px !important;
+        border-radius:12px !important;
+    }
+    .navbar nav ul li a{
+        padding:8px 12px !important;
+        font-size:12.5px !important;
     }
 }
