@@ -993,6 +993,77 @@
             color: #fff;
         }
 
+        /* تنسيق صندوق طلب اشتراك IPTV التجريبي (تم تعديله ليناسب الهوية الداكنة والذهبية) */
+        .iptv-trial-banner {
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.9), rgba(25, 30, 38, 0.9));
+            color: #FAF8F2;
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 900px;
+            margin: 50px auto 0 auto;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(214, 180, 90, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .iptv-trial-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(214, 180, 90, 0.15);
+            color: #F2D47A;
+            border-radius: 16px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            border: 1px solid rgba(214, 180, 90, 0.3);
+        }
+
+        .iptv-trial-banner h2 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #FAF8F2;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .iptv-trial-banner p {
+            font-size: 14px;
+            color: #A7A9B0;
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .iptv-trial-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25D366;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 14px 32px;
+            font-size: 15px;
+            font-weight: 800;
+            font-family: 'Cairo', sans-serif;
+            border-radius: 14px;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .iptv-trial-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        }
+
         /* ============================================================
            صفحة الاتصال
            ============================================================ */
@@ -1183,6 +1254,14 @@
             .package-card.featured:hover {
                 transform: translateY(-6px);
             }
+
+            .iptv-trial-banner {
+                padding: 30px 20px;
+            }
+            
+            .iptv-trial-banner h2 {
+                font-size: 22px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1216,7 +1295,7 @@
                 font-size: 14px;
             }
 
-            .download-btn, .card-pay-btn {
+            .download-btn, .card-pay-btn, .iptv-trial-btn {
                 padding: 10px 16px;
                 font-size: 13px;
             }
@@ -1521,6 +1600,18 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- صندوق طلب اشتراك iptv تجريبي 24 ساعة (بشكل متناسق مع التصميم الداكن) -->
+            <div class="iptv-trial-banner">
+                <div class="iptv-trial-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <h2>يمكنكم التواصل معنا للحصول على اشتراك Ultra TV تجريبي 24 ساعة</h2>
+                <p>من خلال الزر التالي يمكنكم التواصل معنا مباشرة عبر واتس اب لطلب تجربة اشتراك iptv مجانية 24 ساعة، وبالتالي يمكنكم إختبار الخدمة على شبكة الإنترنت لديكم</p>
+                <a href="https://wa.me/963933940387?text=مرحباً، أرغب بطلب تجربة اشتراك IPTV مجانية لمدة 24 ساعة" target="_blank" class="iptv-trial-btn">
+                    <i class="fab fa-whatsapp" style="font-size: 18px;"></i> تواصل معنا
+                </a>
             </div>
         </section>
     </div>
