@@ -34,23 +34,23 @@
         }
 
         /* ============================================================
-           النافيجيشن
+           النافيجيشن (شريط التنقل الشفاف)
            ============================================================ */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(20, 23, 30, 0.95);
+            background: transparent;
             position: sticky;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             padding: 15px 50px;
-            border-bottom: 1px solid rgba(214, 180, 90, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: none;
         }
 
         .navbar .logo {
@@ -481,16 +481,16 @@
         }
 
         /* ============================================================
-           القسم الرئيسي (تم تحسين جودة عرض الخلفيات وعناصر البث)
+           القسم الرئيسي (تمت إضافة الصورة الجديدة في الخلفية)
            ============================================================ */
         .page-content {
             flex: 1;
         }
 
         .hero {
-            background: linear-gradient(135deg, rgba(10, 25, 35, 0.6), rgba(20, 30, 45, 0.6)), 
-                        url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1920&h=1080&fit=crop&q=90') 
-                        no-repeat center center/cover; /* تحسين جودة الصورة وعرضها بدقة عالية q=90 */
+            background: linear-gradient(135deg, rgba(10, 25, 35, 0.75), rgba(20, 30, 45, 0.75)), 
+                        url('https://i.ibb.co/p649hbNd/movies-series-osnplus-help-192-1024x576.jpg') 
+                        no-repeat center center/cover;
             height: 500px;
             display: flex;
             justify-content: center;
@@ -509,7 +509,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(23, 26, 32, 0.85) 100%);
+            background: linear-gradient(180deg, rgba(23, 26, 32, 0.3) 0%, rgba(23, 26, 32, 0.85) 100%);
             pointer-events: none;
         }
 
@@ -829,7 +829,6 @@
             font-size: 15px;
         }
 
-        /* تنسيق زر ادفع بالبطاقة الإضافي */
         .card-pay-btn {
             position: relative;
             display: inline-flex;
@@ -967,7 +966,7 @@
         }
 
         /* ============================================================
-           صفحة الاتصال (تم تحسين مظهر البطاقات والنصوص لتعزيز الوضوح والنقاء)
+           صفحة الاتصال
            ============================================================ */
         .contact-section {
             padding: 60px 50px;
@@ -1308,13 +1307,11 @@
                     <h3 data-translate="feat2-title">قنوات عالمية</h3>
                     <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة</p>
                 </div>
-                <!-- بطاقة محتوى حصري -->
                 <div class="feature-card">
                     <i class="fa-solid fa-circle-play"></i>
                     <h3 data-translate="feat6-title">محتوى حصري</h3>
                     <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية وأول من يشاهد</p>
                 </div>
-                <!-- بطاقة دعم فني 24/7 (تم نقلها لتصبح مباشرة تحت محتوى حصري) -->
                 <div class="feature-card">
                     <i class="fa-solid fa-headphones"></i>
                     <h3 data-translate="feat5-title">دعم فني 24/7</h3>
@@ -1374,7 +1371,6 @@
         <section class="features-section">
             <h2 class="section-title" data-translate="pkg-heading">باقاتنا المتاحة</h2>
             <div class="packages-grid">
-                <!-- الباقة المميزة الأولى -->
                 <div class="package-card">
                     <div class="ribbon" data-translate="pkg1-ribbon">الأساسية</div>
                     <h3 data-translate="pkg1-title">الباقة المميزة</h3>
@@ -1388,13 +1384,11 @@
                     <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
                         <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
                     </button>
-                    <!-- زر اشترك الآن موجّه إلى واتساب -->
                     <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة المميزة (الشهرية)" target="_blank" class="download-btn">
                         <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
                     </a>
                 </div>
 
-                <!-- الباقة البريميوم -->
                 <div class="package-card featured">
                     <div class="ribbon" data-translate="pkg2-ribbon">الأكثر شهرة</div>
                     <h3 data-translate="pkg2-title">الباقة البريميوم</h3>
@@ -1409,13 +1403,11 @@
                     <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
                         <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
                     </button>
-                    <!-- زر اشترك الآن موجّه إلى واتساب -->
                     <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة البريميوم (السنوية)" target="_blank" class="download-btn">
                         <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
                     </a>
                 </div>
 
-                <!-- الباقة العائلية -->
                 <div class="package-card">
                     <div class="ribbon" data-translate="pkg3-ribbon">للعائلة</div>
                     <h3 data-translate="pkg3-title">الباقة العائلية</h3>
@@ -1430,7 +1422,6 @@
                     <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
                         <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
                     </button>
-                    <!-- زر اشترك الآن موجّه إلى واتساب -->
                     <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة العائلية (3 أشهر)" target="_blank" class="download-btn">
                         <i class="fa-solid fa-users"></i> <span data-translate="subscribe-now">اشترك الآن</span>
                     </a>
@@ -1554,7 +1545,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // دالة إظهار الرسائل المنبثقة (Toast)
         function showToast(message) {
             const toast = document.getElementById('toast-notification');
             toast.textContent = message;
@@ -1564,7 +1554,6 @@
             }, 3000);
         }
 
-        // التحكم بنافذة تسجيل الدخول المنبثقة
         function openAuthModal() {
             document.getElementById('authModal').style.display = 'flex';
         }
@@ -1604,7 +1593,6 @@
             showToast(currentLang === 'en' ? 'Password reset link sent to ' + email : 'تم إرسال رابط استعادة كلمة المرور إلى ' + email);
         }
 
-        // إغلاق النوافذ المنبثقة عند النقر خارجها
         window.addEventListener('click', function(e) {
             const authModal = document.getElementById('authModal');
             if (e.target === authModal) {
@@ -1620,7 +1608,6 @@
             }
         });
 
-        // وظائف قائمة المشاركة الجديدة
         function toggleShareMenu() {
             const menu = document.getElementById('shareMenu');
             if (menu.style.display === 'block') {
@@ -1650,7 +1637,6 @@
             });
         }
 
-        // قاموس الترجمة للغتين العربية والإنجليزية
         let currentLang = 'ar';
         const translations = {
             ar: {
@@ -1847,7 +1833,6 @@
             }
         };
 
-        // وظيفة تبديل اللغات (العربية / الإإنجليزية)
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             const root = document.getElementById('html-root');
@@ -1902,7 +1887,6 @@
         const provider = new GoogleAuthProvider();
         provider.setCustomParameters({ prompt: 'select_account' });
 
-        // متغير عام للتحقق من حالة المستخدم
         window.isUserLoggedIn = false;
 
         window.loginWithGoogle = function () {
@@ -1934,7 +1918,6 @@
             }
         };
         
-        // ربط الحدث بشكل صحيح
         window.handleUserIconClick = window.handleUserIconClientClick;
 
         window.performLogout = function() {
