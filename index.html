@@ -15,6 +15,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
+            /* تحسين دقة عرض الخطوط والرسوميات لشاشات العرض العالية الدقة */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         html, body {
@@ -44,7 +48,8 @@
             z-index: 1000;
             padding: 15px 50px;
             border-bottom: 1px solid rgba(214, 180, 90, 0.15);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
@@ -59,6 +64,7 @@
         .navbar .logo img {
             height: 50px;
             vertical-align: middle;
+            image-rendering: -webkit-optimize-contrast; /* تحسين دقة اللوجو والصور */
         }
 
         .navbar nav {
@@ -475,16 +481,16 @@
         }
 
         /* ============================================================
-           القسم الرئيسي
+           القسم الرئيسي (تم تحسين جودة عرض الخلفيات وعناصر البث)
            ============================================================ */
         .page-content {
             flex: 1;
         }
 
         .hero {
-            background: linear-gradient(135deg, rgba(10, 25, 35, 0.5), rgba(20, 30, 45, 0.5)), 
-                        url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1200&h=600&fit=crop') 
-                        no-repeat center center/cover;
+            background: linear-gradient(135deg, rgba(10, 25, 35, 0.6), rgba(20, 30, 45, 0.6)), 
+                        url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=1920&h=1080&fit=crop&q=90') 
+                        no-repeat center center/cover; /* تحسين جودة الصورة وعرضها بدقة عالية q=90 */
             height: 500px;
             display: flex;
             justify-content: center;
@@ -493,6 +499,7 @@
             color: #fff;
             position: relative;
             overflow: hidden;
+            image-rendering: high-quality;
         }
 
         .hero::before {
@@ -502,14 +509,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(23, 26, 32, 0.8) 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(23, 26, 32, 0.85) 100%);
             pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            animation: slideUp 0.8s ease;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes slideUp {
@@ -528,14 +535,14 @@
             font-size: 48px;
             font-weight: 900;
             margin-bottom: 15px;
-            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95);
             letter-spacing: -1px;
         }
 
         .hero-content p {
             font-size: 18px;
             color: #d0d0d0;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
             margin-bottom: 20px;
         }
 
@@ -557,6 +564,7 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .section-title::after {
@@ -568,6 +576,7 @@
             width: 100px;
             height: 4px;
             background: linear-gradient(90deg, transparent, #D6B45A, transparent);
+            box-shadow: 0 0 10px rgba(214, 180, 90, 0.5);
         }
 
         .features-grid {
@@ -578,20 +587,21 @@
         }
 
         .feature-card {
-            background: linear-gradient(135deg, rgba(32, 37, 45, 0.8), rgba(25, 30, 38, 0.8));
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.85), rgba(25, 30, 38, 0.85));
             padding: 30px;
             border-radius: 18px;
-            border: 1px solid rgba(214, 180, 90, 0.15);
+            border: 1px solid rgba(214, 180, 90, 0.2);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .feature-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(214, 180, 90, 0.4);
-            background: linear-gradient(135deg, rgba(32, 37, 45, 1), rgba(25, 30, 38, 1));
-            box-shadow: 0 20px 40px rgba(214, 180, 90, 0.15);
+            border-color: rgba(214, 180, 90, 0.5);
+            background: linear-gradient(135deg, rgba(35, 41, 50, 1), rgba(28, 33, 42, 1));
+            box-shadow: 0 20px 45px rgba(214, 180, 90, 0.2);
         }
 
         .feature-card i {
@@ -599,6 +609,7 @@
             color: #F2D47A;
             margin-bottom: 15px;
             display: block;
+            filter: drop-shadow(0 2px 6px rgba(242, 212, 122, 0.4));
         }
 
         .feature-card h3 {
@@ -636,8 +647,8 @@
             padding: 40px 34px 36px;
             text-align: center;
             border-radius: 26px;
-            border: 1px solid rgba(214, 180, 90, 0.18);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(214, 180, 90, 0.22);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -656,8 +667,8 @@
 
         .download-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(214, 180, 90, 0.32);
-            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 40px rgba(214, 180, 90, 0.08);
+            border-color: rgba(214, 180, 90, 0.4);
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7), 0 0 50px rgba(214, 180, 90, 0.12);
         }
 
         .download-card .badge {
@@ -729,8 +740,8 @@
             justify-content: space-around;
             margin: 25px 0;
             padding: 15px 0;
-            border-top: 1px solid rgba(214, 180, 90, 0.1);
-            border-bottom: 1px solid rgba(214, 180, 90, 0.1);
+            border-top: 1px solid rgba(214, 180, 90, 0.12);
+            border-bottom: 1px solid rgba(214, 180, 90, 0.12);
         }
 
         .info-item {
@@ -762,8 +773,8 @@
             width: 50px;
             height: 50px;
             border-radius: 12px;
-            background: linear-gradient(135deg, rgba(242, 212, 122, 0.15), rgba(214, 180, 90, 0.05));
-            border: 1px solid rgba(214, 180, 90, 0.25);
+            background: linear-gradient(135deg, rgba(242, 212, 122, 0.18), rgba(214, 180, 90, 0.08));
+            border: 1px solid rgba(214, 180, 90, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -771,8 +782,8 @@
         }
 
         .device-icon:hover {
-            background: linear-gradient(135deg, rgba(242, 212, 122, 0.25), rgba(214, 180, 90, 0.1));
-            border-color: rgba(214, 180, 90, 0.5);
+            background: linear-gradient(135deg, rgba(242, 212, 122, 0.3), rgba(214, 180, 90, 0.15));
+            border-color: rgba(214, 180, 90, 0.6);
             transform: scale(1.1);
         }
 
@@ -795,19 +806,19 @@
             font-weight: 900;
             font-family: 'Cairo', sans-serif;
             border-radius: 15px;
-            border: 1px solid rgba(255, 235, 170, 0.6);
+            border: 1px solid rgba(255, 235, 170, 0.7);
             width: 100%;
             cursor: pointer;
             overflow: hidden;
             transition: all 0.22s ease;
-            box-shadow: 0 14px 30px rgba(214, 180, 90, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            box-shadow: 0 14px 30px rgba(214, 180, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
             letter-spacing: 0.3px;
         }
 
         .download-btn:hover {
             transform: translateY(-3px);
-            filter: brightness(1.08);
-            box-shadow: 0 18px 40px rgba(214, 180, 90, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            filter: brightness(1.1);
+            box-shadow: 0 18px 40px rgba(214, 180, 90, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         .download-btn:active {
@@ -833,20 +844,20 @@
             font-weight: 800;
             font-family: 'Cairo', sans-serif;
             border-radius: 15px;
-            border: 1px solid rgba(214, 180, 90, 0.35);
+            border: 1px solid rgba(214, 180, 90, 0.4);
             width: 100%;
             cursor: pointer;
             margin-bottom: 12px;
             transition: all 0.22s ease;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .card-pay-btn:hover {
             transform: translateY(-2px);
-            background: linear-gradient(135deg, #323A47, #242A35);
-            border-color: rgba(214, 180, 90, 0.7);
+            background: linear-gradient(135deg, #353E4D, #242A35);
+            border-color: rgba(214, 180, 90, 0.8);
             color: #FAF8F2;
-            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.15);
+            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.2);
         }
 
         .card-pay-btn:active {
@@ -869,24 +880,26 @@
         }
 
         .package-card {
-            background: linear-gradient(135deg, rgba(32, 37, 45, 0.8), rgba(25, 30, 38, 0.8));
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.85), rgba(25, 30, 38, 0.85));
             padding: 35px;
             border-radius: 20px;
-            border: 1px solid rgba(214, 180, 90, 0.15);
+            border: 1px solid rgba(214, 180, 90, 0.2);
             position: relative;
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .package-card.featured {
-            border-color: rgba(214, 180, 90, 0.5);
-            background: linear-gradient(135deg, rgba(32, 37, 45, 1), rgba(25, 30, 38, 1));
-            transform: scale(1.05);
+            border-color: rgba(214, 180, 90, 0.6);
+            background: linear-gradient(135deg, rgba(35, 41, 50, 1), rgba(28, 33, 42, 1));
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.2);
         }
 
         .package-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.15);
+            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.2);
         }
 
         .package-card .ribbon {
@@ -901,6 +914,7 @@
             font-weight: 800;
             font-size: 12px;
             display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .package-card.featured .ribbon {
@@ -920,6 +934,7 @@
             font-weight: 900;
             margin: 15px 0;
             font-family: 'Cairo', sans-serif;
+            text-shadow: 0 2px 8px rgba(242, 212, 122, 0.2);
         }
 
         .package-price span {
@@ -931,8 +946,8 @@
             list-style: none;
             margin: 25px 0;
             padding: 25px 0;
-            border-top: 1px solid rgba(214, 180, 90, 0.1);
-            border-bottom: 1px solid rgba(214, 180, 90, 0.1);
+            border-top: 1px solid rgba(214, 180, 90, 0.12);
+            border-bottom: 1px solid rgba(214, 180, 90, 0.12);
             text-align: right;
         }
 
@@ -952,7 +967,7 @@
         }
 
         /* ============================================================
-           صفحة الاتصال
+           صفحة الاتصال (تم تحسين مظهر البطاقات والنصوص لتعزيز الوضوح والنقاء)
            ============================================================ */
         .contact-section {
             padding: 60px 50px;
@@ -967,18 +982,19 @@
         }
 
         .contact-card {
-            background: linear-gradient(135deg, rgba(32, 37, 45, 0.8), rgba(25, 30, 38, 0.8));
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.85), rgba(25, 30, 38, 0.85));
             padding: 35px;
             border-radius: 20px;
-            border: 1px solid rgba(214, 180, 90, 0.15);
+            border: 1px solid rgba(214, 180, 90, 0.2);
             text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .contact-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(214, 180, 90, 0.4);
-            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.15);
+            border-color: rgba(214, 180, 90, 0.5);
+            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.2);
         }
 
         .contact-card i {
@@ -986,6 +1002,7 @@
             color: #F2D47A;
             margin-bottom: 15px;
             display: block;
+            filter: drop-shadow(0 2px 6px rgba(242, 212, 122, 0.4));
         }
 
         .contact-card h3 {
@@ -1064,7 +1081,7 @@
             font-size: 12px;
         }
 
-        /* نافذة منبثقة بسيطة للتنبيهات */
+        /* عنصر التنبيهات */
         #toast-notification {
             position: fixed;
             bottom: 30px;
@@ -1291,11 +1308,17 @@
                     <h3 data-translate="feat2-title">قنوات عالمية</h3>
                     <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة</p>
                 </div>
-                <!-- بطاقة محتوى حصري في المنتصف -->
+                <!-- بطاقة محتوى حصري -->
                 <div class="feature-card">
                     <i class="fa-solid fa-circle-play"></i>
                     <h3 data-translate="feat6-title">محتوى حصري</h3>
                     <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية وأول من يشاهد</p>
+                </div>
+                <!-- بطاقة دعم فني 24/7 (تم نقلها لتصبح مباشرة تحت محتوى حصري) -->
+                <div class="feature-card">
+                    <i class="fa-solid fa-headphones"></i>
+                    <h3 data-translate="feat5-title">دعم فني 24/7</h3>
+                    <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت</p>
                 </div>
                 <div class="feature-card">
                     <i class="fa-solid fa-lock"></i>
@@ -1306,11 +1329,6 @@
                     <i class="fa-solid fa-mobile-screen-button"></i>
                     <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
                     <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-headphones"></i>
-                    <h3 data-translate="feat5-title">دعم فني 24/7</h3>
-                    <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت</p>
                 </div>
             </div>
         </section>
@@ -1889,7 +1907,6 @@
 
         window.loginWithGoogle = function () {
             if (window.isUserLoggedIn) {
-                // إذا كان مسجلاً للدخول، نقوم بإظهار القائمة المنسدلة بدلاً من إعادة فتح نافذة جوجل
                 const menu = document.getElementById('userDropdownMenu');
                 menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
                 return;
@@ -1908,7 +1925,7 @@
                 });
         };
 
-        window.handleUserIconClick = function() {
+        window.handleUserIconClientClick = function() {
             if (window.isUserLoggedIn) {
                 const menu = document.getElementById('userDropdownMenu');
                 menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
@@ -1916,6 +1933,9 @@
                 openAuthModal();
             }
         };
+        
+        // ربط الحدث بشكل صحيح
+        window.handleUserIconClick = window.handleUserIconClientClick;
 
         window.performLogout = function() {
             signOut(auth).then(() => {
@@ -1945,7 +1965,6 @@
             } else {
                 window.isUserLoggedIn = false;
                 document.getElementById('userDropdownMenu').style.display = 'none';
-                // إعادة أيقونة المستخدم الافتراضية إذا تم تسجيل الخروج
                 const currentIconElem = document.getElementById('nav-login-icon');
                 if (currentIconElem && currentIconElem.tagName === 'IMG') {
                     currentIconElem.outerHTML = `<i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick()"></i>`;
