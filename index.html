@@ -207,6 +207,59 @@
             color: #000;
         }
 
+        /* تنسيق قائمة الحساب وتسجيل الخروج */
+        .user-menu-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 130%;
+            left: 0;
+            background: #171A20;
+            border: 1px solid rgba(214, 180, 90, 0.3);
+            border-radius: 12px;
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            z-index: 1000;
+            padding: 12px;
+            text-align: right;
+        }
+
+        .user-email-display {
+            font-size: 12px;
+            color: #A7A9B0;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            word-break: break-all;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: rgba(231, 76, 60, 0.15);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #e74c3c;
+            color: #fff;
+        }
+
         /* ============================================================
            نافذة تسجيل الدخول المنبثقة (Modal) الجديدة
            ============================================================ */
@@ -1160,7 +1213,16 @@
                 </div>
             </div>
 
-            <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="openAuthModal()"></i>
+            <!-- حاوية الحساب وقائمة تسجيل الخروج -->
+            <div class="user-menu-container" id="userMenuContainer">
+                <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick()"></i>
+                <div id="userDropdownMenu" class="user-dropdown-menu">
+                    <div class="user-email-display" id="userEmailDisplay">user@email.com</div>
+                    <button class="logout-btn" onclick="performLogout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1524,7 +1586,7 @@
             showToast(currentLang === 'en' ? 'Password reset link sent to ' + email : 'تم إرسال رابط استعادة كلمة المرور إلى ' + email);
         }
 
-        // إغلاق النافذة المنبثقة عند النقر خارجها
+        // إغلاق النوافذ المنبثقة عند النقر خارجها
         window.addEventListener('click', function(e) {
             const authModal = document.getElementById('authModal');
             if (e.target === authModal) {
@@ -1533,6 +1595,10 @@
             const container = document.querySelector('.share-container');
             if (container && !container.contains(e.target)) {
                 document.getElementById('shareMenu').style.display = 'none';
+            }
+            const userContainer = document.getElementById('userMenuContainer');
+            if (userContainer && !userContainer.contains(e.target)) {
+                document.getElementById('userDropdownMenu').style.display = 'none';
             }
         });
 
@@ -1818,12 +1884,14 @@
         const provider = new GoogleAuthProvider();
         provider.setCustomParameters({ prompt: 'select_account' });
 
+        // متغير عام للتحقق من حالة المستخدم
+        window.isUserLoggedIn = false;
+
         window.loginWithGoogle = function () {
-            const user = auth.currentUser;
-            if (user) {
-                if (confirm((currentLang === 'en' ? 'Logged in as ' : 'أنت مسجل الدخول بحساب ') + (user.displayName || user.email) + (currentLang === 'en' ? '. Sign out?' : '. هل تريد تسجيل الخروج؟'))) {
-                    signOut(auth);
-                }
+            if (window.isUserLoggedIn) {
+                // إذا كان مسجلاً للدخول، نقوم بإظهار القائمة المنسدلة بدلاً من إعادة فتح نافذة جوجل
+                const menu = document.getElementById('userDropdownMenu');
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
                 return;
             }
             signInWithPopup(auth, provider)
@@ -1840,16 +1908,51 @@
                 });
         };
 
+        window.handleUserIconClick = function() {
+            if (window.isUserLoggedIn) {
+                const menu = document.getElementById('userDropdownMenu');
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            } else {
+                openAuthModal();
+            }
+        };
+
+        window.performLogout = function() {
+            signOut(auth).then(() => {
+                document.getElementById('userDropdownMenu').style.display = 'none';
+                showToast(currentLang === 'en' ? 'Logged out successfully' : 'تم تسجيل الخروج بنجاح');
+            }).catch((error) => {
+                showToast(error.message);
+            });
+        };
+
         onAuthStateChanged(auth, (user) => {
+            const container = document.getElementById('userMenuContainer');
             const icon = document.getElementById('nav-login-icon');
+            const emailDisplay = document.getElementById('userEmailDisplay');
             if (!icon) return;
+
             if (user) {
-                icon.title = user.displayName || user.email || (currentLang === 'en' ? 'Account' : 'الحساب');
+                window.isUserLoggedIn = true;
+                emailDisplay.textContent = user.email || user.displayName || 'حسابي';
+                icon.title = user.displayName || user.email || 'الحساب';
                 if (user.photoURL) {
-                    icon.outerHTML = `<img id="nav-login-icon" src="${user.photoURL}" onclick="loginWithGoogle()" title="${icon.title}" style="width:28px;height:28px;border-radius:50%;cursor:pointer;object-fit:cover;">`;
+                    icon.outerHTML = `<img id="nav-login-icon" src="${user.photoURL}" onclick="handleUserIconClick()" title="${icon.title}" style="width:32px;height:32px;border-radius:50%;cursor:pointer;object-fit:cover;border:2px solid #D6B45A;">`;
+                } else {
+                    icon.className = "fa-solid fa-user-check";
+                    icon.style.color = "#D6B45A";
                 }
             } else {
-                icon.title = 'تسجيل الدخول / الحساب';
+                window.isUserLoggedIn = false;
+                document.getElementById('userDropdownMenu').style.display = 'none';
+                // إعادة أيقونة المستخدم الافتراضية إذا تم تسجيل الخروج
+                const currentIconElem = document.getElementById('nav-login-icon');
+                if (currentIconElem && currentIconElem.tagName === 'IMG') {
+                    currentIconElem.outerHTML = `<i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick()"></i>`;
+                } else if (currentIconElem) {
+                    currentIconElem.className = "fa-solid fa-user";
+                    currentIconElem.style.color = "#fff";
+                }
             }
         });
     </script>
