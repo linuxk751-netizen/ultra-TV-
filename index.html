@@ -15,7 +15,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
-            /* تحسين دقة عرض الخطوط والرسوميات لشاشات العرض العالية الدقة */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -64,7 +63,7 @@
         .navbar .logo img {
             height: 50px;
             vertical-align: middle;
-            image-rendering: -webkit-optimize-contrast; /* تحسين دقة اللوجو والصور */
+            image-rendering: -webkit-optimize-contrast;
         }
 
         .navbar nav {
@@ -154,7 +153,7 @@
             background: rgba(214, 180, 90, 0.1);
         }
 
-        /* تنسيق حاوية زر وقائمة المشاركة الجديدة */
+        /* تنسيق حاوية زر وقائمة المشاركة */
         .share-container {
             position: relative;
             display: inline-block;
@@ -267,7 +266,7 @@
         }
 
         /* ============================================================
-           نافذة تسجيل الدخول المنبثقة (Modal) الجديدة
+           نافذة تسجيل الدخول المنبثقة (Modal)
            ============================================================ */
         .auth-modal-overlay {
             display: none;
@@ -481,7 +480,7 @@
         }
 
         /* ============================================================
-           القسم الرئيسي (تمت إضافة الصورة الجديدة في الخلفية)
+           القسم الرئيسي (Hero)
            ============================================================ */
         .page-content {
             flex: 1;
@@ -581,14 +580,17 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 50px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .feature-card {
             background: linear-gradient(135deg, rgba(32, 37, 45, 0.85), rgba(25, 30, 38, 0.85));
-            padding: 30px;
+            padding: 35px 30px;
             border-radius: 18px;
             border: 1px solid rgba(214, 180, 90, 0.2);
             text-align: center;
@@ -631,7 +633,7 @@
         .download-section {
             display: flex;
             justify-content: center;
-            padding: 80px 20px;
+            padding: 20px 20px 80px 20px;
             background: linear-gradient(180deg, #151A21 0%, #1D232B 48%, #171C23 100%);
         }
 
@@ -672,13 +674,10 @@
         }
 
         .download-card .badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 18px;
+            padding: 6px 18px;
             border-radius: 999px;
             background: rgba(214, 180, 90, 0.15);
             border: 1px solid rgba(214, 180, 90, 0.4);
@@ -687,6 +686,7 @@
             font-weight: 800;
             letter-spacing: 0.5px;
             font-family: 'Cairo', sans-serif;
+            margin-bottom: 10px;
         }
 
         .download-card .badge::before {
@@ -707,89 +707,18 @@
         .card-desc {
             font-size: 13px;
             color: #8B909A;
-            margin-top: 8px;
+            margin-top: 5px;
             font-weight: 500;
             line-height: 1.7;
         }
 
         .download-card h2 {
             font-family: 'Cairo', sans-serif;
-            font-size: 30px;
+            font-size: 26px;
             font-weight: 900;
             color: #FAF8F2;
             margin: 8px 0 20px;
             letter-spacing: -0.5px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .download-card h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 3px;
-            border-radius: 3px;
-            background: linear-gradient(90deg, #D6B45A, #F2D47A);
-        }
-
-        .version-info {
-            display: flex;
-            justify-content: space-around;
-            margin: 25px 0;
-            padding: 15px 0;
-            border-top: 1px solid rgba(214, 180, 90, 0.12);
-            border-bottom: 1px solid rgba(214, 180, 90, 0.12);
-        }
-
-        .info-item {
-            text-align: center;
-        }
-
-        .info-item .label {
-            font-size: 11px;
-            color: #8B909A;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .info-item .value {
-            font-size: 14px;
-            color: #F2D47A;
-            font-weight: 700;
-        }
-
-        .device-icons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 30px 0;
-        }
-
-        .device-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(242, 212, 122, 0.18), rgba(214, 180, 90, 0.08));
-            border: 1px solid rgba(214, 180, 90, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .device-icon:hover {
-            background: linear-gradient(135deg, rgba(242, 212, 122, 0.3), rgba(214, 180, 90, 0.15));
-            border-color: rgba(214, 180, 90, 0.6);
-            transform: scale(1.1);
-        }
-
-        .device-icon i {
-            font-size: 22px;
-            color: #F0D177;
         }
 
         .download-btn {
@@ -801,24 +730,24 @@
             background: linear-gradient(135deg, #F2D47A 0%, #D6B45A 50%, #B58F3B 100%);
             color: #161710;
             text-decoration: none;
-            padding: 15px 28px;
-            font-size: 16px;
+            padding: 12px 20px;
+            font-size: 14px;
             font-weight: 900;
             font-family: 'Cairo', sans-serif;
-            border-radius: 15px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 235, 170, 0.7);
             width: 100%;
             cursor: pointer;
             overflow: hidden;
             transition: all 0.22s ease;
-            box-shadow: 0 14px 30px rgba(214, 180, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5);
             letter-spacing: 0.3px;
         }
 
         .download-btn:hover {
             transform: translateY(-3px);
             filter: brightness(1.1);
-            box-shadow: 0 18px 40px rgba(214, 180, 90, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            box-shadow: 0 14px 32px rgba(214, 180, 90, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         .download-btn:active {
@@ -826,94 +755,63 @@
         }
 
         .download-btn i {
-            font-size: 15px;
-        }
-
-        .card-pay-btn {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #2A313C 0%, #1F242D 100%);
-            color: #F2D47A;
-            text-decoration: none;
-            padding: 14px 28px;
-            font-size: 15px;
-            font-weight: 800;
-            font-family: 'Cairo', sans-serif;
-            border-radius: 15px;
-            border: 1px solid rgba(214, 180, 90, 0.4);
-            width: 100%;
-            cursor: pointer;
-            margin-bottom: 12px;
-            transition: all 0.22s ease;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-pay-btn:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(135deg, #353E4D, #242A35);
-            border-color: rgba(214, 180, 90, 0.8);
-            color: #FAF8F2;
-            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.2);
-        }
-
-        .card-pay-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        .card-pay-btn i {
-            font-size: 15px;
-            color: #F2D47A;
+            font-size: 14px;
         }
 
         /* ============================================================
-           الباقات
+           الباقات (تم تصغير الحجم وجعله أرتب وأكثر تناسقاً)
            ============================================================ */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
         }
 
         .package-card {
             background: linear-gradient(135deg, rgba(32, 37, 45, 0.85), rgba(25, 30, 38, 0.85));
-            padding: 35px;
-            border-radius: 20px;
+            padding: 26px 20px;
+            border-radius: 16px;
             border: 1px solid rgba(214, 180, 90, 0.2);
             position: relative;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
         .package-card.featured {
             border-color: rgba(214, 180, 90, 0.6);
             background: linear-gradient(135deg, rgba(35, 41, 50, 1), rgba(28, 33, 42, 1));
-            transform: scale(1.03);
-            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 16px 40px rgba(214, 180, 90, 0.18);
         }
 
         .package-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 14px 35px rgba(214, 180, 90, 0.18);
+        }
+
+        .package-card.featured:hover {
+            transform: scale(1.02) translateY(-6px);
         }
 
         .package-card .ribbon {
             position: absolute;
-            top: -15px;
+            top: -12px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, #F2D47A, #D6B45A);
             color: #161710;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 5px 16px;
+            border-radius: 14px;
             font-weight: 800;
-            font-size: 12px;
+            font-size: 11px;
             display: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
         }
 
         .package-card.featured .ribbon {
@@ -922,47 +820,177 @@
 
         .package-card h3 {
             font-family: 'Cairo', sans-serif;
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 18px;
+            margin-bottom: 6px;
             color: #FAF8F2;
         }
 
         .package-price {
-            font-size: 36px;
+            font-size: 30px;
             color: #F2D47A;
             font-weight: 900;
-            margin: 15px 0;
+            margin: 10px 0;
             font-family: 'Cairo', sans-serif;
-            text-shadow: 0 2px 8px rgba(242, 212, 122, 0.2);
+            text-shadow: 0 2px 6px rgba(242, 212, 122, 0.2);
         }
 
         .package-price span {
-            font-size: 14px;
+            font-size: 13px;
             color: #A7A9B0;
         }
 
         .package-features {
             list-style: none;
-            margin: 25px 0;
-            padding: 25px 0;
+            margin: 16px 0;
+            padding: 16px 0;
             border-top: 1px solid rgba(214, 180, 90, 0.12);
             border-bottom: 1px solid rgba(214, 180, 90, 0.12);
             text-align: right;
         }
 
         .package-features li {
-            padding: 10px 0;
-            font-size: 14px;
+            padding: 7px 0;
+            font-size: 13px;
             color: #A7A9B0;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 10px;
+            gap: 8px;
         }
 
         .package-features li i {
             color: #F2D47A;
-            width: 20px;
+            width: 16px;
+            font-size: 12px;
+        }
+
+        .card-pay-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #2A313C 0%, #1F242D 100%);
+            color: #F2D47A;
+            text-decoration: none;
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 800;
+            font-family: 'Cairo', sans-serif;
+            border-radius: 12px;
+            border: 1px solid rgba(214, 180, 90, 0.4);
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.22s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-pay-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #353E4D, #242A35);
+            border-color: rgba(214, 180, 90, 0.8);
+            color: #FAF8F2;
+            box-shadow: 0 8px 20px rgba(214, 180, 90, 0.2);
+        }
+
+        /* ============================================================
+           قسم المدونة (Blog)
+           ============================================================ */
+        .blog-section {
+            padding: 60px 50px;
+            background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: linear-gradient(135deg, rgba(32, 37, 45, 0.85), rgba(25, 30, 38, 0.85));
+            border-radius: 20px;
+            border: 1px solid rgba(214, 180, 90, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(214, 180, 90, 0.5);
+            box-shadow: 0 20px 50px rgba(214, 180, 90, 0.2);
+        }
+
+        .blog-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover .blog-img-container img {
+            transform: scale(1.08);
+        }
+
+        .blog-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-date {
+            font-size: 12px;
+            color: #D6B45A;
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .blog-card h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #FAF8F2;
+            line-height: 1.4;
+        }
+
+        .blog-card p {
+            color: #A7A9B0;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .blog-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #F2D47A;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            color: #fff;
         }
 
         /* ============================================================
@@ -1103,6 +1131,12 @@
         /* ============================================================
            الجوال
            ============================================================ */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 padding: 12px 20px;
@@ -1111,11 +1145,6 @@
             .navbar nav ul li a {
                 padding: 10px 16px;
                 font-size: 13px;
-            }
-
-            .navbar nav ul li a::after {
-                bottom: -6px;
-                height: 2px;
             }
 
             .hero {
@@ -1127,8 +1156,13 @@
             }
 
             .features-section,
+            .blog-section,
             .contact-section {
                 padding: 50px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
             }
 
             .section-title {
@@ -1136,11 +1170,18 @@
             }
 
             .download-section {
-                padding: 50px 20px;
+                padding: 30px 20px 50px 20px;
             }
 
             .download-container {
                 max-width: 100%;
+            }
+            
+            .package-card.featured {
+                transform: scale(1);
+            }
+            .package-card.featured:hover {
+                transform: translateY(-6px);
             }
         }
 
@@ -1159,19 +1200,12 @@
             .navbar nav ul {
                 flex-wrap: wrap;
                 gap: 5px;
+                justify-content: center;
             }
 
             .navbar nav ul li a {
-                padding: 8px 12px;
+                padding: 8px 10px;
                 font-size: 12px;
-            }
-
-            .navbar-icons {
-                gap: 10px;
-            }
-
-            .navbar-icons i {
-                font-size: 14px;
             }
 
             .hero-content h1 {
@@ -1183,8 +1217,8 @@
             }
 
             .download-btn, .card-pay-btn {
-                padding: 12px 20px;
-                font-size: 14px;
+                padding: 10px 16px;
+                font-size: 13px;
             }
         }
     </style>
@@ -1201,13 +1235,14 @@
             <ul>
                 <li><a href="#" onclick="showPage('home'); return false;" class="active" id="nav-home" data-translate="nav-home">الصفحة الرئيسية</a></li>
                 <li><a href="#" onclick="showPage('packages'); return false;" id="nav-packages" data-translate="nav-packages">الباقات</a></li>
+                <li><a href="#" onclick="showPage('blog'); return false;" id="nav-blog" data-translate="nav-blog">المدونة</a></li>
                 <li><a href="#" onclick="showPage('contact'); return false;" id="nav-contact" data-translate="nav-contact">اتصل بنا</a></li>
             </ul>
         </nav>
         <div class="navbar-icons">
             <i class="fa-solid fa-globe" title="تغيير اللغة" onclick="toggleLanguage()"></i>
             
-            <!-- زر وقائمة المشاركة المحدثة -->
+            <!-- زر وقائمة المشاركة -->
             <div class="share-container">
                 <i class="fa-solid fa-share-nodes" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
                 <div id="shareMenu" class="share-menu">
@@ -1242,7 +1277,7 @@
         </div>
     </header>
 
-    <!-- نافذة تسجيل الدخول المنبثقة الجديدة -->
+    <!-- نافذة تسجيل الدخول المنبثقة -->
     <div id="authModal" class="auth-modal-overlay">
         <div class="auth-modal-container">
             <button class="auth-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1298,34 +1333,35 @@
             <h2 class="section-title" data-translate="features-heading">لماذا تختار Ultra TV؟</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <i class="fa-solid fa-tv"></i>
-                    <h3 data-translate="feat1-title">جودة عالية</h3>
-                    <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة</p>
+                    <i class="fa-solid fa-circle-play"></i>
+                    <h3 data-translate="feat6-title">محتوى حصري</h3>
+                    <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية أولاً بأول.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fa-solid fa-globe"></i>
                     <h3 data-translate="feat2-title">قنوات عالمية</h3>
-                    <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة</p>
+                    <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-circle-play"></i>
-                    <h3 data-translate="feat6-title">محتوى حصري</h3>
-                    <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية وأول من يشاهد</p>
+                    <i class="fa-solid fa-tv"></i>
+                    <h3 data-translate="feat1-title">جودة عالية</h3>
+                    <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة.</p>
                 </div>
+
                 <div class="feature-card">
-                    <i class="fa-solid fa-headphones"></i>
-                    <h3 data-translate="feat5-title">دعم فني 24/7</h3>
-                    <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت</p>
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
+                    <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fa-solid fa-lock"></i>
                     <h3 data-translate="feat3-title">أمان عالي</h3>
-                    <p data-translate="feat3-desc">تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة</p>
+                    <p data-translate="feat3-desc">تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
-                    <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر</p>
+                    <i class="fa-solid fa-headphones"></i>
+                    <h3 data-translate="feat5-title">دعم فني 24/7</h3>
+                    <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت.</p>
                 </div>
             </div>
         </section>
@@ -1335,25 +1371,13 @@
             <div class="download-container">
                 <div class="download-card">
                     <span class="badge" data-translate="badge-free">مجاني</span>
-                    <p class="card-desc" data-translate="free-desc">جميع القنوات المجانية والأساسية</p>
                     <h2 data-translate="free-title">النسخة المجانية</h2>
-                    <div class="version-info">
-                        <div class="info-item">
-                            <div class="label" data-translate="res-label">الدقة</div>
-                            <div class="value">720p</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="label" data-translate="ads-label">الإعلانات</div>
-                            <div class="value" data-translate="ads-yes">نعم</div>
-                        </div>
+                    <p class="card-desc" data-translate="free-desc">جميع القنوات المجانية والأساسية بجودة ممتازة</p>
+                    <div style="margin-top: 20px;">
+                        <a href="https://www.example.com/download" class="download-btn">
+                            <i class="fa-solid fa-download"></i> <span data-translate="download-now">تحميل الآن</span>
+                        </a>
                     </div>
-                    <div class="device-icons">
-                        <div class="device-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                        <div class="device-icon"><i class="fa-solid fa-tablet"></i></div>
-                    </div>
-                    <a href="https://www.example.com/download" class="download-btn">
-                        <i class="fa-solid fa-download"></i> <span data-translate="download-now">تحميل الآن</span>
-                    </a>
                 </div>
             </div>
         </section>
@@ -1430,6 +1454,77 @@
         </section>
     </div>
 
+    <!-- صفحة المدونة (Blog) -->
+    <div id="page-blog" class="page-content" style="display: none;">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-translate="blog-hero-title">مدونة Ultra TV</h1>
+                <p data-translate="blog-hero-sub">تابع أحدث المقالات، الأخبار، والتحديثات التقنية حول البث الرقمي</p>
+            </div>
+        </section>
+
+        <section class="blog-section">
+            <h2 class="section-title" data-translate="blog-heading">أحدث المقالات</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="https://i.ibb.co/607SmRhc/1727300215.png" alt="بطاقات نتفليكس">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b5-date">16 أغسطس 2026</span></div>
+                        <h3 data-translate="b5-title">اشتراكات وبطاقات نتفليكس الرسمية عبر منصة Ultra TV</h3>
+                        <p data-translate="b5-desc">استمتع بمشاهدة أضخم مسلسلات وأفلام نتفليكس العالمية بأعلى دقة ووضوح مع توفر بطاقات الاشتراك الفورية والآمنة.</p>
+                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="https://i.ibb.co/TxntBQWb/shahid-vip-cards.webp" alt="بطاقات شاهد VIP">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b4-date">16 أغسطس 2026</span></div>
+                        <h3 data-translate="b4-title">تفعيل بطاقات شاهد VIP الأصلية على منصة Ultra TV</h3>
+                        <p data-translate="b4-desc">احصل على اشتراكات وبطاقات شاهد VIP الرسمية واستمتع بأضخم الإنتاجات العربية والعالمية الحصرية بأفضل الأسعار.</p>
+                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="https://i.ibb.co/Kjyn4FX4/iptv.png" alt="مقال 1">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b1-date">15 أغسطس 2026</span></div>
+                        <h3 data-translate="b1-title">كيف تشاهد قنوات 4K بث مباشر بدون تقطيع؟</h3>
+                        <p data-translate="b1-desc">تعرف على أهم النصائح والإعدادات الشبكية لضمان تجربة مشاهدة سينمائية فائقة الوضوح ومنزلية خالية من أي انقطاع.</p>
+                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="https://i.ibb.co/p649hbNd/movies-series-osnplus-help-192-1024x576.jpg" alt="مقال 3">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b3-date">01 أغسطس 2026</span></div>
+                        <h3 data-translate="b3-title">أهم الأفلام والمسلسلات الحصرية القادمة هذا الشهر</h3>
+                        <p data-translate="b3-desc">دليلك الكامل لأحدث العروض السينمائية والمسلسلات العالمية التي تم إضافتها مؤخراً لمكتبة بريميوم الخاصة بنا.</p>
+                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- صفحة الاتصال -->
     <div id="page-contact" class="page-content" style="display: none;">
         <section class="hero">
@@ -1466,18 +1561,6 @@
                     <p data-translate="c-time-sub">طيلة أيام الأسبوع</p>
                     <span style="color: #D6B45A; font-weight: 700;">08:00 AM - 10:00 PM</span>
                 </div>
-                <div class="contact-card">
-                    <i class="fa-brands fa-facebook"></i>
-                    <h3 data-translate="c-fb">فيسبوك</h3>
-                    <p data-translate="c-fb-sub">تابعنا على مواقع التواصل</p>
-                    <a href="https://facebook.com" target="_blank" data-translate="c-page">صفحتنا</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fa-brands fa-instagram"></i>
-                    <h3 data-translate="c-ig">إنستجرام</h3>
-                    <p data-translate="c-ig-sub">شاهد آخر الأخبار</p>
-                    <a href="https://instagram.com" target="_blank" data-translate="c-follow">متابعة</a>
-                </div>
             </div>
         </section>
     </div>
@@ -1491,7 +1574,7 @@
                     <li><a href="#" data-translate="f-about-1">من نحن</a></li>
                     <li><a href="#" data-translate="f-about-2">مميزاتنا</a></li>
                     <li><a href="#" data-translate="f-about-3">الأسعار</a></li>
-                    <li><a href="#" data-translate="f-about-4">المدونة</a></li>
+                    <li><a href="#" onclick="showPage('blog'); return false;" data-translate="f-about-4">المدونة</a></li>
                 </ul>
             </div>
             <div>
@@ -1525,10 +1608,12 @@
         function showPage(pageName) {
             document.getElementById('page-home').style.display = 'none';
             document.getElementById('page-packages').style.display = 'none';
+            document.getElementById('page-blog').style.display = 'none';
             document.getElementById('page-contact').style.display = 'none';
 
             document.getElementById('nav-home').classList.remove('active');
             document.getElementById('nav-packages').classList.remove('active');
+            document.getElementById('nav-blog').classList.remove('active');
             document.getElementById('nav-contact').classList.remove('active');
 
             if (pageName === 'home') {
@@ -1537,6 +1622,9 @@
             } else if (pageName === 'packages') {
                 document.getElementById('page-packages').style.display = 'block';
                 document.getElementById('nav-packages').classList.add('active');
+            } else if (pageName === 'blog') {
+                document.getElementById('page-blog').style.display = 'block';
+                document.getElementById('nav-blog').classList.add('active');
             } else if (pageName === 'contact') {
                 document.getElementById('page-contact').style.display = 'block';
                 document.getElementById('nav-contact').classList.add('active');
@@ -1643,28 +1731,26 @@
                 "page-title": "Ultra TV - أفضل تطبيق بث مباشر",
                 "nav-home": "الصفحة الرئيسية",
                 "nav-packages": "الباقات",
+                "nav-blog": "المدونة",
                 "nav-contact": "اتصل بنا",
                 "hero-title": "أفضل تطبيق بث مباشر",
                 "hero-subtitle": "شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية",
                 "features-heading": "لماذا تختار Ultra TV؟",
                 "feat1-title": "جودة عالية",
-                "feat1-desc": "بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة",
+                "feat1-desc": "بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة.",
                 "feat2-title": "قنوات عالمية",
-                "feat2-desc": "آلاف القنوات من جميع أنحاء العالم بلغات متعددة",
+                "feat2-desc": "آلاف القنوات من جميع أنحاء العالم بلغات متعددة.",
                 "feat3-title": "أمان عالي",
-                "feat3-desc": "تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة",
+                "feat3-desc": "تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة.",
                 "feat4-title": "متعدد الأجهزة",
-                "feat4-desc": "شاهد على الهاتف والتابلت والتلفاز والكمبيوتر",
+                "feat4-desc": "شاهد على الهاتف والتابلت والتلفاز والكمبيوتر.",
                 "feat5-title": "دعم فني 24/7",
-                "feat5-desc": "فريق دعم متخصص جاهز للمساعدة في أي وقت",
+                "feat5-desc": "فريق دعم متخصص جاهز للمساعدة في أي وقت.",
                 "feat6-title": "محتوى حصري",
-                "feat6-desc": "افتح الوصول إلى أفلام وحلقات حصرية وأول من يشاهد",
+                "feat6-desc": "افتح الوصول إلى أفلام وحلقات حصرية أولاً بأول.",
                 "badge-free": "مجاني",
-                "free-desc": "جميع القنوات المجانية والأساسية",
+                "free-desc": "جميع القنوات المجانية والأساسية بجودة ممتازة",
                 "free-title": "النسخة المجانية",
-                "res-label": "الدقة",
-                "ads-label": "الإعلانات",
-                "ads-yes": "نعم",
                 "download-now": "تحميل الآن",
                 "subscribe-now": "اشترك الآن",
                 "pay-by-card": "ادفع بالبطاقة",
@@ -1692,6 +1778,22 @@
                 "p3-f3": "بدون إعلانات",
                 "p3-f4": "10 أجهزة متزامنة",
                 "p3-f5": "محتوى عائلي آمن",
+                "blog-hero-title": "مدونة Ultra TV",
+                "blog-hero-sub": "تابع أحدث المقالات، الأخبار، والتحديثات التقنية حول البث الرقمي",
+                "blog-heading": "أحدث المقالات",
+                "b5-date": "16 أغسطس 2026",
+                "b5-title": "اشتراكات وبطاقات نتفليكس الرسمية عبر منصة Ultra TV",
+                "b5-desc": "استمتع بمشاهدة أضخم مسلسلات وأفلام نتفليكس العالمية بأعلى دقة ووضوح مع توفر بطاقات الاشتراك الفورية والآمنة.",
+                "b4-date": "16 أغسطس 2026",
+                "b4-title": "تفعيل بطاقات شاهد VIP الأصلية على منصة Ultra TV",
+                "b4-desc": "احصل على اشتراكات وبطاقات شاهد VIP الرسمية واستمتع بأضخم الإنتاجات العربية والعالمية الحصرية بأفضل الأسعار.",
+                "b1-date": "15 أغسطس 2026",
+                "b1-title": "كيف تشاهد قنوات 4K بث مباشر بدون تقطيع؟",
+                "b1-desc": "تعرف على أهم النصائح والإعدادات الشبكية لضمان تجربة مشاهدة سينمائية فائقة الوضوح ومنزلية خالية من أي انقطاع.",
+                "b3-date": "01 أغسطس 2026",
+                "b3-title": "أهم الأفلام والمسلسلات الحصرية القادمة هذا الشهر",
+                "b3-desc": "دليلك الكامل لأحدث العروض السينمائية والمسلسلات العالمية التي تم إضافتها مؤخراً لمكتبة بريميوم الخاصة بنا.",
+                "read-more": "اقرأ المزيد",
                 "contact-hero-title": "تواصل معنا",
                 "contact-hero-sub": "نحن هنا لمساعدتك وسماع آرائك",
                 "contact-heading": "طرق التواصل",
@@ -1704,12 +1806,6 @@
                 "c-click": "اضغط هنا",
                 "c-time": "أوقات العمل",
                 "c-time-sub": "طيلة أيام الأسبوع",
-                "c-fb": "فيسبوك",
-                "c-fb-sub": "تابعنا على مواقع التواصل",
-                "c-page": "صفحتنا",
-                "c-ig": "إنستجرام",
-                "c-ig-sub": "شاهد آخر الأخبار",
-                "c-follow": "متابعة",
                 "f-about-title": "عن Ultra TV",
                 "f-about-1": "من نحن",
                 "f-about-2": "مميزاتنا",
@@ -1739,28 +1835,26 @@
                 "page-title": "Ultra TV - Best Live Streaming App",
                 "nav-home": "Home",
                 "nav-packages": "Packages",
+                "nav-blog": "Blog",
                 "nav-contact": "Contact Us",
                 "hero-title": "Best Live Streaming App",
                 "hero-subtitle": "Watch thousands of channels, movies, and series in high quality",
                 "features-heading": "Why Choose Ultra TV?",
                 "feat1-title": "High Quality",
-                "feat1-desc": "4K streaming with modern encoding tech for the best viewing experience",
+                "feat1-desc": "4K streaming with modern encoding tech for the best viewing experience.",
                 "feat2-title": "Global Channels",
-                "feat2-desc": "Thousands of channels from all over the world in multiple languages",
+                "feat2-desc": "Thousands of channels from all over the world in multiple languages.",
                 "feat3-title": "High Security",
-                "feat3-desc": "Top-tier encryption and guaranteed privacy protection",
+                "feat3-desc": "Top-tier encryption and guaranteed privacy protection.",
                 "feat4-title": "Multi-Device",
-                "feat4-desc": "Watch on phone, tablet, TV, and computer",
+                "feat4-desc": "Watch on phone, tablet, TV, and computer.",
                 "feat5-title": "24/7 Support",
-                "feat5-desc": "Dedicated support team ready to help anytime",
+                "feat5-desc": "Dedicated support team ready to help anytime.",
                 "feat6-title": "Exclusive Content",
-                "feat6-desc": "Unlock access to exclusive movies and episodes first",
+                "feat6-desc": "Unlock access to exclusive movies and episodes first.",
                 "badge-free": "Free",
-                "free-desc": "All free and essential channels",
+                "free-desc": "All free and essential channels with excellent quality",
                 "free-title": "Free Version",
-                "res-label": "Resolution",
-                "ads-label": "Ads",
-                "ads-yes": "Yes",
                 "download-now": "Download Now",
                 "subscribe-now": "Subscribe Now",
                 "pay-by-card": "Pay by Card",
@@ -1788,6 +1882,22 @@
                 "p3-f3": "No ads",
                 "p3-f4": "10 simultaneous devices",
                 "p3-f5": "Safe family content",
+                "blog-hero-title": "Ultra TV Blog",
+                "blog-hero-sub": "Follow the latest articles, news, and technical updates about digital streaming",
+                "blog-heading": "Latest Articles",
+                "b5-date": "August 16, 2026",
+                "b5-title": "Official Netflix subscriptions and cards via Ultra TV",
+                "b5-desc": "Enjoy watching massive global Netflix series and movies in high definition with instant and secure subscription cards.",
+                "b4-date": "August 16, 2026",
+                "b4-title": "Activating original Shahid VIP cards on Ultra TV",
+                "b4-desc": "Get official Shahid VIP subscriptions and enjoy massive exclusive Arab and global productions at the best prices.",
+                "b1-date": "August 15, 2026",
+                "b1-title": "How to watch 4K live channels smoothly without lagging?",
+                "b1-desc": "Learn key network tips and settings to ensure a crystal-clear cinematic viewing experience at home.",
+                "b3-date": "August 1, 2026",
+                "b3-title": "Top upcoming exclusive movies and series this month",
+                "b3-desc": "Your complete guide to the latest cinematic releases and global series recently added to our premium library.",
+                "read-more": "Read More",
                 "contact-hero-title": "Contact Us",
                 "contact-hero-sub": "We are here to help and hear your feedback",
                 "contact-heading": "Contact Methods",
@@ -1800,12 +1910,6 @@
                 "c-click": "Click Here",
                 "c-time": "Working Hours",
                 "c-time-sub": "All days of the week",
-                "c-fb": "Facebook",
-                "c-fb-sub": "Follow us on social media",
-                "c-page": "Our Page",
-                "c-ig": "Instagram",
-                "c-ig-sub": "See latest news",
-                "c-follow": "Follow",
                 "f-about-title": "About Ultra TV",
                 "f-about-1": "About Us",
                 "f-about-2": "Features",
