@@ -61,7 +61,7 @@
         }
 
         .navbar .logo img {
-            height: 50px;
+            height: 75px; /* تم تكبير حجم اللوغو هنا */
             vertical-align: middle;
             image-rendering: -webkit-optimize-contrast;
         }
@@ -759,7 +759,7 @@
         }
 
         /* ============================================================
-           الباقات (تم تصغير الحجم وجعله أرتب وأكثر تناسقاً)
+           الباقات
            ============================================================ */
         .packages-grid {
             display: grid;
@@ -993,7 +993,6 @@
             color: #fff;
         }
 
-        /* تنسيق صندوق طلب اشتراك IPTV التجريبي (تم تعديله ليناسب الهوية الداكنة والذهبية) */
         .iptv-trial-banner {
             background: linear-gradient(135deg, rgba(32, 37, 45, 0.9), rgba(25, 30, 38, 0.9));
             color: #FAF8F2;
@@ -1179,7 +1178,6 @@
             font-size: 12px;
         }
 
-        /* عنصر التنبيهات */
         #toast-notification {
             position: fixed;
             bottom: 30px;
@@ -1199,9 +1197,6 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* ============================================================
-           الجوال
-           ============================================================ */
         @media (max-width: 992px) {
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1325,19 +1320,19 @@
             <div class="share-container">
                 <i class="fa-solid fa-share-nodes" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
                 <div id="shareMenu" class="share-menu">
-                    <div class="share-menu-header">مشاركة عبر</div>
+                    <div class="share-menu-header" data-translate="share-header">مشاركة عبر</div>
                     <div class="share-options-list">
                         <a href="#" id="shareWhatsapp" target="_blank" class="share-item">
-                            <i class="fab fa-whatsapp" style="color: #25D366;"></i> واتساب
+                            <i class="fab fa-whatsapp" style="color: #25D366;"></i> <span data-translate="share-wa">واتساب</span>
                         </a>
                         <a href="#" id="shareFacebook" target="_blank" class="share-item">
-                            <i class="fab fa-facebook-f" style="color: #1877F2;"></i> فيسبوك
+                            <i class="fab fa-facebook-f" style="color: #1877F2;"></i> <span data-translate="share-fb">فيسبوك</span>
                         </a>
                         <a href="#" id="shareTwitter" target="_blank" class="share-item">
-                            <i class="fab fa-twitter" style="color: #1DA1F2;"></i> تويتر
+                            <i class="fab fa-twitter" style="color: #1DA1F2;"></i> <span data-translate="share-tw">تويتر</span>
                         </a>
                         <button onclick="copyWebsiteLink()" class="share-item">
-                            <i class="fas fa-link" style="color: #D6B45A;"></i> نسخ الرابط
+                            <i class="fas fa-link" style="color: #D6B45A;"></i> <span data-translate="share-copy">نسخ الرابط</span>
                         </button>
                     </div>
                 </div>
@@ -1349,7 +1344,7 @@
                 <div id="userDropdownMenu" class="user-dropdown-menu">
                     <div class="user-email-display" id="userEmailDisplay">user@email.com</div>
                     <button class="logout-btn" onclick="performLogout()">
-                        <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
+                        <i class="fa-solid fa-right-from-bracket"></i> <span data-translate="logout-btn">تسجيل الخروج</span>
                     </button>
                 </div>
             </div>
@@ -1602,15 +1597,14 @@
                 </div>
             </div>
 
-            <!-- صندوق طلب اشتراك iptv تجريبي 24 ساعة (بشكل متناسق مع التصميم الداكن) -->
             <div class="iptv-trial-banner">
                 <div class="iptv-trial-icon">
                     <i class="fa-solid fa-clock"></i>
                 </div>
-                <h2>يمكنكم التواصل معنا للحصول على اشتراك Ultra TV تجريبي 24 ساعة</h2>
-                <p>من خلال الزر التالي يمكنكم التواصل معنا مباشرة عبر واتس اب لطلب تجربة اشتراك  ultra TV مجانية 24 ساعة، وبالتالي يمكنكم إختبار الخدمة على شبكة الإنترنت لديكم</p>
+                <h2 data-translate="trial-banner-title">يمكنكم التواصل معنا للحصول على اشتراك Ultra TV تجريبي 24 ساعة</h2>
+                <p data-translate="trial-banner-desc">من خلال الزر التالي يمكنكم التواصل معنا مباشرة عبر واتس اب لطلب تجربة اشتراك ultra TV مجانية 24 ساعة، وبالتالي يمكنكم إختبار الخدمة على شبكة الإنترنت لديكم</p>
                 <a href="https://wa.me/963933940387?text=مرحباً، أرغب بطلب تجربة اشتراك IPTV مجانية لمدة 24 ساعة" target="_blank" class="iptv-trial-btn">
-                    <i class="fab fa-whatsapp" style="font-size: 18px;"></i> تواصل معنا
+                    <i class="fab fa-whatsapp" style="font-size: 18px;"></i> <span data-translate="trial-btn-text">تواصل معنا</span>
                 </a>
             </div>
         </section>
@@ -1824,6 +1818,12 @@
                 "nav-packages": "الباقات",
                 "nav-blog": "المدونة",
                 "nav-contact": "اتصل بنا",
+                "share-header": "مشاركة عبر",
+                "share-wa": "واتساب",
+                "share-fb": "فيسبوك",
+                "share-tw": "تويتر",
+                "share-copy": "نسخ الرابط",
+                "logout-btn": "تسجيل الخروج",
                 "hero-title": "أفضل تطبيق بث مباشر",
                 "hero-subtitle": "شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية",
                 "features-heading": "لماذا تختار Ultra TV؟",
@@ -1885,6 +1885,9 @@
                 "b3-title": "أهم الأفلام والمسلسلات الحصرية القادمة هذا الشهر",
                 "b3-desc": "دليلك الكامل لأحدث العروض السينمائية والمسلسلات العالمية التي تم إضافتها مؤخراً لمكتبة بريميوم الخاصة بنا.",
                 "read-more": "اقرأ المزيد",
+                "trial-banner-title": "يمكنكم التواصل معنا للحصول على اشتراك Ultra TV تجريبي 24 ساعة",
+                "trial-banner-desc": "من خلال الزر التالي يمكنكم التواصل معنا مباشرة عبر واتس اب لطلب تجربة اشتراك ultra TV مجانية 24 ساعة، وبالتالي يمكنكم إختبار الخدمة على شبكة الإنترنت لديكم",
+                "trial-btn-text": "تواصل معنا",
                 "contact-hero-title": "تواصل معنا",
                 "contact-hero-sub": "نحن هنا لمساعدتك وسماع آرائك",
                 "contact-heading": "طرق التواصل",
@@ -1928,6 +1931,12 @@
                 "nav-packages": "Packages",
                 "nav-blog": "Blog",
                 "nav-contact": "Contact Us",
+                "share-header": "Share via",
+                "share-wa": "WhatsApp",
+                "share-fb": "Facebook",
+                "share-tw": "Twitter",
+                "share-copy": "Copy Link",
+                "logout-btn": "Log Out",
                 "hero-title": "Best Live Streaming App",
                 "hero-subtitle": "Watch thousands of channels, movies, and series in high quality",
                 "features-heading": "Why Choose Ultra TV?",
@@ -1989,6 +1998,9 @@
                 "b3-title": "Top upcoming exclusive movies and series this month",
                 "b3-desc": "Your complete guide to the latest cinematic releases and global series recently added to our premium library.",
                 "read-more": "Read More",
+                "trial-banner-title": "Contact us to get a 24-hour Ultra TV trial subscription",
+                "trial-banner-desc": "Through the following button, you can contact us directly via WhatsApp to request a free 24-hour Ultra TV subscription trial, allowing you to test the service on your internet network",
+                "trial-btn-text": "Contact Us",
                 "contact-hero-title": "Contact Us",
                 "contact-hero-sub": "We are here to help and hear your feedback",
                 "contact-heading": "Contact Methods",
