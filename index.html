@@ -1227,7 +1227,7 @@
             }
         }
 
-        /* تعديلات الموبايل والـ Sidebar الجانبي */
+        /* تعديلات الموبايل والـ Sidebar الجانبي المحدثة */
         @media (max-width: 768px) {
             .navbar {
                 padding: 12px 20px;
@@ -1237,7 +1237,7 @@
                 display: block;
             }
 
-            /* تحويل النافبار لتعمل كقائمة جانبية من اليمين (أو اليسار حسب الـ dir) */
+            /* افتراضياً بالوضع العربي (RTL) تختفي القائمة إلى اليمين ويتم سحبها لليسار عند الفتح */
             .navbar nav {
                 position: fixed;
                 top: 0;
@@ -1254,7 +1254,11 @@
                 transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
-            /* في حالة اللغة الإنجليزية (LTL) تتحرك القائمة من اليسار */
+            .navbar nav.mobile-open {
+                right: 0;
+            }
+
+            /* في حالة اللغة الإنجليزية (LTR) تختفي القائمة إلى اليسار وتخرج لليمين عند الفتح */
             html[dir="ltr"] .navbar nav {
                 right: auto;
                 left: -280px;
@@ -1264,10 +1268,7 @@
 
             html[dir="ltr"] .navbar nav.mobile-open {
                 left: 0;
-            }
-
-            .navbar nav.mobile-open {
-                right: 0;
+                right: auto;
             }
 
             .navbar nav ul {
@@ -1288,7 +1289,7 @@
             }
 
             .navbar nav ul li a::after {
-                display: none; /* إخفاء الخط السفلي المائل للقائمة العادية وتفعيل لون التنشيط مباشرة */
+                display: none; 
             }
 
             .navbar nav ul li a.active {
