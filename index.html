@@ -1235,6 +1235,7 @@
 
             .menu-toggle-btn {
                 display: block;
+                z-index: 2500;
             }
 
             /* افتراضياً بالوضع العربي (RTL) تختفي القائمة إلى اليمين ويتم سحبها لليسار عند الفتح */
@@ -1252,6 +1253,8 @@
                 justify-content: flex-start;
                 padding-top: 60px;
                 transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
             }
 
             .navbar nav.mobile-open {
