@@ -61,7 +61,7 @@
         }
 
         .navbar .logo img {
-            height: 95px; /* تم تكبير حجم اللوغو أكثر بناءً على طلبك */
+            height: 95px;
             vertical-align: middle;
             image-rendering: -webkit-optimize-contrast;
         }
@@ -151,6 +151,30 @@
         .navbar-icons i:hover {
             color: #D6B45A;
             background: rgba(214, 180, 90, 0.1);
+        }
+
+        /* زر القائمة الجانبية للهواتف (مخفي افتراضياً على اللابتوب) */
+        .menu-toggle-btn {
+            display: none;
+            font-size: 22px;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+
+        /* طباعة التعتيم الخلفي للقائمة الجانبية على الهواتف */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
         }
 
         /* تنسيق حاوية زر وقائمة المشاركة */
@@ -1203,14 +1227,79 @@
             }
         }
 
+        /* تعديلات الموبايل والـ Sidebar الجانبي */
         @media (max-width: 768px) {
             .navbar {
                 padding: 12px 20px;
             }
 
+            .menu-toggle-btn {
+                display: block;
+            }
+
+            /* تحويل النافبار لتعمل كقائمة جانبية من اليمين (أو اليسار حسب الـ dir) */
+            .navbar nav {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 280px;
+                height: 100vh;
+                background: #171A20;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.8);
+                z-index: 2000;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 60px;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            /* في حالة اللغة الإنجليزية (LTL) تتحرك القائمة من اليسار */
+            html[dir="ltr"] .navbar nav {
+                right: auto;
+                left: -280px;
+                box-shadow: 5px 0 25px rgba(0,0,0,0.8);
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            html[dir="ltr"] .navbar nav.mobile-open {
+                left: 0;
+            }
+
+            .navbar nav.mobile-open {
+                right: 0;
+            }
+
+            .navbar nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+            }
+
+            .navbar nav ul li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
             .navbar nav ul li a {
-                padding: 10px 16px;
-                font-size: 13px;
+                padding: 16px 24px;
+                font-size: 16px;
+                width: 100%;
+            }
+
+            .navbar nav ul li a::after {
+                display: none; /* إخفاء الخط السفلي المائل للقائمة العادية وتفعيل لون التنشيط مباشرة */
+            }
+
+            .navbar nav ul li a.active {
+                background: rgba(214, 180, 90, 0.1);
+                color: #F2D47A;
+                border-right: 4px solid #D6B45A;
+            }
+
+            html[dir="ltr"] .navbar nav ul li a.active {
+                border-right: none;
+                border-left: 4px solid #D6B45A;
             }
 
             .hero {
@@ -1261,25 +1350,7 @@
 
         @media (max-width: 480px) {
             .navbar {
-                flex-wrap: wrap;
                 padding: 10px 15px;
-            }
-
-            .navbar nav {
-                order: 3;
-                width: 100%;
-                margin-top: 10px;
-            }
-
-            .navbar nav ul {
-                flex-wrap: wrap;
-                gap: 5px;
-                justify-content: center;
-            }
-
-            .navbar nav ul li a {
-                padding: 8px 10px;
-                font-size: 12px;
             }
 
             .hero-content h1 {
@@ -1298,14 +1369,21 @@
     </style>
 </head>
 <body>
+    <!-- طبقة التعتيم الخلفية للقائمة الجانبية -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+
     <!-- النافيجيشن -->
     <header class="navbar">
+        <button class="menu-toggle-btn" id="menuToggleBtn" onclick="toggleMobileMenu()" title="القائمة">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
         <div class="logo">
             <a href="#" onclick="showPage('home'); return false;" style="color: #D6B45A; text-decoration: none; display: flex; align-items: center; gap: 8px;">
                 <img src="https://i.ibb.co/KpCMDjsr/Chat-GPT-Image-Aug-12-2026-04-33-08-PM.png" alt="Ultra TV">
             </a>
         </div>
-        <nav>
+        <nav id="navbarMenu">
             <ul>
                 <li><a href="#" onclick="showPage('home'); return false;" class="active" id="nav-home" data-translate="nav-home">الصفحة الرئيسية</a></li>
                 <li><a href="#" onclick="showPage('packages'); return false;" id="nav-packages" data-translate="nav-packages">الباقات</a></li>
@@ -1715,7 +1793,30 @@
                 document.getElementById('nav-contact').classList.add('active');
             }
 
+            // إغلاق القائمة الجانبية تلقائياً عند الضغط على أي صفحة في الموبايل
+            closeMobileMenu();
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // دالة التحكم بفتح وإغلاق القائمة الجانبية للموبايل
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navbarMenu');
+            const overlay = document.getElementById('mobileOverlay');
+            if (navMenu.classList.contains('mobile-open')) {
+                navMenu.classList.remove('mobile-open');
+                overlay.style.display = 'none';
+            } else {
+                navMenu.classList.add('mobile-open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navbarMenu');
+            const overlay = document.getElementById('mobileOverlay');
+            if (navMenu) navMenu.classList.remove('mobile-open');
+            if (overlay) overlay.style.display = 'none';
         }
 
         function showToast(message) {
