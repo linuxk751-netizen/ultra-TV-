@@ -33,23 +33,23 @@
         }
 
         /* ============================================================
-           النافيجيشن (شريط التنقل الشفاف)
+           النافيجيشن (شريط التنقل الشفاف تماماً)
            ============================================================ */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
+            background: transparent !important;
             position: sticky;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             padding: 15px 50px;
-            border-bottom: none;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            box-shadow: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .navbar .logo {
@@ -153,7 +153,6 @@
             background: rgba(214, 180, 90, 0.1);
         }
 
-        /* زر القائمة الجانبية للهواتف (مخفي افتراضياً على اللابتوب) */
         .menu-toggle-btn {
             display: none;
             font-size: 22px;
@@ -164,7 +163,6 @@
             padding: 8px;
         }
 
-        /* طباعة التعتيم الخلفي للقائمة الجانبية على الهواتف */
         .mobile-overlay {
             display: none;
             position: fixed;
@@ -177,7 +175,6 @@
             z-index: 1500;
         }
 
-        /* تنسيق حاوية زر وقائمة المشاركة */
         .share-container {
             position: relative;
             display: inline-block;
@@ -236,7 +233,6 @@
             color: #000;
         }
 
-        /* تنسيق قائمة الحساب وتسجيل الخروج */
         .user-menu-container {
             position: relative;
             display: inline-block;
@@ -504,16 +500,13 @@
         }
 
         /* ============================================================
-           القسم الرئيسي (Hero) - تم ضبط الشفافية هنا
+           القسم الرئيسي (Hero) مع خلفية الصور المتغيرة وتأثير الزوم المستمر
            ============================================================ */
         .page-content {
             flex: 1;
         }
 
         .hero {
-            background: linear-gradient(135deg, rgba(10, 25, 35, 0.2), rgba(20, 30, 45, 0.2)), 
-                        url('https://i.ibb.co/p649hbNd/movies-series-osnplus-help-192-1024x576.jpg') 
-                        no-repeat center center/cover;
             height: 500px;
             display: flex;
             justify-content: center;
@@ -525,6 +518,30 @@
             image-rendering: high-quality;
         }
 
+        .hero-bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1);
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .hero-bg-slide.active {
+            opacity: 1;
+            animation: zoomEffect 6s linear infinite;
+        }
+
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -532,25 +549,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(23, 26, 32, 0.15) 0%, rgba(23, 26, 32, 0.5) 100%);
+            background: linear-gradient(180deg, rgba(23, 26, 32, 0.1) 0%, rgba(23, 26, 32, 0.35) 100%);
+            z-index: 2;
             pointer-events: none;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-content h1 {
@@ -564,7 +576,7 @@
 
         .hero-content p {
             font-size: 18px;
-            color: #d0d0d0;
+            color: #e0e0e0;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
             margin-bottom: 20px;
         }
@@ -750,36 +762,73 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             background: linear-gradient(135deg, #F2D47A 0%, #D6B45A 50%, #B58F3B 100%);
             color: #161710;
             text-decoration: none;
-            padding: 12px 20px;
-            font-size: 14px;
+            padding: 14px 24px;
+            font-size: 15px;
             font-weight: 900;
             font-family: 'Cairo', sans-serif;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 235, 170, 0.7);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 235, 170, 0.8);
             width: 100%;
             cursor: pointer;
             overflow: hidden;
-            transition: all 0.22s ease;
-            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 25px rgba(214, 180, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn .btn-text {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover .btn-text {
+            opacity: 0;
+            transform: translateY(10px);
+            width: 0;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .download-btn .download-icon {
+            opacity: 0;
+            transform: translateY(-15px);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-block;
+        }
+
+        .download-btn:hover .download-icon {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .download-btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.1);
-            box-shadow: 0 14px 32px rgba(214, 180, 90, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transform: translateY(-5px) scale(1.02);
+            filter: brightness(1.12);
+            box-shadow: 0 18px 38px rgba(214, 180, 90, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border-color: #ffffff;
         }
 
         .download-btn:active {
             transform: translateY(-1px) scale(0.98);
-        }
-
-        .download-btn i {
-            font-size: 14px;
         }
 
         /* ============================================================
@@ -888,26 +937,36 @@
             font-size: 12px;
         }
 
-        .card-pay-btn {
+        .package-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .card-pay-btn, .card-subscribe-btn {
+            flex: 1;
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #2A313C 0%, #1F242D 100%);
-            color: #F2D47A;
+            text-align: center;
+            gap: 6px;
             text-decoration: none;
-            padding: 10px 18px;
+            padding: 11px 10px;
             font-size: 13px;
             font-weight: 800;
             font-family: 'Cairo', sans-serif;
             border-radius: 12px;
-            border: 1px solid rgba(214, 180, 90, 0.4);
-            width: 100%;
             cursor: pointer;
-            margin-bottom: 10px;
             transition: all 0.22s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+        }
+
+        .card-pay-btn {
+            background: linear-gradient(135deg, #2A313C 0%, #1F242D 100%);
+            color: #F2D47A;
+            border: 1px solid rgba(214, 180, 90, 0.4);
         }
 
         .card-pay-btn:hover {
@@ -916,6 +975,18 @@
             border-color: rgba(214, 180, 90, 0.8);
             color: #FAF8F2;
             box-shadow: 0 8px 20px rgba(214, 180, 90, 0.2);
+        }
+
+        .card-subscribe-btn {
+            background: linear-gradient(135deg, #F2D47A 0%, #D6B45A 50%, #B58F3B 100%);
+            color: #161710;
+            border: 1px solid rgba(255, 235, 170, 0.8);
+        }
+
+        .card-subscribe-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 8px 20px rgba(214, 180, 90, 0.3);
         }
 
         /* ============================================================
@@ -1227,10 +1298,10 @@
             }
         }
 
-        /* تعديلات الموبايل والـ Sidebar الجانبي المحدثة */
         @media (max-width: 768px) {
             .navbar {
                 padding: 12px 20px;
+                background: transparent !important;
             }
 
             .menu-toggle-btn {
@@ -1238,7 +1309,6 @@
                 z-index: 2500;
             }
 
-            /* افتراضياً بالوضع العربي (RTL) تختفي القائمة إلى اليمين ويتم سحبها لليسار عند الفتح */
             .navbar nav {
                 position: fixed;
                 top: 0;
@@ -1261,7 +1331,6 @@
                 right: 0;
             }
 
-            /* في حالة اللغة الإنجليزية (LTR) تختفي القائمة إلى اليسار وتخرج لليمين عند الفتح */
             html[dir="ltr"] .navbar nav {
                 right: auto;
                 left: -280px;
@@ -1365,18 +1434,16 @@
                 font-size: 14px;
             }
 
-            .download-btn, .card-pay-btn, .iptv-trial-btn {
-                padding: 10px 16px;
-                font-size: 13px;
+            .download-btn, .card-pay-btn, .card-subscribe-btn, .iptv-trial-btn {
+                padding: 10px 12px;
+                font-size: 12px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- طبقة التعتيم الخلفية للقائمة الجانبية -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
 
-    <!-- النافيجيشن -->
     <header class="navbar">
         <button class="menu-toggle-btn" id="menuToggleBtn" onclick="toggleMobileMenu()" title="القائمة">
             <i class="fa-solid fa-bars"></i>
@@ -1398,7 +1465,6 @@
         <div class="navbar-icons">
             <i class="fa-solid fa-globe" title="تغيير اللغة" onclick="toggleLanguage()"></i>
             
-            <!-- زر وقائمة المشاركة -->
             <div class="share-container">
                 <i class="fa-solid fa-share-nodes" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
                 <div id="shareMenu" class="share-menu">
@@ -1420,7 +1486,6 @@
                 </div>
             </div>
 
-            <!-- حاوية الحساب وقائمة تسجيل الخروج -->
             <div class="user-menu-container" id="userMenuContainer">
                 <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick()"></i>
                 <div id="userDropdownMenu" class="user-dropdown-menu">
@@ -1433,7 +1498,6 @@
         </div>
     </header>
 
-    <!-- نافذة تسجيل الدخول المنبثقة -->
     <div id="authModal" class="auth-modal-overlay">
         <div class="auth-modal-container">
             <button class="auth-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1477,7 +1541,11 @@
 
     <!-- الصفحة الرئيسية -->
     <div id="page-home" class="page-content">
-        <section class="hero">
+        <section class="hero" id="heroSlider">
+            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/HLLYSgRJ/Whats-App-Image-2026-08-25-at-2-44-00-PM.jpg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('https://i.ibb.co/zyC2Gr6/Whats-App-Image-2026-08-25-at-2-42-27-PM.jpg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('https://i.ibb.co/ZpHrszYF/Whats-App-Image-2026-08-25-at-2-42-45-PM.jpg');"></div>
+            
             <div class="hero-content">
                 <h1 data-translate="hero-title">أفضل تطبيق بث مباشر</h1>
                 <p data-translate="hero-subtitle">شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية</p>
@@ -1530,9 +1598,10 @@
                     <h2 data-translate="free-title">النسخة المجانية</h2>
                     <p class="card-desc" data-translate="free-desc">جميع القنوات المجانية والأساسية بجودة ممتازة</p>
                     <div style="margin-top: 20px;">
-                        <a href="https://www.example.com/download" class="download-btn">
-                            <i class="fa-solid fa-download"></i> <span data-translate="download-now">تحميل الآن</span>
-                        </a>
+                        <button id="downloadBtn" class="download-btn" onclick="startDownloadCountdown(this, 'https://www.example.com/download')">
+                            <span class="btn-text" data-translate="download-now-btn">تحميل</span>
+                            <i class="fa-solid fa-arrow-down download-icon"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1542,6 +1611,7 @@
     <!-- صفحة الباقات -->
     <div id="page-packages" class="page-content" style="display: none;">
         <section class="hero">
+            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/HLLYSgRJ/Whats-App-Image-2026-08-25-at-2-44-00-PM.jpg');"></div>
             <div class="hero-content">
                 <h1 data-translate="pkg-hero-title">اختر الباقة المناسبة لك</h1>
                 <p data-translate="pkg-hero-sub">خطط مختلفة لتناسب احتياجات الجميع</p>
@@ -1561,12 +1631,14 @@
                         <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f3">إعلانات محدودة</span></li>
                         <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f4">2 جهاز متزامن</span></li>
                     </ul>
-                    <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
-                        <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
-                    </button>
-                    <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة المميزة (الشهرية)" target="_blank" class="download-btn">
-                        <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
-                    </a>
+                    <div class="package-actions">
+                        <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                            <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
+                        </button>
+                        <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة المميزة (الشهرية)" target="_blank" class="card-subscribe-btn">
+                            <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="package-card featured">
@@ -1580,12 +1652,14 @@
                         <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f4">5 أجهزة متزامنة</span></li>
                         <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f5">محتوى حصري</span></li>
                     </ul>
-                    <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
-                        <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
-                    </button>
-                    <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة البريميوم (السنوية)" target="_blank" class="download-btn">
-                        <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
-                    </a>
+                    <div class="package-actions">
+                        <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                            <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
+                        </button>
+                        <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة البريميوم (السنوية)" target="_blank" class="card-subscribe-btn">
+                            <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="package-card">
@@ -1599,20 +1673,23 @@
                         <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f4">10 أجهزة متزامنة</span></li>
                         <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f5">محتوى عائلي آمن</span></li>
                     </ul>
-                    <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
-                        <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
-                    </button>
-                    <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة العائلية (3 أشهر)" target="_blank" class="download-btn">
-                        <i class="fa-solid fa-users"></i> <span data-translate="subscribe-now">اشترك الآن</span>
-                    </a>
+                    <div class="package-actions">
+                        <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                            <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
+                        </button>
+                        <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة العائلية (3 أشهر)" target="_blank" class="card-subscribe-btn">
+                            <i class="fa-solid fa-users"></i> <span data-translate="subscribe-now">اشترك الآن</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- صفحة المدونة (Blog) -->
+    <!-- صفحة المدونة -->
     <div id="page-blog" class="page-content" style="display: none;">
         <section class="hero">
+            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/zyC2Gr6/Whats-App-Image-2026-08-25-at-2-42-27-PM.jpg');"></div>
             <div class="hero-content">
                 <h1 data-translate="blog-hero-title">مدونة Ultra TV</h1>
                 <p data-translate="blog-hero-sub">تابع أحدث المقالات، الأخبار، والتحديثات التقنية حول البث الرقمي</p>
@@ -1695,6 +1772,7 @@
     <!-- صفحة الاتصال -->
     <div id="page-contact" class="page-content" style="display: none;">
         <section class="hero">
+            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/ZpHrszYF/Whats-App-Image-2026-08-25-at-2-42-45-PM.jpg');"></div>
             <div class="hero-content">
                 <h1 data-translate="contact-hero-title">تواصل معنا</h1>
                 <p data-translate="contact-hero-sub">نحن هنا لمساعدتك وسماع آرائك</p>
@@ -1732,7 +1810,6 @@
         </section>
     </div>
 
-    <!-- الفوتر -->
     <footer>
         <div class="footer-content">
             <div>
@@ -1768,10 +1845,21 @@
         </div>
     </footer>
 
-    <!-- عنصر التنبيهات -->
     <div id="toast-notification"></div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slides = document.querySelectorAll('#heroSlider .hero-bg-slide');
+            if(slides.length > 0) {
+                let currentSlide = 0;
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 5000);
+            }
+        });
+
         function showPage(pageName) {
             document.getElementById('page-home').style.display = 'none';
             document.getElementById('page-packages').style.display = 'none';
@@ -1797,13 +1885,10 @@
                 document.getElementById('nav-contact').classList.add('active');
             }
 
-            // إغلاق القائمة الجانبية تلقائياً عند الضغط على أي صفحة في الموبايل
             closeMobileMenu();
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // دالة التحكم بفتح وإغلاق القائمة الجانبية للموبايل
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navbarMenu');
             const overlay = document.getElementById('mobileOverlay');
@@ -1830,6 +1915,33 @@
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
+        }
+
+        function startDownloadCountdown(btn, downloadUrl) {
+            if (btn.classList.contains('counting')) return;
+            btn.classList.add('counting');
+            btn.style.pointerEvents = 'none';
+
+            let count = 1;
+            const timer = setInterval(() => {
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin" style="margin-left: 8px;"></i> <span style="font-family:'Cairo', sans-serif; font-weight:900;">${count}%</span>`;
+                count++;
+                if (count > 100) {
+                    clearInterval(timer);
+                    btn.innerHTML = `<i class="fa-solid fa-check" style="margin-left: 8px;"></i> <span style="font-family:'Cairo', sans-serif; font-weight:900;">${currentLang === 'ar' ? 'تم التحميل بنجاح' : 'Downloaded Successfully'}</span>`;
+                    showToast(currentLang === 'ar' ? 'تم تجهيز ملف التحميل بنجاح!' : 'Download file ready successfully!');
+                    
+                    setTimeout(() => {
+                        window.open(downloadUrl, '_blank');
+                        btn.classList.remove('counting');
+                        btn.style.pointerEvents = 'auto';
+                        btn.innerHTML = `
+                            <span class="btn-text" data-translate="download-now-btn">${currentLang === 'ar' ? 'تحميل' : 'Download'}</span>
+                            <i class="fa-solid fa-arrow-down download-icon"></i>
+                        `;
+                    }, 1500);
+                }
+            }, 20);
         }
 
         function openAuthModal() {
@@ -1947,7 +2059,7 @@
                 "badge-free": "مجاني",
                 "free-desc": "جميع القنوات المجانية والأساسية بجودة ممتازة",
                 "free-title": "النسخة المجانية",
-                "download-now": "تحميل الآن",
+                "download-now-btn": "تحميل",
                 "subscribe-now": "اشترك الآن",
                 "pay-by-card": "ادفع بالبطاقة",
                 "pkg-hero-title": "اختر الباقة المناسبة لك",
@@ -2060,7 +2172,7 @@
                 "badge-free": "Free",
                 "free-desc": "All free and essential channels with excellent quality",
                 "free-title": "Free Version",
-                "download-now": "Download Now",
+                "download-now-btn": "Download",
                 "subscribe-now": "Subscribe Now",
                 "pay-by-card": "Pay by Card",
                 "pkg-hero-title": "Choose Your Plan",
@@ -2179,7 +2291,6 @@
         }
     </script>
 
-    <!-- تهيئة وتفعيل Firebase وتسجيل الدخول عبر جوجل -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
