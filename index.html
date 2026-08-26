@@ -32,9 +32,27 @@
             min-height: 100vh;
         }
 
-        /* ============================================================
-           النافيجيشن (شريط التنقل الشفاف تماماً)
-           ============================================================ */
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        .blog-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* شريط التنقل الشفاف */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -49,7 +67,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: none;
         }
 
         .navbar .logo {
@@ -58,10 +76,15 @@
             color: #D6B45A;
             letter-spacing: 1px;
             flex: 1;
+            display: flex;
+            align-items: center;
         }
 
         .navbar .logo img {
-            height: 95px;
+            height: 75px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
             vertical-align: middle;
             image-rendering: -webkit-optimize-contrast;
         }
@@ -153,6 +176,31 @@
             background: rgba(214, 180, 90, 0.1);
         }
 
+        /* زر المشاركة - دائرة داكنة بسيطة مع حلقة ذهبية رفيعة */
+        .navbar-icons i.icon-glass-btn {
+            width: 44px;
+            height: 44px;
+            padding: 0 !important;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #F5F5F2;
+            background: #14171D;
+            border: 1.5px solid #D6B45A;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-icons i.icon-glass-btn:hover {
+            color: #171A20;
+            background: #D6B45A;
+            border-color: #F2D47A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(214, 180, 90, 0.35);
+        }
+
         .menu-toggle-btn {
             display: none;
             font-size: 22px;
@@ -175,63 +223,86 @@
             z-index: 1500;
         }
 
+        /* القوائم المنسدلة والمشاركة - أيقونات تتفتح حول الزر الرئيسي */
         .share-container {
             position: relative;
             display: inline-block;
         }
 
         .share-menu {
-            display: none;
+            display: block;
             position: absolute;
-            top: 120%;
+            top: 0;
             left: 0;
-            background: #111;
-            border: 1px solid #D6B45A;
-            border-radius: 8px;
-            width: 190px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            width: 0;
+            height: 0;
             z-index: 1000;
-            padding: 10px;
-            text-align: right;
-        }
-
-        .share-menu-header {
-            color: #D6B45A;
-            font-size: 13px;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 4px;
-            text-align: center;
-            font-weight: 700;
+            pointer-events: none;
         }
 
         .share-options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            position: static;
         }
 
         .share-item {
-            background: #1a1a1a;
-            color: #fff;
-            padding: 7px 10px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 13px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: background 0.2s, color 0.2s;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 17px;
+            text-decoration: none;
             border: none;
             cursor: pointer;
-            width: 100%;
-            text-align: right;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translate(0, 0) scale(0.3);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .share-menu.show .share-item {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(var(--tx), var(--ty)) scale(1);
+        }
+
+        #copyLinkBtn { --tx: -72px; --ty: 42px; transition-delay: 0s; }
+        #shareFacebook { --tx: -34px; --ty: 88px; transition-delay: 0.05s; }
+        #shareTwitter { --tx: 34px; --ty: 88px; transition-delay: 0.1s; }
+        #shareWhatsapp { --tx: 72px; --ty: 42px; transition-delay: 0.15s; }
+
+        .share-item span {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         .share-item:hover {
-            background: #D6B45A;
-            color: #000;
+            filter: brightness(1.08) saturate(1.15);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.4);
         }
+
+        .share-menu.show .share-item:hover {
+            transform: translate(var(--tx), var(--ty)) scale(1.12);
+        }
+
+        #shareWhatsapp { background: #22C35E; }
+        #shareFacebook { background: #1877F2; }
+        #shareTwitter { background: #2AA8F2; }
+        #copyLinkBtn { background: #E0B84E; }
+        #copyLinkBtn #copyIcon { color: #171A20 !important; font-size: 16px !important; }
 
         .user-menu-container {
             position: relative;
@@ -285,9 +356,7 @@
             color: #fff;
         }
 
-        /* ============================================================
-           نافذة تسجيل الدخول المنبثقة (Modal)
-           ============================================================ */
+        /* نافذة تسجيل الدخول */
         .auth-modal-overlay {
             display: none;
             position: fixed;
@@ -499,15 +568,13 @@
             border-color: #CBD5E1;
         }
 
-        /* ============================================================
-           القسم الرئيسي (Hero) مع خلفية أكبر وأدق وتأثير الزوم المستمر
-           ============================================================ */
+        /* القسم الرئيسي Hero */
         .page-content {
             flex: 1;
         }
 
         .hero {
-            height: 620px; /* تم زيادة الارتفاع لتظهر الخلفية بشكل أكبر وأوضح */
+            height: 620px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -526,7 +593,7 @@
             height: 100%;
             background-size: cover;
             background-position: center center;
-            filter: contrast(1.05) saturate(1.1); /* تحسين دقة ووضوح الألوان */
+            filter: contrast(1.05) saturate(1.1);
             opacity: 0;
             transform: scale(1);
             transition: opacity 1.5s ease-in-out;
@@ -583,12 +650,20 @@
             margin-bottom: 20px;
         }
 
-        /* ============================================================
-           قسم الميزات
-           ============================================================ */
+        /* قسم الميزات */
         .features-section {
             background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
             padding: 80px 50px;
+        }
+
+        .features-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1B2028;
+            border-radius: 28px;
+            border: 1px solid rgba(214, 180, 90, 0.15);
+            padding: 60px 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(214, 180, 90, 0.05);
         }
 
         .section-title {
@@ -665,19 +740,20 @@
             line-height: 1.6;
         }
 
-        /* ============================================================
-           قسم التحميل
-           ============================================================ */
+        /* قسم التحميل */
         .download-section {
             display: flex;
             justify-content: center;
-            padding: 20px 20px 80px 20px;
+            align-items: center;
+            min-height: 500px;
+            padding: 40px 20px;
             background: linear-gradient(180deg, #151A21 0%, #1D232B 48%, #171C23 100%);
         }
 
         .download-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             width: 100%;
             max-width: 450px;
         }
@@ -833,9 +909,7 @@
             transform: translateY(-1px) scale(0.98);
         }
 
-        /* ============================================================
-           الباقات
-           ============================================================ */
+        /* الباقات */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -991,9 +1065,7 @@
             box-shadow: 0 8px 20px rgba(214, 180, 90, 0.3);
         }
 
-        /* ============================================================
-           قسم المدونة (Blog)
-           ============================================================ */
+        /* المدونة */
         .blog-section {
             padding: 60px 50px;
             background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
@@ -1029,13 +1101,6 @@
             height: 200px;
             overflow: hidden;
             position: relative;
-        }
-
-        .blog-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
         }
 
         .blog-card:hover .blog-img-container img {
@@ -1160,9 +1225,7 @@
             box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
         }
 
-        /* ============================================================
-           صفحة الاتصال
-           ============================================================ */
+        /* صفحة الاتصال */
         .contact-section {
             padding: 60px 50px;
             background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
@@ -1225,9 +1288,7 @@
             text-decoration: underline;
         }
 
-        /* ============================================================
-           الفوتر
-           ============================================================ */
+        /* الفوتر */
         footer {
             background: #0F1318;
             color: #9298A1;
@@ -1378,7 +1439,7 @@
             }
 
             .hero {
-                height: 420px; /* ارتفاع متجاوب للشاشات المتوسطة والصغيرة */
+                height: 420px;
             }
 
             .hero-content h1 {
@@ -1391,6 +1452,10 @@
                 padding: 50px 20px;
             }
 
+            .features-wrapper {
+                padding: 30px 15px;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -1400,7 +1465,8 @@
             }
 
             .download-section {
-                padding: 30px 20px 50px 20px;
+                padding: 30px 20px;
+                min-height: 400px;
             }
 
             .download-container {
@@ -1472,22 +1538,21 @@
             <i class="fa-solid fa-globe" title="تغيير اللغة" onclick="toggleLanguage()"></i>
             
             <div class="share-container">
-                <i class="fa-solid fa-share-nodes" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
+                <i class="fa-solid fa-share-nodes icon-glass-btn" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
                 <div id="shareMenu" class="share-menu">
-                    <div class="share-menu-header" data-translate="share-header">مشاركة عبر</div>
                     <div class="share-options-list">
-                        <a href="#" id="shareWhatsapp" target="_blank" class="share-item">
-                            <i class="fab fa-whatsapp" style="color: #25D366;"></i> <span data-translate="share-wa">واتساب</span>
+                        <a href="#" id="shareFacebook" target="_blank" class="share-item" title="فيسبوك">
+                            <i class="fab fa-facebook-f"></i> <span data-translate="share-fb">فيسبوك</span>
                         </a>
-                        <a href="#" id="shareFacebook" target="_blank" class="share-item">
-                            <i class="fab fa-facebook-f" style="color: #1877F2;"></i> <span data-translate="share-fb">فيسبوك</span>
+                        <a href="#" id="shareWhatsapp" target="_blank" class="share-item" title="واتساب">
+                            <i class="fab fa-whatsapp"></i> <span data-translate="share-wa">واتساب</span>
                         </a>
-                        <a href="#" id="shareTwitter" target="_blank" class="share-item">
-                            <i class="fab fa-twitter" style="color: #1DA1F2;"></i> <span data-translate="share-tw">تويتر</span>
-                        </a>
-                        <button onclick="copyWebsiteLink()" class="share-item">
-                            <i class="fas fa-link" style="color: #D6B45A;"></i> <span data-translate="share-copy">نسخ الرابط</span>
+                        <button id="copyLinkBtn" onclick="copyWebsiteLink()" class="share-item" title="نسخ الرابط">
+                            <i class="fas fa-link" id="copyIcon"></i> <span id="copyText" data-translate="share-copy">نسخ الرابط</span>
                         </button>
+                        <a href="#" id="shareTwitter" target="_blank" class="share-item" title="تويتر">
+                            <i class="fab fa-twitter"></i> <span data-translate="share-tw">تويتر</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1560,38 +1625,40 @@
 
         <!-- الميزات -->
         <section class="features-section">
-            <h2 class="section-title" data-translate="features-heading">لماذا تختار Ultra TV؟</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fa-solid fa-circle-play"></i>
-                    <h3 data-translate="feat6-title">محتوى حصري</h3>
-                    <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية أولاً بأول.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-globe"></i>
-                    <h3 data-translate="feat2-title">قنوات عالمية</h3>
-                    <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-tv"></i>
-                    <h3 data-translate="feat1-title">جودة عالية</h3>
-                    <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة.</p>
-                </div>
+            <div class="features-wrapper">
+                <h2 class="section-title" data-translate="features-heading">لماذا تختار Ultra TV؟</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <h3 data-translate="feat6-title">محتوى حصري</h3>
+                        <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية أولاً بأول.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-globe"></i>
+                        <h3 data-translate="feat2-title">قنوات عالمية</h3>
+                        <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-tv"></i>
+                        <h3 data-translate="feat1-title">جودة عالية</h3>
+                        <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة.</p>
+                    </div>
 
-                <div class="feature-card">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
-                    <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-lock"></i>
-                    <h3 data-translate="feat3-title">أمان عالي</h3>
-                    <p data-translate="feat3-desc">تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-headphones"></i>
-                    <h3 data-translate="feat5-title">دعم فني 24/7</h3>
-                    <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت.</p>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
+                        <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-lock"></i>
+                        <h3 data-translate="feat3-title">أمان عالي</h3>
+                        <p data-translate="feat3-desc">تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-headphones"></i>
+                        <h3 data-translate="feat5-title">دعم فني 24/7</h3>
+                        <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1625,67 +1692,69 @@
         </section>
 
         <section class="features-section">
-            <h2 class="section-title" data-translate="pkg-heading">باقاتنا المتاحة</h2>
-            <div class="packages-grid">
-                <div class="package-card">
-                    <div class="ribbon" data-translate="pkg1-ribbon">الأساسية</div>
-                    <h3 data-translate="pkg1-title">الباقة المميزة</h3>
-                    <div class="package-price">7$<span data-translate="per-month"> / شهريا</span></div>
-                    <ul class="package-features">
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f1">أكثر من 500 قناة</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f2">جودة 720p</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f3">إعلانات محدودة</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f4">2 جهاز متزامن</span></li>
-                    </ul>
-                    <div class="package-actions">
-                        <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
-                            <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
-                        </button>
-                        <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة المميزة (الشهرية)" target="_blank" class="card-subscribe-btn">
-                            <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
-                        </a>
+            <div class="features-wrapper">
+                <h2 class="section-title" data-translate="pkg-heading">باقاتنا المتاحة</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="ribbon" data-translate="pkg1-ribbon">الأساسية</div>
+                        <h3 data-translate="pkg1-title">الباقة المميزة</h3>
+                        <div class="package-price">7$<span data-translate="per-month"> / شهريا</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f1">أكثر من 500 قناة</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f2">جودة 720p</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f3">إعلانات محدودة</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p1-f4">2 جهاز متزامن</span></li>
+                        </ul>
+                        <div class="package-actions">
+                            <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                                <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
+                            </button>
+                            <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة المميزة (الشهرية)" target="_blank" class="card-subscribe-btn">
+                                <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="package-card featured">
-                    <div class="ribbon" data-translate="pkg2-ribbon">الأكثر شهرة</div>
-                    <h3 data-translate="pkg2-title">الباقة البريميوم</h3>
-                    <div class="package-price">25$ <span data-translate="per-month">/ سنويا </span></div>
-                    <ul class="package-features">
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f1">آلاف القنوات</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f2">جودة 4K</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f3">بدون إعلانات</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f4">5 أجهزة متزامنة</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f5">محتوى حصري</span></li>
-                    </ul>
-                    <div class="package-actions">
-                        <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
-                            <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
-                        </button>
-                        <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة البريميوم (السنوية)" target="_blank" class="card-subscribe-btn">
-                            <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
-                        </a>
+                    <div class="package-card featured">
+                        <div class="ribbon" data-translate="pkg2-ribbon">الأكثر شهرة</div>
+                        <h3 data-translate="pkg2-title">الباقة البريميوم</h3>
+                        <div class="package-price">25$ <span data-translate="per-month">/ سنويا </span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f1">آلاف القنوات</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f2">جودة 4K</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f3">بدون إعلانات</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f4">5 أجهزة متزامنة</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p2-f5">محتوى حصري</span></li>
+                        </ul>
+                        <div class="package-actions">
+                            <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                                <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
+                            </button>
+                            <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة البريميوم (السنوية)" target="_blank" class="card-subscribe-btn">
+                                <i class="fa-solid fa-crown"></i> <span data-translate="subscribe-now">اشترك الآن</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="package-card">
-                    <div class="ribbon" data-translate="pkg3-ribbon">للعائلة</div>
-                    <h3 data-translate="pkg3-title">الباقة العائلية</h3>
-                    <div class="package-price">10$ <span data-translate="per-month">/ 3 اشهر</span></div>
-                    <ul class="package-features">
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f1">جميع قنوات بريميوم</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f2">جودة 4K</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f3">بدون إعلانات</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f4">10 أجهزة متزامنة</span></li>
-                        <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f5">محتوى عائلي آمن</span></li>
-                    </ul>
-                    <div class="package-actions">
-                        <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
-                            <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
-                        </button>
-                        <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة العائلية (3 أشهر)" target="_blank" class="card-subscribe-btn">
-                            <i class="fa-solid fa-users"></i> <span data-translate="subscribe-now">اشترك الآن</span>
-                        </a>
+                    <div class="package-card">
+                        <div class="ribbon" data-translate="pkg3-ribbon">للعائلة</div>
+                        <h3 data-translate="pkg3-title">الباقة العائلية</h3>
+                        <div class="package-price">10$ <span data-translate="per-month">/ 3 اشهر</span></div>
+                        <ul class="package-features">
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f1">جميع قنوات بريميوم</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f2">جودة 4K</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f3">بدون إعلانات</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f4">10 أجهزة متزامنة</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-translate="p3-f5">محتوى عائلي آمن</span></li>
+                        </ul>
+                        <div class="package-actions">
+                            <button class="card-pay-btn" onclick="showToast(currentLang === 'ar' ? 'جاري الانتقال لصفحة الدفع بالبطاقة...' : 'Redirecting to card payment...')">
+                                <i class="fa-solid fa-credit-card"></i> <span data-translate="pay-by-card">ادفع بالبطاقة</span>
+                            </button>
+                            <a href="https://wa.me/963933940387?text=مرحباً، أرغب بالاشتراك في الباقة العائلية (3 أشهر)" target="_blank" class="card-subscribe-btn">
+                                <i class="fa-solid fa-users"></i> <span data-translate="subscribe-now">اشترك الآن</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1703,61 +1772,63 @@
         </section>
 
         <section class="blog-section">
-            <h2 class="section-title" data-translate="blog-heading">أحدث المقالات</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-img-container">
-                        <img src="https://i.ibb.co/607SmRhc/1727300215.png" alt="بطاقات نتفليكس">
+            <div class="features-wrapper">
+                <h2 class="section-title" data-translate="blog-heading">أحدث المقالات</h2>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <div class="blog-img-container">
+                            <img src="https://i.ibb.co/607SmRhc/1727300215.png" alt="بطاقات نتفليكس">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b5-date">16 أغسطس 2026</span></div>
+                            <h3 data-translate="b5-title">اشتراكات وبطاقات نتفليكس الرسمية عبر منصة Ultra TV</h3>
+                            <p data-translate="b5-desc">استمتع بمشاهدة أضخم مسلسلات وأفلام نتفليكس العالمية بأعلى دقة ووضوح مع توفر بطاقات الاشتراك الفورية والآمنة.</p>
+                            <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                                <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="blog-content">
-                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b5-date">16 أغسطس 2026</span></div>
-                        <h3 data-translate="b5-title">اشتراكات وبطاقات نتفليكس الرسمية عبر منصة Ultra TV</h3>
-                        <p data-translate="b5-desc">استمتع بمشاهدة أضخم مسلسلات وأفلام نتفليكس العالمية بأعلى دقة ووضوح مع توفر بطاقات الاشتراك الفورية والآمنة.</p>
-                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
-                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="blog-card">
-                    <div class="blog-img-container">
-                        <img src="https://i.ibb.co/TxntBQWb/shahid-vip-cards.webp" alt="بطاقات شاهد VIP">
+                    <div class="blog-card">
+                        <div class="blog-img-container">
+                            <img src="https://i.ibb.co/TxntBQWb/shahid-vip-cards.webp" alt="بطاقات شاهد VIP">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b4-date">16 أغسطس 2026</span></div>
+                            <h3 data-translate="b4-title">تفعيل بطاقات شاهد VIP الأصلية على منصة Ultra TV</h3>
+                            <p data-translate="b4-desc">احصل على اشتراكات وبطاقات شاهد VIP الرسمية واستمتع بأضخم الإنتاجات العربية والعالمية الحصرية بأفضل الأسعار.</p>
+                            <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                                <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="blog-content">
-                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b4-date">16 أغسطس 2026</span></div>
-                        <h3 data-translate="b4-title">تفعيل بطاقات شاهد VIP الأصلية على منصة Ultra TV</h3>
-                        <p data-translate="b4-desc">احصل على اشتراكات وبطاقات شاهد VIP الرسمية واستمتع بأضخم الإنتاجات العربية والعالمية الحصرية بأفضل الأسعار.</p>
-                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
-                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="blog-card">
-                    <div class="blog-img-container">
-                        <img src="https://i.ibb.co/Kjyn4FX4/iptv.png" alt="مقال 1">
+                    <div class="blog-card">
+                        <div class="blog-img-container">
+                            <img src="https://i.ibb.co/Kjyn4FX4/iptv.png" alt="مقال 1">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b1-date">15 أغسطس 2026</span></div>
+                            <h3 data-translate="b1-title">كيف تشاهد قنوات 4K بث مباشر بدون تقطيع؟</h3>
+                            <p data-translate="b1-desc">تعرف على أهم النصائح والإعدادات الشبكية لضمان تجربة مشاهدة سينمائية فائقة الوضوح ومنزلية خالية من أي انقطاع.</p>
+                            <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                                <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="blog-content">
-                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b1-date">15 أغسطس 2026</span></div>
-                        <h3 data-translate="b1-title">كيف تشاهد قنوات 4K بث مباشر بدون تقطيع؟</h3>
-                        <p data-translate="b1-desc">تعرف على أهم النصائح والإعدادات الشبكية لضمان تجربة مشاهدة سينمائية فائقة الوضوح ومنزلية خالية من أي انقطاع.</p>
-                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
-                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="blog-card">
-                    <div class="blog-img-container">
-                        <img src="https://i.ibb.co/p649hbNd/movies-series-osnplus-help-192-1024x576.jpg" alt="مقال 3">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b3-date">01 أغسطس 2026</span></div>
-                        <h3 data-translate="b3-title">أهم الأفلام والمسلسلات الحصرية القادمة هذا الشهر</h3>
-                        <p data-translate="b3-desc">دليلك الكامل لأحدث العروض السينمائية والمسلسلات العالمية التي تم إضافتها مؤخراً لمكتبة بريميوم الخاصة بنا.</p>
-                        <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
-                            <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
-                        </a>
+                    <div class="blog-card">
+                        <div class="blog-img-container">
+                            <img src="https://i.ibb.co/p649hbNd/movies-series-osnplus-help-192-1024x576.jpg" alt="مقال 3">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date"><i class="fa-regular fa-calendar"></i> <span data-translate="b3-date">01 أغسطس 2026</span></div>
+                            <h3 data-translate="b3-title">أهم الأفلام والمسلسلات الحصرية القادمة هذا الشهر</h3>
+                            <p data-translate="b3-desc">دليلك الكامل لأحدث العروض السينمائية والمسلسلات العالمية التي تم إضافتها مؤخراً لمكتبة بريميوم الخاصة بنا.</p>
+                            <a href="#" class="blog-read-more" onclick="showToast(currentLang === 'ar' ? 'جاري فتح المقال...' : 'Opening article...'); return false;">
+                                <span data-translate="read-more">اقرأ المزيد</span> <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1786,31 +1857,33 @@
         </section>
 
         <section class="contact-section">
-            <h2 class="section-title" data-translate="contact-heading">طرق التواصل</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <i class="fa-solid fa-phone"></i>
-                    <h3 data-translate="c-phone">الهاتف</h3>
-                    <p data-translate="c-phone-sub">اتصل بنا مباشرة</p>
-                    <a href="tel:+963933940387">+963 933 940 387</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fa-solid fa-envelope"></i>
-                    <h3 data-translate="c-email">البريد الإلكتروني</h3>
-                    <p data-translate="c-email-sub">أرسل لنا بريدك</p>
-                    <a href="mailto:ultratv.media2026@gmail.com">ultratv.media2026@gmail.com</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <h3 data-translate="c-wa">واتساب</h3>
-                    <p data-translate="c-wa-sub">تواصل عبر واتساب</p>
-                    <a href="https://wa.me/963933940387" target="_blank" data-translate="c-click">اضغط هنا</a>
-                </div>
-                <div class="contact-card">
-                    <i class="fa-solid fa-clock"></i>
-                    <h3 data-translate="c-time">أوقات العمل</h3>
-                    <p data-translate="c-time-sub">طيلة أيام الأسبوع</p>
-                    <span style="color: #D6B45A; font-weight: 700;">08:00 AM - 10:00 PM</span>
+            <div class="features-wrapper">
+                <h2 class="section-title" data-translate="contact-heading">طرق التواصل</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fa-solid fa-phone"></i>
+                        <h3 data-translate="c-phone">الهاتف</h3>
+                        <p data-translate="c-phone-sub">اتصل بنا مباشرة</p>
+                        <a href="tel:+963933940387">+963 933 940 387</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-envelope"></i>
+                        <h3 data-translate="c-email">البريد الإلكتروني</h3>
+                        <p data-translate="c-email-sub">أرسل لنا بريدك</p>
+                        <a href="mailto:ultratv.media2026@gmail.com">ultratv.media2026@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <h3 data-translate="c-wa">واتساب</h3>
+                        <p data-translate="c-wa-sub">تواصل عبر واتساب</p>
+                        <a href="https://wa.me/963933940387" target="_blank" data-translate="c-click">اضغط هنا</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <h3 data-translate="c-time">أوقات العمل</h3>
+                        <p data-translate="c-time-sub">طيلة أيام الأسبوع</p>
+                        <span style="color: #D6B45A; font-weight: 700;">08:00 AM - 10:00 PM</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1996,7 +2069,7 @@
             }
             const container = document.querySelector('.share-container');
             if (container && !container.contains(e.target)) {
-                document.getElementById('shareMenu').style.display = 'none';
+                document.getElementById('shareMenu').classList.remove('show');
             }
             const userContainer = document.getElementById('userMenuContainer');
             if (userContainer && !userContainer.contains(e.target)) {
@@ -2006,10 +2079,10 @@
 
         function toggleShareMenu() {
             const menu = document.getElementById('shareMenu');
-            if (menu.style.display === 'block') {
-                menu.style.display = 'none';
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
             } else {
-                menu.style.display = 'block';
+                menu.classList.add('show');
                 updateShareLinks();
             }
         }
@@ -2025,9 +2098,21 @@
 
         function copyWebsiteLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
-                const msg = currentLang === 'ar' ? 'تم نسخ رابط الموقع بنجاح!' : 'Website link copied successfully!';
-                showToast(msg);
-                document.getElementById('shareMenu').style.display = 'none';
+                const copyIcon = document.getElementById('copyIcon');
+                const copyText = document.getElementById('copyText');
+                
+                copyIcon.className = "fas fa-check";
+                copyIcon.style.color = "#25D366";
+                copyText.textContent = currentLang === 'ar' ? 'تم النسخ' : 'Copied';
+
+                showToast(currentLang === 'ar' ? 'تم نسخ رابط الموقع بنجاح!' : 'Website link copied successfully!');
+
+                setTimeout(() => {
+                    copyIcon.className = "fas fa-link";
+                    copyIcon.style.color = "#D6B45A";
+                    copyText.textContent = currentLang === 'ar' ? 'نسخ الرابط' : 'Copy Link';
+                    document.getElementById('shareMenu').classList.remove('show');
+                }, 2000);
             }).catch(err => {
                 showToast('فشل نسخ الرابط');
             });
@@ -2379,7 +2464,7 @@
                 document.getElementById('userDropdownMenu').style.display = 'none';
                 const currentIconElem = document.getElementById('nav-login-icon');
                 if (currentIconElem && currentIconElem.tagName === 'IMG') {
-                    currentIconElem.outerHTML = `<i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick()"></i>`;
+                    currentIconElem.outerHTML = `<i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserClick()"></i>`;
                 } else if (currentIconElem) {
                     currentIconElem.className = "fa-solid fa-user";
                     currentIconElem.style.color = "#fff";
