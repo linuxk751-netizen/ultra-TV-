@@ -154,30 +154,16 @@
             width: 75%;
         }
 
+        /* تصميم أيقونات شريط التنقل العلوي لتصبح بشكل دائري متناسق وإطار ذهبي (مطابق للصورة الثانية) */
         .navbar-icons {
             flex: 1;
             display: flex;
             justify-content: flex-end;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
 
         .navbar-icons i {
-            font-size: 16px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
-
-        .navbar-icons i:hover {
-            color: #D6B45A;
-            background: rgba(214, 180, 90, 0.1);
-        }
-
-        /* زر المشاركة - دائرة داكنة بسيطة مع حلقة ذهبية رفيعة */
-        .navbar-icons i.icon-glass-btn {
             width: 44px;
             height: 44px;
             padding: 0 !important;
@@ -186,14 +172,15 @@
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            color: #F5F5F2;
+            color: #F2D47A;
             background: #14171D;
             border: 1.5px solid #D6B45A;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .navbar-icons i.icon-glass-btn:hover {
+        .navbar-icons i:hover {
             color: #171A20;
             background: #D6B45A;
             border-color: #F2D47A;
@@ -223,7 +210,6 @@
             z-index: 1500;
         }
 
-        /* القوائم المنسدلة والمشاركة - أيقونات تتفتح حول الزر الرئيسي */
         .share-container {
             position: relative;
             display: inline-block;
@@ -302,9 +288,9 @@
         #shareFacebook { background: #1877F2; }
         #shareTwitter { background: #2AA8F2; }
         #copyLinkBtn { background: #E0B84E; }
-        #copyLinkBtn #copyIcon { color: #171A20 !important; font-size: 16px !important; }
+        #copyLinkBtn #copyIcon { color: #171A20 !important; font-size: 16px !important; border: none !important; background: transparent !important; box-shadow: none !important; width: auto !important; height: auto !important; }
 
-        /* تنسيق زر الواتساب العائم الجديد مع النص المتحرك والدائري المخصص حسب لون الموقع */
+        /* زر الواتساب العائم */
         .whatsapp-float-wrapper {
             position: fixed;
             bottom: 30px;
@@ -338,7 +324,7 @@
             font-family: 'Cairo', sans-serif;
             font-size: 13.5px;
             font-weight: 800;
-            fill: #D6B45A; /* لون متناسق مع هوية موقعك الذهبية بدلاً من الأبيض والأسود */
+            fill: #D6B45A;
             letter-spacing: 1.5px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
         }
@@ -376,7 +362,6 @@
             border-color: #F2D47A;
         }
 
-        /* تأثيرات النبض الخلفي لزر الدردشة */
         .whatsapp-float-wrapper::after {
             content: '';
             position: absolute;
@@ -398,7 +383,6 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
 
-        /* أيقونة واتساب المدورة التي تظهر عند الضغط على زر الدردشة */
         .whatsapp-reveal-btn {
             position: absolute;
             top: 50%;
@@ -434,6 +418,7 @@
             transform: translate(-50%, -50%) rotate(45deg) scale(0.6);
         }
 
+        /* قائمة المستخدم المحسنة */
         .user-menu-container {
             position: relative;
             display: inline-block;
@@ -452,6 +437,10 @@
             z-index: 1000;
             padding: 12px;
             text-align: right;
+        }
+
+        .user-dropdown-menu.show {
+            display: block;
         }
 
         .user-email-display {
@@ -698,7 +687,7 @@
             border-color: #CBD5E1;
         }
 
-        /* القسم الرئيسي Hero */
+        /* Hero Section */
         .page-content {
             flex: 1;
         }
@@ -780,7 +769,7 @@
             margin-bottom: 20px;
         }
 
-        /* قسم الميزات */
+        /* Features */
         .features-section {
             background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
             padding: 80px 50px;
@@ -870,7 +859,7 @@
             line-height: 1.6;
         }
 
-        /* قسم التحميل */
+        /* Download Section */
         .download-section {
             display: flex;
             justify-content: center;
@@ -983,7 +972,7 @@
             width: 100%;
             cursor: pointer;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 10px 25px rgba(214, 180, 90, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
             letter-spacing: 0.5px;
         }
@@ -1008,24 +997,39 @@
             transition: all 0.3s ease;
         }
 
-        .download-btn:hover .btn-text {
-            opacity: 0;
-            transform: translateY(10px);
-            width: 0;
+        .download-icon-circle {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            background: #161710;
+            color: #F2D47A;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
             overflow: hidden;
-            margin: 0;
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
         }
 
-        .download-btn .download-icon {
-            opacity: 0;
-            transform: translateY(-15px);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: inline-block;
+        .download-btn:hover .download-icon-circle {
+            background: #FFFFFF;
+            color: #161710;
+            transform: scale(1.1);
         }
 
-        .download-btn:hover .download-icon {
-            opacity: 1;
-            transform: translateY(0);
+        .download-icon-circle i {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .download-btn:hover .download-icon-circle i {
+            animation: bounceArrow 0.6s ease infinite alternate;
+        }
+
+        @keyframes bounceArrow {
+            0% { transform: translateY(-3px); }
+            100% { transform: translateY(3px); }
         }
 
         .download-btn:hover {
@@ -1039,7 +1043,7 @@
             transform: translateY(-1px) scale(0.98);
         }
 
-        /* الباقات */
+        /* Packages */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1195,7 +1199,7 @@
             box-shadow: 0 8px 20px rgba(214, 180, 90, 0.3);
         }
 
-        /* المدونة */
+        /* Blog */
         .blog-section {
             padding: 60px 50px;
             background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
@@ -1355,7 +1359,7 @@
             box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
         }
 
-        /* صفحة الاتصال */
+        /* Contact */
         .contact-section {
             padding: 60px 50px;
             background: linear-gradient(180deg, #151A21 0%, #1D232B 50%, #171C23 100%);
@@ -1418,7 +1422,7 @@
             text-decoration: underline;
         }
 
-        /* الفوتر */
+        /* Footer */
         footer {
             background: #0F1318;
             color: #9298A1;
@@ -1524,18 +1528,6 @@
                 right: 0;
             }
 
-            html[dir="ltr"] .navbar nav {
-                right: auto;
-                left: -280px;
-                box-shadow: 5px 0 25px rgba(0,0,0,0.8);
-                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            html[dir="ltr"] .navbar nav.mobile-open {
-                left: 0;
-                right: auto;
-            }
-
             .navbar nav ul {
                 flex-direction: column;
                 width: 100%;
@@ -1561,11 +1553,6 @@
                 background: rgba(214, 180, 90, 0.1);
                 color: #F2D47A;
                 border-right: 4px solid #D6B45A;
-            }
-
-            html[dir="ltr"] .navbar nav ul li a.active {
-                border-right: none;
-                border-left: 4px solid #D6B45A;
             }
 
             .hero {
@@ -1618,35 +1605,12 @@
                 font-size: 22px;
             }
         }
-
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 10px 15px;
-            }
-
-            .hero {
-                height: 360px;
-            }
-
-            .hero-content h1 {
-                font-size: 26px;
-            }
-
-            .hero-content p {
-                font-size: 14px;
-            }
-
-            .download-btn, .card-pay-btn, .card-subscribe-btn, .iptv-trial-btn {
-                padding: 10px 12px;
-                font-size: 12px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
 
-    <!-- زر الدردشة العائم المتحرك، يظهر عند الضغط عليه أيقونة واتساب مدورة -->
+    <!-- زر الدردشة العائم -->
     <div class="whatsapp-float-wrapper" id="whatsappFloatWrapper">
         <div class="whatsapp-rotating-text">
             <svg viewBox="0 0 150 150">
@@ -1706,7 +1670,7 @@
             </div>
 
             <div class="user-menu-container" id="userMenuContainer">
-                <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick()"></i>
+                <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick(event)"></i>
                 <div id="userDropdownMenu" class="user-dropdown-menu">
                     <div class="user-email-display" id="userEmailDisplay">user@email.com</div>
                     <button class="logout-btn" onclick="performLogout()">
@@ -1717,6 +1681,7 @@
         </div>
     </header>
 
+    <!-- نافذة تسجيل الدخول -->
     <div id="authModal" class="auth-modal-overlay">
         <div class="auth-modal-container">
             <button class="auth-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1771,7 +1736,7 @@
             </div>
         </section>
 
-        <!-- الميزات -->
+        <!-- Features Section -->
         <section class="features-section">
             <div class="features-wrapper">
                 <h2 class="section-title" data-translate="features-heading">لماذا تختار Ultra TV؟</h2>
@@ -1811,7 +1776,7 @@
             </div>
         </section>
 
-        <!-- التحميل -->
+        <!-- Download Section -->
         <section class="download-section">
             <div class="download-container">
                 <div class="download-card">
@@ -1821,7 +1786,9 @@
                     <div style="margin-top: 20px;">
                         <button id="downloadBtn" class="download-btn" onclick="startDownloadCountdown(this, 'https://www.example.com/download')">
                             <span class="btn-text" data-translate="download-now-btn">تحميل</span>
-                            <i class="fa-solid fa-arrow-down download-icon"></i>
+                            <div class="download-icon-circle">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
                         </button>
                     </div>
                 </div>
@@ -2164,11 +2131,30 @@
                         btn.style.pointerEvents = 'auto';
                         btn.innerHTML = `
                             <span class="btn-text" data-translate="download-now-btn">${currentLang === 'ar' ? 'تحميل' : 'Download'}</span>
-                            <i class="fa-solid fa-arrow-down download-icon"></i>
+                            <div class="download-icon-circle">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
                         `;
                     }, 1500);
                 }
             }, 20);
+        }
+
+        let isLoggedIn = false;
+        function handleUserIconClick(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('userDropdownMenu');
+            if (isLoggedIn) {
+                dropdown.classList.toggle('show');
+            } else {
+                openAuthModal();
+            }
+        }
+
+        function performLogout() {
+            isLoggedIn = false;
+            document.getElementById('userDropdownMenu').classList.remove('show');
+            showToast(currentLang === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Logged out successfully');
         }
 
         function openAuthModal() {
@@ -2196,8 +2182,17 @@
         function handleEmailLogin(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmailInput').value;
+            isLoggedIn = true;
+            document.getElementById('userEmailDisplay').textContent = email;
             closeAuthModal();
             showToast((currentLang === 'en' ? 'Welcome back, ' : 'مرحباً بك مجدداً، ') + email);
+        }
+
+        function loginWithGoogle() {
+            isLoggedIn = true;
+            document.getElementById('userEmailDisplay').textContent = 'google_user@gmail.com';
+            closeAuthModal();
+            showToast(currentLang === 'en' ? 'Logged in with Google successfully' : 'تم تسجيل الدخول بواسطة Google بنجاح');
         }
 
         function forgotPasswordAction() {
@@ -2225,7 +2220,7 @@
             }
             const userContainer = document.getElementById('userMenuContainer');
             if (userContainer && !userContainer.contains(e.target)) {
-                document.getElementById('userDropdownMenu').style.display = 'none';
+                document.getElementById('userDropdownMenu').classList.remove('show');
             }
         });
 
@@ -2276,6 +2271,24 @@
         }
 
         let currentLang = 'ar';
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.getElementById('html-root').lang = currentLang;
+            document.getElementById('html-root').dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            const texts = translations[currentLang];
+            for (const key in texts) {
+                const el = document.querySelector(`[data-translate="${key}"]`);
+                if (el) {
+                    el.textContent = texts[key];
+                }
+            }
+            document.title = texts["page-title"];
+            
+            document.getElementById('loginEmailInput').placeholder = translations[currentLang]["login-email-placeholder"];
+            document.getElementById('loginPassInput').placeholder = translations[currentLang]["login-pass-placeholder"];
+        }
+
         const translations = {
             ar: {
                 "page-title": "Ultra TV - أفضل تطبيق بث مباشر",
@@ -2494,140 +2507,16 @@
                 "f-legal-3": "Cookies",
                 "f-legal-4": "License",
                 "f-rights": "&copy; 2026 Ultra TV. All rights reserved. Developed carefully for you.",
-                "login-modal-title": "Sign in with Email",
+                "login-modal-title": "Sign In with Email",
                 "login-modal-sub": "Sign in to continue and access your Ultra TV account.",
                 "login-email-placeholder": "Email",
                 "login-pass-placeholder": "Password",
-                "login-forgot": "Forgot password?",
+                "login-forgot": "Forgot Password?",
                 "login-btn-action": "Get Started",
                 "login-or": "Or sign in with",
                 "login-google-btn": "Continue with Google"
             }
         };
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            const root = document.getElementById('html-root');
-            
-            if (currentLang === 'en') {
-                root.setAttribute('lang', 'en');
-                root.setAttribute('dir', 'ltr');
-            } else {
-                root.setAttribute('lang', 'ar');
-                root.setAttribute('dir', 'rtl');
-            }
-
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[currentLang][key]) {
-                    if (key === 'f-rights') {
-                        el.innerHTML = translations[currentLang][key];
-                    } else {
-                        el.textContent = translations[currentLang][key];
-                    }
-                }
-            });
-
-            document.querySelectorAll('input[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[currentLang][key]) {
-                    el.setAttribute('placeholder', translations[currentLang][key]);
-                }
-            });
-
-            showToast(currentLang === 'en' ? 'Switched to English' : 'تم التحويل إلى العربية');
-        }
-    </script>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCHvmQ0Q3yM9rhkt2eERLbRqX_sBfXJ2xg",
-            authDomain: "ultra-tv-160b7.firebaseapp.com",
-            projectId: "ultra-tv-160b7",
-            storageBucket: "ultra-tv-160b7.firebasestorage.app",
-            messagingSenderId: "75204425234",
-            appId: "1:75204425234:web:705acff8a4fbebba058acb"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        const provider = new GoogleAuthProvider();
-        provider.setCustomParameters({ prompt: 'select_account' });
-
-        window.isUserLoggedIn = false;
-
-        window.loginWithGoogle = function () {
-            if (window.isUserLoggedIn) {
-                const menu = document.getElementById('userDropdownMenu');
-                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-                return;
-            }
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    closeAuthModal();
-                    const name = result.user.displayName || result.user.email || '';
-                    const msg = (currentLang === 'en') ? ('Welcome, ' + name + '!') : ('مرحباً بك يا ' + name + '!');
-                    showToast(msg);
-                })
-                .catch((error) => {
-                    if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
-                        showToast(error.message);
-                    }
-                });
-        };
-
-        window.handleUserIconClientClick = function() {
-            if (window.isUserLoggedIn) {
-                const menu = document.getElementById('userDropdownMenu');
-                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-            } else {
-                openAuthModal();
-            }
-        };
-        
-        window.handleUserIconClick = window.handleUserIconClientClick;
-
-        window.performLogout = function() {
-            signOut(auth).then(() => {
-                document.getElementById('userDropdownMenu').style.display = 'none';
-                showToast(currentLang === 'en' ? 'Logged out successfully' : 'تم تسجيل الخروج بنجاح');
-            }).catch((error) => {
-                showToast(error.message);
-            });
-        };
-
-        onAuthStateChanged(auth, (user) => {
-            const container = document.getElementById('userMenuContainer');
-            const icon = document.getElementById('nav-login-icon');
-            const emailDisplay = document.getElementById('userEmailDisplay');
-            if (!icon) return;
-
-            if (user) {
-                window.isUserLoggedIn = true;
-                emailDisplay.textContent = user.email || user.displayName || 'حسابي';
-                icon.title = user.displayName || user.email || 'الحساب';
-                if (user.photoURL) {
-                    icon.outerHTML = `<img id="nav-login-icon" src="${user.photoURL}" onclick="handleUserIconClick()" title="${icon.title}" style="width:32px;height:32px;border-radius:50%;cursor:pointer;object-fit:cover;border:2px solid #D6B45A;">`;
-                } else {
-                    icon.className = "fa-solid fa-user-check";
-                    icon.style.color = "#D6B45A";
-                }
-            } else {
-                window.isUserLoggedIn = false;
-                document.getElementById('userDropdownMenu').style.display = 'none';
-                const currentIconElem = document.getElementById('nav-login-icon');
-                if (currentIconElem && currentIconElem.tagName === 'IMG') {
-                    currentIconElem.outerHTML = `<i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserClick()"></i>`;
-                } else if (currentIconElem) {
-                    currentIconElem.className = "fa-solid fa-user";
-                    currentIconElem.style.color = "#fff";
-                }
-            }
-        });
     </script>
 </body>
 </html>
