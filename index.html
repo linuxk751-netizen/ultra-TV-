@@ -52,22 +52,24 @@
             image-rendering: -webkit-optimize-contrast;
         }
 
-        /* شريط التنقل الشفاف */
+        /* شريط التنقل الشفاف ذو الحواف المدورة */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent !important;
+            background: rgba(23, 26, 32, 0.75) !important;
             position: sticky;
-            top: 0;
+            top: 15px;
             left: 0;
-            width: 100%;
+            width: calc(100% - 40px);
+            margin: 15px auto 0 auto;
             z-index: 1000;
-            padding: 15px 50px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: none;
+            padding: 15px 35px;
+            border: 1px solid rgba(214, 180, 90, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .navbar .logo {
@@ -81,9 +83,9 @@
         }
 
         .navbar .logo img {
-            height: 75px;
+            height: 65px;
             width: auto;
-            max-width: 200px;
+            max-width: 180px;
             object-fit: contain;
             vertical-align: middle;
             image-rendering: -webkit-optimize-contrast;
@@ -114,7 +116,7 @@
             color: #C7CBD1;
             font-size: 15px;
             font-weight: 600;
-            padding: 12px 28px;
+            padding: 10px 22px;
             position: relative;
             transition: color 0.3s ease;
             display: flex;
@@ -126,7 +128,7 @@
         .navbar nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -4px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
@@ -164,14 +166,14 @@
         }
 
         .navbar-icons i {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             padding: 0 !important;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 15px;
             color: #F2D47A;
             background: #14171D;
             border: 1.5px solid #D6B45A;
@@ -851,7 +853,7 @@
             margin-bottom: 15px;
             display: block;
             filter: drop-shadow(0 2px 6px rgba(242, 212, 122, 0.4));
-            transform: translateZ(30px); /* إبراز العناصر للأمام في وضع 3D */
+            transform: translateZ(30px);
         }
 
         .feature-card h3 {
@@ -1494,8 +1496,9 @@
 
         @media (max-width: 768px) {
             .navbar {
+                width: calc(100% - 20px);
+                margin: 10px auto 0 auto;
                 padding: 12px 20px;
-                background: transparent !important;
             }
 
             .menu-toggle-btn {
@@ -2051,15 +2054,14 @@
             cards.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left; // موقع المؤشر أفقيًا داخل الكارت
-                    const y = e.clientY - rect.top;  // موقع المؤشر عموديًا داخل الكارت
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
 
-                    // حساب زاوية الدوران (كلما زاد الرقم كلما زادت حدة الميل)
-                    const rotateX = -((y - centerY) / centerY) * 12; // الميل للأعلى والأسفل
-                    const rotateY = ((x - centerX) / centerX) * 12;  // الميل لليمين واليسار
+                    const rotateX = -((y - centerY) / centerY) * 12;
+                    const rotateY = ((x - centerX) / centerX) * 12;
 
                     card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
                 });
@@ -2070,7 +2072,7 @@
                 });
 
                 card.addEventListener('mouseenter', () => {
-                    card.style.transition = 'none'; // إلغاء التأخير أثناء الحركة السريعة مع الماوس
+                    card.style.transition = 'none';
                 });
             });
         });
@@ -2481,6 +2483,7 @@
                 "p3-f3": "No ads",
                 "p3-f4": "10 simultaneous devices",
                 "p3-f5": "Safe family content",
+                "blog-blur-title": "Ultra TV Blog",
                 "blog-hero-title": "Ultra TV Blog",
                 "blog-hero-sub": "Follow the latest articles, news, and technical updates about digital streaming",
                 "blog-heading": "Latest Articles",
@@ -2513,24 +2516,24 @@
                 "c-time": "Working Hours",
                 "c-time-sub": "All days of the week",
                 "f-about-title": "About Ultra TV",
-                "f-about-1": "About Us",
-                "f-about-2": "Features",
+                "f-about-1": "Who We Are",
+                "f-about-2": "Our Features",
                 "f-about-3": "Pricing",
                 "f-about-4": "Blog",
                 "f-help-title": "Help",
                 "f-help-1": "FAQ",
                 "f-help-2": "Technical Support",
                 "f-help-3": "Updates",
-                "f-help-4": "Help Center",
+                "f-help-4": "Assistance",
                 "f-legal-title": "Legal",
                 "f-legal-1": "Terms of Service",
                 "f-legal-2": "Privacy Policy",
                 "f-legal-3": "Cookies",
                 "f-legal-4": "License",
-                "f-rights": "&copy; 2026 Ultra TV. All rights reserved. Developed carefully for you.",
+                "f-rights": "&copy; 2026 Ultra TV. All rights reserved. Developed with care for you.",
                 "login-modal-title": "Sign In with Email",
                 "login-modal-sub": "Sign in to continue and access your Ultra TV account.",
-                "login-email-placeholder": "Email",
+                "login-email-placeholder": "Email Address",
                 "login-pass-placeholder": "Password",
                 "login-forgot": "Forgot Password?",
                 "login-btn-action": "Get Started",
