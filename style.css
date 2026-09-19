@@ -2091,6 +2091,14 @@
             display: none !important;
         }
 
+        #page-home #heroSlider > .hero-content[data-content-panel="default"] {
+            display: none !important;
+        }
+
+        #page-home #heroSlider > .hero-content[data-content-panel="default"].is-visible {
+            display: block !important;
+        }
+
         .home-library-content.is-visible {
             display: block !important;
         }

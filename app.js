@@ -306,15 +306,21 @@ let currentLang = 'ar';
             const contentPanels = document.querySelectorAll('#heroSlider [data-content-panel]');
             if(slides.length > 0) {
                 let currentSlide = 0;
+                const updateHeroContent = () => {
+                    const contentName = slides[currentSlide].dataset.contentSlide || 'default';
+                    contentPanels.forEach((panel) => {
+                        const isActive = panel.dataset.contentPanel === contentName;
+                        panel.classList.toggle('is-visible', isActive);
+                        panel.setAttribute('aria-hidden', String(!isActive));
+                    });
+                };
+
+                updateHeroContent();
                 setInterval(() => {
                     slides[currentSlide].classList.remove('active');
                     currentSlide = (currentSlide + 1) % slides.length;
                     slides[currentSlide].classList.add('active');
-                    contentPanels.forEach((panel) => {
-                        const isActive = panel.dataset.contentPanel === slides[currentSlide].dataset.contentSlide;
-                        panel.classList.toggle('is-visible', isActive);
-                        panel.setAttribute('aria-hidden', String(!isActive));
-                    });
+                    updateHeroContent();
                 }, 5000);
             }
 
