@@ -76,6 +76,8 @@ let currentLang = 'ar';
                 "blog-hero-heading": "أفلام ومسلسلات",
                 "blog-hero-sub": "عند اشتراكك معنا يمكنك التمتع بأضخم مكتبة للأفلام والمسلسلات تحتوي على مجموعة ضخمة جدًا من الأفلام والمسلسلات العربية والأجنبية.",
                 "blog-hero-note": "ويتم إضافة كل ما هو جديد وحصري بشكل شبه أسبوعي.",
+                "blog-page-title": "مدونة MOVEXA TV",
+                "blog-page-sub": "تابع أحدث المقالات، الأخبار، والتحديثات التقنية حول البث الرقمي",
                 "blog-heading": "أحدث المقالات",
                 "b5-date": "16 أغسطس 2026",
                 "b5-title": "اشتراكات وبطاقات نتفليكس الرسمية عبر منصة MOVEXA TV",
@@ -197,6 +199,8 @@ let currentLang = 'ar';
                 "blog-hero-heading": "Movies and Series",
                 "blog-hero-sub": "Enjoy a huge library of Arabic and international movies and series when you subscribe with us.",
                 "blog-hero-note": "New and exclusive content is added almost every week.",
+                "blog-page-title": "MOVEXA TV Blog",
+                "blog-page-sub": "Follow the latest articles, news, and technical updates about digital streaming",
                 "blog-heading": "Latest Articles",
                 "b5-date": "August 16, 2026",
                 "b5-title": "Official Netflix Subscriptions and Cards via MOVEXA TV",
@@ -299,12 +303,18 @@ let currentLang = 'ar';
             }
 
             const slides = document.querySelectorAll('#heroSlider .hero-bg-slide');
+            const contentPanels = document.querySelectorAll('#heroSlider [data-content-panel]');
             if(slides.length > 0) {
                 let currentSlide = 0;
                 setInterval(() => {
                     slides[currentSlide].classList.remove('active');
                     currentSlide = (currentSlide + 1) % slides.length;
                     slides[currentSlide].classList.add('active');
+                    contentPanels.forEach((panel) => {
+                        const isActive = panel.dataset.contentPanel === slides[currentSlide].dataset.contentSlide;
+                        panel.classList.toggle('is-visible', isActive);
+                        panel.setAttribute('aria-hidden', String(!isActive));
+                    });
                 }, 5000);
             }
 
