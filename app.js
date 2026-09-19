@@ -288,7 +288,7 @@ let currentLang = 'ar';
                 window.setTimeout(() => {
                     welcomeScreen.classList.add('is-hidden');
                     window.setTimeout(() => welcomeScreen.remove(), 700);
-                }, 1800);
+                }, 2400);
             }
 
             const slides = document.querySelectorAll('#heroSlider .hero-bg-slide');
