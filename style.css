@@ -1756,6 +1756,241 @@
             }
         }
 
+        /* Final premium hero direction. */
+        .navbar {
+            position: absolute !important;
+            top: 18px !important;
+            right: 50% !important;
+            left: auto !important;
+            transform: translateX(50%) !important;
+            display: grid !important;
+            grid-template-columns: 1fr auto 1fr !important;
+            width: min(1420px, calc(100% - 52px)) !important;
+            min-height: 76px !important;
+            padding: 6px 16px !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+            border-radius: 20px !important;
+            background: rgba(7, 10, 16, 0.58) !important;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+            backdrop-filter: blur(18px) saturate(1.15) !important;
+            -webkit-backdrop-filter: blur(18px) saturate(1.15) !important;
+        }
+
+        .navbar.is-scrolled {
+            background: rgba(48, 7, 39, 0.92) !important;
+            border-color: rgba(245, 197, 24, 0.28) !important;
+        }
+
+        .navbar .logo {
+            position: static !important;
+            grid-column: 3 !important;
+            grid-row: 1 !important;
+            justify-self: end !important;
+            margin: 0 !important;
+        }
+
+        .navbar .logo img {
+            width: 92px !important;
+            height: 64px !important;
+            max-width: 92px !important;
+            filter: drop-shadow(0 5px 14px rgba(156, 5, 84, 0.5)) !important;
+        }
+
+        .navbar nav {
+            position: static !important;
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-self: center !important;
+            transform: none !important;
+            gap: 28px !important;
+            margin: 0 !important;
+        }
+
+        .navbar-home-link {
+            min-height: 38px !important;
+            padding: 10px 2px !important;
+            color: rgba(255, 255, 255, 0.78) !important;
+            font-size: 13px !important;
+        }
+
+        .navbar-home-link:hover,
+        .navbar-home-link.active {
+            color: #F5C518 !important;
+        }
+
+        .section-filter-toggle {
+            min-width: 116px !important;
+            padding: 10px 14px !important;
+            border: 1px solid rgba(245, 197, 24, 0.28) !important;
+            border-radius: 10px !important;
+            color: #EDE5C8 !important;
+            background: rgba(255, 255, 255, 0.045) !important;
+            box-shadow: none !important;
+        }
+
+        .section-filter-toggle:hover,
+        .section-filter-toggle[aria-expanded="true"] {
+            color: #F5C518 !important;
+            background: rgba(156, 5, 84, 0.28) !important;
+            border-color: rgba(245, 197, 24, 0.62) !important;
+        }
+
+        .navbar-icons {
+            position: static !important;
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+            justify-self: start !important;
+            display: flex !important;
+            gap: 12px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            direction: ltr !important;
+        }
+
+        .navbar-icons > i,
+        .navbar-icons .user-menu-container > i,
+        .navbar-icons .share-container > i {
+            width: 28px !important;
+            height: 28px !important;
+            color: #D8B52D !important;
+            background: transparent !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        #page-home .hero {
+            min-height: 700px !important;
+            height: min(88vh, 820px) !important;
+            justify-content: flex-start !important;
+            text-align: right !important;
+        }
+
+        #page-home .hero::before {
+            background: linear-gradient(90deg, rgba(5, 7, 11, 0.1) 18%, rgba(5, 7, 11, 0.2) 42%, rgba(5, 7, 11, 0.92) 100%), linear-gradient(180deg, rgba(5, 7, 11, 0.08), rgba(5, 7, 11, 0.8));
+        }
+
+        #page-home .hero-content {
+            width: min(590px, 46vw) !important;
+            margin: 180px clamp(40px, 10vw, 160px) 0 0 !important;
+            padding: 0 !important;
+            text-align: right !important;
+        }
+
+        #page-home .hero-kicker {
+            margin-bottom: 16px !important;
+            padding: 0 !important;
+            border: 0 !important;
+            background: transparent !important;
+            color: #F5C518 !important;
+        }
+
+        #page-home .hero-content h1 {
+            margin: 0 0 16px !important;
+            color: #FFFFFF !important;
+            font-size: clamp(42px, 5.4vw, 74px) !important;
+            line-height: 1.13 !important;
+            text-shadow: 0 6px 26px rgba(0, 0, 0, 0.8) !important;
+        }
+
+        #page-home .hero-content p {
+            max-width: 500px !important;
+            margin: 0 0 28px !important;
+            color: rgba(255, 255, 255, 0.82) !important;
+            font-size: 17px !important;
+            line-height: 1.8 !important;
+        }
+
+        #page-home .hero-primary-btn,
+        #page-home .hero-secondary-btn {
+            min-width: 152px !important;
+            border-radius: 9px !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                top: 10px !important;
+                right: 50% !important;
+                width: calc(100% - 20px) !important;
+                min-height: 64px !important;
+                padding: 4px 9px !important;
+                border-radius: 16px !important;
+            }
+
+            .navbar .logo {
+                grid-column: auto !important;
+                position: static !important;
+                margin-right: auto !important;
+            }
+
+            .navbar .logo img {
+                width: 62px !important;
+                height: 49px !important;
+                max-width: 62px !important;
+            }
+
+            .navbar nav {
+                grid-column: auto !important;
+                grid-row: auto !important;
+                gap: 10px !important;
+                margin: 0 !important;
+            }
+
+            .navbar-home-link {
+                font-size: 11px !important;
+            }
+
+            .section-filter-toggle {
+                min-width: 92px !important;
+                padding: 8px 10px !important;
+                font-size: 11px !important;
+            }
+
+            .navbar-icons {
+                grid-column: auto !important;
+                grid-row: auto !important;
+                gap: 6px !important;
+                margin-left: auto !important;
+            }
+
+            .navbar-icons > i,
+            .navbar-icons .user-menu-container > i,
+            .navbar-icons .share-container > i {
+                width: 25px !important;
+                height: 25px !important;
+            }
+
+            #page-home .hero {
+                min-height: 600px !important;
+                height: 680px !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            #page-home .hero-content {
+                width: 100% !important;
+                margin: 80px 0 0 !important;
+                padding: 0 20px !important;
+                text-align: center !important;
+            }
+
+            #page-home .hero-content h1,
+            #page-home .hero-content p {
+                margin-right: auto !important;
+                margin-left: auto !important;
+            }
+
+            #page-home .hero-content h1 {
+                font-size: clamp(35px, 10vw, 50px) !important;
+            }
+
+            #page-home .hero-actions {
+                justify-content: center !important;
+            }
+        }
+
         /* Luxury filter finish: neutral surfaces, clear spacing and a subtle reveal. */
         .navbar nav {
             display: flex !important;
