@@ -7,14 +7,143 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co/8n2yqt8r/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preload" as="image" href="https://i.ibb.co/HLLYSgRJ/Whats-App-Image-2026-08-25-at-2-44-00-PM.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1920&auto=format&fit=crop" fetchpriority="high">
     <link rel="preload" as="image" href="https://i.ibb.co/8n2yqt8r/logo.png">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .modern-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, rgba(15, 15, 20, 0.8) 100%);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .modern-navbar .logo img {
+            height: 55px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0px 0px 10px rgba(186, 85, 211, 0.7)); 
+        }
+
+        .modern-nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-right: 50px;
+            flex-grow: 1;
+        }
+
+        .modern-nav-menu a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .modern-nav-menu a:hover,
+        .modern-nav-menu a.active {
+            color: #F5C518;
+        }
+        
+        .modern-nav-menu a.active i {
+            color: #F5C518;
+        }
+
+        .modern-nav-menu .dropdown-pill {
+            background-color: rgba(26, 26, 36, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .modern-nav-menu .dropdown-pill:hover {
+            border-color: #F5C518;
+            box-shadow: 0 0 15px rgba(245, 197, 24, 0.15);
+        }
+
+        .modern-action-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .modern-icon-box {
+            width: 44px;
+            height: 44px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            position: relative;
+            border: none;
+            padding: 0;
+        }
+
+        .modern-icon-box:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(245, 197, 24, 0.4);
+        }
+
+        .modern-icon-inner {
+            width: 32px;
+            height: 32px;
+            background-color: #111111;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modern-icon-inner i {
+            color: #F5C518;
+            font-size: 15px;
+        }
+        
+        .section-filter-menu, .share-menu-modern, .user-dropdown-modern {
+            top: 130%;
+        }
+
+        @media (max-width: 992px) {
+            .modern-nav-menu { display: none; }
+            .modern-navbar { padding: 15px 20px; }
+            .menu-toggle-btn { display: block; background: none; border: none; font-size: 24px; color: #F5C518; cursor: pointer; }
+        }
+        @media (min-width: 993px) {
+            .menu-toggle-btn { display: none; }
+        }
+    </style>
 </head>
 <body>
     <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+    
     <div class="welcome-screen" id="welcomeScreen" role="status" aria-live="polite">
         <video class="welcome-video" autoplay muted playsinline preload="auto" aria-hidden="true">
             <source src="https://www.image2url.com/r2/default/videos/1789818512427-013428aa-0cf0-4180-8abd-b19b9a976688.mp4" type="video/mp4">
@@ -46,9 +175,17 @@
         </div>
     </div>
 
-    <header class="navbar">
+    <div class="top-announcement-bar">
+        <div class="announcement-content">
+            <a href="https://wa.me/963933940387?text=مرحباً، أرغب بطلب تجربة اشتراك IPTV مجانية لمدة 24 ساعة" target="_blank" class="announcement-link">
+                اطلب التجربة <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <header class="modern-navbar">
         <button class="menu-toggle-btn" id="menuToggleBtn" onclick="toggleMobileMenu()" title="القائمة">
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-bars-staggered"></i>
         </button>
 
         <div class="logo">
@@ -56,24 +193,47 @@
                 <img src="https://i.ibb.co/8n2yqt8r/logo.png" alt="MOVEXA TV">
             </a>
         </div>
-        <nav id="navbarMenu">
-            <a href="#" class="navbar-home-link active" onclick="showPage('home'); return false;" id="nav-home" data-translate="nav-home">الصفحة الرئيسية</a>
-            <button class="section-filter-toggle" type="button" onclick="toggleSectionFilter()" aria-expanded="false">
-                <span data-translate="nav-blog">المدونة</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </button>
-            <ul class="section-filter-menu" id="sectionFilterMenu">
-                <li><a href="#" onclick="showPage('packages'); return false;" id="nav-packages" data-translate="nav-packages">الباقات</a></li>
-                <li><a href="#" onclick="showPage('blog'); return false;" id="nav-blog" data-translate="nav-blog">المدونة</a></li>
-                <li><a href="#" onclick="showPage('contact'); return false;" id="nav-contact" data-translate="nav-contact">اتصل بنا</a></li>
-            </ul>
-        </nav>
-        <div class="navbar-icons">
-            <i class="fa-solid fa-globe" title="تغيير اللغة" onclick="toggleLanguage()"></i>
+
+        <nav id="navbarMenu" class="modern-nav-menu">
+            <a href="#" class="active" onclick="showPage('home'); return false;" id="nav-home" data-translate="nav-home">
+                <i class="fa-solid fa-house-chimney"></i> الرئيسية
+            </a>
             
-            <div class="share-container">
-                <i class="fa-solid fa-share-nodes icon-glass-btn" title="مشاركة الموقع" onclick="toggleShareMenu()"></i>
-                <div id="shareMenu" class="share-menu">
+            <div class="nav-item-dropdown" style="position: relative;">
+                <button class="dropdown-pill" type="button" onclick="toggleSectionFilter()" aria-expanded="false">
+                    <span data-translate="nav-blog">المدونة واستكشاف</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <ul class="section-filter-menu" id="sectionFilterMenu">
+                    <li>
+                        <a href="#" onclick="showPage('packages'); return false;" id="nav-packages" data-translate="nav-packages">
+                            <i class="fa-solid fa-gem"></i> الباقات والاشتراكات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showPage('blog'); return false;" id="nav-blog" data-translate="nav-blog">
+                            <i class="fa-solid fa-newspaper"></i> المدونة والأخبار
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showPage('contact'); return false;" id="nav-contact" data-translate="nav-contact">
+                            <i class="fa-solid fa-headset"></i> اتصل بنا والدعم
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="modern-action-icons">
+            <button class="modern-icon-box" title="تغيير اللغة" onclick="toggleLanguage()">
+                <div class="modern-icon-inner"><i class="fa-solid fa-globe"></i></div>
+            </button>
+            
+            <div class="share-container" style="position: relative;">
+                <button class="modern-icon-box share-trigger-btn" title="مشاركة الموقع" onclick="toggleShareMenu()">
+                    <div class="modern-icon-inner"><i class="fa-solid fa-share-nodes"></i></div>
+                </button>
+                <div id="shareMenu" class="share-menu share-menu-modern">
                     <div class="share-options-list">
                         <a href="#" id="shareFacebook" target="_blank" class="share-item" title="فيسبوك">
                             <i class="fab fa-facebook-f"></i> <span data-translate="share-fb">فيسبوك</span>
@@ -91,10 +251,15 @@
                 </div>
             </div>
 
-            <div class="user-menu-container" id="userMenuContainer">
-                <i class="fa-solid fa-user" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick(event)"></i>
-                <div id="userDropdownMenu" class="user-dropdown-menu">
-                    <div class="user-email-display" id="userEmailDisplay">user@email.com</div>
+            <div class="user-menu-container" id="userMenuContainer" style="position: relative;">
+                <button class="modern-icon-box user-btn" id="nav-login-icon" title="تسجيل الدخول / الحساب" onclick="handleUserIconClick(event)">
+                    <div class="modern-icon-inner"><i class="fa-solid fa-user-astronaut"></i></div>
+                </button>
+                <div id="userDropdownMenu" class="user-dropdown-menu user-dropdown-modern">
+                    <div class="user-info-header">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <div class="user-email-display" id="userEmailDisplay">user@email.com</div>
+                    </div>
                     <button class="logout-btn" onclick="performLogout()">
                         <i class="fa-solid fa-right-from-bracket"></i> <span data-translate="logout-btn">تسجيل الخروج</span>
                     </button>
@@ -144,35 +309,71 @@
         </div>
     </div>
 
-    <main id="main-content">
+    <main id="main-content" style="padding-top: 90px;">
         <div id="page-home" class="page-content">
-        <section class="hero" id="heroSlider">
-            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/HLLYSgRJ/Whats-App-Image-2026-08-25-at-2-44-00-PM.jpg');"></div>
-            <div class="hero-bg-slide" style="background-image: url('https://i.ibb.co/zyC2Gr6/Whats-App-Image-2026-08-25-at-2-42-27-PM.jpg');"></div>
-            <div class="hero-bg-slide" style="background-image: url('https://i.ibb.co/ZpHrszYF/Whats-App-Image-2026-08-25-at-2-42-45-PM.jpg');"></div>
-            <div class="hero-bg-slide home-library-slide" data-content-slide="library" style="background-image: url('https://i.ibb.co/LdFqBT8V/Pngtree-delicious-popcorn-and-3d-glasses-13300301.jpg');"></div>
+        
+        <section class="hero hero-modern-slider" id="heroSlider">
+            <div class="hero-bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="hero-bg-slide" style="background-image: url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="hero-bg-slide" style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="hero-bg-slide home-library-slide" data-content-slide="library" style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920&auto=format&fit=crop');"></div>
             
-            <div class="hero-content" data-content-panel="default">
-                <span class="hero-kicker" data-translate="hero-kicker">ترفيه بلا حدود</span>
-                <h1 data-translate="hero-title">أفضل تطبيق بث مباشر</h1>
-                <p data-translate="hero-subtitle">شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية</p>
+            <div class="hero-overlay-vignette"></div>
+            <div class="hero-glow-effect"></div>
+
+            <div class="hero-content hero-content-glass" data-content-panel="default">
+                <div class="hero-badge-tag">
+                    <span class="live-dot"></span>
+                    <span data-translate="hero-kicker">ترفيه بلا حدود • بث مباشر 4K</span>
+                </div>
+                
+                <h1 data-translate="hero-title" class="hero-main-title">
+                    أفضل تطبيق بث مباشر <span class="highlight-text">MOVEXA TV</span>
+                </h1>
+                
+                <p data-translate="hero-subtitle" class="hero-description">
+                    شاهد آلاف القنوات والأفلام والمسلسلات بجودة عالية وبدون تقطيع على كافة أجهزتك.
+                </p>
+
                 <div class="hero-actions">
-                    <a href="#" class="hero-primary-btn" onclick="showPage('packages'); return false;">
+                    <a href="#" class="hero-primary-btn hero-btn-glow" onclick="showPage('packages'); return false;">
+                        <i class="fa-solid fa-play"></i>
                         <span data-translate="hero-primary-btn">استكشف الباقات</span>
-                        <i class="fa-solid fa-arrow-left"></i>
+                        <i class="fa-solid fa-arrow-left arrow-icon"></i>
                     </a>
-                    <a href="#" class="hero-secondary-btn" onclick="showPage('contact'); return false;">
-                        <i class="fa-brands fa-whatsapp"></i>
+                    <a href="#" class="hero-secondary-btn hero-btn-glass" onclick="showPage('contact'); return false;">
+                        <i class="fa-brands fa-whatsapp wa-icon"></i>
                         <span data-translate="hero-secondary-btn">تواصل معنا</span>
                     </a>
                 </div>
+
+                <div class="hero-stats-strip">
+                    <div class="stat-item">
+                        <span class="stat-number">+10,000</span>
+                        <span class="stat-label">قناة وقائمة مشفرة</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">ثبات السيرفرات</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">4K ULTRA</span>
+                        <span class="stat-label">جودة بث فائقة</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-content home-library-content" data-content-panel="library" aria-hidden="true">
-                <span class="hero-kicker" data-translate="blog-hero-kicker">MOVEXA TV</span>
-                <h1 data-translate="blog-hero-title">مكتبة محتوى ضخمة</h1>
-                <h2 data-translate="blog-hero-heading">أفلام ومسلسلات</h2>
-                <p data-translate="blog-hero-sub">عند اشتراكك معنا يمكنك التمتع بأضخم مكتبة للأفلام والمسلسلات تحتوي على مجموعة ضخمة جدًا من الأفلام والمسلسلات العربية والأجنبية.</p>
-                <p class="blog-hero-note" data-translate="blog-hero-note">ويتم إضافة كل ما هو جديد وحصري بشكل شبه أسبوعي.</p>
+
+            <div class="hero-content home-library-content hero-content-glass" data-content-panel="library" aria-hidden="true">
+                <div class="hero-badge-tag">
+                    <i class="fa-solid fa-film"></i>
+                    <span data-translate="blog-hero-kicker">MOVEXA TV CINEMA</span>
+                </div>
+                <h1 data-translate="blog-hero-title" class="hero-main-title">مكتبة محتوى ضخمة</h1>
+                <h2 data-translate="blog-hero-heading" class="hero-sub-heading">أفلام ومسلسلات</h2>
+                <p data-translate="blog-hero-sub" class="hero-description">عند اشتراكك معنا يمكنك التمتع بأضخم مكتبة للأفلام والمسلسلات تحتوي على مجموعة ضخمة جدًا من الأفلام والمسلسلات العربية والأجنبية.</p>
+                <p class="blog-hero-note" data-translate="blog-hero-note"><i class="fa-solid fa-rotate"></i> ويتم إضافة كل ما هو جديد وحصري بشكل شبه أسبوعي.</p>
             </div>
         </section>
 
@@ -195,7 +396,6 @@
                         <h3 data-translate="feat1-title">جودة عالية</h3>
                         <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة.</p>
                     </div>
-
                     <div class="feature-card">
                         <i class="fa-solid fa-mobile-screen-button"></i>
                         <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
@@ -236,8 +436,8 @@
 
     <div id="page-packages" class="page-content" style="display: none;">
         <section class="hero">
-            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/HLLYSgRJ/Whats-App-Image-2026-08-25-at-2-44-00-PM.jpg');"></div>
-            <div class="hero-content">
+            <div class="hero-bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="hero-content hero-content-glass">
                 <h1 data-translate="pkg-hero-title">اختر الباقة المناسبة لك</h1>
                 <p data-translate="pkg-hero-sub">خطط مختلفة لتناسب احتياجات الجميع</p>
             </div>
@@ -315,7 +515,7 @@
 
     <div id="page-blog" class="page-content" style="display: none;">
         <section class="hero">
-            <div class="hero-content">
+            <div class="hero-content hero-content-glass">
                 <h1 data-translate="blog-page-title">مدونة MOVEXA TV</h1>
                 <p data-translate="blog-page-sub">تابع أحدث المقالات، الأخبار، والتحديثات التقنية حول البث الرقمي</p>
             </div>
@@ -398,8 +598,8 @@
 
     <div id="page-contact" class="page-content" style="display: none;">
         <section class="hero">
-            <div class="hero-bg-slide active" style="background-image: url('https://i.ibb.co/ZpHrszYF/Whats-App-Image-2026-08-25-at-2-42-45-PM.jpg');"></div>
-            <div class="hero-content">
+            <div class="hero-bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1920&auto=format&fit=crop');"></div>
+            <div class="hero-content hero-content-glass">
                 <h1 data-translate="contact-hero-title">تواصل معنا</h1>
                 <p data-translate="contact-hero-sub">نحن هنا لمساعدتك وسماع آرائك</p>
             </div>
