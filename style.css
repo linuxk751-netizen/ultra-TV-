@@ -2087,6 +2087,65 @@
             }
         }
 
+        .blog-hero-feature .hero-bg-slide {
+            filter: brightness(0.52) saturate(1.08) contrast(1.05) !important;
+        }
+
+        .blog-hero-feature::before {
+            background: linear-gradient(180deg, rgba(7, 10, 16, 0.12), rgba(7, 10, 16, 0.9) 92%) !important;
+        }
+
+        .blog-hero-feature .hero-content {
+            width: min(900px, 90vw) !important;
+            margin: 0 auto !important;
+            padding: 105px 20px 0 !important;
+            text-align: center !important;
+        }
+
+        .blog-hero-feature .hero-kicker {
+            color: #F5C518 !important;
+            font-size: 13px !important;
+            letter-spacing: 2px;
+        }
+
+        .blog-hero-feature .hero-content h1 {
+            margin: 8px 0 0 !important;
+            color: #E8C85D !important;
+            font-size: clamp(38px, 5.4vw, 72px) !important;
+            line-height: 1.12 !important;
+        }
+
+        .blog-hero-feature .hero-content h2 {
+            margin: 4px 0 20px;
+            color: #FFFFFF;
+            font-family: 'Cairo', sans-serif;
+            font-size: clamp(32px, 4.4vw, 62px);
+            line-height: 1.15;
+        }
+
+        .blog-hero-feature .hero-content p {
+            max-width: 780px !important;
+            margin: 0 auto 14px !important;
+            color: rgba(255, 255, 255, 0.86) !important;
+            font-size: 17px !important;
+            line-height: 1.9 !important;
+        }
+
+        .blog-hero-feature .hero-content .blog-hero-note {
+            color: #E8C85D !important;
+            font-size: 16px !important;
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero-feature .hero-content {
+                padding: 68px 16px 0 !important;
+            }
+
+            .blog-hero-feature .hero-content p {
+                font-size: 14px !important;
+            }
+        }
+
         /* Final premium hero direction. */
         .navbar {
             position: absolute !important;
