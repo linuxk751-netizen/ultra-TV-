@@ -3686,8 +3686,8 @@
             right: 0 !important;
             left: 0 !important;
             transform: none !important;
-            display: grid !important;
-            grid-template-columns: 1fr auto 1fr !important;
+            display: flex !important;
+            align-items: center !important;
             width: 100% !important;
             min-height: 104px !important;
             margin: 0 !important;
@@ -3714,9 +3714,9 @@
         }
 
         .navbar .logo {
-            grid-column: 3 !important;
-            grid-row: 1 !important;
-            justify-self: end !important;
+            position: absolute !important;
+            top: 8px !important;
+            right: clamp(28px, 5vw, 76px) !important;
             order: initial !important;
             flex: none !important;
             margin: 0 !important;
@@ -3730,9 +3730,10 @@
         }
 
         .navbar nav {
-            grid-column: 2 !important;
-            grid-row: 1 !important;
-            justify-self: center !important;
+            position: absolute !important;
+            top: 50% !important;
+            right: 50% !important;
+            transform: translate(50%, -50%) !important;
             order: initial !important;
             flex: none !important;
             margin: 0 !important;
@@ -3782,9 +3783,10 @@
         }
 
         .navbar-icons {
-            grid-column: 1 !important;
-            grid-row: 1 !important;
-            justify-self: start !important;
+            position: absolute !important;
+            top: 50% !important;
+            left: clamp(28px, 5vw, 76px) !important;
+            transform: translateY(-50%) !important;
             order: initial !important;
             flex: none !important;
             gap: 12px !important;
@@ -3843,6 +3845,23 @@
                 display: flex !important;
                 min-height: 66px !important;
                 padding: 4px 14px !important;
+            }
+
+            .navbar .logo {
+                position: static !important;
+                margin-right: auto !important;
+            }
+
+            .navbar nav {
+                position: static !important;
+                transform: none !important;
+                margin: 0 !important;
+            }
+
+            .navbar-icons {
+                position: static !important;
+                transform: none !important;
+                margin-left: auto !important;
             }
 
             .navbar .logo img {
