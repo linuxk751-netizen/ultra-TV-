@@ -492,3 +492,25 @@ let currentLang = 'ar';
                 }
             }, 1000);
         }
+
+        // Keep inline HTML handlers compatible with the module script.
+        Object.assign(window, {
+            showPage,
+            toggleMobileMenu,
+            closeMobileMenu,
+            showToast,
+            toggleWhatsappReveal,
+            toggleShareMenu,
+            copyWebsiteLink,
+            handleUserIconClick,
+            closeAuthModal,
+            togglePasswordVisibility,
+            forgotPasswordAction,
+            handleEmailLogin,
+            loginWithGoogle,
+            performLogout,
+            toggleLanguage,
+            startDownloadCountdown,
+            toggleSectionFilter,
+            closeSectionFilter
+        });
