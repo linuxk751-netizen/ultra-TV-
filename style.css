@@ -88,7 +88,7 @@
             border-radius: 28px;
             background: rgba(22, 27, 34, 0.8);
             box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(156, 5, 84, 0.25);
-            animation: welcomeMarkIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both, welcomeMarkSpin 5s 0.8s linear infinite;
+            animation: welcomeMarkIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .welcome-mark img {
@@ -133,13 +133,8 @@
         }
 
         @keyframes welcomeMarkIn {
-            from { opacity: 0; transform: scale(0.82) translateY(12px); }
+            from { opacity: 0; transform: scale(0.72) rotate(-180deg) translateY(12px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        @keyframes welcomeMarkSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         @keyframes welcomeTextIn {
