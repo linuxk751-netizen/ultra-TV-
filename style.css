@@ -114,22 +114,18 @@
         }
 
         .welcome-loader {
-            width: 42px;
-            height: 3px;
+            width: 34px;
+            height: 34px;
             margin-top: 12px;
-            overflow: hidden;
-            border-radius: 99px;
-            background: rgba(245, 197, 24, 0.2);
+            border: 3px solid rgba(245, 197, 24, 0.18);
+            border-top-color: #F5C518;
+            border-right-color: #9C0554;
+            border-radius: 50%;
+            animation: welcomeSpinner 0.85s linear infinite;
         }
 
         .welcome-loader::after {
-            content: '';
-            display: block;
-            width: 55%;
-            height: 100%;
-            border-radius: inherit;
-            background: #F5C518;
-            animation: welcomeLoading 1.1s ease-in-out infinite;
+            content: none;
         }
 
         @keyframes welcomeMarkIn {
@@ -142,10 +138,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes welcomeLoading {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(82%); }
-            100% { transform: translateX(0); }
+        @keyframes welcomeSpinner {
+            to { transform: rotate(360deg); }
         }
 
         /* تعديل المحاذاة عند التحويل إلى اللغة الإنجليزية (LTR) */
