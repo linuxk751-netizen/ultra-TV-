@@ -22,6 +22,9 @@
             font-family: 'Alexandria', 'Readex Pro', 'Cairo', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            background: #07060c;
+            color: #fff;
         }
 
         /* =========================================================
@@ -407,6 +410,215 @@
 
         .sec-bullets li i {
             color: #ba55d3;
+        }
+
+        /* =========================================================
+           تنسيقات قسم MOVEXA Showcase (المدمج)
+           ========================================================= */
+        .mvx-showcase {
+            padding: 70px 20px 90px;
+            position: relative;
+            overflow: hidden;
+        }
+        .mvx-showcase::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 15% 20%, rgba(186, 85, 211, 0.14), transparent 45%),
+                        radial-gradient(circle at 85% 80%, rgba(245, 197, 24, 0.08), transparent 45%);
+        }
+        .mvx-head {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
+        .mvx-head h2 {
+            font-size: 30px;
+            font-weight: 800;
+            margin: 0 0 14px;
+            background: linear-gradient(135deg, #fff 40%, #f5c518 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .mvx-head p {
+            font-family: 'Readex Pro', sans-serif;
+            font-size: 15px;
+            color: #b5bacc;
+            line-height: 1.9;
+            margin: 0;
+        }
+
+        .mvx-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1150px;
+            margin: 0 auto 80px;
+            position: relative;
+        }
+        .mvx-row:last-child {
+            margin-bottom: 0;
+        }
+        .mvx-row.mvx-flip .mvx-media {
+            order: 2;
+        }
+
+        .mvx-media {
+            position: relative;
+            padding: 14px;
+            border-radius: 28px;
+            background: linear-gradient(150deg, rgba(26, 20, 42, .9), rgba(12, 10, 22, .95));
+            border: 1px solid rgba(186, 85, 211, .35);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, .75), 0 0 35px rgba(186, 85, 211, .2);
+            transition: transform .5s cubic-bezier(.25, 1, .5, 1), border-color .5s, box-shadow .5s;
+        }
+        .mvx-media::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 28px;
+            padding: 1px;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(245, 197, 24, .7), transparent 40%, rgba(186, 85, 211, .7));
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: .6;
+            transition: opacity .4s;
+        }
+        .mvx-row:hover .mvx-media {
+            transform: translateY(-8px);
+            border-color: rgba(245, 197, 24, .7);
+            box-shadow: 0 28px 55px rgba(0, 0, 0, .85), 0 0 40px rgba(245, 197, 24, .28);
+        }
+        .mvx-row:hover .mvx-media::after {
+            opacity: 1;
+        }
+        .mvx-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 440px;
+            object-fit: contain;
+            border-radius: 18px;
+            filter: drop-shadow(0 8px 22px rgba(186, 85, 211, .45));
+        }
+
+        .mvx-float {
+            position: absolute;
+            top: -16px;
+            inset-inline-start: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #f5c518, #d4a017);
+            color: #0a0a0c;
+            font-weight: 800;
+            font-size: 12.5px;
+            padding: 7px 16px;
+            border-radius: 30px;
+            box-shadow: 0 6px 18px rgba(245, 197, 24, .45);
+        }
+
+        .mvx-text .mvx-num {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ba55d3;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .mvx-text h3 {
+            font-size: 25px;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 16px;
+            line-height: 1.5;
+        }
+        .mvx-text h3 span {
+            color: #f5c518;
+        }
+        .mvx-text p {
+            font-family: 'Readex Pro', sans-serif;
+            font-size: 14.5px;
+            color: #a5abbc;
+            line-height: 1.95;
+            margin: 0 0 22px;
+        }
+        .mvx-list {
+            list-style: none;
+            margin: 0 0 24px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .mvx-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #e4e6ef;
+        }
+        .mvx-list li i {
+            width: 30px;
+            height: 30px;
+            flex: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #f5c518;
+            background: rgba(245, 197, 24, .1);
+            border: 1px solid rgba(245, 197, 24, .4);
+        }
+        .mvx-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mvx-chip {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #f5c518;
+            background: rgba(245, 197, 24, .1);
+            border: 1px solid rgba(245, 197, 24, .3);
+            padding: 7px 16px;
+            border-radius: 20px;
+        }
+
+        .mvx-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            filter: blur(6px);
+            transition: opacity .9s cubic-bezier(.16, 1, .3, 1), transform .9s cubic-bezier(.16, 1, .3, 1), filter .9s;
+        }
+        .mvx-reveal.mvx-in {
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        @media(max-width:860px){
+            .mvx-row {
+                grid-template-columns: 1fr;
+                gap: 34px;
+                margin-bottom: 60px;
+            }
+            .mvx-row.mvx-flip .mvx-media {
+                order: 0;
+            }
+            .mvx-head h2 {
+                font-size: 24px;
+            }
+            .mvx-text h3 {
+                font-size: 21px;
+            }
         }
 
         /* =========================================================
@@ -1331,6 +1543,68 @@
             </div>
         </section>
 
+        <!-- ======================= قسم MOVEXA Showcase المدمج ======================= -->
+        <section class="mvx-showcase" id="mvx-showcase">
+          <div class="mvx-head mvx-reveal">
+            <h2>خلف كل مشاهدة… فريق، سيرفرات، وتجربة مصممة لك</h2>
+            <p>في MOVEXA TV نجمع بين أشخاص يهتمون بك، وبنية تحتية قوية، وواجهة بسيطة وأنيقة، لتشاهد ما تحب بجودة عالية وبدون أي تعقيد.</p>
+          </div>
+
+          <!-- 1) الفريق -->
+          <div class="mvx-row">
+            <div class="mvx-media mvx-reveal">
+              <span class="mvx-float"><i class="fa-solid fa-users"></i> فريق MOVEXA</span>
+              <img src="https://i.ibb.co/TD6CLyTv/team-min.png" alt="فريق MOVEXA TV" loading="lazy">
+            </div>
+            <div class="mvx-text mvx-reveal">
+              <span class="mvx-num">01 — الفريق</span>
+              <h3>فريق شغوف <span>يسهر على راحتك</span></h3>
+              <p>وراء التطبيق فريق من المختصين في البث والدعم الفني يعمل باستمرار على تطوير الخدمة، وحل أي مشكلة بسرعة، والرد على استفساراتك بأسلوب احترافي وودّي.</p>
+              <ul class="mvx-list">
+                <li><i class="fa-solid fa-headset"></i> دعم مباشر عبر واتساب</li>
+                <li><i class="fa-solid fa-screwdriver-wrench"></i> حلول سريعة لأي عطل أو استفسار</li>
+              </ul>
+              <div class="mvx-chips"><span class="mvx-chip">دعم 24/7</span><span class="mvx-chip">استجابة فورية</span></div>
+            </div>
+          </div>
+
+          <!-- 2) السيرفرات -->
+          <div class="mvx-row mvx-flip">
+            <div class="mvx-media mvx-reveal">
+              <span class="mvx-float"><i class="fa-solid fa-server"></i> سيرفرات VIP</span>
+              <img src="https://i.ibb.co/kgVhL3MF/server-min.png" alt="سيرفرات MOVEXA TV" loading="lazy">
+            </div>
+            <div class="mvx-text mvx-reveal">
+              <span class="mvx-num">02 — السيرفرات</span>
+              <h3>بث ثابت <span>حتى وقت الذروة</span></h3>
+              <p>سيرفرات قوية موزعة وبمراقبة مستمرة تضمن لك بثاً سلساً بدون تقطيع، حتى أثناء المباريات الكبرى والفعاليات التي يشاهدها الملايين في نفس الوقت.</p>
+              <ul class="mvx-list">
+                <li><i class="fa-solid fa-gauge-high"></i> ثبات يصل إلى 99.9%</li>
+                <li><i class="fa-solid fa-film"></i> جودة 4K و FHD باستهلاك ذكي للإنترنت</li>
+              </ul>
+              <div class="mvx-chips"><span class="mvx-chip">99.9% ثبات</span><span class="mvx-chip">4K Ultra</span></div>
+            </div>
+          </div>
+
+          <!-- 3) الواجهة -->
+          <div class="mvx-row">
+            <div class="mvx-media mvx-reveal">
+              <span class="mvx-float"><i class="fa-solid fa-tv"></i> واجهة عصرية</span>
+              <img src="https://i.ibb.co/VcgfG711/ui-min.png" alt="واجهة MOVEXA TV" loading="lazy">
+            </div>
+            <div class="mvx-text mvx-reveal">
+              <span class="mvx-num">03 — الواجهة</span>
+              <h3>تصميم بسيط <span>وتحكم كامل</span></h3>
+              <p>واجهة أنيقة وسهلة الاستخدام تتيح لك الوصول لقنواتك وأفلامك ومسلسلاتك المفضلة بنقرات قليلة، وتعمل بسلاسة على الهاتف والتلفاز والأجهزة الذكية.</p>
+              <ul class="mvx-list">
+                <li><i class="fa-solid fa-hand-pointer"></i> تنقل سهل وسريع بين الأقسام</li>
+                <li><i class="fa-solid fa-mobile-screen"></i> متوافقة مع كل الأجهزة والشاشات</li>
+              </ul>
+              <div class="mvx-chips"><span class="mvx-chip">سهلة الاستخدام</span><span class="mvx-chip">كل الأجهزة</span></div>
+            </div>
+          </div>
+        </section>
+
         <section class="download-section">
             <div class="download-container">
                 <div class="download-card">
@@ -1665,8 +1939,11 @@
     <div id="toast-notification"></div>
 
     <script>
+        // إعدادات المتغيرات العامة والحالة
         let activeCarouselIndex = 4;
+        let currentLang = 'ar';
 
+        // وظيفة تحديث عرض الـ Carousel 3D
         function update3DCarousel() {
             const cards = document.querySelectorAll('.package-3d-card');
             const total = cards.length;
@@ -1686,42 +1963,43 @@
 
                 if (diff === 0) {
                     card.classList.add('active');
-                    card.style.transform = 'translateX(0px) translateZ(120px) rotateY(0deg) scale(1)';
-                    card.style.zIndex = '10';
+                    card.style.transform = 'translateX(0) translateZ(0) scale(1)';
                     card.style.opacity = '1';
-                    card.style.filter = 'blur(0px)';
+                    card.style.zIndex = '10';
+                    card.style.filter = 'none';
                     card.style.pointerEvents = 'auto';
-                } else if (diff === 1) {
-                    card.style.transform = `translateX(${step1}px) translateZ(-60px) rotateY(-22deg) scale(0.85)`;
-                    card.style.zIndex = '8';
-                    card.style.opacity = isMobile ? '0.4' : '0.85';
-                    card.style.filter = 'blur(0.5px)';
-                    card.style.pointerEvents = 'auto';
-                } else if (diff === -1) {
-                    card.style.transform = `translateX(-${step1}px) translateZ(-60px) rotateY(22deg) scale(0.85)`;
-                    card.style.zIndex = '8';
-                    card.style.opacity = isMobile ? '0.4' : '0.85';
-                    card.style.filter = 'blur(0.5px)';
-                    card.style.pointerEvents = 'auto';
-                } else if (diff === 2) {
-                    card.style.transform = `translateX(${step2}px) translateZ(-160px) rotateY(-38deg) scale(0.7)`;
+                } else if (diff === 1 || diff === -(total - 1)) {
+                    card.style.transform = `translateX(-${step1}px) translateZ(-150px) scale(0.85)`;
+                    card.style.opacity = '0.75';
                     card.style.zIndex = '5';
-                    card.style.opacity = isMobile ? '0' : '0.55';
                     card.style.filter = 'blur(1px)';
-                    card.style.pointerEvents = 'auto';
-                } else if (diff === -2) {
-                    card.style.transform = `translateX(-${step2}px) translateZ(-160px) rotateY(38deg) scale(0.7)`;
+                } else if (diff === -1 || diff === total - 1) {
+                    card.style.transform = `translateX(${step1}px) translateZ(-150px) scale(0.85)`;
+                    card.style.opacity = '0.75';
                     card.style.zIndex = '5';
-                    card.style.opacity = isMobile ? '0' : '0.55';
                     card.style.filter = 'blur(1px)';
-                    card.style.pointerEvents = 'auto';
-                } else {
-                    card.style.transform = diff > 0 ? 'translateX(500px) scale(0.5)' : 'translateX(-500px) scale(0.5)';
+                } else if (diff === 2 || diff === -(total - 2)) {
+                    card.style.transform = `translateX(-${step2}px) translateZ(-300px) scale(0.7)`;
+                    card.style.opacity = '0.35';
                     card.style.zIndex = '1';
+                    card.style.filter = 'blur(2px)';
+                } else if (diff === -2 || diff === total - 2) {
+                    card.style.transform = `translateX(${step2}px) translateZ(-300px) scale(0.7)`;
+                    card.style.opacity = '0.35';
+                    card.style.zIndex = '1';
+                    card.style.filter = 'blur(2px)';
+                } else {
+                    card.style.transform = 'translateX(0) translateZ(-500px) scale(0.5)';
                     card.style.opacity = '0';
-                    card.style.pointerEvents = 'none';
+                    card.style.zIndex = '0';
+                    card.style.filter = 'blur(4px)';
                 }
             });
+        }
+
+        function setCarouselActive(index) {
+            activeCarouselIndex = index;
+            update3DCarousel();
         }
 
         function rotateCarousel(direction) {
@@ -1731,39 +2009,169 @@
             update3DCarousel();
         }
 
-        function setCarouselActive(index) {
-            activeCarouselIndex = index;
-            update3DCarousel();
+        // التنقل بين الصفحات
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.style.display = 'none');
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.style.display = 'block';
+            }
+            const navLinks = document.querySelectorAll('.modern-nav-menu a');
+            navLinks.forEach(a => a.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) activeNav.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function initScrollReveal() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.15
-            };
+        // إظهار وتمرير قائمة الجوال
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navbarMenu');
+            const overlay = document.getElementById('mobileOverlay');
+            if (menu && overlay) {
+                menu.classList.toggle('active-mobile');
+                overlay.classList.toggle('active');
+            }
+        }
 
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal-visible');
-                    } else {
-                        entry.target.classList.remove('reveal-visible');
+        // إظهار زر واتساب القابل للتكبير
+        function toggleWhatsappReveal() {
+            const wrapper = document.getElementById('whatsappFloatWrapper');
+            if (wrapper) wrapper.classList.toggle('open');
+        }
+
+        // تبديل القوائم التفاعلية
+        function toggleShareMenu() {
+            const sm = document.getElementById('shareMenu');
+            if (sm) sm.classList.toggle('show');
+        }
+
+        function copyWebsiteLink() {
+            navigator.clipboard.writeText(window.location.href);
+            showToast(currentLang === 'ar' ? 'تم نسخ الرابط بنجاح!' : 'Link copied successfully!');
+        }
+
+        function handleUserIconClick(e) {
+            e.stopPropagation();
+            const modal = document.getElementById('authModal');
+            if (modal) modal.classList.add('show');
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            if (modal) modal.classList.remove('show');
+        }
+
+        function handleEmailLogin(e) {
+            e.preventDefault();
+            showToast(currentLang === 'ar' ? 'جاري تسجيل الدخول...' : 'Logging in...');
+            closeAuthModal();
+        }
+
+        function togglePasswordVisibility() {
+            const input = document.getElementById('loginPassInput');
+            const icon = document.getElementById('togglePasswordBtn');
+            if (input && icon) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('fa-eye-slash', 'fa-eye');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('fa-eye', 'fa-eye-slash');
+                }
+            }
+        }
+
+        function forgotPasswordAction() {
+            showToast(currentLang === 'ar' ? 'تم إرسال رابط استعادة كلمة المرور.' : 'Password reset link sent.');
+        }
+
+        function loginWithGoogle() {
+            showToast(currentLang === 'ar' ? 'جاري الاتصال بـ Google...' : 'Connecting to Google...');
+        }
+
+        function performLogout() {
+            showToast(currentLang === 'ar' ? 'تم تسجيل الخروج بنجاح.' : 'Logged out successfully.');
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLang;
+            showToast(currentLang === 'ar' ? 'تم تغيير اللغة إلى العربية' : 'Switched to English');
+        }
+
+        function startDownloadCountdown(btn, downloadUrl) {
+            let count = 5;
+            btn.disabled = true;
+            const originalText = btn.querySelector('.btn-text').innerText;
+            const timer = setInterval(() => {
+                btn.querySelector('.btn-text').innerText = `${count}...`;
+                count--;
+                if (count < 0) {
+                    clearInterval(timer);
+                    btn.disabled = false;
+                    btn.querySelector('.btn-text').innerText = originalText;
+                    window.open(downloadUrl, '_blank');
+                }
+            }, 1000);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            if (!toast) return;
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        // ======================= 3) تأثير ظهور قسم MOVEXA Showcase =======================
+        (function(){
+            var items = document.querySelectorAll('#mvx-showcase .mvx-reveal');
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function(e){ e.classList.add('mvx-in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function(entries){
+                entries.forEach(function(e){
+                    if (e.isIntersecting) {
+                        e.target.classList.add('mvx-in');
+                        io.unobserve(e.target);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+            items.forEach(function(e){ io.observe(e); });
+        })();
 
-            const itemsToObserve = document.querySelectorAll('#security-support-section .animate-on-scroll, #page-blog .animate-on-scroll');
-            itemsToObserve.forEach(item => revealObserver.observe(item));
-        }
-
-        window.addEventListener('resize', update3DCarousel);
+        // مراقب الانيميشن العام عند التمرير
         document.addEventListener('DOMContentLoaded', () => {
             update3DCarousel();
-            initScrollReveal();
-        });
-    </script>
+            
+            // إخفاء الشاشة الترحيبية بعد التحميل
+            setTimeout(() => {
+                const welcome = document.getElementById('welcomeScreen');
+                if (welcome) {
+                    welcome.style.opacity = '0';
+                    setTimeout(() => welcome.style.display = 'none', 600);
+                }
+            }, 2200);
 
-    <script type="module" src="/app.js"></script>
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+                scrollElements.forEach(el => observer.observe(el));
+            } else {
+                scrollElements.forEach(el => el.classList.add('reveal-visible'));
+            }
+        });
+
+        window.addEventListener('resize', update3DCarousel);
+    </script>
 </body>
 </html>
