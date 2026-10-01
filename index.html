@@ -7,13 +7,23 @@
     <link rel="icon" type="image/png" href="https://i.ibb.co/8n2yqt8r/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- استيراد خطوط حديثة فاخرة: Alexandria للعناوين و Readex Pro للنصوص -->
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400;500;600;700&family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1920&auto=format&fit=crop" fetchpriority="high">
     <link rel="preload" as="image" href="https://i.ibb.co/8n2yqt8r/logo.png">
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* =========================================================
+           إعدادات الخطوط والتايبوجرافي العامة المحدثة
+           ========================================================= */
+        body {
+            font-family: 'Alexandria', 'Readex Pro', 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         /* =========================================================
            تنسيقات شريط التنقل الشفاف (Glassmorphism Capsule Navbar)
            ========================================================= */
@@ -60,8 +70,8 @@
         .modern-nav-menu a {
             text-decoration: none;
             color: #d1d4dc;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 600;
             font-size: 14px;
             display: flex;
             align-items: center;
@@ -110,9 +120,6 @@
             border-color: rgba(245, 197, 24, 0.6);
         }
 
-        /* =========================================================
-           تنسيق أيقونة تسجيل الدخول المطور (Modern User Button)
-           ========================================================= */
         .modern-icon-box.user-btn {
             width: 40px;
             height: 40px;
@@ -158,17 +165,98 @@
         }
 
         /* =========================================================
-           تنسيقات ومتغيرات الأنيميشن لقسم الأمان وقسم المدونة حصرياً
+           أنيميشن وطرق ظهور الكلام الجديدة والفاخرة في الصفحة الرئيسية
            ========================================================= */
-        .custom-text-shadow {
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        @keyframes heroTitleAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
         }
 
+        @keyframes heroSubAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .hero-main-title {
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 18px;
+            animation: heroTitleAppear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, #ffffff 0%, #f5c518 50%, #ba55d3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(245, 197, 24, 0.35);
+            display: inline-block;
+        }
+
+        .hero-description {
+            font-family: 'Readex Pro', sans-serif !important;
+            font-size: 16px;
+            font-weight: 400;
+            color: #c8cbd8;
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 0 auto 28px;
+            animation: heroSubAppear 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            opacity: 0;
+        }
+
+        .hero-badge-tag {
+            animation: heroSubAppear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 600;
+        }
+
+        .custom-text-shadow {
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .section-title {
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 30px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 40%, #f5c518 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .section-subtitle {
+            font-family: 'Readex Pro', sans-serif !important;
+            font-size: 15px;
+            color: #b5bacc;
+            line-height: 1.8;
+            margin-top: 14px;
+        }
+
+        /* متغيرات الحركة المخصصة عند التمرير */
         .anim-from-left {
             --animation-custom_in-translate_x: -300px;
             --animation-custom_in-translate_y: 0px;
             --animation-custom_in-opacity: 0;
-            --animation-custom_in-rotate: 0deg;
             --animation-custom_in-scale: 1;
         }
 
@@ -176,15 +264,13 @@
             --animation-custom_in-translate_x: 300px;
             --animation-custom_in-translate_y: 0px;
             --animation-custom_in-opacity: 0;
-            --animation-custom_in-rotate: 0deg;
             --animation-custom_in-scale: 1;
         }
 
         .anim-from-bottom {
             --animation-custom_in-translate_x: 0px;
-            --animation-custom_in-translate_y: 300px;
+            --animation-custom_in-translate_y: 150px;
             --animation-custom_in-opacity: 0;
-            --animation-custom_in-rotate: 0deg;
             --animation-custom_in-scale: 1;
         }
 
@@ -192,30 +278,30 @@
             --animation-custom_in-translate_x: 0px;
             --animation-custom_in-translate_y: 0px;
             --animation-custom_in-opacity: 0;
-            --animation-custom_in-rotate: 0deg;
-            --animation-custom_in-scale: 0.3;
+            --animation-custom_in-scale: 0.85;
         }
 
-        /* تطبيق تأثير الحركة عند التمرير فقط لقسم الأمان وقسم المدونة */
         #security-support-section .animate-on-scroll,
         #page-blog .animate-on-scroll {
             opacity: var(--animation-custom_in-opacity, 0);
             transform: translate3d(var(--animation-custom_in-translate_x, 0px), var(--animation-custom_in-translate_y, 0px), 0) 
-                       rotate(var(--animation-custom_in-rotate, 0deg)) 
                        scale(var(--animation-custom_in-scale, 1));
             transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(6px);
+            will-change: opacity, transform, filter;
         }
 
         #security-support-section .animate-on-scroll.reveal-visible,
         #page-blog .animate-on-scroll.reveal-visible {
             opacity: 1;
-            transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0px);
         }
 
         /* =========================================================
-           تنسيقات قسم الأمان والدعم الفني والصيانة السريعة المطور
+           تنسيقات قسم الأمان والدعم الفني المطور
            ========================================================= */
         .security-support-section {
             padding: 70px 20px 90px;
@@ -226,14 +312,6 @@
             text-align: center;
             max-width: 850px;
             margin: 0 auto 50px;
-        }
-
-        .section-subtitle {
-            font-family: 'Tajawal', sans-serif;
-            font-size: 16px;
-            color: #b0b5c5;
-            line-height: 1.8;
-            margin-top: 14px;
         }
 
         .security-cards-grid {
@@ -288,18 +366,18 @@
         }
 
         .security-card h3 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 21px;
-            font-weight: 800;
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 20px;
+            font-weight: 700;
             color: #ffffff;
             margin-bottom: 15px;
         }
 
         .security-card p {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Readex Pro', sans-serif !important;
             font-size: 14px;
-            color: #a0a5b5;
-            line-height: 1.8;
+            color: #a5abbc;
+            line-height: 1.85;
             margin-bottom: 22px;
             flex-grow: 1;
         }
@@ -317,10 +395,10 @@
         }
 
         .sec-bullets li {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Alexandria', sans-serif !important;
             font-size: 13px;
             color: #f5c518;
-            font-weight: 700;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -332,7 +410,7 @@
         }
 
         /* =========================================================
-           تنسيقات عرض الباقات المتناسقة مع طابع البنفسجي والذهبي الداكن
+           تنسيقات عرض الباقات 3D
            ========================================================= */
         .packages-3d-section {
             padding: 50px 15px 80px;
@@ -396,6 +474,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 14px rgba(245, 197, 24, 0.5);
             text-transform: uppercase;
+            font-family: 'Alexandria', sans-serif;
         }
 
         .package-3d-card .card-img-wrapper {
@@ -419,9 +498,9 @@
         }
 
         .package-3d-card h3 {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Alexandria', sans-serif !important;
             font-size: 16px;
-            font-weight: 800;
+            font-weight: 700;
             color: #ffffff;
             margin-bottom: 12px;
             line-height: 1.5;
@@ -436,14 +515,14 @@
             font-weight: 900;
             color: #f5c518;
             margin-bottom: 15px;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Alexandria', sans-serif;
             text-shadow: 0 0 12px rgba(245, 197, 24, 0.35);
         }
 
         .package-3d-card .card-price span {
             font-size: 13px;
             color: #a0a5b5;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .package-3d-card .old-price {
@@ -463,13 +542,14 @@
         }
 
         .package-3d-card .package-features li {
+            font-family: 'Readex Pro', sans-serif;
             font-size: 13px;
             color: #d1d4dc;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .package-3d-card .package-features li i {
@@ -488,8 +568,8 @@
             color: #ffffff;
             border: none;
             border-radius: 25px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 800;
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 700;
             font-size: 14px;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -537,7 +617,7 @@
         }
 
         /* =========================================================
-           تنسيقات قسم المدونة والأخبار المحدثة بتصميم زجاجي فاخر
+           تنسيقات قسم المدونة والأخبار
            ========================================================= */
         .blog-section {
             padding: 50px 20px 80px;
@@ -611,8 +691,9 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            font-family: 'Alexandria', sans-serif;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             color: #f5c518;
             background: rgba(245, 197, 24, 0.12);
             border: 1px solid rgba(245, 197, 24, 0.3);
@@ -623,9 +704,9 @@
         }
 
         .blog-card h3 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 18px;
-            font-weight: 800;
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 17px;
+            font-weight: 700;
             color: #ffffff;
             margin-bottom: 12px;
             line-height: 1.5;
@@ -637,10 +718,10 @@
         }
 
         .blog-card p {
-            font-family: 'Tajawal', sans-serif;
-            font-size: 14px;
+            font-family: 'Readex Pro', sans-serif !important;
+            font-size: 13.5px;
             color: #a0a5b5;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 22px;
         }
 
@@ -649,8 +730,8 @@
             align-items: center;
             gap: 10px;
             color: #f5c518;
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
+            font-family: 'Alexandria', sans-serif;
+            font-size: 13px;
             font-weight: 700;
             text-decoration: none;
             padding: 10px 18px;
@@ -677,7 +758,7 @@
         }
 
         /* =========================================================
-           تنسيق بنر التجربة المجانية المطور والحديث (IPTV Trial Banner)
+           تنسيق بنر التجربة المجانية المطور
            ========================================================= */
         .iptv-trial-banner {
             max-width: 900px;
@@ -727,21 +808,21 @@
         }
 
         .iptv-trial-banner h2 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 24px;
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 22px;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 14px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .iptv-trial-banner p {
-            font-family: 'Tajawal', sans-serif;
-            font-size: 15px;
+            font-family: 'Readex Pro', sans-serif !important;
+            font-size: 14.5px;
             color: #b0b5c5;
             max-width: 720px;
             margin: 0 auto 28px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .iptv-trial-banner .iptv-trial-btn {
@@ -752,9 +833,9 @@
             padding: 12px 36px;
             background: linear-gradient(135deg, #25d366, #128c7e);
             color: #ffffff;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 800;
-            font-size: 16px;
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
             border-radius: 35px;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -769,7 +850,7 @@
         }
 
         /* =========================================================
-           تنسيقات قسم طرق التواصل المطور الفاخر (Contact Section Redesign)
+           تنسيقات قسم طرق التواصل
            ========================================================= */
         .contact-section {
             padding: 50px 20px 80px;
@@ -790,9 +871,9 @@
         }
 
         .contact-main-title {
-            font-family: 'Cairo', sans-serif;
-            font-size: 32px;
-            font-weight: 900;
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 30px;
+            font-weight: 800;
             color: #ffffff;
             margin-bottom: 6px;
             display: inline-block;
@@ -859,24 +940,24 @@
         }
 
         .contact-card-modern h3 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
+            font-family: 'Alexandria', sans-serif !important;
+            font-size: 18px;
+            font-weight: 700;
             color: #ffffff;
             margin-bottom: 6px;
         }
 
         .contact-card-modern p {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Readex Pro', sans-serif !important;
             font-size: 13px;
             color: #a0a5b5;
             margin-bottom: 18px;
         }
 
         .contact-card-modern .contact-val-link {
-            font-family: 'Cairo', sans-serif;
-            font-size: 15px;
-            font-weight: 800;
+            font-family: 'Alexandria', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
             color: #f5c518;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -890,9 +971,9 @@
         }
 
         .contact-card-modern .contact-val-btn {
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
-            font-weight: 800;
+            font-family: 'Alexandria', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
             color: #f5c518;
             background: rgba(245, 197, 24, 0.12);
             border: 1px solid rgba(245, 197, 24, 0.3);
@@ -908,7 +989,6 @@
             box-shadow: 0 0 15px rgba(245, 197, 24, 0.5);
         }
 
-        /* لجعل بطاقة أوقات العمل تتمركز بشكل أنيق في السطر الثاني */
         .contact-card-modern.working-hours-card {
             grid-column: 2 / span 1;
             margin-top: 10px;
@@ -938,10 +1018,11 @@
             .menu-toggle-btn { display: none; }
         }
         @media (max-width: 768px) {
+            .hero-main-title { font-size: 28px; }
             .carousel-3d-track { height: 580px; }
             .package-3d-card { width: 275px; padding: 20px 16px 22px; }
             .iptv-trial-banner { padding: 28px 18px; border-radius: 22px; }
-            .iptv-trial-banner h2 { font-size: 19px; }
+            .iptv-trial-banner h2 { font-size: 18px; }
             .blog-grid { grid-template-columns: 1fr; }
             .security-cards-grid { grid-template-columns: 1fr; }
             .security-card { padding: 30px 20px; }
@@ -1178,45 +1259,7 @@
             </div>
         </section>
 
-        <section class="features-section">
-            <div class="features-wrapper">
-                <h2 class="section-title" data-translate="features-heading">لماذا تختار MOVEXA TV؟</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fa-solid fa-circle-play"></i>
-                        <h3 data-translate="feat6-title">محتوى حصري</h3>
-                        <p data-translate="feat6-desc">افتح الوصول إلى أفلام وحلقات حصرية أولاً بأول.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-globe"></i>
-                        <h3 data-translate="feat2-title">قنوات عالمية</h3>
-                        <p data-translate="feat2-desc">آلاف القنوات من جميع أنحاء العالم بلغات متعددة.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-tv"></i>
-                        <h3 data-translate="feat1-title">جودة عالية</h3>
-                        <p data-translate="feat1-desc">بث بدقة 4K وتقنيات ترميز حديثة لأفضل تجربة مشاهدة.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                        <h3 data-translate="feat4-title">متعدد الأجهزة</h3>
-                        <p data-translate="feat4-desc">شاهد على الهاتف والتابلت والتلفاز والكمبيوتر.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-lock"></i>
-                        <h3 data-translate="feat3-title">أمان عالي</h3>
-                        <p data-translate="feat3-desc">تشفير من الدرجة الأولى وحماية خصوصيتك مضمونة.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fa-solid fa-headphones"></i>
-                        <h3 data-translate="feat5-title">دعم فني 24/7</h3>
-                        <p data-translate="feat5-desc">فريق دعم متخصص جاهز للمساعدة في أي وقت.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم الأمان والدعم الفني والصيانة السريعة الجديد والمطور -->
+        <!-- قسم الأمان والدعم الفني والصيانة السريعة المطور المباشر بدون تكرار -->
         <section class="security-support-section" id="security-support-section">
             <div class="features-wrapper">
                 <div class="section-header-box animate-on-scroll anim-zoom-in">
@@ -1443,7 +1486,7 @@
         </section>
     </div>
 
-    <!-- قسم المدونة والأخبار بالتصميم المطور مع تأثيرات الظهور عند التمرير -->
+    <!-- قسم المدونة والأخبار -->
     <div id="page-blog" class="page-content" style="display: none;">
         <section class="hero">
             <div class="hero-content hero-content-glass">
@@ -1522,7 +1565,6 @@
                 </div>
             </div>
 
-            <!-- بنر التجربة المجانية المطور بالكامل -->
             <div class="iptv-trial-banner animate-on-scroll anim-from-bottom">
                 <div class="iptv-trial-icon">
                     <i class="fa-solid fa-clock-rotate-left"></i>
@@ -1536,7 +1578,7 @@
         </section>
     </div>
 
-    <!-- قسم اتصل بنا المطوّر بالكامل بالتصميم الجديد المماثل للصورة -->
+    <!-- قسم اتصل بنا -->
     <div id="page-contact" class="page-content" style="display: none;">
         <section class="contact-section">
             <div class="contact-container-box">
@@ -1544,7 +1586,6 @@
                 <div class="contact-main-title-underline"></div>
                 
                 <div class="contact-grid-modern">
-                    <!-- واتساب -->
                     <div class="contact-card-modern">
                         <div class="contact-icon-wrapper">
                             <i class="fa-brands fa-whatsapp"></i>
@@ -1554,7 +1595,6 @@
                         <a href="https://wa.me/963933940387" target="_blank" class="contact-val-btn" data-translate="c-click">اضغط هنا</a>
                     </div>
 
-                    <!-- البريد الإلكتروني -->
                     <div class="contact-card-modern">
                         <div class="contact-icon-wrapper">
                             <i class="fa-solid fa-envelope"></i>
@@ -1564,7 +1604,6 @@
                         <a href="mailto:ultratv.media2026@gmail.com" class="contact-val-link">ultratv.media2026@gmail.com</a>
                     </div>
 
-                    <!-- الهاتف -->
                     <div class="contact-card-modern">
                         <div class="contact-icon-wrapper">
                             <i class="fa-solid fa-phone"></i>
@@ -1574,7 +1613,6 @@
                         <a href="tel:+963933940387" class="contact-val-link">+963 933 940 387</a>
                     </div>
 
-                    <!-- أوقات العمل -->
                     <div class="contact-card-modern working-hours-card">
                         <div class="contact-icon-wrapper">
                             <i class="fa-solid fa-clock"></i>
@@ -1698,9 +1736,6 @@
             update3DCarousel();
         }
 
-        /* =========================================================
-           مراقب التمرير لإظهار وإخفاء عناصر قسم الأمان والمدونة عند الصعود والنزول
-           ========================================================= */
         function initScrollReveal() {
             const observerOptions = {
                 root: null,
