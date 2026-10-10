@@ -274,23 +274,31 @@ ${HIDE_OLD_SLIDES ? '.hero .hero-bg-slide{display:none!important}' : ''}`;
       badge: 'مسلسلات بلا حدود',
       title: 'مسلسلاتك المفضلة بمكان واحد',
       text: 'آلاف الحلقات العربية والأجنبية، وبتنضاف الجديدة كل أسبوع.'
+    },
+    {
+      img: 'https://i.ibb.co/rGVrznyZ/43a3f060-3ec8-45af-816b-9fb701ed99d9.jpg',
+      badge: 'بث مباشر',
+      title: 'كل قنواتك المفضلة بضغطة وحدة',
+      text: 'قنوات رياضية وأفلام ومسلسلات بدون تقطيع على كل أجهزتك.'
     }
   ];
   var INTERVAL = 6000;   // مدة كل صورة (ميلي ثانية)
 
   var CSS = `
 .mw-show{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none}
-.mw-show::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(7,6,12,.2) 0%,rgba(7,6,12,.75) 100%),linear-gradient(to bottom,rgba(7,6,12,.45),transparent 35%,#07060c 100%)}
+#heroSlider .hero-overlay-vignette{opacity:.12!important}
+#heroSlider .hero-glow-effect{opacity:.5!important}
 .mw-slide{position:absolute;inset:0}
-.mw-bg{position:absolute;inset:-4%;background-size:cover;background-position:center;filter:blur(3px) brightness(.6) saturate(1.15);opacity:0;transition:opacity 1.4s ease;animation:mwKB 16s ease-in-out infinite alternate}
-.mw-slide.on .mw-bg{opacity:.65}
+.mw-bg{position:absolute;inset:-8%;background-size:cover;background-position:center;filter:blur(1.5px) brightness(.95) saturate(1.2);opacity:0;transition:opacity 1.4s ease;animation:mwKB 16s ease-in-out infinite alternate}
+.mw-slide.on .mw-bg{opacity:1}
 @keyframes mwKB{from{transform:scale(1.04)}to{transform:scale(1.14)}}
 
-.mw-frame{position:absolute;top:50%;inset-inline-end:5%;z-index:2;width:clamp(170px,19vw,280px);border-radius:18px;overflow:hidden;border:1px solid rgba(245,197,24,.45);box-shadow:0 24px 50px rgba(0,0,0,.65),0 0 40px rgba(186,85,211,.35);opacity:0;transform:translateY(-46%) rotate(0deg) scale(.94);transition:opacity 1s ease .3s,transform 1.2s cubic-bezier(.16,1,.3,1) .3s}
+.mw-frame{position:absolute;top:calc(50% + 55px);inset-inline-end:5%;z-index:2;width:clamp(170px,19vw,280px);border-radius:18px;overflow:hidden;border:1px solid rgba(245,197,24,.45);box-shadow:0 24px 50px rgba(0,0,0,.65),0 0 40px rgba(186,85,211,.35);opacity:0;transform:translateY(-46%) rotate(0deg) scale(.94);transition:opacity 1s ease .3s,transform 1.2s cubic-bezier(.16,1,.3,1) .3s}
 .mw-frame img{display:block;width:100%;height:auto}
 .mw-slide.on .mw-frame{opacity:1;transform:translateY(-50%) rotate(3deg) scale(1)}
 
 .mw-cap{position:absolute;bottom:34px;inset-inline-start:5%;z-index:3;max-width:min(430px,82%);text-align:start}
+.mw-cap::before{content:'';position:absolute;z-index:-1;inset:-34px -44px -22px;background:radial-gradient(ellipse at 35% 60%,rgba(7,6,12,.72),transparent 72%)}
 .mw-cap > *{opacity:0;transform:translateY(18px);filter:blur(6px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),filter .9s}
 .mw-slide.on .mw-cap > *{opacity:1;transform:none;filter:none}
 .mw-slide.on .mw-cap > :nth-child(1){transition-delay:.45s}
@@ -364,4 +372,19 @@ ${HIDE_OLD_SLIDES ? '.hero .hero-bg-slide{display:none!important}' : ''}`;
   } else {
     build();
   }
+})();
+
+/* =====================================================================
+   مدّ الخلفية لفوق عشان تغطي الفراغ الأسود خلف الشريط العلوي
+   ===================================================================== */
+(function () {
+  var TOP_GAP = 110;   // نفس padding-top تبع <main> بالصفحة
+  var st = document.createElement('style');
+  st.textContent =
+    '.hero{overflow:visible!important}' +
+    '.hero::before,.hero::after{background:none!important;opacity:0!important}' +
+    '#heroSlider .hero-overlay-vignette{display:none!important}' +
+    '.hero-content-glass{background:rgba(7,6,12,.28)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}' +
+    '.hero .mw-wall,.hero .mw-show{top:-' + TOP_GAP + 'px!important}';
+  document.head.appendChild(st);
 })();
