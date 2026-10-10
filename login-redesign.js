@@ -163,3 +163,205 @@ html[dir="rtl"] #authModal .lg-art{-webkit-mask-image:${MASK_RTL};mask-image:${M
     install();
   }
 })();
+
+/* =====================================================================
+   جدار الأفلام والمسلسلات المتحرك (خلفية الـ Hero)
+   لإضافة صور أفلامك ومسلسلاتك: حط روابطها داخل القائمة POSTERS تحت.
+   (استخدم صور عندك حق استخدامها؛ البوسترات الرسمية محمية بحقوق النشر)
+   ===================================================================== */
+(function () {
+  var POSTERS = [
+    'https://images.unsplash.com/photo-1536440136628-849c177e76a1',
+    'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba',
+    'https://images.unsplash.com/photo-1478720568477-152d9b164e26',
+    'https://images.unsplash.com/photo-1440404653325-ab127d49abc1',
+    'https://images.unsplash.com/photo-1485846234645-a62644f84728',
+    'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c',
+    'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85',
+    'https://images.unsplash.com/photo-1594909122845-11baa439b7bf'
+    // ,'https://i.ibb.co/xxxx/poster1.jpg'   <- أضف صورك هون
+  ];
+  var HIDE_OLD_SLIDES = true;   // false = خلّي سلايدر الصور القديم ظاهر
+  var COLS = 8, PER_COL = 9;
+  var GRADS = [['#3b1d8f', '#ba55d3'], ['#1a1033', '#f5c518'], ['#2a0f4d', '#8a2be2'],
+               ['#0f172a', '#ba55d3'], ['#4a1d6b', '#f5c518'], ['#12091f', '#7c3aed']];
+
+  var CSS = `
+.hero .mw-wall{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:#07060c}
+.mw-wall::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(7,6,12,.35) 0%,rgba(7,6,12,.85) 100%),linear-gradient(to bottom,rgba(7,6,12,.5),rgba(7,6,12,.15) 40%,#07060c 100%)}
+.mw-stage{position:absolute;left:50%;top:50%;width:150%;height:190%;transform:translate(-50%,-50%) rotate(-10deg);display:flex;justify-content:center;gap:14px}
+.mw-col{flex:none;width:clamp(110px,13vw,170px)}
+.mw-track{animation:mwUp var(--d,80s) linear infinite;animation-delay:calc(var(--o,0) * -1s);will-change:transform}
+.mw-col:nth-child(even) .mw-track{animation-name:mwDown}
+.mw-col:nth-child(3n) .mw-track{--d:60s}
+.mw-col:nth-child(5n) .mw-track{--d:105s}
+.mw-tile{position:relative;width:100%;aspect-ratio:2/3;margin-bottom:14px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.mw-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mw-ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(255,255,255,.25)}
+@keyframes mwUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes mwDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+@media (max-width:700px){.mw-col:nth-child(n+5){display:none}}
+@media (prefers-reduced-motion:reduce){.mw-track{animation:none}}
+${HIDE_OLD_SLIDES ? '.hero .hero-bg-slide{display:none!important}' : ''}`;
+
+  function tile(src, g) {
+    return '<div class="mw-tile" style="background:linear-gradient(160deg,' + g[0] + ',' + g[1] + ')">' +
+      '<i class="fa-solid fa-film mw-ico"></i>' +
+      (src ? '<img src="' + src + '?q=70&w=320&h=480&fit=crop&auto=format" alt="" loading="lazy" onerror="this.remove()">' : '') +
+      '</div>';
+  }
+
+  function column(ci) {
+    var set = '';
+    for (var i = 0; i < PER_COL; i++) {
+      var src = (POSTERS.length && (i + ci) % 2 === 0) ? POSTERS[(ci * 3 + i) % POSTERS.length] : '';
+      set += tile(src, GRADS[(ci * 2 + i) % GRADS.length]);
+    }
+    return '<div class="mw-col"><div class="mw-track" style="--o:' + (ci * 9) + '">' + set + set + '</div></div>';
+  }
+
+  function build() {
+    var heroes = document.querySelectorAll('section.hero');
+    if (!heroes.length) return;
+
+    var st = document.createElement('style');
+    st.textContent = CSS;
+    document.head.appendChild(st);
+
+    var cols = '';
+    for (var c = 0; c < COLS; c++) cols += column(c);
+
+    heroes.forEach(function (hero) {
+      if (getComputedStyle(hero).position === 'static') hero.style.position = 'relative';
+
+      // نتأكد إن محتوى الـ Hero فوق الجدار
+      Array.prototype.forEach.call(hero.children, function (ch) {
+        var cs = getComputedStyle(ch);
+        if (cs.position === 'static') ch.style.position = 'relative';
+        var z = parseInt(cs.zIndex, 10);
+        if (isNaN(z) || z < 1) ch.style.zIndex = '1';
+      });
+
+      var wall = document.createElement('div');
+      wall.className = 'mw-wall';
+      wall.setAttribute('aria-hidden', 'true');
+      wall.innerHTML = '<div class="mw-stage">' + cols + '</div>';
+      hero.insertBefore(wall, hero.firstChild);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+})();
+
+/* =====================================================================
+   سلايدر الخلفية: صورتين بتتبدل، ومع كل صورة بيطلع كلام بألوان الموقع
+   عدّل الكلام والصور من القائمة SLIDES تحت.
+   ===================================================================== */
+(function () {
+  var SLIDES = [
+    {
+      img: 'https://i.ibb.co/bgq9XF2t/pngtree-experience-artful-cinema-from-home-enjoy-popcorn-3d-glasses-and-film-image-3726475.jpg',
+      badge: 'سينما في بيتك',
+      title: 'استمتع بالأفلام كأنك في السينما',
+      text: 'أحدث الأفلام العالمية بجودة 4K وصوت نقي على شاشتك.'
+    },
+    {
+      img: 'https://i.ibb.co/ynmMyT2P/Gemini-Generated-Image-9mk9ci9mk9ci9mk9.jpg',
+      badge: 'مسلسلات بلا حدود',
+      title: 'مسلسلاتك المفضلة بمكان واحد',
+      text: 'آلاف الحلقات العربية والأجنبية، وبتنضاف الجديدة كل أسبوع.'
+    }
+  ];
+  var INTERVAL = 6000;   // مدة كل صورة (ميلي ثانية)
+
+  var CSS = `
+.mw-show{position:absolute;inset:0;overflow:hidden;z-index:1;pointer-events:none}
+.mw-show::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(7,6,12,.2) 0%,rgba(7,6,12,.75) 100%),linear-gradient(to bottom,rgba(7,6,12,.45),transparent 35%,#07060c 100%)}
+.mw-slide{position:absolute;inset:0}
+.mw-bg{position:absolute;inset:-4%;background-size:cover;background-position:center;filter:blur(3px) brightness(.6) saturate(1.15);opacity:0;transition:opacity 1.4s ease;animation:mwKB 16s ease-in-out infinite alternate}
+.mw-slide.on .mw-bg{opacity:.65}
+@keyframes mwKB{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+
+.mw-frame{position:absolute;top:50%;inset-inline-end:5%;z-index:2;width:clamp(170px,19vw,280px);border-radius:18px;overflow:hidden;border:1px solid rgba(245,197,24,.45);box-shadow:0 24px 50px rgba(0,0,0,.65),0 0 40px rgba(186,85,211,.35);opacity:0;transform:translateY(-46%) rotate(0deg) scale(.94);transition:opacity 1s ease .3s,transform 1.2s cubic-bezier(.16,1,.3,1) .3s}
+.mw-frame img{display:block;width:100%;height:auto}
+.mw-slide.on .mw-frame{opacity:1;transform:translateY(-50%) rotate(3deg) scale(1)}
+
+.mw-cap{position:absolute;bottom:34px;inset-inline-start:5%;z-index:3;max-width:min(430px,82%);text-align:start}
+.mw-cap > *{opacity:0;transform:translateY(18px);filter:blur(6px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),filter .9s}
+.mw-slide.on .mw-cap > *{opacity:1;transform:none;filter:none}
+.mw-slide.on .mw-cap > :nth-child(1){transition-delay:.45s}
+.mw-slide.on .mw-cap > :nth-child(2){transition-delay:.65s}
+.mw-slide.on .mw-cap > :nth-child(3){transition-delay:.85s}
+.mw-badge{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;padding:5px 14px;border-radius:20px;font-family:'Alexandria',sans-serif;font-size:12px;font-weight:700;color:#f5c518;background:rgba(245,197,24,.12);border:1px solid rgba(245,197,24,.35)}
+.mw-title{margin:0 0 8px;font-family:'Alexandria',sans-serif;font-size:24px;font-weight:800;line-height:1.4;background:linear-gradient(135deg,#fff 0%,#f5c518 55%,#ba55d3 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 25px rgba(245,197,24,.25)}
+.mw-text{margin:0;font-family:'Readex Pro',sans-serif;font-size:14px;line-height:1.8;color:#c8cbd8}
+
+.mw-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:8px;pointer-events:auto}
+.mw-dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .35s}
+.mw-dot.on{width:26px;border-radius:6px;background:#f5c518;box-shadow:0 0 10px rgba(245,197,24,.6)}
+
+@media (max-width:1200px){.mw-frame{display:none}}
+@media (max-width:768px){.mw-title{font-size:19px}.mw-cap{bottom:44px}}
+@media (prefers-reduced-motion:reduce){.mw-bg{animation:none}}`;
+
+  function build() {
+    var hero = document.getElementById('heroSlider') || document.querySelector('section.hero');
+    if (!hero || !SLIDES.length) return;
+
+    var st = document.createElement('style');
+    st.textContent = CSS;
+    document.head.appendChild(st);
+
+    var html = '', dots = '';
+    SLIDES.forEach(function (s, i) {
+      html += '<div class="mw-slide">' +
+        '<div class="mw-bg" style="background-image:url(\'' + s.img + '\')"></div>' +
+        '<div class="mw-frame"><img src="' + s.img + '" alt=""></div>' +
+        '<div class="mw-cap">' +
+          '<span class="mw-badge"><i class="fa-solid fa-clapperboard"></i> ' + s.badge + '</span>' +
+          '<h3 class="mw-title">' + s.title + '</h3>' +
+          '<p class="mw-text">' + s.text + '</p>' +
+        '</div></div>';
+      dots += '<button type="button" class="mw-dot" aria-label="slide ' + (i + 1) + '"></button>';
+    });
+
+    var show = document.createElement('div');
+    show.className = 'mw-show';
+    show.innerHTML = html + '<div class="mw-dots">' + dots + '</div>';
+
+    var wall = hero.querySelector('.mw-wall');
+    hero.insertBefore(show, wall ? wall.nextSibling : hero.firstChild);
+
+    var slides = show.querySelectorAll('.mw-slide');
+    var dotEls = show.querySelectorAll('.mw-dot');
+    var cur = -1, timer = null;
+
+    function go(i) {
+      cur = (i + slides.length) % slides.length;
+      slides.forEach(function (el, k) { el.classList.toggle('on', k === cur); });
+      dotEls.forEach(function (el, k) { el.classList.toggle('on', k === cur); });
+    }
+    function start() {
+      clearInterval(timer);
+      if (slides.length > 1) timer = setInterval(function () { go(cur + 1); }, INTERVAL);
+    }
+
+    dotEls.forEach(function (d, k) {
+      d.addEventListener('click', function () { go(k); start(); });
+    });
+
+    SLIDES.forEach(function (s) { var im = new Image(); im.src = s.img; });  // تحميل مسبق
+    go(0);
+    start();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+})();
