@@ -766,14 +766,19 @@ if(!initGoogle()){if(tries>20){setStatus('تعذّر تحميل خدمة Google.
 setStatus('جاري تحميل خدمة Google...');setTimeout(function(){renderGoogle(tries+1)},300);return}
 setStatus('');c.innerHTML='';
 google.accounts.id.renderButton(c,{theme:'outline',size:'large',text:'continue_with',shape:'pill',width:Math.max(200,Math.min(300,c.clientWidth||280)),locale:'ar'})}
-$('lgxUser').addEventListener('click',function(e){e.stopPropagation();if(getUser())$('lgxDd').classList.toggle('show');else openModal()});
-$('lgxClose').addEventListener('click',closeModal);
-ov.addEventListener('click',function(e){if(e.target===ov)closeModal()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-document.addEventListener('click',function(e){if(!wrap.contains(e.target))$('lgxDd').classList.remove('show')});
-$('lgxOut').addEventListener('click',function(){try{localStorage.removeItem(KEY)}catch(e){}
-if(window.google&&google.accounts&&google.accounts.id)google.accounts.id.disableAutoSelect();
-applyUser(null);say('تم تسجيل الخروج بنجاح.')});
+$('lgxUser').addEventListener('click',function(e){
+  e.stopPropagation();
+  if(getUser()){
+    if(confirm('هل تريد تسجيل الخروج؟')){
+      try{localStorage.removeItem(KEY)}catch(err){}
+      if(window.google&&google.accounts&&google.accounts.id)google.accounts.id.disableAutoSelect();
+      applyUser(null);
+      say('تم تسجيل الخروج بنجاح.');
+    }
+  } else {
+    openModal();
+  }
+});
 $('lgxEye').addEventListener('click',function(){var i=$('lgxPass'),show=i.type==='password';i.type=show?'text':'password';this.innerHTML=show?EYE:EYE_OFF;this.setAttribute('aria-label',show?'إخفاء كلمة المرور':'إظهار كلمة المرور')});
 $('lgxForm').addEventListener('submit',function(e){e.preventDefault();say('جاري تسجيل الدخول...');closeModal()});
 $('lgxForgot').addEventListener('click',function(e){e.preventDefault();say('تم إرسال رابط استعادة كلمة المرور.')});
