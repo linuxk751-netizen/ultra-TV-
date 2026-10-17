@@ -445,6 +445,86 @@ header#hd nav a svg{display:block;width:18px;height:18px;stroke:var(--gold)}
 .wmap{width:150%;max-width:none;left:-25%}
 .wl{display:none}
 }
+
+/* ===== زر التحميل MOVEXA ===== */
+.mv-dl{position:relative;display:inline-flex;align-items:center;gap:12px;padding:7px 26px 7px 7px;border-radius:60px;color:var(--champ);text-decoration:none;isolation:isolate;overflow:hidden;box-shadow:0 14px 40px rgba(194,24,91,.32);transition:transform .35s,box-shadow .35s}
+.mv-dl::before{content:"";position:absolute;inset:-60%;z-index:-2;background:conic-gradient(from 0deg,#f6e7b4,#c2185b,#7c3aed,#d9b24c,#f6e7b4);animation:mvSpin 5s linear infinite}
+.mv-dl::after{content:"";position:absolute;inset:1.5px;border-radius:inherit;z-index:-1;background:linear-gradient(135deg,#1c0f38,#0b0614)}
+.mv-dl:hover{transform:translateY(-3px);box-shadow:0 22px 56px rgba(194,24,91,.5)}
+@keyframes mvSpin{to{transform:rotate(360deg)}}
+.mv-ic{width:46px;height:46px;border-radius:50%;background:var(--gb);display:grid;place-items:center;flex:none;box-shadow:0 0 22px rgba(217,178,76,.45)}
+.mv-ic svg{width:22px;height:22px;fill:none;stroke:#2b1a05;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mv-tx{display:flex;flex-direction:column;line-height:1.25;text-align:start}
+.mv-tx small{font-size:.72rem;color:var(--mau);letter-spacing:.08em}
+.mv-tx b{font-family:"El Messiri",serif;font-size:1.12rem;font-weight:700;letter-spacing:.05em;background:var(--gb);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mv-dl.lg{padding:9px 34px 9px 9px;gap:16px}
+.mv-dl.lg .mv-ic{width:56px;height:56px}
+.mv-dl.lg .mv-ic svg{width:26px;height:26px}
+.mv-dl.lg .mv-tx b{font-size:1.4rem}
+
+/* ===== قسم التحميل ===== */
+.mv-wrap{padding:40px 6% 110px;max-width:1240px;margin:auto}
+.mv-band{position:relative;border-radius:36px;padding:70px 56px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;border:1px solid rgba(246,231,180,.25);background:radial-gradient(circle at 12% 18%,rgba(194,24,91,.35),transparent 45%),radial-gradient(circle at 92% 85%,rgba(217,178,76,.28),transparent 50%),linear-gradient(135deg,#2a1450,#0b0614);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.mv-band::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.06) 50%,transparent 60%);pointer-events:none}
+.mv-band .kick{display:inline-block;padding:4px 16px;border-radius:30px;font-size:.82rem;font-weight:700;color:var(--champ);background:rgba(246,231,180,.1);border:1px solid rgba(246,231,180,.35);margin-bottom:18px}
+.mv-band h2{font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.35;margin-bottom:14px}
+.mv-band p{color:#d6cbe9;max-width:480px}
+.mv-chips{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 34px}
+.mv-chips span{padding:7px 16px;border-radius:30px;font-size:.88rem;color:var(--champ);background:rgba(7,5,12,.45);border:1px solid rgba(246,231,180,.3)}
+
+/* الصور داخل قسم التحميل */
+.mv-visual{position:relative;justify-self:center;width:min(330px,90%);aspect-ratio:1/1.05}
+.mv-stage{position:absolute;left:50%;top:0;transform:translateX(-50%);width:60%;aspect-ratio:9/17;border-radius:34px;padding:9px;background:linear-gradient(160deg,#3b1d70,#0b0614);border:2px solid rgba(246,231,180,.4);box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 60px rgba(194,24,91,.35);overflow:hidden;z-index:2}
+.mv-stage img{width:100%;height:100%;object-fit:cover;border-radius:26px;display:block}
+.mv-mini{position:absolute;width:46%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;border:2px solid rgba(246,231,180,.5);box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:3;animation:mvFloat 6s ease-in-out infinite}
+.mv-mini img{width:100%;height:100%;object-fit:cover;display:block}
+.mv-mini.m1{left:0;bottom:2%}
+.mv-mini.m2{right:0;bottom:14%;animation-delay:-3s}
+@keyframes mvFloat{50%{transform:translateY(-12px)}}
+@media(max-width:860px){.mv-band{grid-template-columns:1fr;padding:50px 26px;text-align:center}.mv-band p{margin-inline:auto}.mv-chips{justify-content:center}.mv-band .mv-dl{margin-inline:auto}.mv-visual{margin-top:10px}}
+@media(prefers-reduced-motion:reduce){.mv-dl::before,.mv-mini{animation:none}}
+
+/* ===== التذييل ===== */
+.mv-foot{display:flex;flex-direction:column;align-items:center;gap:18px;padding:50px 6% 30px;border-top:1px solid rgba(217,178,76,.2);color:var(--mut);font-size:.9rem;text-align:center}
+.mv-band{grid-template-columns:1fr}
+/* ===== قسم التحميل الجديد ===== */
+.dl2{position:relative;max-width:920px;margin:0 auto 110px;padding:80px 6% 70px;text-align:center;border-radius:40px;overflow:hidden;border:1px solid rgba(246,231,180,.22);background:radial-gradient(ellipse at 50% 0%,rgba(194,24,91,.28),transparent 60%),radial-gradient(ellipse at 50% 110%,rgba(217,178,76,.18),transparent 55%),linear-gradient(180deg,#1a0e33,#0b0614)}
+.dl2::before{content:"";position:absolute;top:0;left:20%;right:20%;height:2px;background:linear-gradient(90deg,transparent,#d9b24c,#c2185b,transparent)}
+.dl2-badge{display:inline-block;padding:6px 20px;border-radius:30px;font-size:.85rem;font-weight:700;color:var(--champ);background:rgba(246,231,180,.08);border:1px solid rgba(246,231,180,.3);margin-bottom:26px}
+.dl2 h2{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.35;margin-bottom:16px}
+.dl2 p{color:#cfc4e6;max-width:520px;margin:0 auto 30px;font-size:1.05rem}
+.dl2-plat{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:44px}
+.dl2-plat span{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:30px;font-size:.92rem;color:#f3ecff;background:rgba(7,5,12,.5);border:1px solid rgba(184,154,245,.3)}
+.dl2-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:60px;background:var(--gb);color:#2b1a05;text-decoration:none;font-family:"El Messiri",serif;font-size:1.2rem;font-weight:700}
+.dl2-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}i",serif;font-size:1.3rem;font-weight:700;box-shadow:0 14px 40px rgba(217,178,76,.35),0 0 0 6px rgba(217,178,76,.08);transition:transform .3s,box-shadow .3s}
+.dl2-btn:hover{transform:translateY(-3px);box-shadow:0 22px 56px rgba(217,178,76,.5),0 0 0 8px rgba(217,178,76,.12)}
+.dl2-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dl2-note{display:block;margin-top:18px;font-size:.85rem;color:var(--mau)}
+@media(max-width:600px){.dl2{padding:60px 22px 50px;border-radius:28px}.dl2-btn{padding:14px 30px;font-size:1.1rem;width:100%;justify-content:center}}
+/* ===== تنسيق نافذة الدخول بألوان الموقع ===== */
+.lgx-ov{background:rgba(7,5,12,.86)}
+.lgx-card{background:linear-gradient(160deg,#1c0f38,#0b0614);border:1px solid rgba(217,178,76,.35);color:#f3ecff;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(194,24,91,.2)}
+.lgx-side{background:transparent}
+.lgx-art{background:#2a1450}
+.lgx-dot{background:var(--gold);box-shadow:0 0 14px rgba(217,178,76,.6)}
+.lgx-wel{color:var(--mau)}
+.lgx-brand{color:var(--champ)}
+.lgx-field label{color:var(--mau)}
+.lgx-field input{color:#f3ecff;border-bottom:1px solid rgba(184,154,245,.35)}
+.lgx-field input:focus{border-bottom-color:var(--gold)}
+.lgx-eye{color:var(--mut)}
+.lgx-eye:hover{color:var(--gold)}
+.lgx-forgot{color:var(--mau)}
+.lgx-forgot:hover{color:var(--gold)}
+.lgx-submit{background:var(--gb);color:#2b1a05;box-shadow:0 10px 26px rgba(217,178,76,.3)}
+.lgx-submit:hover{background:var(--gb);filter:brightness(1.06)}
+.lgx-or{color:var(--mut)}
+.lgx-or::before,.lgx-or::after{background:rgba(184,154,245,.25)}
+.lgx-status{color:var(--mau)}
+.lgx-signup{color:var(--mut)}
+.lgx-signup a{color:var(--gold)}
+.lgx-close{background:rgba(255,255,255,.08);color:var(--champ);box-shadow:none;border:1px solid rgba(246,231,180,.3)}
+.lgx-close:hover{background:rgba(246,231,180,.16);color:var(--champ)}
 </style>
 </head>
 <body>
@@ -575,9 +655,18 @@ header#hd nav a svg{display:block;width:18px;height:18px;stroke:var(--gold)}
     </div>
   </div>
 </section>
-<a class="wa" target="_blank" rel="noopener" aria-label="واتساب" href="https://wa.me/963933940387?text=مرحباً، أرغب بالاستفسار أكثر حول الخدمات"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-<footer>© 2026 MOVEXA TV. جميع الحقوق محفوظة.</footer>
 
+<section class="dl2" id="download">
+  <span class="dl2-badge">التطبيق الرسمي</span>
+  <h2>شاهد MOVEXA TV من أي جهاز</h2>
+  <p>حمّل التطبيق وفعّل اشتراكك في دقيقة، وابدأ المشاهدة بجودة 4K بدون تقطيع.</p>
+  <div class="dl2-plat"><span>أندرويد</span><span>آيفون</span><span>شاشات ذكية</span><span>كمبيوتر</span></div>
+  <a class="dl2-btn" href="https://example.com/MOVEXA.apk" target="_blank" rel="noopener" download><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>تحميل MOVEXA TV</a>
+  <span class="dl2-note">مجاناً · تفعيل فوري</span>
+</section>
+
+<a class="wa" target="_blank" rel="noopener" aria-label="واتساب" href="https://wa.me/963933940387?text=مرحباً، أرغب بالاستفسار أكثر حول الخدمات"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+ <footer>© 2026 MOVEXA TV. جميع الحقوق محفوظة.</footer>
 <script>
 (function(){
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}})},{threshold:.3});document.querySelectorAll('.panel').forEach(function(p){io.observe(p)});
