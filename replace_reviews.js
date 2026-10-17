@@ -138,4 +138,3 @@ const newBlock = [
 const repaired = text.slice(0, blockStart) + newBlock + text.slice(blockEnd + '</script>'.length);
 fs.writeFileSync(path, repaired, 'utf8');
 console.log('review script replaced');
-`
