@@ -248,11 +248,7 @@ header#hd nav a.on{background:rgba(246,231,180,.12);color:var(--champ)}
 .lgx-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .lgx-btn img{width:100%;height:100%;object-fit:cover;display:block}
 .lgx-wrap{position:relative}
-.lgx-dd{position:absolute;top:calc(100% + 12px);inset-inline-end:0;min-width:220px;padding:14px;border-radius:18px;background:rgba(12,8,22,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(217,178,76,.3);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .25s,transform .25s;z-index:5}
-.lgx-dd.show{opacity:1;pointer-events:auto;transform:none}
-.lgx-dd .em{display:block;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(217,178,76,.22);color:#f3ecff;font-size:.88rem;direction:ltr;text-align:start;overflow-wrap:anywhere}
-.lgx-dd button{width:100%;padding:9px;border:0;border-radius:12px;background:rgba(246,231,180,.1);color:#f6e7b4;font-family:inherit;font-size:.9rem;cursor:pointer}
-.lgx-dd button:hover{background:rgba(246,231,180,.2)}
+.lgx-dd{display:none}
 .lgx-ov{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px;background:rgba(10,8,24,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .lgx-ov.show{display:flex}
 .lgx-card{position:relative;display:flex;width:100%;max-width:880px;min-height:540px;margin:auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);font-family:Tajawal,Tahoma,sans-serif;color:#1b1464;text-align:start;line-height:1.6}
@@ -397,7 +393,6 @@ box-shadow:inset 0 0 0 1px rgba(246,231,180,.5),0 0 24px rgba(217,178,76,.25)}
 /* الأزرار */
 header#hd .hr{display:flex;align-items:center;gap:10px;margin:0}
 header#hd .lgx-btn{width:44px;height:44px;background:rgba(255,255,255,.07);-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid rgba(246,231,180,.4)}
-header#hd .lgx-dd{top:calc(100% + 20px)}
 header#hd .cta{padding:11px 26px;font-size:.92rem;white-space:nowrap}
 header#hd .menu{display:none!important}
 
@@ -496,9 +491,7 @@ header#hd nav a svg{display:block;width:18px;height:18px;stroke:var(--gold)}
 .dl2-plat{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:44px}
 .dl2-plat span{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:30px;font-size:.92rem;color:#f3ecff;background:rgba(7,5,12,.5);border:1px solid rgba(184,154,245,.3)}
 .dl2-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 36px;border-radius:60px;background:var(--gb);color:#2b1a05;text-decoration:none;font-family:"El Messiri",serif;font-size:1.2rem;font-weight:700}
-.dl2-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}i",serif;font-size:1.3rem;font-weight:700;box-shadow:0 14px 40px rgba(217,178,76,.35),0 0 0 6px rgba(217,178,76,.08);transition:transform .3s,box-shadow .3s}
-.dl2-btn:hover{transform:translateY(-3px);box-shadow:0 22px 56px rgba(217,178,76,.5),0 0 0 8px rgba(217,178,76,.12)}
-.dl2-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dl2-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .dl2-note{display:block;margin-top:18px;font-size:.85rem;color:var(--mau)}
 @media(max-width:600px){.dl2{padding:60px 22px 50px;border-radius:28px}.dl2-btn{padding:14px 30px;font-size:1.1rem;width:100%;justify-content:center}}
 /* ===== تنسيق نافذة الدخول بألوان الموقع ===== */
@@ -525,6 +518,19 @@ header#hd nav a svg{display:block;width:18px;height:18px;stroke:var(--gold)}
 .lgx-signup a{color:var(--gold)}
 .lgx-close{background:rgba(255,255,255,.08);color:var(--champ);box-shadow:none;border:1px solid rgba(246,231,180,.3)}
 .lgx-close:hover{background:rgba(246,231,180,.16);color:var(--champ)}
+/* ===== التذييل الجديد ===== */
+footer.ft{position:relative;padding:0;border-top:none;background:#14111f;overflow:hidden;text-align:center;font-size:inherit}
+.ft-main{position:relative;padding:70px 6% 60px}
+.ft-main::before{content:"";position:absolute;inset:0;background:radial-gradient(rgba(246,231,180,.22) 1px,transparent 1.3px) 0 0/7px 7px;-webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 50%,#000 20%,transparent 75%);pointer-events:none}
+.ft-logo{position:relative;display:block;width:120px;height:auto;margin:0 auto 26px;filter:drop-shadow(0 0 22px rgba(194,24,91,.45));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ft-logo:hover{transform:scale(1.06) rotate(-3deg)}
+.ft-text{position:relative;max-width:560px;margin:0 auto;color:var(--mut);font-size:.92rem;line-height:1.9}
+.ft-text b{color:var(--champ);font-weight:700}
+.ft-links{position:relative;display:flex;gap:22px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.ft-links a{color:var(--mau);text-decoration:none;font-size:.9rem;transition:color .3s}
+.ft-links a:hover{color:var(--champ)}
+.ft-bar{background:#0f0c18;border-top:1px solid rgba(217,178,76,.18);padding:18px 6%;color:var(--mut);font-size:.85rem}
+.ft-bar span{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -648,7 +654,6 @@ header#hd nav a svg{display:block;width:18px;height:18px;stroke:var(--gold)}
   <div id="contact">
     <div class="gl"></div><h2>اتصل بنا</h2><p class="lead">اطلب التجربة المجانية أو اشترك مباشرة.</p>
     <div class="ct">
-      <small>الهاتف</small><a href="tel:+963933940387">+963 933 940 387</a>
       <small>واتساب</small><a href="https://wa.me/963933940387" target="_blank" rel="noopener">+963 933 940 387</a>
       <small>البريد الإلكتروني</small><a href="mailto:ultratv.media2026@gmail.com">ultratv.media2026@gmail.com</a>
       <small>أوقات العمل – طيلة أيام الأسبوع</small><span style="display:block;direction:ltr;text-align:start;font-family:El Messiri;font-size:1.5rem;color:#fff">08:00 AM - 10:00 PM</span>
@@ -665,8 +670,20 @@ header#hd nav a svg{display:block;width:18px;height:18px;stroke:var(--gold)}
   <span class="dl2-note">مجاناً · تفعيل فوري</span>
 </section>
 
-<a class="wa" target="_blank" rel="noopener" aria-label="واتساب" href="https://wa.me/963933940387?text=مرحباً، أرغب بالاستفسار أكثر حول الخدمات"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
- <footer>© 2026 MOVEXA TV. جميع الحقوق محفوظة.</footer>
+<footer class="ft">
+  <div class="ft-main">
+    <img class="ft-logo" src="https://i.ibb.co/8n2yqt8r/logo.png" alt="MOVEXA TV">
+    <p class="ft-text">الموقع الرسمي لـ <b>MOVEXA TV</b>. يمكنكم متابعتنا على مواقع التواصل الاجتماعي للحصول على كل ما هو جديد في عالم البث المباشر والترفيه.</p>
+    <div class="ft-links">
+      <a href="#home">الرئيسية</a>
+      <a href="#packages">الباقات</a>
+      <a href="#channels">القنوات</a>
+      <a href="#faq">الأسئلة</a>
+      <a href="#contact">اتصل بنا</a>
+    </div>
+  </div>
+  <div class="ft-bar">MOVEXA TV <span>©</span> All Rights Reserved - 2017 - 2026</div>
+</footer>
 <script>
 (function(){
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}})},{threshold:.3});document.querySelectorAll('.panel').forEach(function(p){io.observe(p)});
@@ -741,7 +758,7 @@ function $(id){return document.getElementById(id)}
 function install(){
 var hr=document.querySelector('header .hr');
 var wrap=document.createElement('div');wrap.className='lgx-wrap';
-wrap.innerHTML='<button type="button" class="lgx-btn" id="lgxUser" aria-label="تسجيل الدخول">'+ICON_USER+'</button><div class="lgx-dd" id="lgxDd"><span class="em" id="lgxEm"></span><button type="button" id="lgxOut">تسجيل الخروج</button></div>';
+wrap.innerHTML='<button type="button" class="lgx-btn" id="lgxUser" aria-label="تسجيل الدخول">'+ICON_USER+'</button><div class="lgx-dd" id="lgxDd"><span class="em" id="lgxEm"></span></div>';
 if(hr)hr.insertBefore(wrap,hr.firstChild);else document.body.appendChild(wrap);
 var ov=document.createElement('div');ov.className='lgx-ov';ov.innerHTML=HTML;document.body.appendChild(ov);
 var toast=document.createElement('div');toast.className='lgx-toast';toast.setAttribute('role','status');document.body.appendChild(toast);
@@ -749,8 +766,8 @@ var tt;function say(m){toast.textContent=m;toast.classList.add('show');clearTime
 function setStatus(m){$('lgxStatus').textContent=m}
 function getUser(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
 function applyUser(u){var b=$('lgxUser');
-if(u){$('lgxEm').textContent=u.email||'';b.setAttribute('aria-label','حسابي');b.innerHTML=u.picture?'<img src="'+u.picture+'" alt="" referrerpolicy="no-referrer">':ICON_USER}
-else{b.setAttribute('aria-label','تسجيل الدخول');b.innerHTML=ICON_USER;$('lgxDd').classList.remove('show')}}
+if(u){$('lgxEm').textContent=u.email||'';b.setAttribute('aria-label','تسجيل الخروج');b.title='تسجيل الخروج';b.innerHTML=u.picture?'<img src="'+u.picture+'" alt="" referrerpolicy="no-referrer">':ICON_USER}
+else{b.setAttribute('aria-label','تسجيل الدخول');b.title='تسجيل الدخول';b.innerHTML=ICON_USER}}
 function openModal(){ov.classList.add('show');document.body.style.overflow='hidden';renderGoogle(0);setTimeout(function(){$('lgxEmail').focus()},60)}
 function closeModal(){ov.classList.remove('show');document.body.style.overflow=''}
 var gInit=false,gLoaded=false;
@@ -766,6 +783,8 @@ if(!initGoogle()){if(tries>20){setStatus('تعذّر تحميل خدمة Google.
 setStatus('جاري تحميل خدمة Google...');setTimeout(function(){renderGoogle(tries+1)},300);return}
 setStatus('');c.innerHTML='';
 google.accounts.id.renderButton(c,{theme:'outline',size:'large',text:'continue_with',shape:'pill',width:Math.max(200,Math.min(300,c.clientWidth||280)),locale:'ar'})}
+
+/* زر الحساب: إذا كان مسجلاً يسجل الخروج بعد التأكيد، وإلا يفتح نافذة الدخول */
 $('lgxUser').addEventListener('click',function(e){
   e.stopPropagation();
   if(getUser()){
@@ -779,6 +798,9 @@ $('lgxUser').addEventListener('click',function(e){
     openModal();
   }
 });
+$('lgxClose').addEventListener('click',closeModal);
+ov.addEventListener('click',function(e){if(e.target===ov)closeModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
 $('lgxEye').addEventListener('click',function(){var i=$('lgxPass'),show=i.type==='password';i.type=show?'text':'password';this.innerHTML=show?EYE:EYE_OFF;this.setAttribute('aria-label',show?'إخفاء كلمة المرور':'إظهار كلمة المرور')});
 $('lgxForm').addEventListener('submit',function(e){e.preventDefault();say('جاري تسجيل الدخول...');closeModal()});
 $('lgxForgot').addEventListener('click',function(e){e.preventDefault();say('تم إرسال رابط استعادة كلمة المرور.')});
